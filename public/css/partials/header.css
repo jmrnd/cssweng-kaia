@@ -1,0 +1,73 @@
+/***********************************************
+                     FONTS                    
+***********************************************/
+@font-face {
+    font-family: 'Migra-ExtraBold';
+    src: url('/fonts/Migra-Extrabold.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'GlacialIndifference';
+    src: url('/fonts/GlacialIndifference.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'GlacialIndifference-Bold';
+    src: url('/fonts/GlacialIndifference-Bold.otf') format('opentype');
+}
+
+/***********************************************
+                     HEADER                    
+***********************************************/
+div.header {
+    height: 65px;
+    width: 99%;
+    display: block;
+    position: sticky;
+    border-bottom: 1px solid #fbfbfb;
+    z-index: 1; /* Prioritizes the header and puts it at the front */
+}
+
+div.header-box {
+    margin: 0px;
+    padding: 0px;
+}
+
+/***********************************************
+                     LOGO                    
+***********************************************/
+div.logo {
+    text-align: center;
+    position: relative;
+}
+
+.kaia {
+    color:#EF91CF;
+    font-family: 'Migra-ExtraBold', sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
+.apparel {
+    color:#995594;
+    font-family: "GlacialIndifference-Bold", sans-serif;
+    font-size: 0.6em;
+    font-weight: bold;
+    margin: -12px;
+    padding: 0px;
+    letter-spacing: 5.5px;
+}
+
+.last-letter {
+    letter-spacing: 0px;
+}
+
+/***********************************************
+                    BUTTONS                    
+***********************************************/
+div.buttons {
+    text-align: right;
+    position: relative;
+    bottom: 20px;
+    font-size: 10px;
+}
