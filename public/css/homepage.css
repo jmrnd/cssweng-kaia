@@ -1,21 +1,17 @@
-@font-face {
-    font-family: 'Migra-ExtraBold';
-    src: url('/fonts/Migra-Extrabold.otf') format('opentype');
+:root {
+    --new-arrivals: url("/images/kaia/iris_linen_top_1.jpg");
+    --dresses: url("/images/kaia/sky_linen_dress_1.jpg");
+    --bottoms: url("/images/kaia/june_top_4.jpg");
+    --tops: url("/images/kaia/lane_top_2.jpg");
+    --coords: url("/images/kaia/cara_linen_coordinates_3.jpg");
 }
 
-@font-face {
-    font-family: 'GlacialIndifference';
-    src: url('/fonts/GlacialIndifference.otf') format('opentype');
-}
-
-/***********************************************
-                     BODY                    
-***********************************************/
 body {
     display: block;
     align-items: center;
     text-align: center;
     justify-content: center;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 /***********************************************
@@ -33,9 +29,8 @@ div.outer-container {
     display: block;
     position: relative;
     max-width: 800px;
-    min-height: 200px;
+    height: 300px;
     margin: 0 auto;
-    background-color: gray;
 }
 
 div.inner-container {
@@ -47,13 +42,67 @@ div.inner-container {
 }
 
 div.category-container {
-    background-color: yellow;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
     width: 50%;
+    height: 120px;
     margin: 10px;
+
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
 }
 
-.big-text {
+/***********************************************
+                  CONTAINERS                    
+***********************************************/
+span.name {
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+span.name.new-arrival {
     position: absolute;
-    bottom: 0;
-    left: 0;
+    bottom: 0px;
+    left: 20px;
+    font-size: 3em;
+}
+
+span.name.category {
+    position: relative;
+    top: 35px;
+    font-size: 2.5em;
+}
+
+span.title {
+    color: black;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+/***********************************************
+                     IMAGES                
+***********************************************/
+div.outer-container.new-arrivals {
+    background-size: cover;
+    background-image: var(--new-arrivals);
+    background-position: center; 
+}
+
+div.category-container.dresses {
+    background-image: var(--dresses);
+}
+
+div.category-container.bottoms {
+    background-image: var(--bottoms);
+}
+
+div.category-container.tops {
+    background-image: var(--tops);
+}
+
+div.category-container.coords {
+    background-image: var(--coords);
 }

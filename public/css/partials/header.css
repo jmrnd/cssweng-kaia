@@ -1,3 +1,10 @@
+:root {
+    --search-icon: url("/images/icons/search-icon.png");
+    --favourite-icon: url("/images/icons/favourite-icon.png");
+    --cart-icon: url("/images/icons/cart-icon.png");
+    --profile-icon: url("/images/icons/profile-icon.png");
+}
+
 /***********************************************
                      FONTS                    
 ***********************************************/
@@ -20,7 +27,6 @@
                      HEADER                    
 ***********************************************/
 div.header {
-    height: 65px;
     width: 99%;
     display: block;
     position: sticky;
@@ -44,6 +50,7 @@ div.logo {
 .kaia {
     color:#EF91CF;
     font-family: 'Migra-ExtraBold', sans-serif;
+    font-size: 3em;
     margin: 0px;
     padding: 0px;
 }
@@ -51,7 +58,7 @@ div.logo {
 .apparel {
     color:#995594;
     font-family: "GlacialIndifference-Bold", sans-serif;
-    font-size: 0.6em;
+    font-size: 0.9em;
     font-weight: bold;
     margin: -12px;
     padding: 0px;
@@ -65,9 +72,55 @@ div.logo {
 /***********************************************
                     BUTTONS                    
 ***********************************************/
-div.buttons {
+div.header-buttons {
     text-align: right;
     position: relative;
-    bottom: 20px;
-    font-size: 10px;
+    bottom: 42.5px;
+}
+
+button.header {
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+}
+
+button.header:hover {
+    background: rgba(82, 82, 82, 0.3);
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+button.header:active {
+    opacity: 0.3;
+    transition: 0.3s;
+}
+
+button.header:not(:hover) {
+    transition: 0.3s;
+}
+
+span.icon {
+    height: 35px;
+    width: 35px;
+    display: block;
+    background-size: cover;
+}
+
+/***********************************************
+                    ICON IMAGES                
+***********************************************/
+span.icon.search {
+    background-image: var(--search-icon);
+}
+
+span.icon.favourite {
+    background-image: var(--favourite-icon);
+}
+
+span.icon.cart {
+    background-image: var(--cart-icon);
+}
+
+span.icon.profile {
+    background-image: var(--profile-icon);
 }

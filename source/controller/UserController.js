@@ -15,6 +15,14 @@ const User = require('../models/User.js');
 
 const UserController = {
 
+    getLogin: (req, res) => {
+        if( req.session.authorized && req.session.rememberMe ) {
+            res.redirect('/homepage');
+        } else {
+            res.render('login.ejs');
+        }
+    }, 
+
     /*
         TODO: Login User
         - post request
@@ -24,60 +32,55 @@ const UserController = {
         - sets up a session if login is successful
         - returns the appropriate responses for success or failure
     */
-    postLogin: (req, res) => {        
+    postLogin: async (req, res) => {        
         try {
-            const { email, password } = req.body;
-            const user = User.login( email, password );
+            const { email, password, rememberMe } = req.body;
+            const user = await User.login( email, password );
 
-            if( !user ) {
-                return res.status(401).json({ message: 'Invalid credentials'})
+            if( user.status !== 200 ) {
+                return res.status(401).json({ message: 'Invalid credentials' });
             } 
 
-            /*
-                Insert session management
-            */
+            // - If remember me option was checked
+            req.session.rememberMe = rememberMe === 'true';
+            req.session.authorized = true;
+            req.session.userRole = User.getHighestRole(email);
 
-            const userRole = User.getHighestRole(email);
-            if( userRole == "admin" ) {
-                // - redirect to admin dashboard
+            if( req.session.userRole == 'admin' ) {
+                return res.status(201).json({ message: "Registration successful." });
             } else {
-                // - redirect to customer view
+                return res.status(201).json({ message: "Registration successful." });
             }   
 
         } catch( error ) {
-
+            console.error(error); 
+            res.status(500).json({ message: 'An error occurred during login. Please try again.' });
         }
     },
 
-    /*
-        TODO: Logout User
-        - get request
-        - destroys the user's session
-        - sends a response indicating a succesful logout
-    */
+
     logout: (req, res) => {
-        
+        req.session.destroy();
+        res.render('homepage'); 
     },
 
-    /*
-        TODO: Register User
-        - post request
-        - input validation (might do it somewhere else to include sanitization)
-        - check if the user is a duplicate (email)
-        - [DONE] password hashing with bcrypt inside the User model
-        - error handling
-        - returns the appropriate responses for success or failure
+    /**
+        ` This function should execute when the user sends a POST request to path '/register',
+        which occurs when the register button is pressed in the registration page. It assumes
+        the registration data being received is complete, i.e., the input error handling is 
+        done on the front-end.
     */
-    register: (req, res) => {
-        const { firstName, lastName, email, password } = req.body;
-
+    register: async (req, res) => {   
         try {
-            const isEmailRegistered = User.doesEmailExist( email );
+            const { name, email, password } = req.body;
+            const isEmailRegistered = await User.doesEmailExist( email );
+
             if( isEmailRegistered ) {
+                console.log( "The email: \"" + email + "\" is already registered" );
                 return res.status(400).json({ message: "This email is already registered." });
             }
-            User.register( firstName, lastName, email, password );
-            return res.status(201).json({ message: "User registered succesfully." });
+            User.register( name.firstName, name.lastName, email, password );
+            return res.status(201).json({ message: "Registration successful." });
         } catch( error ) {
             console.error( "Error registering user: ", error );
             return res.status(500).json({ message: "Registration failed." });

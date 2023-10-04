@@ -5,32 +5,42 @@
     <link rel = "stylesheet" href = "/css/homepage.css">
     <script src = "js/homepage.js" defer> </script>
 </head>
-
 <body>
     <%- include("./partials/header.ejs") %>
     <div class = "main-container"> 
-        <div class = "outer-container">
-            <h1 class = "big-text"> New Arrivals </h1>
+        <div class = "outer-container new-arrivals">
+            <span class = "name new-arrival"> NEW ARRIVALS </span>
         </div>
-        <h2> Category </h2>
+
+        <span class = "title"> 
+            <br> Category <br>
+        </span>
+
         <div class = "outer-container">
             <div class = "inner-container">
-                <div class = "category-container">
-                    <h1> Dresses </h1>
+                <div class = "category-container dresses">
+                    <span class = "name category"> DRESSES </span>
                 </div>
-                <div class = "category-container">
-                    <h1> Tops </h1>
+                <div class = "category-container bottoms">
+                    <span class = "name category"> BOTTOMS </span>
                 </div>
             </div>
             <div class = "inner-container">
-                <div class = "category-container">
-                    <h1> Bottoms </h1>
+                <div class = "category-container tops">
+                    <span class = "name category"> TOPS </span>
                 </div>
-                <div class = "category-container">
-                    <h1> Coords </h1>
+                <div class = "category-container coords">
+                    <span class = "name category"> COORDS </span>
                 </div>
             </div>
-            
+        </div>
+
+        <span class = "title"> 
+            <br> Featured Styles <br>
+        </span>
+
+        <div class = "outer-container" style = "background-color: gray;">
+            <span> Display different clothing outfit of the day </span>
         </div>
     </div>
 </body>

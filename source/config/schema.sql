@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS users(
     userID INT PRIMARY KEY AUTO_INCREMENT,
     firstName VARCHAR(50) NOT NULL,
     lastName VARCHAR(50) NOT NULL,
-    email VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     dateCreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS roles(
     roleID INT PRIMARY KEY AUTO_INCREMENT,
 	roleName ENUM('guest', 'customer', 'admin') NOT NULL
 );
-INSERT INTO roles (roleName) VALUES ('customer'), ('admin');
+INSERT INTO roles (roleName) VALUES ('guest'), ('customer'), ('admin');
 
 -- UserRoles table 
 -- intermediate table to link users to roles
@@ -28,15 +28,19 @@ CREATE TABLE IF NOT EXISTS userRoles(
     FOREIGN KEY (roleID) REFERENCES roles(roleID)
 );
 
+/*
+	` afterUserInsert trigger - after a new row has been added to the
+    Users table, it inserts a new row into the userRoles table and gives
+    the new user the lowest role, which is 'Guest' with the roleID of 1.
+*/
 DELIMITER $$
-CREATE TRIGGER after_user_insert
+CREATE TRIGGER afterUserInsert
 AFTER INSERT ON users FOR EACH ROW
 BEGIN
   INSERT INTO userRoles( userID, roleID )
   VALUES( NEW.userID, 1 ); -- Assuming 'guest' has roleID = 1
 END;
-$$
-DELIMITER ;
+$$ DELIMITER ;
 
 -- Products table
 CREATE TABLE IF NOT EXISTS products(
