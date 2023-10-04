@@ -1,0 +1,79 @@
+body {
+    display: block;
+    justify-content: center;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+
+/***********************************************
+                  CONTAINERS                    
+***********************************************/
+div.main-container {
+    display: block;
+    max-width: 1150px;  
+    align-items: center; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/***********************************************
+        HEADER - Title and Register Button                  
+***********************************************/
+div.header-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center; 
+}
+
+span.title {
+    color: black;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+div.register-button-container {
+    text-align: right;
+}
+
+.register-button {
+    background-color: #EF91CF;
+    color: white; 
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.register-button:hover {
+    background: rgba(235, 138, 194, 0.507);
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.register-button:active {
+    opacity: 0.3;
+    transition: 0.3s;
+}
+
+.register-button:not(:hover) {
+    transition: 0.3s;
+}
+
+/***********************************************
+        HEADER - Dropdown and Search                 
+***********************************************/
+div.sort-container {
+    background-color: red;
+}
+
+/***********************************************
+                    PRODUCTS                 
+***********************************************/
+.product-container {
+    cursor: pointer; /* Change cursor to indicate clickability */
+    margin: 10px;
+    border: 1px solid #000; /* Example border for product containers */
+    padding: 10px;
+}
+

@@ -76,10 +76,6 @@ loginButton?.addEventListener( "click", async function(e) {
             body: JSON.stringify( loginData )
         });
 
-        console.log( "Response status" + response.status );
-        console.log( "Response message" + response.message );
-
-
         // - On success, go to dashboard
         if( response.status == 201 ) {
             window.location.href = "/homepage";

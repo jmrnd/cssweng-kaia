@@ -78,6 +78,9 @@ class User {
         ` Check if a user with the given email already exists in the database. 
 
         @returns {Boolean}  true if the email is registered, false otherwise
+
+        TODO: 
+            - It should return a status code as well as a result
     */
     static async doesEmailExist( email ) {
         const sql = `SELECT COUNT(*) AS count FROM users WHERE email = ?`;
@@ -102,6 +105,9 @@ class User {
         - The 'userRoles' table manages all the roles that the user currently has
 
         @returns {string}  the role name if email is registered, null otherwise
+
+        TODO: 
+            - It should return a status code as well as a result
     */
     static async getHighestRole( email ) {
         const sql = `

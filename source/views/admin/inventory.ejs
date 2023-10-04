@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <title> Kaia Apparel </title>
+    <link rel = "stylesheet" href = "/css/admin/inventory.css">
+    <script src = "js/admin/inventory.js" defer> </script>
+</head>
+<body>
+    <%- include("../partials/admin-header.ejs") %>
+
+    <div class = main-container> 
+        <div class = "header-container">
+            <span class = "title"> INVENTORY MANAGEMENT </span>
+            <div class = "register-button-container">
+                <a class = "register-button" href = "/registerProduct"> REGISTER+ </a>
+            </div>
+        </div>
+        <div class = "header-container">
+            <div>
+                <span> Category </span>
+                <select class="category-dropdown">
+                    <option value="all"> </option>
+                    <% categories.forEach((category) => { %>
+                        <option value = "<%= category %>"> <%= category %> </option>
+                    <% }); %>
+                </select>
+                </select>
+            </div>
+            <div> 
+                <input type="text" class="search-bar" placeholder="Search products...">
+                <button id="search-button">Search</button>
+            </div>
+        </div>
+            <% products.forEach((product) => { %>
+                <div class = "product-container"> 
+                    <div class="product-item">
+                        <span>[#<%=product.productID %>]</span>
+                        <span>Name: <%= product.productName %> | </span>
+                        <span>Price: $<%= product.price %> | </span>
+                        <span>Stock: <%= product.stockQuantity %> | </span>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+    <script>
+        const categories = `<%- JSON.stringify(categories) %>`;
+        const products = `<%- JSON.stringify(products) %>`;
+    </script>
+</body>
+</html>

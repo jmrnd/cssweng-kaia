@@ -15,6 +15,11 @@ const User = require('../models/User.js');
 
 const UserController = {
 
+    /*
+        ` This function is called when the user sends a GET request to path '/login'. 
+        If the user is already authorized and has chosen the "remember me" option, it
+        redirects them to the homepage.
+    */
     getLogin: (req, res) => {
         if( req.session.authorized && req.session.rememberMe ) {
             res.redirect('/homepage');
@@ -24,16 +29,24 @@ const UserController = {
     }, 
 
     /*
-        TODO: Login User
-        - post request
-        - remember me session
-        - handles user authentication
-        - checks provided username and password against DB
-        - sets up a session if login is successful
-        - returns the appropriate responses for success or failure
+        ` This function is called when the user sends a POST request to path '/login',
+        which occurs when the login button is pressed in the login page. It assumes the 
+        login data being received is complete, i.e., the input error handling is done on 
+        the front-end.
+        
+        When successful, it handles user authentication, session management, and provides 
+        appropriate responses for both successful and failed login attempts. This function 
+        is used for all users regardless of their roles (e.g. Guests, Admins).
+
+        TODO: 
+            - Create middleware to validate and sanitize the inputs
     */
     postLogin: async (req, res) => {        
         try {
+            if( req.session.authorized && req.session.rememberMe ) {
+                res.redirect('/homepage');
+            }
+
             const { email, password, rememberMe } = req.body;
             const user = await User.login( email, password );
 
@@ -44,12 +57,13 @@ const UserController = {
             // - If remember me option was checked
             req.session.rememberMe = rememberMe === 'true';
             req.session.authorized = true;
-            req.session.userRole = User.getHighestRole(email);
+            req.session.email = email;
+            req.session.userRole = await User.getHighestRole(email);
 
             if( req.session.userRole == 'admin' ) {
-                return res.status(201).json({ message: "Registration successful." });
+                return res.status(201).json({ message: "Login successful." });
             } else {
-                return res.status(201).json({ message: "Registration successful." });
+                return res.status(201).json({ message: "Login successful." });
             }   
 
         } catch( error ) {
@@ -69,6 +83,9 @@ const UserController = {
         which occurs when the register button is pressed in the registration page. It assumes
         the registration data being received is complete, i.e., the input error handling is 
         done on the front-end.
+
+        TODO: 
+            - Create middleware to validate and sanitize the inputs
     */
     register: async (req, res) => {   
         try {

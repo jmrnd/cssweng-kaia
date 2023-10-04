@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS users(
 -- Roles table
 CREATE TABLE IF NOT EXISTS roles(
     roleID INT PRIMARY KEY AUTO_INCREMENT,
-	roleName ENUM('guest', 'customer', 'admin') NOT NULL
+	roleName VARCHAR(255) NOT NULL
 );
 INSERT INTO roles (roleName) VALUES ('guest'), ('customer'), ('admin');
 
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS products(
 	productName VARCHAR(255) NOT NULL,
     productDescription TEXT,
     price DECIMAL(10, 2) NOT NULL,
-    stockQuantity INT NOT NULL
+    stockQuantity INT DEFAULT 0 NOT NULL
 );
 
 /*
@@ -69,4 +69,11 @@ CREATE TABLE IF NOT EXISTS productCategories(
     categoryName VARCHAR(255) NOT NULL,
     parentCategoryID INT,
     FOREIGN KEY (parentCategoryID) REFERENCES productCategories(categoryID)
-)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
+);
+
+INSERT INTO productCategories (categoryName, parentCategoryID) VALUES ('Dresses', NULL), ('Bottoms', NULL), ('Tops', NULL), ('Coords', NULL);
+INSERT INTO productCategories (categoryName, parentCategoryID) VALUES ('Casual', 1), ('Formal', 1);
+INSERT INTO productCategories (categoryName, parentCategoryID) VALUES ('Jeans', 2), ('Pants', 2), ('Skirts', 2), ('Shorts', 2), ('Leggings', 2);
+INSERT INTO productCategories (categoryName, parentCategoryID) VALUES ('T-Shirts', 3), ('Blouses', 3), ('Sweaters', 3), ('Tank Tops', 3), ('Crop Tops', 3);

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <title> Kaia Apparel </title>
+    <link rel = "stylesheet" href = "/css/admin/registerProduct.css">
+    <script src = "js/admin/registerProduct.js" defer> </script>
+</head>
+<body>
+    <%- include("../partials/admin-header.ejs") %>
+
+    <div class = main-container> 
+        <div class = "header-container">
+            <span class = "title"> REGISTER PRODUCT </span>
+        </div>
+
+        <form id = "product-form">
+        <div class = "register-container">
+            <div class = "left-section">
+                <div>
+                    <label> Category </label>
+                    <select class = "category-dropdown" id = "category-dropdown">
+                        <option value = "all"> </option>
+                        <% categories.forEach((category) => { %>
+                            <option value = "<%= category %>"> <%= category %> </option>
+                        <% }); %>
+                    </select>
+                </div>
+                <div>
+                    <label for = "name"> Name </label>
+                    <input type = "text" id = "name"/>
+                </div>
+                <div>
+                    <label for = "price"> Price </label>
+                    <input type = "number" id = "price" step = "0.01" min="0"/>
+                </div>
+                <div>
+                    <label for = "description"> Description </label>
+                    <textarea id = "description" rows = "4"></textarea>
+                </div>
+                <div>
+                    <label for = "stock"> Stock </label>
+                    <input type = "number" id = "stock" step = "1" min="0"/>
+                </div>
+                <div>
+                    <label for = "images"> Images </label>
+                    <input type = "file" id = "images"/>
+                </div>
+            </div>
+
+            <div class = "right-section">
+                <div class = "register-button-container">
+                    <button type = "submit" class = "register-button"> REGISTER </a>
+                </div>
+            </div>
+        </form>
+            <div>
+                <span id = feedback-text> Hello </span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const categories = `<%- JSON.stringify(categories) %>`;
+    </script>
+</body>
+</html>
