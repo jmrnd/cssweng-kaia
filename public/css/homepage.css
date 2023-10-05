@@ -61,6 +61,7 @@ span.name {
     font-weight: bold;
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    user-select: none;
 }
 
 span.name.new-arrival {
@@ -80,6 +81,7 @@ span.title {
     color: black;
     font-weight: bold;
     font-size: 1.5em;
+    user-select: none;
 }
 
 /***********************************************

@@ -32,6 +32,7 @@ div.header {
     position: sticky;
     border-bottom: 1px solid #fbfbfb;
     z-index: 1; /* Prioritizes the header and puts it at the front */
+    user-select: none;
 }
 
 div.header-box {
