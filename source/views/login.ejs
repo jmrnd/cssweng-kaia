@@ -6,37 +6,123 @@
     <script src = "js/login.js" defer> </script>
 </head>
 
-<body>  
+<body>
     <%- include("./partials/header.ejs") %>
 
-    <div class = "main-container"> 
-        <form id = "form-container">
-            <div class = "switch-container">
-                <div class = "switch-container button"> 
-                    Login
-                </div>
-                <div class = "switch-container button"> 
-                    Create Account
-                </div>
-            </div>
-            <div class = "input-container">
+    <!-----------------------------------------------
+                  Login Form Container
+    ------------------------------------------------>  
+    <div class = "form-box-container" id = "login-container">
+        <div class = "form-box login">
+
+            <h2>Login</h2>
+            <form id = "login-form">
+                <!-----------------------------------------------
+                                Email Input Bar
+                ------------------------------------------------> 
                 <div class = "input-box">
-                    <input type = "email" id = "login-email" name = "login-email" placeholder = "Email" >
+                    <span class = "icon"> </span>
+                    <input type = "email" id = "login-email" name = "login-email" required>
+                    <label> Email </label>
                 </div>
+
+                <!-----------------------------------------------
+                                Password Input Bar
+                ------------------------------------------------> 
                 <div class = "input-box">
-                    <input type = "email" id = "login-email" name = "login-email" placeholder = "Password" >
+                    <span class = "icon"> </span>
+                    <input type = "password" id = "login-password" name = "login-password" required>
+                    <label> Password </label>
                 </div>
-            </div>
-            <div class = "options-container">
-                Remember Me
-                Forgot Password
-            </div>
-            <div class = "terms-container">
-                By logging into my account 
-            </div>
-            Insert login button
+
+                <!-----------------------------------------------
+                                  Remember Me 
+                ------------------------------------------------>                
+                <div id = "remember-container"> 
+                    <input type = "checkbox" id = "remember-checkbox" value = "false">
+                    <label>Remember Me</label>
+                </div>
+
+                <!-----------------------------------------------
+                                  Login Button
+                ------------------------------------------------>                
+                <button type = "submit" class = "btn" id = "login-button"> Login </button>
+
+                <!-----------------------------------------------
+                                  Error Button
+                ------------------------------------------------>                
+                <div class = "error-box-container" id = "login-error-box" style = "display: none;"> 
+                    <span class = "text-error" id = "login-error-text" ></span>
+                </div>
+
+                <!-----------------------------------------------
+                                  Register Link
+                ------------------------------------------------>  
+                <div class = "login-register">
+                    <p> Don't have an account? <a href = "#" class = "register-link"> Register </a> </p>
+                </div>
+            </form>
         </div>
     </div>
 
+    <!-----------------------------------------------
+                  Register Form Container
+    ------------------------------------------------> 
+    <div class = "form-box-container" id = "register-container" style = "display: none;">
+        <div class = "form-box register">
+
+            <h2> Registration </h2>
+            <form id = "register-form">
+                <!-----------------------------------------------
+                                Name Input Bar
+                ------------------------------------------------> 
+                <div class = "input-box-names">
+                    <div class = "name-input-box"> 
+                        <input type = "text" id = "register-first-name" name = "register-first-name" required>
+                        <label class = "first-name"> First Name </label>
+                    </div>          
+                    <div class = "name-input-box"> 
+                        <input type = "text" id = "register-last-name" name = "register-last-name" required>
+                        <label class = "last-name"> Last Name </label>
+                    </div>          
+                </div>
+                
+                <!-----------------------------------------------
+                                Email Input Bar
+                ------------------------------------------------> 
+                <div class = "input-box">
+                    <input type = "email" id = "register-email" name = "register-email" required>
+                    <label> Email </label>
+                </div>
+
+                <!-----------------------------------------------
+                                Password Input Bar
+                ------------------------------------------------> 
+                <div class = "input-box">
+                    <input type = "password" id = "register-password" name = "register-password" required>
+                    <label> Password </label>
+                </div>
+
+                <!-----------------------------------------------
+                                  Register Button
+                ------------------------------------------------>                
+                <button type = "submit" class = "btn" id = "register-button"> Register </button>
+                
+                <!-----------------------------------------------
+                                  Error Button
+                ------------------------------------------------>                
+                <div class = "error-box-container" id = "register-error-box" style = "display: none;"> 
+                    <span class = "text-error" id = "register-error-text" ></span>
+                </div>
+
+                <!-----------------------------------------------
+                                  Login Link
+                ------------------------------------------------>
+                <div class = "login-register">
+                    <p> Already have an account? <a href = "#" class = "login-link"> Login </a> </p>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
