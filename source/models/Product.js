@@ -50,7 +50,7 @@ class Product {
         try {
             const [rows, _] = await db.execute(sql);
             if( rows.length === 0) {
-                return { status: 404, message: "No products found." };
+                return { status: 404, message: "No products found.", products: null };
             }        
             return { status: 200, message: "Products retrieved successfully.", products: rows };
         } catch( error ) {

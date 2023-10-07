@@ -31,16 +31,18 @@
                 <button id="search-button">Search</button>
             </div>
         </div>
-            <% products.forEach((product) => { %>
-                <div class = "product-container"> 
-                    <div class="product-item">
-                        <span>[#<%=product.productID %>]</span>
-                        <span>Name: <%= product.productName %> | </span>
-                        <span>Price: $<%= product.price %> | </span>
-                        <span>Stock: <%= product.stockQuantity %> | </span>
+            <% if( products !== null ) { %> 
+                <% products.forEach((product) => { %>
+                    <div class = "product-container"> 
+                        <div class="product-item">
+                            <span>[#<%=product.productID %>]</span>
+                            <span>Name: <%= product.productName %> | </span>
+                            <span>Price: $<%= product.price %> | </span>
+                            <span>Stock: <%= product.stockQuantity %> | </span>
+                        </div>
                     </div>
-                </div>
-            <% }); %>
+                <% }); %>
+            <% } %>           
         </div>
     </div>
     <script>
