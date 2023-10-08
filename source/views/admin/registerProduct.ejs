@@ -20,9 +20,17 @@
                     <label> Category </label>
                     <select class = "category-dropdown" id = "category-dropdown">
                         <option value = "all"> </option>
-                        <% categories.forEach((category) => { %>
-                            <option value = "<%= category %>"> <%= category %> </option>
-                        <% }); %>
+                        <% if( categories !== null ) { %> 
+                            <% categories.forEach((category) => { %>
+                                <option id = "category"
+                                    value = "<%= category.categoryName %>"
+                                    data-id = "<%= category.categoryID %>"
+                                    data-name = "<%= category.categoryName %>"
+                                > 
+                                    <%= category.categoryName %> 
+                                </option>
+                            <% }); %>
+                        <% } %>           
                     </select>
                 </div>
                 <div>

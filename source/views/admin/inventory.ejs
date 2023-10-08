@@ -18,18 +18,27 @@
         <div class = "header-container">
             <div>
                 <span> Category </span>
-                <select class = "category-dropdown">
+                <select class = "category-dropdown" id = "category-dropdown">
                     <option value = "all"> </option>
-                    <% categories.forEach((category) => { %>
-                        <option value = "<%= category %>"> <%= category %> </option>
-                    <% }); %>
+                    <% if( categories !== null ) { %> 
+                        <% categories.forEach((category) => { %>
+                            <option 
+                                value = "<%= category.categoryName %>"
+                                data-id = "<%= category.categoryID %>"
+                                data-name = "<%= category.categoryName %>"> 
+                                <%= category.categoryName %> 
+                            </option>
+                        <% }); %>
+                    <% } %>           
                 </select>
                 </select>
             </div>
             <div> 
-                <input type = "text" class = "search-bar" placeholder = "Search products...">
+                <input type = "text" class = "search-bar" id = "search-bar" placeholder = "Search products...">
+                <button id = "search-button"> Search </button>
             </div>
         </div>
+        <div id = "product-containers">
             <% if( products !== null ) { %> 
                 <% products.forEach((product) => { %>
                     <div class = "product-container"> 

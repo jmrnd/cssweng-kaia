@@ -4,9 +4,16 @@ const feedbackText = document.getElementById('feedback-text');
 form.addEventListener('submit', async function (e) {
     e.preventDefault(); 
 
+    const categoryDropdown = document.getElementById('category-dropdown');
+    const selectedOption = categoryDropdown.options[categoryDropdown.selectedIndex];
+    const categoryID = selectedOption.getAttribute('data-id');
+
+
     try {
-        // - Get the form data
-        const category = document.getElementById('category-dropdown').value;
+        // - Get the form data            
+        const categoryDropdown = document.getElementById('category-dropdown');
+        const selectedOption = categoryDropdown.options[categoryDropdown.selectedIndex];
+        const categoryID = selectedOption.getAttribute('data-id');
         const name = document.getElementById('name').value;
         const price = parseFloat(document.getElementById('price').value);
         const description = document.getElementById('description').value;
@@ -19,11 +26,11 @@ form.addEventListener('submit', async function (e) {
         }
 
         const formData = {
-            category: category,
             name: name,
             price: price,
             description: description,
             stock: stock,
+            categoryID: categoryID
         }
         
         // Send the POST request to your server

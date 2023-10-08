@@ -42,14 +42,6 @@ BEGIN
 END;
 $$ DELIMITER ;
 
--- Products table
-CREATE TABLE IF NOT EXISTS products(
-    productID INT PRIMARY KEY AUTO_INCREMENT,
-	productName VARCHAR(255) NOT NULL,
-    productDescription TEXT,
-    price DECIMAL(10, 2) NOT NULL,
-    stockQuantity INT DEFAULT 0 NOT NULL
-);
 
 /*
     ` productCategory table - manages product categories in a hierarchical structure. 
@@ -74,8 +66,19 @@ CREATE TABLE IF NOT EXISTS productCategories(
 );
 
 INSERT INTO productCategories (categoryName, parentCategoryID) VALUES ('Dresses', NULL), ('Bottoms', NULL), ('Tops', NULL), ('Coords', NULL);
-/*
-    INSERT INTO productCategories (categoryName, parentCategoryID) VALUES ('Casual', 1), ('Formal', 1);
-    INSERT INTO productCategories (categoryName, parentCategoryID) VALUES ('Jeans', 2), ('Pants', 2), ('Skirts', 2), ('Shorts', 2), ('Leggings', 2);
-    INSERT INTO productCategories (categoryName, parentCategoryID) VALUES ('T-Shirts', 3), ('Blouses', 3), ('Sweaters', 3), ('Tank Tops', 3), ('Crop Tops', 3);
-*/
+-- INSERT INTO productCategories (categoryName, parentCategoryID) VALUES ('Casual', 1), ('Formal', 1);
+-- INSERT INTO productCategories (categoryName, parentCategoryID) VALUES ('Jeans', 2), ('Pants', 2), ('Skirts', 2), ('Shorts', 2), ('Leggings', 2);
+-- INSERT INTO productCategories (categoryName, parentCategoryID) VALUES ('T-Shirts', 3), ('Blouses', 3), ('Sweaters', 3), ('Tank Tops', 3), ('Crop Tops', 3);
+
+-- Products table
+CREATE TABLE IF NOT EXISTS products(
+    productID INT PRIMARY KEY AUTO_INCREMENT,
+	productName VARCHAR(255) NOT NULL,
+    productDescription TEXT,
+    price DECIMAL(10, 2) NOT NULL,
+    stockQuantity INT DEFAULT 0 NOT NULL,
+    categoryID INT DEFAULT NULL,
+	FOREIGN KEY (categoryID) REFERENCES productCategories(categoryID)
+		ON DELETE SET NULL
+		ON UPDATE CASCADE
+);
