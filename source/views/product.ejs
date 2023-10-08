@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Kaia Apparel </title>
+    <link rel = "stylesheet" href = "/css/homepage.css">
+    <link rel="stylesheet" href="/css/product-catalog.css">
+    <link rel="stylesheet" href="/css/product.css">
+    <script src = "/js/homepage.js" defer> </script>
+    <script src = "/js/product.js" defer> </script>
+</head>
+<body>
+    <%- include("./partials/header.ejs") %>
+    <div class = "product-container path-container">
+        <span>Home / <span class = "path-category">Tops</span> Collection</span>
+    </div>
+    <div class="product-container">
+        <div class="product-gallery-container">
+            <button class="previous-image-button" onclick="plusSlides(-1)">&#10094;</button>
+                <div class="product-image hide fade">
+                    <img src="/images/kaia/sky_linen_dress_1.jpg">
+                </div>
+                <div class="product-image hide fade">
+                    <img src="/images/kaia/cara_linen_coordinates_3.jpg">
+                </div>
+            <button class="next-image-button" onclick="plusSlides(1)">&#10095;</button>
+        </div>
+        <div class="product-information-container">
+            <div>
+                <span class="product-name">Maya Top</span>
+                <img>
+            </div>
+            <span class="product-price">PHP 350</span>
+            <div class="product-description">
+                <span>Description</span>
+                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</span>
+            </div>
+            <div class="product-variation-container">
+                <div class="product-color">
+                    <span>Color: <span>Lavender</span></span>
+                    <!-- color box -->
+                </div>
+                <div class="product-size">
+                    <span class="product-spec">Size: <span>Small</span></span>
+                    <div class="product-sizes">
+                        <button class="size-button" onclick="">XS</button>
+                        <button class="size-button" onclick="">S</button>
+                        <button class="size-button" onclick="">M</button>
+                        <button class="size-button" onclick="">L</button>
+                        <button class="size-button" onclick="">XL</button>
+                        <button class="size-button" onclick="">XXL</button>
+                    </div>
+                </div>
+                <div class="product-quantity">
+                    <span>Quantity</span>
+                    <div class="product-quantity-container">
+                        <button class="quantity-button" onclick="plusSlides(-1)">&#10094;</button>
+                        <span>1</span>
+                        <button class="quantity-button" onclick="plusSlides(1)">&#10095;</button>
+                    </div>
+                </div>
+            </div>
+            <button class="add-to-cart-button"><span>Add to Cart</span></button>
+        </div>
+    </div>
+</body>
+</html>

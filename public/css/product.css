@@ -1,0 +1,177 @@
+
+div.product-container {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    max-width: 1150px;
+    background-color: #FFFFFF;
+    margin: 0 auto;
+}
+
+.product-gallery-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 2rem 0rem;
+}
+
+.hide {
+    display: none;
+}
+
+.hide img {
+    max-width: 100%;
+}
+
+.product-image {
+    width: 31.6875rem;
+    height: 36.8125rem;
+    flex-shrink: 0;
+    padding: 0.5rem;
+}
+
+.previous-image-button, .next-image-button {
+    font-size: 1.5rem;
+    text-align: center;
+    align-items: center;
+    margin: 5px;
+    background-color: #FAFAFA;
+    border: none;
+    width: 2.125rem;
+    height: 2.4375rem;
+    cursor: pointer;
+}
+
+div.product-information-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    text-align: left;
+    padding: 2rem 2rem;
+    text-transform: uppercase;
+}
+
+span.product-name {
+    font-family: 'Roboto Condensed-Bold';
+    color: #000;
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%; /* 4.5rem */
+    letter-spacing: -0.066rem;
+    width: 31.0625rem;
+    height: 5.9375rem;
+    text-transform: uppercase;
+}
+
+span.product-price {
+    color: #000;
+    font-family: inherit;
+    font-size: 2.25rem;
+    line-height: 150%; /* 3.375rem */
+}
+
+div.product-description {
+    color: #000;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    line-height: 137.5%; /* 1.11719rem */
+    letter-spacing: -0.01788rem;
+    text-transform: none;
+}
+
+div.product-description > span:first-child {
+    color: #000;
+    font-family: inherit;
+    font-size: 1.25rem;
+    line-height: 150%; /* 1.875rem */
+    letter-spacing: -0.0275rem;
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+div.product-description {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    text-align: start;
+    padding: 1rem 0rem;
+}
+
+div.product-variation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 2rem 0rem;
+}
+
+div.product-size {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    padding: 1rem 0rem;
+}
+
+span.product-spec {
+    font-family: 'Roboto Condensed-Bold';
+}
+
+span.product-spec span {
+    font-family: 'Roboto Condensed-Regular';
+}
+
+div.product-sizes {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+    padding: 0.5rem 0rem;
+}
+
+button.size-button {
+    color: #000;
+    font-family: 'Roboto Condensed-Bold';
+    text-align: center;
+    font-size: 0.9375rem;
+    line-height: 150%; /* 1.40625rem */
+    border: 1px solid #E9E9E9;
+    background: #F6F6F6;
+    letter-spacing: -0.02063rem;
+    width: 2.375rem;
+    height: 2.375rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+
+button.size-button:not(:last-child) {
+    margin-right: 0.5rem;
+}
+
+button.add-to-cart-button {
+    width: 29.5625rem;
+    height: 4.375rem;
+    flex-shrink: 0;
+    background: #EF91CF;
+    cursor: pointer;
+    border: 0;
+}
+
+button.add-to-cart-button span {
+    color: #FFF;
+    font-family: 'Roboto Condensed-Bold';
+    font-size: 1.5rem;
+    font-style: normal;
+    line-height: 150%; /* 2.25rem */
+    letter-spacing: -0.033rem;
+}
+
+button.quantity-button {
+    background-color: #FAFAFA;
+    border: 1px solid #E9E9E9;
+    background: #F6F6F6;
+    width: 2.125rem;
+    height: 2.4375rem;
+    flex-shrink: 0;
+    cursor: pointer;
+}
