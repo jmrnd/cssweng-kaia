@@ -18,8 +18,8 @@
         <div class = "header-container">
             <div>
                 <span> Category </span>
-                <select class="category-dropdown">
-                    <option value="all"> </option>
+                <select class = "category-dropdown">
+                    <option value = "all"> </option>
                     <% categories.forEach((category) => { %>
                         <option value = "<%= category %>"> <%= category %> </option>
                     <% }); %>
@@ -27,14 +27,13 @@
                 </select>
             </div>
             <div> 
-                <input type="text" class="search-bar" placeholder="Search products...">
-                <button id="search-button">Search</button>
+                <input type = "text" class = "search-bar" placeholder = "Search products...">
             </div>
         </div>
             <% if( products !== null ) { %> 
                 <% products.forEach((product) => { %>
                     <div class = "product-container"> 
-                        <div class="product-item">
+                        <div class = "product-item">
                             <span>[#<%=product.productID %>]</span>
                             <span>Name: <%= product.productName %> | </span>
                             <span>Price: $<%= product.price %> | </span>
