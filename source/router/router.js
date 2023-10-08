@@ -12,6 +12,8 @@ router.get('/login', UserController.getLogin );
 router.post('/login', UserController.postLogin );
 router.get('/logout', UserController.logout );
 router.post('/register', UserController.register );
+router.get('/productCatalog', UserController.productCatalog );
+
 
 router.get('/inventory', AdminController.inventory );
 router.get('/registerProduct', AdminController.getRegisterProduct );

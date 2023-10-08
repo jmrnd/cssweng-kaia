@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <title> Kaia Apparel </title>
+    <link rel = "stylesheet" href = "/css/homepage.css">
+    <link rel="stylesheet" href="/css/product-catalog.css">
+    <script src = "js/homepage.js" defer> </script>
+    <script src = "/js/product-catalog.js" defer> </script>
+</head>
+<body>
+    <%- include("./partials/header.ejs") %>
+    <div class = "main-container"> 
+        <div class = "path-container">
+            <span>Home / <span class = "path-category">Tops</span> Collection</span>
+        </div>
+
+        <div class="category-header-container">
+            <a href="#" class="category-link selected">Tops</a>
+            <a href="#" class="category-link">Bottoms</a>
+            <a href="#" class="category-link">Dresses</a>
+            <a href="#" class="category-link">Coordinates</a>
+        </div>
+
+        <div class="category-header-title">
+            <span class="category-title">TOPS <span>COLLECTION</span></span>
+            <div class="category-filter">
+                <span>Sort by: <span id="selectedFilter"> -- </span></span>
+                <div class="dropdown">
+                    <span class="dropdown-toggle">&#9662;</span>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="link-unstyled">Name (A-Z)</a></li>
+                        <li><a href="#" class="link-unstyled">Low to High (Price)</a></li>
+                        <li><a href="#" class="link-unstyled">High to Low (Price)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class = "product-grid">
+            <div class = "product-item">
+                <a href="#">
+                    <img src = "/images/kaia/iris_linen_top_1.jpg">
+                </a>
+                <div class = "product-details">
+                    <div class = "product-details-inner">
+                        <span class = "product-name"><a href="#" class="link-unstyled">MAYA TOP</a></span>
+                        <span class = "product-price">PHP <span>150</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "product-item">
+                <a href="#">
+                    <img src = "/images/kaia/sky_linen_dress_1.jpg">
+                </a>
+                <div class = "product-details">
+                    <div class = "product-details-inner">
+                        <span class = "product-name"><a href="#" class="link-unstyled">WOWOW TOP</a></span>
+                        <span class = "product-price">PHP <span>149</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "product-item">
+                <a href="#">
+                    <img src = "/images/kaia/cara_linen_coordinates_3.jpg">
+                </a>
+                <div class = "product-details">
+                    <div class = "product-details-inner out-of-stock">
+                        <span class = "product-name"><a href="#" class="link-unstyled">WAASDFASDFHU TOP</a></span>
+                        <span class = "product-price">PHP <span>148</span></span>
+                    </div>
+                    <span class = "sold-text">SOLD OUT</span>
+                </div>
+            </div>
+
+            <div class = "product-item">
+                <a href="#">
+                    <img src = "/images/kaia/iris_linen_top_1.jpg">
+                </a>
+                <div class = "product-details">
+                    <div class = "product-details-inner">
+                        <span class = "product-name"><a href="#" class="link-unstyled">TOP TOP</a></span>
+                        <span class = "product-price">PHP <span>250.2</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "product-item">
+                <a href="#">
+                    <img src = "/images/kaia/iris_linen_top_1.jpg">
+                </a>
+                <div class = "product-details">
+                    <div class = "product-details-inner">
+                        <span class = "product-name"><a href="#" class="link-unstyled">DROP TOP</a></span>
+                        <span class = "product-price">PHP <span>123.45</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "product-item">
+                <a href="#">
+                    <img src = "/images/kaia/iris_linen_top_1.jpg">
+                </a>
+                <div class = "product-details">
+                    <div class = "product-details-inner">
+                        <span class = "product-name"><a href="#" class="link-unstyled">TEST TOP</a></span>
+                        <span class = "product-price">PHP <span>789.65</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "product-item">
+                <a href="#">
+                    <img src = "/images/kaia/iris_linen_top_1.jpg">
+                </a>
+                <div class = "product-details">
+                    <div class = "product-details-inner">
+                        <span class = "product-name"><a href="#" class="link-unstyled">TEST TOP</a></span>
+                        <span class = "product-price">PHP <span>789.65</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

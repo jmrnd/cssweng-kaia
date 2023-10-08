@@ -11,16 +11,13 @@
 
 **********************************************************/
 const db = require('../config/database.js');
-const User = require('../models/User.js');
 const Product = require('../models/Product.js');
-
 
 const AdminController = {
 
     // - GET request
     inventory: async (req, res) => {
-        // if( req.session.authorized && req.session.userRole == 'admin' ) {
-        if( true ) {
+        if( req.session.authorized && req.session.userRole == 'admin' ) {
             const { categories } = await Product.getBottomMostCategories();
             const { products } = await Product.getAllProducts();
             res.render('./admin/inventory.ejs', { categories: categories, products: products });

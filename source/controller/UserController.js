@@ -12,6 +12,7 @@
 **********************************************************/
 const db = require('../config/database.js');
 const User = require('../models/User.js');
+const Product = require('../models/Product.js');
 
 const UserController = {
 
@@ -124,7 +125,24 @@ const UserController = {
         } catch( error ) {
             console.log( "homepage() error: ", error );
         }
-    } 
+    },
+
+    /*
+    */
+    productCatalog: async (req, res) => {
+    try {
+        // if( req.session.authorized ) {
+        if( true ) {
+            const { categories } = await Product.getBottomMostCategories();
+            const { products } = await Product.getAllProducts();
+            res.status(200).render('productCatalog.ejs', { categories: categories, products: products });
+        } else {
+            res.redirect('/login');
+        }
+    } catch( error ) {
+        console.log( "productCatalog() error: ", error );
+    }
+} 
 }
 
 module.exports = UserController;
