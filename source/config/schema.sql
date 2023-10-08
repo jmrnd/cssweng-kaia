@@ -74,6 +74,8 @@ CREATE TABLE IF NOT EXISTS productCategories(
 );
 
 INSERT INTO productCategories (categoryName, parentCategoryID) VALUES ('Dresses', NULL), ('Bottoms', NULL), ('Tops', NULL), ('Coords', NULL);
-INSERT INTO productCategories (categoryName, parentCategoryID) VALUES ('Casual', 1), ('Formal', 1);
-INSERT INTO productCategories (categoryName, parentCategoryID) VALUES ('Jeans', 2), ('Pants', 2), ('Skirts', 2), ('Shorts', 2), ('Leggings', 2);
-INSERT INTO productCategories (categoryName, parentCategoryID) VALUES ('T-Shirts', 3), ('Blouses', 3), ('Sweaters', 3), ('Tank Tops', 3), ('Crop Tops', 3);
+/*
+    INSERT INTO productCategories (categoryName, parentCategoryID) VALUES ('Casual', 1), ('Formal', 1);
+    INSERT INTO productCategories (categoryName, parentCategoryID) VALUES ('Jeans', 2), ('Pants', 2), ('Skirts', 2), ('Shorts', 2), ('Leggings', 2);
+    INSERT INTO productCategories (categoryName, parentCategoryID) VALUES ('T-Shirts', 3), ('Blouses', 3), ('Sweaters', 3), ('Tank Tops', 3), ('Crop Tops', 3);
+*/

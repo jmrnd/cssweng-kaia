@@ -7,7 +7,7 @@ const UserController = require('../controller/UserController.js');
 const AdminController = require('../controller/AdminController.js');
 
 
-// router.get('/', UserController.homepage );
+router.get('/homepage', UserController.homepage );
 router.get('/login', UserController.getLogin );
 router.post('/login', UserController.postLogin );
 router.get('/logout', UserController.logout );
@@ -20,10 +20,5 @@ router.post('/registerProduct', AdminController.postRegisterProduct );
 router.get('/', (req, res) => {
     res.redirect('/login');
 });
-
-router.get('/homepage', (req, res) => {
-    res.render('homepage');
-});
-
 
 module.exports = router;

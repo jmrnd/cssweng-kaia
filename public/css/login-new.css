@@ -14,6 +14,8 @@ div.main-container {
     margin-left: auto;
     text-align: center;
     padding: 100px;
+
+    background-color: antiquewhite;
 }
 
 form#form-container {
@@ -25,6 +27,8 @@ div.switch-container {
     justify-content: center;
     padding: 10px;
     user-select: none;
+
+    background-color: aquamarine;
 }
 
 div.switch-container.button {
@@ -49,6 +53,8 @@ div.switch-container.button:hover {
 */
 div.input-container {
     width: 100%;
+
+    background-color: azure;
 }
 
 div.input-box {
@@ -56,7 +62,7 @@ div.input-box {
 }
 
 div.input-box input {
-    width: 100%;
+    width: 90%;
     font-size: 1em;
     border-left: none;
     border-right: none;

@@ -21,10 +21,14 @@ const UserController = {
         redirects them to the homepage.
     */
     getLogin: (req, res) => {
-        if( req.session.authorized && req.session.rememberMe ) {
-            res.redirect('/homepage');
-        } else {
-            res.render('login.ejs');
+        try {
+            if( req.session.authorized && req.session.rememberMe ) {
+                res.redirect('/homepage');
+            } else {
+                res.render('login.ejs');
+            }
+        } catch( error ) {
+            console.log( "getLogin() error: ", error );
         }
     }, 
 
@@ -68,14 +72,18 @@ const UserController = {
 
         } catch( error ) {
             console.error(error); 
-            res.status(500).json({ message: 'An error occurred during login. Please try again.' });
+            return res.status(500).json({ message: 'An error occurred during login. Please try again.' });
         }
     },
 
-
     logout: (req, res) => {
-        req.session.destroy();
-        res.render('homepage'); 
+        try {
+            req.session.destroy();
+            res.render('homepage'); 
+        } catch( error ) {
+            console.error(error);
+            return res.status(500).json({ message: "An error occurred during login. Please try again." });
+        }
     },
 
     /**
@@ -102,7 +110,21 @@ const UserController = {
             console.error( "Error registering user: ", error );
             return res.status(500).json({ message: "Registration failed." });
         }
-    }
+    },
+
+    /*
+    */
+   homepage: async (req, res) => {
+        try {
+            if( req.session.authorized ) {
+                res.render('homepage.ejs');
+            } else {
+                res.redirect('/login');
+            }
+        } catch( error ) {
+            console.log( "homepage() error: ", error );
+        }
+    } 
 }
 
 module.exports = UserController;

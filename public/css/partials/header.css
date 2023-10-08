@@ -23,6 +23,8 @@
     src: url('/fonts/GlacialIndifference-Bold.otf') format('opentype');
 }
 
+@import url('https://fonts.googleapis.com/css?family=Roboto Condensed');
+
 /***********************************************
                      HEADER                    
 ***********************************************/
@@ -108,7 +110,80 @@ span.icon {
 }
 
 /***********************************************
-                    ICON IMAGES                
+                    POP-UPS               
+***********************************************/
+.popup {
+    display: flex;
+    position: absolute;
+    top: 65px;
+    right: 170px;
+    padding: 5px;
+    visibility: hidden;
+    z-index: 999;
+    background-color: white;
+    border: 1px solid #E0E0E0; 
+}
+  
+    /***********************************************
+                     SEARCH POP-UP               
+    ***********************************************/
+    .popup.search-popup {
+        background-color: #f0f0f0;
+        right: 158px;
+        display: block;
+        width: auto;
+        font-size: 0.75em;
+    }
+
+    /***********************************************
+                    FAVOURITE POP-UP               
+    ***********************************************/
+    .popup.favourite-popup {
+        background-color: #ffcccc;
+        right: 105px;
+        display: block;
+        width: auto;
+        font-size: 0.75em;
+    }
+
+    /***********************************************
+                     CART POP-UP               
+    ***********************************************/
+    .popup.cart-popup {
+        background-color: #ccffcc;
+        right: 53px;
+        display: block;
+        width: auto;
+        font-size: 0.75em;
+    }
+
+    /***********************************************
+                    PROFILE POP-UP             
+    ***********************************************/
+    .popup.profile-popup {
+        right: 0px;
+        display: block;
+        width: auto;
+        font-size: 0.75em;
+    }
+
+    .popup.profile-popup button {
+        display: block;
+        width: 100%;
+        text-align: left;
+        text-indent: 5px;
+        border: none;
+        padding: 5px;
+        background-color: transparent;
+        font-size: 0.75em;
+    }
+
+    .popup.profile-popup button:hover {
+        background-color: #EF91CF;
+    }
+
+/***********************************************
+                  ICON IMAGES                
 ***********************************************/
 span.icon.search {
     background-image: var(--search-icon);
