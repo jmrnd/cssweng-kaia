@@ -17,7 +17,7 @@
         <div class = "category-header-container" id = "category-header-container">
             <% if( categories !== null ) { %> 
                 <% categories.forEach((category) => { %>
-                    <a href = "#<%=category.categoryName%>" class = "category-link" data-id = "<%=category.categoryID%>"> 
+                    <a class = "category-link" data-id = "<%=category.categoryID%>"> 
                         <%= category.categoryName %> 
                     </a>
                 <% }); %>
