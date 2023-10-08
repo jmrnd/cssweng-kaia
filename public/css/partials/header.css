@@ -34,7 +34,7 @@ div.header {
     position: sticky;
     background-color: white;
     border-bottom: 1px solid #fbfbfb;
-    z-index: 1; /* Prioritizes the header and puts it at the front */
+    z-index: 1;
     user-select: none;
     top: 0;
 }

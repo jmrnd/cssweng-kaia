@@ -143,6 +143,33 @@ span.product-name {
     gap: 0.5rem;
 }
 
+.product-filter {
+    color: #999;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+    letter-spacing: 0.02rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 0.5rem;
+    font-family: 'Roboto Condensed-Regular';
+}
+
+.product-filter select,
+.product-filter select option {
+    color: #999;
+    border: none;
+    font-weight: normal;
+}
+
+.product-filter select:focus {
+    outline: none;
+}
+
 .link-unstyled {
     &,
     &:visited,

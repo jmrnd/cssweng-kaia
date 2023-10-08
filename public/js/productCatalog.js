@@ -2,7 +2,7 @@ const productGrid = document.getElementById('product-grid');
 const categoryLinks = document.querySelectorAll('.category-link');
 const categoryTitle = document.getElementById('category-title');
 const pathCategory = document.getElementById('path-category');
-
+const productFilter = document.getElementById('product-filter');
 
 /*
     ` It parses the product data from a JSON string and returns it as
@@ -103,3 +103,56 @@ function generateProductItem( product ) {
     productItem.appendChild(productDetails);
     productGrid.appendChild(productItem);
 }
+
+/*
+    ` This function filters and displays products based on the selected
+    option from the product filter dropdown. It retrieves the selected
+    filter option, sorts the products accordingly, clears the existing
+    product grid, and then displays the filtered products.
+
+    The expected filter values:
+        - 'filter-name-asc'   :   Sort products by name in ascending order
+        - 'filter-name-desc'  :   Sort products by name in descending order
+        - 'filter-price-asc'  :   Sort products by price in ascending order
+        - 'filter-price-desc' :   Sort products by price in descending order
+        - 'filter-all'        :   Show all products without filtering
+*/
+productFilter.addEventListener('change', () => {
+    const selectedFilter = productFilter.value;
+
+    // Get the products and sort them based on the selected filter
+    const products = parseProducts();
+    let filteredProducts = [];
+
+    switch( selectedFilter ) {
+        case 'filter-name-asc': {
+            filteredProducts = products.sort((a, b) =>
+                a.productName.localeCompare(b.productName)
+            );
+        } break;
+        case 'filter-name-desc': {
+            filteredProducts = products.sort((a, b) =>
+                b.productName.localeCompare(a.productName)
+            );
+        } break;
+        case 'filter-price-asc': {
+            filteredProducts = products.sort((a, b) => a.price - b.price);
+        } break;
+        case 'filter-price-desc': {
+            filteredProducts = products.sort((a, b) => b.price - a.price);
+        } break;
+        default: {
+            filteredProducts = products;
+        } break;
+    }
+
+    // Clear the product grid
+    productGrid.innerHTML = '';
+
+    // Display the filtered products
+    filteredProducts.forEach((product) => {
+        if( product.categoryID == selectedCategory ) {
+            generateProductItem(product);
+        }
+    });
+});
