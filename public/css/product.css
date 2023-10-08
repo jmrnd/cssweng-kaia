@@ -82,7 +82,7 @@ div.product-description {
 
 div.product-description > span:first-child {
     color: #000;
-    font-family: inherit;
+    font-family: 'Roboto Condensed-Bold';
     font-size: 1.25rem;
     line-height: 150%; /* 1.875rem */
     letter-spacing: -0.0275rem;
@@ -102,7 +102,23 @@ div.product-variation-container {
     display: flex;
     flex-direction: column;
     align-items: start;
-    padding: 2rem 0rem;
+    padding: 0.5rem 0rem;
+}
+
+div.product-color {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    padding: 0.5rem 0rem;
+}
+
+div.product-colors {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+    padding: 0.5rem 0rem;
 }
 
 div.product-size {
@@ -110,7 +126,41 @@ div.product-size {
     flex-direction: column;
     align-items: start;
     justify-content: space-between;
-    padding: 1rem 0rem;
+    padding: 0.5rem 0rem;
+}
+
+div.product-quantity {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    padding: 0.5rem 0rem;
+}
+
+div.product-quantity-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0rem;
+}
+
+button.quantity-button {
+    color: #000;
+    font-size: 0.9375rem;
+    line-height: 150%; /* 1.40625rem */
+    border: 1px solid #E9E9E9;
+    background: #F6F6F6;
+    letter-spacing: -0.02063rem;
+    width: 2.125rem;
+    height: 2.4375rem;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+div.product-quantity-container span {
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 span.product-spec {
@@ -161,9 +211,9 @@ button.add-to-cart-button span {
     color: #FFF;
     font-family: 'Roboto Condensed-Bold';
     font-size: 1.5rem;
-    font-style: normal;
     line-height: 150%; /* 2.25rem */
     letter-spacing: -0.033rem;
+    text-transform: uppercase;
 }
 
 button.quantity-button {
@@ -174,4 +224,36 @@ button.quantity-button {
     height: 2.4375rem;
     flex-shrink: 0;
     cursor: pointer;
+}
+
+button.color-button {
+    text-align: center;
+    font-size: 0.9375rem;
+    line-height: 150%; /* 1.40625rem */
+    border: 1px solid #E9E9E9;
+    letter-spacing: -0.02063rem;
+    width: 2.375rem;
+    height: 2.375rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+
+button.color-button.lavender {
+    background: #B8A1B0;
+}
+
+button.color-button.white {
+    background: #E9E9E9;
+}
+
+button.color-button.sage-green {
+    background: #CBD8A6;
+}
+
+button.color-button.black {
+    background: #252121;
+}
+
+button.color-button.gray {
+    background: #565656;
 }
