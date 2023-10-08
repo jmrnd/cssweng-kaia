@@ -51,11 +51,8 @@ div.switch-container-button.focus{
 ***********************************************/
 div.error-box {
     display: none;
-    background-color: #faccd9;
-    border: 1px solid #80354a;
-    color: #80354a;
+    background-color: red;
     text-align: center;
-    padding: 10px;
 }
 
 
@@ -152,10 +149,6 @@ div.terms-container {
 /********************
  REGISTER DIFFERENCE
 *********************/
-#register-form-container {
-    display: none;
-}
-
 
 .input-box.name{
     display: flex;

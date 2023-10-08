@@ -33,7 +33,7 @@ div.header {
     display: block;
     position: sticky;
     background-color: white;
-    border-bottom: 1px solid #fbfbfb;
+    border-bottom: 1px solid #cacaca;
     z-index: 1;
     user-select: none;
     top: 0;

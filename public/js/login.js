@@ -6,66 +6,28 @@
 const loginSwitch = document.querySelector(".switch-container-button.login");
 const registerSwitch = document.querySelector(".switch-container-button.register");
 const insertContent = document.querySelector(".content-container");
+const errorBox = document.getElementById('error-box');
+const registerFormContainer = document.getElementById("register-form-container");
+const loginFormContainer = document.getElementById("login-form-container");
 
-const registerContent = `
-        <form id="register-form-container">
-            <div class="input-container-register">
-                <div class="input-box name">
-                        <input type = "text" id = "register-first-name" placeholder = "First Name" required>
-                        <input type = "text" id = "register-last-name" placeholder = "Last Name" required>
-                </div>
-                <div class="input-box email">
-                    <input type="email" id = "register-email" placeholder="Email" required>
-                </div>
-                <div class="input-box password">
-                    <input type="password" id = "register-password" placeholder="Password" required>
-                </div>
-            </div>
-            <button type="submit" id = "register-button"> Create account</button>
-        </form>
-`
-
-const loginContent = `
-    <form id = "login-form-container">
-        <div class = "input-container">
-            <div class = "input-box">
-                <input type = "email" id = "login-email" name = "login-email" placeholder = "Email" required >
-            </div>
-            <div class = "input-box">
-                <input type = "password" id = "login-password" name = "login-password" placeholder = "Password" required>
-            </div>
-        </div>
-        <div class = "options-container">
-            <div class="option-items">
-                <input type="checkbox" id="remember-me" name="remember-me">
-                <label for="remember-me">Remember Me</label>
-            </div>
-            <a href=""><span class="option-items">Forgot Password?</span></a>
-        </div>
-        <div class = "terms-container">
-            By logging into my account, I agree to Kaia Apparel’s <a href="/">Term’s and condition</a> and <a href="/">Privacy policy</a>.
-        </div>
-        <button type="submit" id="login-button">Login</button>
-    </form>
-`
 
 loginSwitch.addEventListener("click", function (e){
-    insertContent.innerHTML = loginContent;
-    registerSwitch.classList.remove("focus");
+    loginFormContainer.style.display = 'block';
+    registerFormContainer.style.display = 'none';
     loginSwitch.classList.add("focus");
+    errorBox.textContent = '';
+    errorBox.style.display = 'none';
 });
 
 registerSwitch.addEventListener("click", function (e){
-    insertContent.innerHTML = registerContent;
+    loginFormContainer.style.display = 'none';
+    registerFormContainer.style.display = 'block';
     loginSwitch.classList.remove("focus");
     registerSwitch.classList.add("focus");
+    errorBox.textContent = '';
+    errorBox.style.display = 'none';
 });
 
-/*|*******************************************************
-
-               LOGIN AND REGISTER FORM DISPLAY
-
-*********************************************************/
 /*|*******************************************************
 
                 LOGIN INPUT AND BUTTONS
@@ -107,7 +69,13 @@ loginButton?.addEventListener( "click", async function(e) {
             rememberMe: rememberBox.value
         }
 
-        console.log( "Hello" );
+        console.log( areInputFieldsFilled('login-form-container') );
+
+        if( !areInputFieldsFilled('login-form-container') ) {
+            errorBox.style.display = 'block';
+            errorBox.textContent = 'Missing email or password';
+            return false;
+        }
 
         const response = await fetch( '/login', {
             method: 'POST',
@@ -118,7 +86,17 @@ loginButton?.addEventListener( "click", async function(e) {
         // - On success, go to dashboard
         if( response.status == 201 ) {
             window.location.href = "/homepage";
-        } 
+        } else {
+            errorBox.style.display = 'block';
+            switch( response.status ) {
+                case 401: {
+                    errorBox.textContent = 'Invalid credentials';
+                } break;
+                case 500: {
+                    errorBox.textContent = 'Internal server error';
+                }
+            }
+        }
     } catch( error ) {
         console.log( error );
     }
@@ -161,19 +139,33 @@ registerButton?.addEventListener( "click", async function(e) {
             password: registerPassword.value
         }
 
-        if( areInputFieldsFilled("register-form") ) {
-            // - Send registration data to the server
-            const response = await fetch( 'register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify( registrationData )
-            });
+        if( !areInputFieldsFilled("register-form-container") ) {
+            errorBox.style.display = 'block';
+            errorBox.textContent = 'Some input fields are missing';
+            return false;
+        }
 
-            // - On success, refresh the loging page
-            if( response.ok ) {
-                alert( "Registration successful" ); 
-                location.reload();
-            } 
+        // - Send registration data to the server
+        const response = await fetch( 'register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify( registrationData )
+        });
+
+        // - On success, refresh the loging page
+        if( response.ok ) {
+            alert( "Registration successful" ); 
+            location.reload();
+        } else {
+            errorBox.style.display = 'block';
+            switch( response.status ) {
+                case 400: {
+                    errorBox.textContent = 'This is email is already registered';
+                } break;
+                case 500: {
+                    errorBox.textContent = 'Internal server error';
+                }
+            }
         }
     } catch( error ) {
         console.log( error );    

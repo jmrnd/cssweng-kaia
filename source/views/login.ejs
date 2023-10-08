@@ -9,12 +9,32 @@
 <body>  
     <%- include("./partials/header.ejs") %>
 
-    <div class = "main-container">
+    <div class = "main-container" id = "main-container">
         <div class = "switch-container">
             <div class = "switch-container-button login focus">Log in</div>
             <div class = "switch-container-button register">Create account</div>
         </div>
+
+        <div class = "error-box" id = "error-box"> 
+        </div>
+
         <div class="content-container">
+            <form id="register-form-container">
+                <div class="input-container-register">
+                    <div class="input-box name">
+                            <input type = "text" id = "register-first-name" placeholder = "First Name" required>
+                            <input type = "text" id = "register-last-name" placeholder = "Last Name" required>
+                    </div>
+                    <div class="input-box email">
+                        <input type="email" id = "register-email" placeholder="Email" required>
+                    </div>
+                    <div class="input-box password">
+                        <input type="password" id = "register-password" placeholder="Password" required>
+                    </div>
+                </div>
+                <button type="submit" id = "register-button"> Create account</button>
+            </form>
+
             <form id = "login-form-container">
                 <div class = "input-container">
                     <div class = "input-box">
