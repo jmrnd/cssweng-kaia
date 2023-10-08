@@ -14,6 +14,7 @@ const loginFormContainer = document.getElementById("login-form-container");
 loginSwitch.addEventListener("click", function (e){
     loginFormContainer.style.display = 'block';
     registerFormContainer.style.display = 'none';
+    registerSwitch.classList.remove("focus");
     loginSwitch.classList.add("focus");
     errorBox.textContent = '';
     errorBox.style.display = 'none';
