@@ -7,7 +7,7 @@ body {
 }
 
 /***********************************************
-               FORM BOX CONTAINER              
+               FORM BOX CONTAINER
 ***********************************************/
 div.form-box-container {
     margin: 0 auto;
@@ -44,7 +44,7 @@ div.form-box h2 {
 }
 
 /***********************************************
-                  INPUT BOXES                
+                  INPUT BOXES
 ***********************************************/
 div.input-box {
     position: relative;
@@ -63,7 +63,7 @@ div.input-box label {
     color:#162938;
     font-weight: 500;
     pointer-events: none;
-    transition: .5s;    
+    transition: .5s;
 }
 
 div.input-box input:focus~label     {
@@ -91,7 +91,7 @@ div.input-box .icon {
 }
 
 /***********************************************
-                INPUT BOXES : Names               
+                INPUT BOXES : Names
 ***********************************************/
 div.input-box-names {
     display: flex;

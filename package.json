@@ -7,5 +7,15 @@
     "express-session": "^1.17.3",
     "mysql2": "^3.6.1",
     "nodemon": "^3.0.1"
-  }
+  },
+  "name": "cssweng-kaia",
+  "description": "CSSWENG Project T1 AY 2023 - 2024",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }

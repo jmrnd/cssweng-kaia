@@ -1,0 +1,133 @@
+:root {
+    --search-icon: url("/images/icons/search-icon.png");
+    --favourite-icon: url("/images/icons/favourite-icon.png");
+    --cart-icon: url("/images/icons/cart-icon.png");
+    --profile-icon: url("/images/icons/profile-icon.png");
+}
+
+/***********************************************
+                     FONTS
+***********************************************/
+
+@font-face {
+    font-family: 'Migra-ExtraBold';
+    src: url('/fonts/Migra-Extrabold.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'GlacialIndifference';
+    src: url('/fonts/GlacialIndifference.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'GlacialIndifference-Bold';
+    src: url('/fonts/GlacialIndifference-Bold.otf') format('opentype');
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+/***********************************************
+                     NAV-BAR
+***********************************************/
+
+.navbar-container{
+    width: 100%;
+    height: 70px;
+    background-color: beige;
+}
+
+/***********************************************
+                    LOGIN-REGISTER
+***********************************************/
+
+.container{
+    max-width: 700px;
+    height: fit-content;
+    background-color: beige;
+    margin: 20px auto;
+    padding: 50px;
+}
+
+.login-register.buttons{
+    display: flex;
+}
+
+.login{
+    width: 40%;
+}
+
+.create-account{
+    width: 70%;
+}
+
+.login, .create-account{
+    text-align: center;
+    padding: 10px 0;
+}
+
+.login{
+    border-bottom: 2px solid black;
+}
+
+.login:hover{
+    background-color: aliceblue;
+    cursor: pointer;
+}
+
+.create-account:hover{
+    background-color: aliceblue;
+    cursor: pointer;
+}
+
+/**************
+ALL ABOUT FORMS
+***************/
+
+.login-register.content{
+
+}
+
+#login-form{
+    display:flex;
+    flex-direction: column;
+}
+
+#login-form .sub-content{
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#username-email, #password{
+    height: 50px;
+    padding: 10px 20px;
+    border: none;
+    border-bottom: 1px solid black;
+    margin: 10px 0;
+}
+
+#username-email::placeholder, #password::placeholder{
+    font-size: small;
+    letter-spacing: 2px;
+}
+
+.options-content .remember-me-container{
+    font-size: small;
+}
+
+
+
+.verification-tnc{
+    font-size: small;
+    margin: 10px 0;
+}
+
+.login-submit{
+    width: 300px;
+}

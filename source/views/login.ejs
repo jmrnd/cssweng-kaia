@@ -2,127 +2,70 @@
 <html lang = "en">
 <head>
     <title> Login Page </title>
-    <link rel = "stylesheet" href = "/css/login.css">
+    <link rel = "stylesheet" href = "/css/login-new.css">
     <script src = "js/login.js" defer> </script>
 </head>
 
-<body>
+<body>  
     <%- include("./partials/header.ejs") %>
 
-    <!-----------------------------------------------
-                  Login Form Container
-    ------------------------------------------------>  
-    <div class = "form-box-container" id = "login-container">
-        <div class = "form-box login">
+    <div class = "main-container">
+        <div class = "switch-container">
+            <div class = "switch-container-button login focus">Log in</div>
+            <div class = "switch-container-button register">Create account</div>
+        </div>
+        <div class="content-container">
 
-            <h2>Login</h2>
-            <form id = "login-form">
-                <!-----------------------------------------------
-                                Email Input Bar
-                ------------------------------------------------> 
-                <div class = "input-box">
-                    <span class = "icon"> </span>
-                    <input type = "email" id = "login-email" name = "login-email" required>
-                    <label> Email </label>
+        <!-- *********************
+                REGISTER
+        **********************-->
+        <!-- <form id="register-form-container">
+            <div class="input-container-register">
+                <div class="input-box name">
+                        <input type="text" placeholder="Firstname">
+                        <input type="text" placeholder="Lastname">
                 </div>
-
-                <!-----------------------------------------------
-                                Password Input Bar
-                ------------------------------------------------> 
-                <div class = "input-box">
-                    <span class = "icon"> </span>
-                    <input type = "password" id = "login-password" name = "login-password" required>
-                    <label> Password </label>
+                <div class="input-box username">
+                    <input type="text" id="register-username" placeholder="Username">
                 </div>
-
-                <!-----------------------------------------------
-                                  Remember Me 
-                ------------------------------------------------>                
-                <div id = "remember-container"> 
-                    <input type = "checkbox" id = "remember-checkbox" value = "false">
-                    <label>Remember Me</label>
+                <div class="input-box email">
+                    <input type="email" id="register-email" placeholder="Email">
                 </div>
-
-                <!-----------------------------------------------
-                                  Login Button
-                ------------------------------------------------>                
-                <button type = "submit" class = "btn" id = "login-button"> Login </button>
-
-                <!-----------------------------------------------
-                                  Error Button
-                ------------------------------------------------>                
-                <div class = "error-box-container" id = "login-error-box" style = "display: none;"> 
-                    <span class = "text-error" id = "login-error-text" ></span>
+                <div class="input-box password">
+                    <input type="password" id="register-password" placeholder="Password">
                 </div>
+            </div>
+            <button type="submit" id="register-button"> Create account</button>
+        </form> -->
 
-                <!-----------------------------------------------
-                                  Register Link
-                ------------------------------------------------>  
-                <div class = "login-register">
-                    <p> Don't have an account? <a href = "#" class = "register-link"> Register </a> </p>
+
+        <!-- *********************
+                    LOGIN
+            **********************-->
+
+            <form id = "login-form-container">
+                <div class = "input-container">
+                    <div class = "input-box">
+                        <input type = "email" id = "login-email" name = "login-email" placeholder = "Email" required >
+                    </div>
+                    <div class = "input-box">
+                        <input type = "password" id = "login-password" name = "login-password" placeholder = "Password" required>
+                    </div>
                 </div>
+                <div class = "options-container">
+                    <div class="option-items">
+                        <input type="checkbox" id="remember-me" name="remember-me">
+                        <label for="remember-me">Remember Me</label>
+                    </div>
+                    <a href=""><span class="option-items">Forgot Password?</span></a>
+                </div>
+                <div class = "terms-container">
+                    By logging into my account, I agree to Kaia Apparel’s <a href="/">Term’s and condition</a> and <a href="/">Privacy policy</a>.
+                </div>
+                <button type="submit" id="login-button">Login</button>
             </form>
         </div>
     </div>
 
-    <!-----------------------------------------------
-                  Register Form Container
-    ------------------------------------------------> 
-    <div class = "form-box-container" id = "register-container" style = "display: none;">
-        <div class = "form-box register">
-
-            <h2> Registration </h2>
-            <form id = "register-form">
-                <!-----------------------------------------------
-                                Name Input Bar
-                ------------------------------------------------> 
-                <div class = "input-box-names">
-                    <div class = "name-input-box"> 
-                        <input type = "text" id = "register-first-name" name = "register-first-name" required>
-                        <label class = "first-name"> First Name </label>
-                    </div>          
-                    <div class = "name-input-box"> 
-                        <input type = "text" id = "register-last-name" name = "register-last-name" required>
-                        <label class = "last-name"> Last Name </label>
-                    </div>          
-                </div>
-                
-                <!-----------------------------------------------
-                                Email Input Bar
-                ------------------------------------------------> 
-                <div class = "input-box">
-                    <input type = "email" id = "register-email" name = "register-email" required>
-                    <label> Email </label>
-                </div>
-
-                <!-----------------------------------------------
-                                Password Input Bar
-                ------------------------------------------------> 
-                <div class = "input-box">
-                    <input type = "password" id = "register-password" name = "register-password" required>
-                    <label> Password </label>
-                </div>
-
-                <!-----------------------------------------------
-                                  Register Button
-                ------------------------------------------------>                
-                <button type = "submit" class = "btn" id = "register-button"> Register </button>
-                
-                <!-----------------------------------------------
-                                  Error Button
-                ------------------------------------------------>                
-                <div class = "error-box-container" id = "register-error-box" style = "display: none;"> 
-                    <span class = "text-error" id = "register-error-text" ></span>
-                </div>
-
-                <!-----------------------------------------------
-                                  Login Link
-                ------------------------------------------------>
-                <div class = "login-register">
-                    <p> Already have an account? <a href = "#" class = "login-link"> Login </a> </p>
-                </div>
-            </form>
-        </div>
-    </div>
 </body>
 </html>
