@@ -1,3 +1,37 @@
+/***********************************************
+                  FONT-FAMILY
+                Roboto Condensed                    
+***********************************************/
+@font-face {
+    font-family: 'Roboto Condensed-Regular';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf"); 
+}
+
+@font-face {
+    font-family: 'Roboto Condensed-Bold';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf"); 
+}
+
+@font-face {
+    font-family: 'Roboto Condensed-BoldItalic';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-BoldItalic.ttf"); 
+}
+
+@font-face {
+    font-family: 'Roboto Condensed-Light';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-Light.ttf"); 
+}
+
+@font-face {
+    font-family: 'Roboto Condensed-LightItalic';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-LightItalic.ttf"); 
+}
+
+@font-face {
+    font-family: 'Roboto Condensed-Italic';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-Italic.ttf"); 
+}
+
 :root {
     --new-arrivals: url("/images/kaia/iris_linen_top_1.jpg");
     --dresses: url("/images/kaia/sky_linen_dress_1.jpg");
@@ -11,7 +45,7 @@ body {
     align-items: center;
     text-align: center;
     justify-content: center;
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Roboto Condensed-Regular';
 }
 
 /***********************************************
@@ -20,9 +54,8 @@ body {
 div.main-container {
     padding: 10px;
     max-width: 1150px;
-    background-color: #fcfcfc;
-    margin-left: auto;
-    margin-right: auto;
+    background-color: #FFFFFF;
+    margin: 0 auto;
 }
 
 div.outer-container {
@@ -58,7 +91,7 @@ div.category-container {
                   CONTAINERS                    
 ***********************************************/
 span.name {
-    font-weight: bold;
+    font-family: 'Roboto Condensed-Bold';
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     user-select: none;
@@ -79,7 +112,6 @@ span.name.category {
 
 span.title {
     color: black;
-    font-weight: bold;
     font-size: 1.5em;
     user-select: none;
 }

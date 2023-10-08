@@ -25,5 +25,8 @@ router.get('/homepage', (req, res) => {
     res.render('homepage');
 });
 
+router.get('/catalog', (req, res) => {
+    res.render('product-catalog');
+});
 
 module.exports = router;
