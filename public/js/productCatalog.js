@@ -4,49 +4,46 @@
     - Display products if category id matches
 
 */
-const categoryButtons = document.querySelectorAll('category-header-button');
 const productGrid = document.getElementById('product-grid');
 
+let parsedProducts;
+if( products !== null ) {
+    parsedProducts = JSON.parse(products);
+}    
+
 document.addEventListener('DOMContentLoaded', () => {
-
-    let parsedProducts;
-    if( products !== null ) {
-        parsedProducts = JSON.parse(products);
-    }    
-
-    parsedProducts.forEach((product) => {
-        generateProductItem(product);
-    })
-
-
-
-    /*
-    categoryButtons.forEach((categoryButton) => {
-        console.log( "BUTTON WAS CLICKED!" );
-    
-        let parsedProducts;
-        if( products !== null ) {
-            parsedProducts = JSON.parse(products);
-        }    
-    
-        categoryButton.addEventListener( 'click', async function(e) {
-            try {
-                const categoryID = categoryButton.getAttribute('data-id');
-                if( parsedProducts !== null ) {
-                    parsedProducts.forEach((product) => {
-                        if( product.categoryID == categoryID ) {
-                            generateProductItem(product);
-                        }
-                    });
-                }
-            } catch( error ) {
-                console.error( "An error occured: ", error );
+    try {
+        parsedProducts.forEach((product) => {
+            if( product.categoryID == selectedCategory ) {
+                generateProductItem(product);
             }
         });
-    });
-    */
+
+
+    } catch( error ) {
+        console.log( error );
+    }
 });
 
+const categoryLinks = document.querySelectorAll('.category-link');
+try {
+    categoryLinks.forEach( (categoryLink) => {
+        categoryLink.addEventListener('click', (e) => {
+    
+            e.preventDefault();
+            selectedCategory = categoryLink.getAttribute('data-id');
+            productGrid.innerHTML = '';
+    
+            parsedProducts.forEach((product) => {
+                if( product.categoryID == selectedCategory ) {
+                    generateProductItem(product);
+                }
+            });
+        })
+    });
+} catch( error ) {
+    console.log( error );
+}
 
 function generateProductItem( product ) {
     const productItem = document.createElement('div');
@@ -79,10 +76,4 @@ function generateProductItem( product ) {
     productItem.appendChild(anchor);
     productItem.appendChild(productDetails);
     productGrid.appendChild(productItem);
-}
-
-function filterProducts(query) {
-    return products.filter((product) =>
-        product.name.toLowerCase().includes(query.toLowerCase())
-    );
 }

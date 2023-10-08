@@ -55,7 +55,7 @@ class Product {
             return { status: 200, message: "Products retrieved successfully.", products: rows };
         } catch( error ) {
             console.error("getAllProducts() Error: ", error);
-            return { status: 500, message: "Internal server error." };
+            return { status: 500, message: "Internal server error.", products: null };
         }
     }
 

@@ -17,17 +17,11 @@
         <div class = "category-header-container" id = "category-header-container">
             <% if( categories !== null ) { %> 
                 <% categories.forEach((category) => { %>
-                    <button class = "category-header-button" data-id = "<%= category.categoryID %>"> 
+                    <a href = "#<%=category.categoryName%>" class = "category-link" data-id = "<%=category.categoryID%>"> 
                         <%= category.categoryName %> 
-                    </button>
+                    </a>
                 <% }); %>
             <% } %>  
-            <!-- 
-            <a href="#" class="category-link selected">Tops</a>
-            <a href="#" class="category-link">Bottoms</a>
-            <a href="#" class="category-link">Dresses</a>
-            <a href="#" class="category-link">Coordinates</a> 
-            -->
         </div>
 
         <div class = "category-header-title">
@@ -136,6 +130,11 @@
     <script>
         const categories = `<%- JSON.stringify(categories) %>`;
         const products = `<%- JSON.stringify(products) %>`;
+        let selectedCategory;
+
+        if( categories && categories.length > 0 ) { 
+            selectedCategory = '<%= categories[0].categoryID %>';
+        } 
     </script>
 </body>
 </html>

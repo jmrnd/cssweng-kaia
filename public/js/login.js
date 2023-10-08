@@ -2,29 +2,70 @@
 
                LOGIN AND REGISTER FORM DISPLAY
 
-*********************************************************/      
-// - Get references to the form containers and links
-const loginContainer = document.getElementById("login-container");
-const loginLink = document.querySelector(".login-link");
-const registerContainer = document.getElementById("register-container");
-const registerLink = document.querySelector(".register-link");
+*********************************************************/
+const loginSwitch = document.querySelector(".switch-container-button.login");
+const registerSwitch = document.querySelector(".switch-container-button.register");
+const insertContent = document.querySelector(".content-container");
 
-// - Function to show the registration form and hide the login form
-function showRegisterForm() {
-    loginContainer.style.display = "none";
-    registerContainer.style.display = "block";
-}
+const registerContent = `
+        <form id="register-form-container">
+            <div class="input-container-register">
+                <div class="input-box name">
+                        <input type = "text" id = "register-first-name" placeholder = "First Name" required>
+                        <input type = "text" id = "register-last-name" placeholder = "Last Name" required>
+                </div>
+                <div class="input-box email">
+                    <input type="email" id = "register-email" placeholder="Email" required>
+                </div>
+                <div class="input-box password">
+                    <input type="password" id = "register-password" placeholder="Password" required>
+                </div>
+            </div>
+            <button type="submit" id = "register-button"> Create account</button>
+        </form>
+`
 
-// - Function to show the login form and hide the registration form
-function showLoginForm() {
-    loginContainer.style.display = "block";
-    registerContainer.style.display = "none";
-}
+const loginContent = `
+    <form id = "login-form-container">
+        <div class = "input-container">
+            <div class = "input-box">
+                <input type = "email" id = "login-email" name = "login-email" placeholder = "Email" required >
+            </div>
+            <div class = "input-box">
+                <input type = "password" id = "login-password" name = "login-password" placeholder = "Password" required>
+            </div>
+        </div>
+        <div class = "options-container">
+            <div class="option-items">
+                <input type="checkbox" id="remember-me" name="remember-me">
+                <label for="remember-me">Remember Me</label>
+            </div>
+            <a href=""><span class="option-items">Forgot Password?</span></a>
+        </div>
+        <div class = "terms-container">
+            By logging into my account, I agree to Kaia Apparel’s <a href="/">Term’s and condition</a> and <a href="/">Privacy policy</a>.
+        </div>
+        <button type="submit" id="login-button">Login</button>
+    </form>
+`
 
-// - Add click event listeners to the links
-registerLink.addEventListener("click", showRegisterForm);
-loginLink.addEventListener("click", showLoginForm);
+loginSwitch.addEventListener("click", function (e){
+    insertContent.innerHTML = loginContent;
+    registerSwitch.classList.remove("focus");
+    loginSwitch.classList.add("focus");
+});
 
+registerSwitch.addEventListener("click", function (e){
+    insertContent.innerHTML = registerContent;
+    loginSwitch.classList.remove("focus");
+    registerSwitch.classList.add("focus");
+});
+
+/*|*******************************************************
+
+               LOGIN AND REGISTER FORM DISPLAY
+
+*********************************************************/
 /*|*******************************************************
 
                 LOGIN INPUT AND BUTTONS
@@ -34,9 +75,7 @@ loginLink.addEventListener("click", showLoginForm);
 const loginEmail = document.getElementById("login-email");
 const loginPassword = document.getElementById("login-password");
 const loginButton = document.getElementById("login-button");
-const loginErrorBox = document.getElementById("login-error-box");
-const loginErrorText = document.getElementById("login-error-text");
-const rememberBox = document.getElementById("remember-checkbox");
+const rememberBox = document.getElementById("remember-me");
 
 rememberBox.addEventListener('change', function() {
     if( this.checked ) {
@@ -79,42 +118,12 @@ loginButton?.addEventListener( "click", async function(e) {
         // - On success, go to dashboard
         if( response.status == 201 ) {
             window.location.href = "/homepage";
-        } else if( response.status === 500 ) {
-            loginErrorText.textContent = response.message;
-        } else {
-            displayLoginInputError();
-        }
+        } 
     } catch( error ) {
         console.log( error );
     }
 });
 
-/** 
-    ` This function is to used when the user clicks the `#login-button`. It 
-    checks the validity of each input, such as empty fields and invalid format.
-    If any errors are found, it makes the `#login-error-box` visible before it 
-    displays the designated error message.
-*/
-function displayLoginInputError() {
-    loginErrorBox.style.display = "block";
-    var errorMessage;
-
-    // - Dynamic error messages
-    if( !loginEmail.value ) {
-        loginEmail.select();
-        errorMessage = "Error: Please type your email address";
-    } else if( !loginEmail.value.includes('@') ) {
-        loginEmail.select();
-        errorMessage = "Error: Invalid email address format";
-    } else if( !loginPassword.value ) {
-        loginPassword.select();
-        errorMessage = "Error: Please type your password";
-    } else {
-        errorMessage = "Error: Invalid credentials"
-    }
-
-    loginErrorText.textContent = errorMessage;
-}
 
 /*|*******************************************************
 
@@ -127,8 +136,6 @@ const registerLastName = document.getElementById("register-last-name");
 const registerEmail = document.getElementById("register-email");
 const registerPassword = document.getElementById("register-password");
 const registerButton = document.getElementById("register-button");
-const registerErrorBox = document.getElementById("register-error-box");
-const registerErrorText = document.getElementById("register-error-text");
 
 /** 
     ` Attaches a `click` event to `#register-button`. The code communicates
@@ -166,62 +173,12 @@ registerButton?.addEventListener( "click", async function(e) {
             if( response.ok ) {
                 alert( "Registration successful" ); 
                 location.reload();
-            } else if( response.status === 500 ) {
-                registerErrorText.textContent = errorMessage;
-            } else {
-                displayRegisterInputError();
-            }
-        } else {
-            // - Display error message
-            displayRegisterInputError();
+            } 
         }
     } catch( error ) {
         console.log( error );    
     }
 });
-
-/** 
-    ` This function is to used when the user clicks the `#register-button`. It 
-    checks the validity of each input, such as empty fields and invalid format.
-    If any errors are found, it makes the `#register-error-box` visible and 
-    displays the designated error message.
-*/
-function displayRegisterInputError() {
-    // - Make the error box visible
-    registerErrorBox.style.display = "block";
-    var errorMessage;
-
-    // - Name errors
-    if( !registerFirstName.value ) {
-        registerFirstName.select();
-        errorMessage = "Error: Please type your first name";
-    } else if( !isTextOnly(registerFirstName.value) ) {
-        registerFirstName.select();
-        errorMessage = "Error: First name should contain letters only";
-    } else if( !registerLastName.value ) {
-        registerLastName.select();
-        errorMessage = "Error: Please type your last name";
-    } else if( !isTextOnly(registerLastName.value) ) {
-        registerLastName.select();
-        errorMessage = "Error: Last name should contain letters only";
-    } 
-
-    // - Email and password
-    else if( !registerEmail.value ) {
-        registerEmail.select();
-        errorMessage = "Error: Please type your email address";
-    } else if( !registerEmail.value.includes('@') ) {
-        registerEmail.select();
-        errorMessage = "Error: Invalid email address format";
-    } else if( !registerPassword.value ) {
-        registerPassword.select();
-        errorMessage = "Error: Please type your password";
-    } else {
-        errorMessage = "Error: Student ID or email already registered"
-    }
-
-    registerErrorText.textContent = errorMessage;
-}
 
 /** 
     ` Checks if the input contains only letters and spaces. 
@@ -246,18 +203,3 @@ function areInputFieldsFilled( formId ) {
     }
     return 1; 
 }
-
-/*
-function handleInputChanges( formId ) {
-    const submitButton = document.querySelectorAll(`#${formId} input[type="submit"]`);
-    submitButton.disabled = !areInputFieldsFilled(formId);
-}
-
-document.querySelectorAll(`#login-form input`).forEach( input => {
-    input.addEventListener('input', handleInputChanges("login-form") );
-});
-
-document.querySelectorAll(`#register-form input`).forEach( input => {
-    input.addEventListener('input', handleInputChanges("login-form") );
-});
-*/
