@@ -61,13 +61,6 @@ div.register-button-container {
 }
 
 /***********************************************
-        HEADER - Dropdown and Search                 
-***********************************************/
-div.sort-container {
-    background-color: red;
-}
-
-/***********************************************
                     PRODUCTS                 
 ***********************************************/
 .product-container {
@@ -76,4 +69,3 @@ div.sort-container {
     border: 1px solid #000; /* Example border for product containers */
     padding: 10px;
 }
-

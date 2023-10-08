@@ -30,7 +30,17 @@
             <% } %>  
 
             <div class = "product-filter">
-                <span>Sort by: <span id = "selected-filter"> -- </span></span>
+                <span> Sort by: </span>
+                <select class = "product-filter" id = "product-filter"> 
+                    <option class = "link-unstyled" value = "filter-all"> None </option>
+                    <option class = "link-unstyled" value = "filter-name-asc"> Name (Asc) </option>
+                    <option class = "link-unstyled" value = "filter-name-desc"> Name (Desc) </option>
+                    <option class = "link-unstyled" value = "filter-price-asc"> Price (Asc) </option>
+                    <option class = "link-unstyled" value = "filter-price-desc"> Price (Desc) </option>
+                </select>
+                
+            <!--
+                <span id = "selected-filter"> </span>
                 <div class="dropdown">
                     <span class ="dropdown-toggle">&#9662;</span>
                     <ul class ="dropdown-menu">
@@ -39,23 +49,8 @@
                         <li><a href="#" class="link-unstyled">High to Low (Price)</a></li>
                     </ul>
                 </div>
+            -->
             </div>
-
-            <select class = "product-filter" id = "product-filter"> 
-                <option value = "all"> </option>
-                <% if( categories !== null ) { %> 
-                    <% categories.forEach((category) => { %>
-                        <option 
-                            value = "<%= category.categoryName %>"
-                            data-id = "<%= category.categoryID %>"
-                            data-name = "<%= category.categoryName %>"> 
-                            <%= category.categoryName %> 
-                        </option>
-                    <% }); %>
-                <% } %>           
-            </select>
-
-
         </div>
 
         <div class = "product-grid" id = "product-grid">

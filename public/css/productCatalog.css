@@ -45,21 +45,6 @@ span.category-title {
     text-transform: uppercase;
 }
 
-.product-filter {
-    color: #999;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 150%;
-    letter-spacing: 0.02rem;
-    text-transform: uppercase;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    position: relative;
-    gap: 0.5rem;
-}
-
 div.product-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr); /* adjust items per column if necessary */
@@ -143,37 +128,19 @@ span.product-name {
 /***********************************************
                   DROPDOWN                    
 ***********************************************/
-.dropdown {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-}
-
-.dropdown-toggle {
+.product-filter {
+    color: #999;
     font-size: 1rem;
-    padding: 0.5rem;
-    background-color: #fff;
-}
-
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    right: 0;
-    background-color: #fff;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    white-space: nowrap;
-    min-width: 100%;
-    z-index: 2;
-}
-
-.dropdown-menu li {
-    padding: 0.5rem 1rem;
-    text-align: left;
-    cursor: pointer;
-    width: 100%;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+    letter-spacing: 0.02rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 0.5rem;
 }
 
 .link-unstyled {
