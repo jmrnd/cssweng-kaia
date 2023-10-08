@@ -23,7 +23,7 @@
     src: url('/fonts/GlacialIndifference-Bold.otf') format('opentype');
 }
 
-@import url('https://fonts.googleapis.com/css?family=Roboto Condensed');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
 /***********************************************
                      HEADER                    
@@ -32,9 +32,11 @@ div.header {
     width: 99%;
     display: block;
     position: sticky;
+    background-color: white;
     border-bottom: 1px solid #fbfbfb;
     z-index: 1; /* Prioritizes the header and puts it at the front */
     user-select: none;
+    top: 0;
 }
 
 div.header-box {
@@ -176,6 +178,7 @@ span.icon {
         padding: 5px;
         background-color: transparent;
         font-size: 0.75em;
+        font-family: 'Roboto Condensed', sans-serif;
     }
 
     .popup.profile-popup button:hover {
