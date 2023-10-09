@@ -3,6 +3,12 @@ const categoryDropdown = document.getElementById('category-dropdown');
 const searchBar = document.getElementById('search-bar');
 
 /*
+        VARIABLES
+*/
+const productsPerPage = 5;
+let currentPage = 1;
+
+/*
     ` It parses the product data from a JSON string and returns it as
     an array of objects. This is required so we can iterate through the
     products properly.
@@ -11,6 +17,9 @@ function parseProducts() {
     return JSON.parse(products);
 }
 
+/*
+    ` Generate products after the DOMContent loads
+*/
 document.addEventListener('DOMContentLoaded', () => {
     try {
         filterAndGenerateProducts();        
@@ -19,9 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-
-
 // - Function to filter and generate product items
+// - Also includes the pagination function
 function filterAndGenerateProducts() {
     try {
         productContainers.innerHTML = '';
@@ -30,7 +38,7 @@ function filterAndGenerateProducts() {
         const categoryID = selectedOption.getAttribute('data-id');
         const categoryName = selectedOption.getAttribute('data-name'); 
     
-        parseProducts().forEach((product) => {
+        const filteredProducts = parseProducts().filter((product) => {
             const isIncluded = product.productName.toLowerCase().includes(query);
             const isSameCategory = product.categoryID == categoryID;
             const isCategoryAll = categoryName === 'all';
@@ -41,19 +49,63 @@ function filterAndGenerateProducts() {
             console.log( "isQueryEmpty " + isQueryEmpty );
     
             if( isIncluded && (isSameCategory || isCategoryAll)) {
-                generateProductItem(product);
+                return true;
             } else if( isCategoryAll && (isIncluded || isQueryEmpty)) {
-                generateProductItem(product);
+                return true;
             } else if( !isCategoryAll && isIncluded && isSameCategory ) {
-                generateProductItem(product);
+                return true;
             } else if( isCategoryAll && isQueryEmpty ) {
-                generateProductItem(product);
+                return true;
+            } else {
+                return false;
             }
         });
+
+        const startIndex = (currentPage-1) * productsPerPage;
+        const endIndex = startIndex + productsPerPage;
+
+        for( let i = startIndex; i < endIndex && i < filteredProducts.length; i++ ) {
+            generateProductItem(filteredProducts[i]);
+        } addPaginationControls(filteredProducts.length);
     } catch( error ) {
         console.log( "filterAndGenerateProducts() error: " + error );
     }
 }
+
+/* Filter and generate products without pagination
+    function filterAndGenerateProducts() {
+        try {
+            productContainers.innerHTML = '';
+            const query = searchBar.value.trim().toLowerCase();
+            const selectedOption = categoryDropdown.options[categoryDropdown.selectedIndex];
+            const categoryID = selectedOption.getAttribute('data-id');
+            const categoryName = selectedOption.getAttribute('data-name'); 
+        
+            parseProducts().forEach((product) => {
+                const isIncluded = product.productName.toLowerCase().includes(query);
+                const isSameCategory = product.categoryID == categoryID;
+                const isCategoryAll = categoryName === 'all';
+                const isQueryEmpty = query === '';
+        
+                console.log( categoryName );
+                console.log( "isCategoryAll " + isCategoryAll );
+                console.log( "isQueryEmpty " + isQueryEmpty );
+        
+                if( isIncluded && (isSameCategory || isCategoryAll)) {
+                    generateProductItem(product);
+                } else if( isCategoryAll && (isIncluded || isQueryEmpty)) {
+                    generateProductItem(product);
+                } else if( !isCategoryAll && isIncluded && isSameCategory ) {
+                    generateProductItem(product);
+                } else if( isCategoryAll && isQueryEmpty ) {
+                    generateProductItem(product);
+                }
+            });
+        } catch( error ) {
+            console.log( "filterAndGenerateProducts() error: " + error );
+        }
+    }
+*/
 
 function generateProductItem( product ) {
     const productContainer = document.createElement('div');
@@ -61,14 +113,6 @@ function generateProductItem( product ) {
 
     const productItem = document.createElement('div');
     productItem.className = 'product-item';
-    /*
-    productItem.innerHTML = `
-        <span> [#${product.productID}] </span>
-        <span>Name: ${product.productName} | </span>
-        <span>Price: $${product.price} | </span>
-        <span>Stock: ${product.stockQuantity} | </span>
-    `;
-    */
 
     const productIcon = document.createElement('div');
     productIcon.className = 'item-icon-col';
@@ -78,18 +122,32 @@ function generateProductItem( product ) {
     
     const productName = document.createElement('div');
     productName.className = 'item-name';
-    productName.textContent =  `${product.productName}`;
+    productName.textContent =  `${product.productName}`.toUpperCase();
 
     productItem.appendChild(productIcon);
     productItem.appendChild(productName);
     productContainers.appendChild(productItem);
 }
 
-function filterProducts(query) {
-    return products.filter((product) =>
-        product.name.toLowerCase().includes(query.toLowerCase())
-    );
+function addPaginationControls(totalProducts) {
+    const totalPages = Math.ceil(totalProducts/productsPerPage);
+    const paginationContainer = document.createElement('div');
+    paginationContainer.className = 'pagination';
+
+    for( let i = 1; i <= totalPages; i++ ) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = i;
+        pageButton.addEventListener('click', () => {
+            currentPage = i;
+            filterAndGenerateProducts();
+        });
+        paginationContainer.appendChild(pageButton);
+    }
+    const pagination = document.getElementById('pagination');
+    pagination.innerHTML = '';
+    pagination.appendChild(paginationContainer);
 }
 
 categoryDropdown.addEventListener('change', filterAndGenerateProducts);
 searchBar.addEventListener('input', filterAndGenerateProducts);
+

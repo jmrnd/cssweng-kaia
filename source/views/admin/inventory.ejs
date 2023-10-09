@@ -8,30 +8,35 @@
 <body>
     <%- include("../partials/admin-header.ejs") %>
 
-    <div class = main-container> 
-        <div class = "header-container">
-            <span class = "title"> INVENTORY MANAGEMENT </span>
-            <a class = "register-button" href = "/registerProduct"> REGISTER+ </a>
-        </div>
-        <div class = "header-container">
-            <div class = "filter-container category">
-                <span class = "label"> CATEGORY </span>
-                <select class = "filter dropdown" id = "category-dropdown">
-                    <option data-name = "all"> All </option>
-                    <% if( categories !== null ) { %> 
-                        <% categories.forEach((category) => { %>
-                            <option 
-                                value = "<%= category.categoryName %>"
-                                data-id = "<%= category.categoryID %>"
-                                data-name = "<%= category.categoryName %>"> 
-                                <%= category.categoryName %> 
-                            </option>
-                        <% }); %>
-                    <% } %>           
-                </select>
+    <div class = "main-container" id = "main-container"> 
+        <div class = "sticky-container"> 
+            <div class = "header-container">
+                <span class = "title"> INVENTORY MANAGEMENT </span>
+                <a class = "register-button" href = "/registerProduct"> REGISTER+ </a>
             </div>
-            <div class = "filter-container searchbar"> 
-                <input type = "text" class = "filter search-bar" id = "search-bar" placeholder = "Search products by name">
+            <div class = "header-container">
+                <div class = "filter-container category">
+                    <span class = "label"> CATEGORY </span>
+                    <select class = "filter dropdown" id = "category-dropdown">
+                        <option data-name = "all"> All </option>
+                        <% if( categories !== null ) { %> 
+                            <% categories.forEach((category) => { %>
+                                <option 
+                                    value = "<%= category.categoryName %>"
+                                    data-id = "<%= category.categoryID %>"
+                                    data-name = "<%= category.categoryName %>"> 
+                                    <%= category.categoryName %> 
+                                </option>
+                            <% }); %>
+                        <% } %>           
+                    </select>
+                </div>
+                <div class = "filter-container searchbar"> 
+                    <input type = "text" class = "filter search-bar" id = "search-bar" placeholder = "Search products by name">
+                </div>
+            </div>
+            <div class = "pagination" id = "pagination">
+                
             </div>
         </div>
         <div id = "product-containers">

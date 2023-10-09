@@ -40,11 +40,19 @@ div.main-container {
 /***********************************************
                     HEADER                 
 ***********************************************/
+div.sticky-container {
+    position: sticky;
+    top: 110px;
+    background-color: white;
+}
+
 div.header-container {
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    align-items: center; 
+    align-items: center;
+    background-color: white;
+    z-index: 100; 
 }
 
 div.header-container:first-child {
@@ -158,9 +166,28 @@ div.filter-container.category {
 }
 
 .item-name {
-    font-size: 1.5em;
+    font-size: 1.25em;
     font-weight: bold;
     width: 90%;
     padding-left: 5px;
     padding-bottom: 10px;
+}
+
+/***********************************************
+                    PAGINATION                 
+***********************************************/
+.pagination {
+    margin-top: 20px;
+}
+
+.pagination button {
+    margin: 5px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background-color: #ddd;
 }
