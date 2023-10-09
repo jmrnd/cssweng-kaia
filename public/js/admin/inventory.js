@@ -67,6 +67,7 @@ function filterAndGenerateProducts() {
         for( let i = startIndex; i < endIndex && i < filteredProducts.length; i++ ) {
             generateProductItem(filteredProducts[i]);
         } addPaginationControls(filteredProducts.length);
+        currentPage = 1;
     } catch( error ) {
         console.log( "filterAndGenerateProducts() error: " + error );
     }

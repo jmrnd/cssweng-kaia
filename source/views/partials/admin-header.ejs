@@ -1,4 +1,5 @@
 <link rel = "stylesheet" type = "text/css" href = "/css/partials/header.css">
+<script src = "/js/partials/header.js" defer> </script>
 
 <div class = "header">
     <div class = "header-box"> 
@@ -8,9 +9,25 @@
         </div>        
         <div class = "header-buttons"> 
             <span> Admin </span>
-            <button type = "button" class = "header"> 
+            <button type = "button" class = "header" data-popup = "profile"> 
                 <span class = "icon profile"> </span>
             </button>
+
         </div>
+    </div>
+
+    <div class = "popup profile-popup">
+        <button type = "button" onclick = "navigateTo('homepage')"> 
+            Homepage
+        </button>
+        <button type = "button" onclick = "navigateTo('inventory')"> 
+            Inventory
+        </button>
+        <button type = "button" onclick = "navigateTo('registerProduct')"> 
+            Register Product
+        </button>
+        <button type = "button" id = "logout-button"> 
+            Logout
+        </button>
     </div>
 </div>

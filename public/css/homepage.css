@@ -87,6 +87,20 @@ div.category-container {
     background-repeat: no-repeat;
 }
 
+.category-container:hover {
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.category-container:active {
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.category-container:not(:hover) {
+    transition: 0.05s;
+}
+
 /***********************************************
                   CONTAINERS                    
 ***********************************************/

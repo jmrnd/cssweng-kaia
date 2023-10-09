@@ -58,3 +58,7 @@ logoutButton?.addEventListener( 'click', async function(e) {
         console.error( "An error occured: ", error );
     }
 });
+
+function navigateTo(url) {
+    window.location.href = url;
+}

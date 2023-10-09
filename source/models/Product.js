@@ -80,6 +80,27 @@ class Product {
             return { status: 500, message: "Internal server error.", categories: null };
         }
     }
+
+    static async getCategoryIdFromName( categoryName ) {
+        const sql = `
+            SELECT categoryID
+            FROM productCategories
+            WHERE categoryName = ?;
+        `
+        try {
+            const [rows] = await db.execute(sql, [categoryName]);
+            // - If there are no rows returned, then category is not in the database
+            if( rows.length === 0 ) {
+                return { status: 404, message: "Category does not exist.", categoryID: null };
+            } else if( rows.length > 0 ) {
+                return { status: 200, message: "Success!", categoryID: rows[0].categoryID };
+            }
+
+        } catch( error ) {
+            console.log( "getBottomMostCategories() Error: ", error );
+            return { status: 500, message: "Internal server error.", categoryID: null };
+        }
+    }
 }
 
 module.exports = Product;

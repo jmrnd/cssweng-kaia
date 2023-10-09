@@ -3,6 +3,7 @@ const categoryLinks = document.querySelectorAll('.category-link');
 const categoryTitle = document.getElementById('category-title');
 const pathCategory = document.getElementById('path-category');
 const productFilter = document.getElementById('product-filter');
+let selectedCategoryID = 1;
 
 /*
     ` It parses the product data from a JSON string and returns it as
@@ -20,8 +21,31 @@ function parseProducts() {
 */
 document.addEventListener('DOMContentLoaded', () => {
     try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedCategory = urlParams.get('category');
+
+        switch( selectedCategory ) {
+            case 'Dresses': {
+                changePathAndTitle(selectedCategory);
+                selectedCategoryID = 1; 
+            } break;
+            case 'Bottoms': {
+                changePathAndTitle(selectedCategory);
+                selectedCategoryID = 2; 
+            } break;
+            case 'Tops': {
+                changePathAndTitle(selectedCategory);
+                selectedCategoryID = 3; 
+            } break;
+            case 'Coords': {
+                changePathAndTitle(selectedCategory);
+                selectedCategoryID = 4; 
+            } break;
+            default: break;
+        }
+
         parseProducts().forEach((product) => {
-            if( product.categoryID == selectedCategory ) {
+            if( product.categoryID == selectedCategoryID ) {
                 generateProductItem(product);
             }
         });
@@ -45,11 +69,8 @@ categoryLinks.forEach((categoryLink) => {
             selectedCategory = categoryLink.getAttribute('data-id');
             const categoryName = categoryLink.getAttribute('data-name');
 
-            pathCategory.innerHTML = `${categoryName}`;
-            productGrid.innerHTML = '';
-            categoryTitle.innerHTML = `
-                <span class = "category-title">${categoryName} <span>COLLECTION</span></span>
-            `;
+            changePathAndTitle(categoryName);
+            console.log(categoryName);
     
             parseProducts().forEach((product) => {
                 if( product.categoryID == selectedCategory ) {
@@ -61,6 +82,14 @@ categoryLinks.forEach((categoryLink) => {
         console.log(error);
     }
 });
+
+function changePathAndTitle(categoryName) {
+    pathCategory.innerHTML = `${categoryName}`;
+    productGrid.innerHTML = '';
+    categoryTitle.innerHTML = `
+    <span class = "category-title">${categoryName} <span>COLLECTION</span></span>
+    `;
+}
 
 /*
     ` This function generates the HTML structure for a product item

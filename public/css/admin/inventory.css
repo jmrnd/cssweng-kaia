@@ -197,9 +197,10 @@ div.filter-container.category {
 }
 
 footer {
-    background-color: white; /* Adjust the color as needed */
+    background-color: white; 
     color: white;
     text-align: center;
     /* position: sticky; */
     bottom: 0;
+    margin-bottom: 20px;
 }
