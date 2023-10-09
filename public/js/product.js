@@ -41,6 +41,26 @@ document.addEventListener("DOMContentLoaded", function () {
     if (initialSizeButton) {
         selectSize(initialSizeButton);
     }
+
+    let quantity = 1;
+    const minQuantity = 1;
+    const maxQuantity = 10;
+    const quantitySpan = document.querySelector('.product-quantity-container span');
+    quantitySpan.textContent = quantity;
+
+    document.querySelector('.quantity-button:nth-child(1)').addEventListener('click', function () {
+        if (quantity > minQuantity) {
+            quantity--;
+            quantitySpan.textContent = quantity;
+        }
+    });
+
+    document.querySelector('.quantity-button:nth-child(3)').addEventListener('click', function () {
+        if (quantity < maxQuantity) {
+            quantity++;
+            quantitySpan.textContent = quantity;
+        }
+    });
 });
 
 function selectColor(button) {
