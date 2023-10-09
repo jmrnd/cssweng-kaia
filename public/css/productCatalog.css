@@ -1,3 +1,16 @@
+:root {
+    --new-arrivals: url("/images/kaia/iris_linen_top_1.jpg");
+    --dresses: url("/images/kaia/sky_linen_dress_1.jpg");
+    --bottoms: url("/images/kaia/june_top_4.jpg");
+    --tops: url("/images/kaia/lane_top_2.jpg");
+    --coords: url("/images/kaia/cara_linen_coordinates_3.jpg");
+}
+
+#home {
+    text-decoration: none;
+    color: inherit;
+}
+
 div.path-container {
     color: #9D9D9D;
     font-family: 'Roboto Condensed-Regular';
@@ -68,7 +81,6 @@ div.product-item img {
     width: 12.375rem;
     height: 14.375rem;
     object-fit: cover;
-    /* object-fit: none; */
 }
 
 div.product-details {
@@ -197,4 +209,23 @@ span.product-name {
       -ms-border-radius: inherit;
       -o-border-radius: inherit;
   }
+}
+
+/***********************************************
+                     IMAGES                
+***********************************************/
+.dresses {
+    background-image: var(--dresses);
+}
+
+.bottoms {
+    background-image: var(--bottoms);
+}
+
+.tops {
+    background-image: var(--tops);
+}
+
+.coords {
+    background-image: var(--coords);
 }

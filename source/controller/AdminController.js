@@ -17,8 +17,8 @@ const AdminController = {
 
     // - GET request
     inventory: async (req, res) => {
-        if( req.session.authorized && req.session.userRole == 'admin' ) {
-        // if( true ) {
+        // if( req.session.authorized && req.session.userRole == 'admin' ) {
+        if( true ) {
             const { categories } = await Product.getBottomMostCategories();
             const { products } = await Product.getAllProducts();
             res.render('./admin/inventory.ejs', { categories: categories, products: products });
@@ -29,8 +29,8 @@ const AdminController = {
     
     // - View for page
     getRegisterProduct: async (req, res) => {
-        if( req.session.authorized && req.session.userRole == 'admin' ) {
-        // if( true ) {
+        // if( req.session.authorized && req.session.userRole == 'admin' ) {
+        if( true ) {
             const { categories } = await Product.getBottomMostCategories();
             res.status(200).render('./admin/registerProduct.ejs', { categories: categories });
         } else {
@@ -48,6 +48,17 @@ const AdminController = {
             } else {
                 return res.status(500).json({ message: "Product not created"} );
             }
+        } else {
+            res.redirect('/');
+        }
+    },
+
+    viewProduct: async (req, res) => {
+        if( req.session.authorized && req.session.userRole == 'admin' ) {
+        // if( true ) {
+            const { product } = req.body;
+            const { categories } = await Product.getBottomMostCategories();
+            res.status(200).render('./admin/viewProduct.ejs', { categories: categories, product: product });
         } else {
             res.redirect('/');
         }

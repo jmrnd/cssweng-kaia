@@ -17,6 +17,7 @@ router.get('/productCatalog', UserController.productCatalog );
 router.get('/inventory', AdminController.inventory );
 router.get('/registerProduct', AdminController.getRegisterProduct );
 router.post('/registerProduct', AdminController.postRegisterProduct );
+router.get('/viewProduct', AdminController.viewProduct );
 
 router.get('/', (req, res) => {
     res.redirect('/login');

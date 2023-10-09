@@ -59,6 +59,13 @@ logoutButton?.addEventListener( 'click', async function(e) {
     }
 });
 
+/*
+const logo = document.getElementById('logo'); 
+logo.addEventListener('click', () => {
+    navigateTo("homepage"); 
+});
+*/
+
 function navigateTo(url) {
     window.location.href = url;
 }

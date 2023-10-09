@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <title> Kaia Apparel </title>
+    <link rel = "stylesheet" href = "/css/admin/registerProduct.css">
+    <script src = "js/admin/registerProduct.js" defer> </script>
+</head>
+<body>
+    <%- include("../partials/admin-header.ejs") %>
+
+    <div class = "main-container"> 
+        <div class = "header-container">
+            <span class = "title"> INSERT PRODUCT NAME </span>
+            <div class = "header-button-container">
+                <span> [Edit] </span> 
+                <span> [Delete] </span>
+            </div>
+        </div>
+
+        <form id = "register-product"> 
+            <div class = "left-section">
+                <div class = "input-container">
+                    <span class = "label"> CATEGORY </span>
+                    <select class = "input-box" id = "category-dropdown">
+                        <% if( categories !== null ) { %> 
+                            <% categories.forEach((category) => { %>
+                                <option id = "category"
+                                    value = "<%= category.categoryName %>"
+                                    data-id = "<%= category.categoryID %>"
+                                    data-name = "<%= category.categoryName %>"
+                                > 
+                                    <%= category.categoryName %> 
+                                </option>
+                            <% }); %>
+                        <% } %>           
+                    </select>
+                </div>
+                <div class = "input-container">
+                    <span class = "label"> NAME </span>
+                    <div class = "input-box">
+                        <input type = "text" id = "name">
+                    </div>
+                </div>
+                <div class = "input-container">
+                    <span class = "label"> PRICE </span>
+                    <div class = "input-box">
+                        <input type = "number" id = "price" step = "0.01" min = "0"/>
+                    </div>
+                </div>
+                <div class = "input-container">
+                    <span class = "label"> STOCK </span>
+                    <div class = "input-box">
+                        <input type = "number" id = "stock" step = "1" min = "0"/>
+                    </div>
+                </div>
+                <div class = "input-container">
+                    <span class = "label"> DESCRIPTION </span>
+                </div>
+                <textarea class = "input-textarea" id = "description" rows = "4"> </textarea>
+                <div class = "input-container">
+                    <span class = "label"> IMAGES </span>
+                    <div class = "input-box image-button">
+                        <span class = "label"> UPLOAD IMAGE </span>
+                    </div>
+                </div>
+            </div>
+
+    <!-- Update Product
+        <form id = "register-product"> 
+            <div class = "left-section">
+                <div class = "input-container">
+                    <span class = "label"> CATEGORY </span>
+                    <select class = "input-box" id = "category-dropdown">
+                        <% if( categories !== null ) { %> 
+                            <% categories.forEach((category) => { %>
+                                <option id = "category"
+                                    value = "<%= category.categoryName %>"
+                                    data-id = "<%= category.categoryID %>"
+                                    data-name = "<%= category.categoryName %>"
+                                > 
+                                    <%= category.categoryName %> 
+                                </option>
+                            <% }); %>
+                        <% } %>           
+                    </select>
+                </div>
+                <div class = "input-container">
+                    <span class = "label"> NAME </span>
+                    <div class = "input-box">
+                        <input type = "text" id = "name">
+                    </div>
+                </div>
+                <div class = "input-container">
+                    <span class = "label"> PRICE </span>
+                    <div class = "input-box">
+                        <input type = "number" id = "price" step = "0.01" min = "0"/>
+                    </div>
+                </div>
+                <div class = "input-container">
+                    <span class = "label"> STOCK </span>
+                    <div class = "input-box">
+                        <input type = "number" id = "stock" step = "1" min = "0"/>
+                    </div>
+                </div>
+                <div class = "input-container">
+                    <span class = "label"> DESCRIPTION </span>
+                </div>
+                <textarea class = "input-textarea" id = "description" rows = "4"> </textarea>
+                <div class = "input-container">
+                    <span class = "label"> IMAGES </span>
+                    <div class = "input-box image-button">
+                        <span class = "label"> UPLOAD IMAGE </span>
+                    </div>
+                </div>
+            </div>
+    -->
+            <div class = "right-section">
+                <div class = "input-container">
+                    <span class = "label"> VARIATIONS </span>
+                </div>
+                <div class = "temporary"> </div> <br>
+                <div class = "input-container">
+                    <span class = "label"> FEEDBACK (TEMPORARY) </span>
+                </div>
+                <div class = "temporary" id = "feedback-text"> </div>
+                <div class = "register-container">
+                    <button type = "submit" class = "register-button"> UPDATE </a>
+                </div>
+            </div>
+        </form>
+</body>
+
+
+<script>
+    const categories = `<%- JSON.stringify(categories) %>`;
+    const product = `<%- JSON.stringify(product) %>`;
+</script>
+</html>

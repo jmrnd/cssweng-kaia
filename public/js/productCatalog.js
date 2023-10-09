@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-
 /*
     ` Sets up an event listener for the category links to filter and display
     products. When a category link is clicked, it retrieves the selected 
@@ -66,11 +65,10 @@ categoryLinks.forEach((categoryLink) => {
         categoryLink.addEventListener('click', (e) => {
             e.preventDefault();
     
-            selectedCategory = categoryLink.getAttribute('data-id');
+            selectedCategoryID = categoryLink.getAttribute('data-id');
             const categoryName = categoryLink.getAttribute('data-name');
 
             changePathAndTitle(categoryName);
-            console.log(categoryName);
     
             parseProducts().forEach((product) => {
                 if( product.categoryID == selectedCategoryID ) {
@@ -106,9 +104,26 @@ function generateProductItem( product ) {
 
     // - Image 
     const anchor = document.createElement('a');
-    anchor.innerHTML = `
-        <img src = "/images/kaia/iris_linen_top_1.jpg">
-    `;
+
+    // - FIXME: Hardcoded 
+    console.log( product.categoryID );
+    switch( product.categoryID ) {
+        case 1:
+            anchor.innerHTML = `<img src = "/images/kaia/sky_linen_dress_1.jpg">`;
+            break;
+        case 2:
+            anchor.innerHTML = `<img src = "/images/kaia/faye_linen_shorts_10.png">`;
+            break;
+        case 3:
+            anchor.innerHTML = `<img src = "/images/kaia/lane_top_2.jpg">`;
+            break;
+        case 4:
+            anchor.innerHTML = `<img src = "/images/kaia/cara_linen_coordinates_10.png">`;
+            break;
+        default:
+            anchor.innerHTML = `<img src = "/images/kaia/iris_linen_top_1.jpg">`;
+            break;
+      }
 
     // - Product details
     const productDetails = document.createElement('div');

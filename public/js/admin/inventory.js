@@ -5,7 +5,7 @@ const searchBar = document.getElementById('search-bar');
 /*
         VARIABLES
 */
-const productsPerPage = 10;
+const productsPerPage = 5;
 let currentPage = 1;
 
 /*
@@ -43,10 +43,6 @@ function filterAndGenerateProducts() {
             const isSameCategory = product.categoryID == categoryID;
             const isCategoryAll = categoryName === 'all';
             const isQueryEmpty = query === '';
-    
-            console.log( categoryName );
-            console.log( "isCategoryAll " + isCategoryAll );
-            console.log( "isQueryEmpty " + isQueryEmpty );
     
             if( isIncluded && (isSameCategory || isCategoryAll)) {
                 return true;
@@ -109,11 +105,9 @@ function filterAndGenerateProducts() {
 */
 
 function generateProductItem( product ) {
-    const productContainer = document.createElement('div');
-    productContainer.className = 'product-container';
-
     const productItem = document.createElement('div');
     productItem.className = 'product-item';
+    productItem.setAttribute('data-product-id', product.productID); 
 
     const productIcon = document.createElement('div');
     productIcon.className = 'item-icon-col';
@@ -127,8 +121,34 @@ function generateProductItem( product ) {
 
     productItem.appendChild(productIcon);
     productItem.appendChild(productName);
+    
+    /*
+    productItem.addEventListener('click', function() {
+        goToViewProduct(product) 
+    });   
+    */
+
     productContainers.appendChild(productItem);
 }
+
+
+async function goToViewProduct(product) {
+    try {
+        const response = await fetch( '/viewProduct', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+            params: { product: product }    
+        });
+
+        if( response.status == 200 ) {
+            window.location.href = "/admin/viewProduct";
+        }
+
+    } catch( error ) {
+        console.log( error );
+    }
+}
+
 
 function addPaginationControls(totalProducts) {
     const totalPages = Math.ceil(totalProducts/productsPerPage);

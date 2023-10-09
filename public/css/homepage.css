@@ -1,3 +1,11 @@
+:root {
+    --new-arrivals: url("/images/kaia/iris_linen_top_1.jpg");
+    --dresses: url("/images/kaia/sky_linen_dress_1.jpg");
+    --bottoms: url("/images/kaia/june_top_4.jpg");
+    --tops: url("/images/kaia/lane_top_2.jpg");
+    --coords: url("/images/kaia/cara_linen_coordinates_3.jpg");
+}
+
 /***********************************************
                   FONT-FAMILY
                 Roboto Condensed                    
@@ -30,14 +38,6 @@
 @font-face {
     font-family: 'Roboto Condensed-Italic';
     src: url("/fonts/Roboto_Condensed/RobotoCondensed-Italic.ttf"); 
-}
-
-:root {
-    --new-arrivals: url("/images/kaia/iris_linen_top_1.jpg");
-    --dresses: url("/images/kaia/sky_linen_dress_1.jpg");
-    --bottoms: url("/images/kaia/june_top_4.jpg");
-    --tops: url("/images/kaia/lane_top_2.jpg");
-    --coords: url("/images/kaia/cara_linen_coordinates_3.jpg");
 }
 
 body {
