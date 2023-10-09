@@ -73,7 +73,7 @@ categoryLinks.forEach((categoryLink) => {
             console.log(categoryName);
     
             parseProducts().forEach((product) => {
-                if( product.categoryID == selectedCategory ) {
+                if( product.categoryID == selectedCategoryID ) {
                     generateProductItem(product);
                 }
             });
@@ -180,7 +180,7 @@ productFilter.addEventListener('change', () => {
 
     // Display the filtered products
     filteredProducts.forEach((product) => {
-        if( product.categoryID == selectedCategory ) {
+        if( product.categoryID == selectedCategoryID ) {
             generateProductItem(product);
         }
     });
