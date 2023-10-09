@@ -20,24 +20,25 @@ document.addEventListener("DOMContentLoaded", function () {
         slides[slideIndex - 1].style.display = 'block';
     }
 
-    function plusSlides(n) {
-        showSlides((slideIndex += n));
-    }
-
     showSlides(slideIndex);
 
     // Event listeners for previous and next buttons
-    document.querySelector('.previous-image-button').addEventListener('click', () => plusSlides(-1));
-    document.querySelector('.next-image-button').addEventListener('click', () => plusSlides(1));
+    document.querySelector('.previous-image-button').addEventListener('click', () => {
+        plusSlides(-1);
+    });
+
+    document.querySelector('.next-image-button').addEventListener('click', () => {
+        plusSlides(1);
+    });
 
     // Select the first color and size buttons initially
     const initialColorButton = document.querySelector('.color-button');
     const initialSizeButton = document.querySelector('.size-button');
-    
+
     if (initialColorButton) {
         selectColor(initialColorButton);
     }
-    
+
     if (initialSizeButton) {
         selectSize(initialSizeButton);
     }
@@ -61,6 +62,10 @@ document.addEventListener("DOMContentLoaded", function () {
             quantitySpan.textContent = quantity;
         }
     });
+
+    function plusSlides(n) {
+        showSlides((slideIndex += n));
+    }
 });
 
 function selectColor(button) {
