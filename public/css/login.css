@@ -34,15 +34,16 @@ div.switch-container-button{
     font-weight: bold;
     letter-spacing: 1px;
     border-bottom: 1px solid black;
-    margin: 15px;
 }
 
+div.switch-container-button:hover{
+    cursor: pointer;
+}
 
 /* Use for JS */
 div.switch-container-button.focus{
     border-bottom: 5px solid #995599;
     color: #995599;
-    cursor: pointer;
 }
 
 
