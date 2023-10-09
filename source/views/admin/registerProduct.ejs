@@ -8,18 +8,16 @@
 <body>
     <%- include("../partials/admin-header.ejs") %>
 
-    <div class = main-container> 
+    <div class = "main-container"> 
         <div class = "header-container">
             <span class = "title"> REGISTER PRODUCT </span>
         </div>
 
-        <form id = "product-form">
-        <div class = "register-container">
+        <form id = "register-product"> 
             <div class = "left-section">
-                <div>
-                    <label> Category </label>
-                    <select class = "category-dropdown" id = "category-dropdown">
-                        <option value = "all"> </option>
+                <div class = "input-container">
+                    <span class = "label"> CATEGORY </span>
+                    <select class = "input-box" id = "category-dropdown">
                         <% if( categories !== null ) { %> 
                             <% categories.forEach((category) => { %>
                                 <option id = "category"
@@ -33,42 +31,54 @@
                         <% } %>           
                     </select>
                 </div>
-                <div>
-                    <label for = "name"> Name </label>
-                    <input type = "text" id = "name"/>
+                <div class = "input-container">
+                    <span class = "label"> NAME </span>
+                    <div class = "input-box">
+                        <input type = "text" id = "name">
+                    </div>
                 </div>
-                <div>
-                    <label for = "price"> Price </label>
-                    <input type = "number" id = "price" step = "0.01" min="0"/>
+                <div class = "input-container">
+                    <span class = "label"> PRICE </span>
+                    <div class = "input-box">
+                        <input type = "number" id = "price" step = "0.01" min = "0"/>
+                    </div>
                 </div>
-                <div>
-                    <label for = "description"> Description </label>
-                    <textarea id = "description" rows = "4"></textarea>
+                <div class = "input-container">
+                    <span class = "label"> STOCK </span>
+                    <div class = "input-box">
+                        <input type = "number" id = "stock" step = "1" min = "0"/>
+                    </div>
                 </div>
-                <div>
-                    <label for = "stock"> Stock </label>
-                    <input type = "number" id = "stock" step = "1" min="0"/>
+                <div class = "input-container">
+                    <span class = "label"> DESCRIPTION </span>
                 </div>
-                <div>
-                    <label for = "images"> Images </label>
-                    <input type = "file" id = "images"/>
+                <textarea class = "input-textarea" id = "description" rows = "4"> </textarea>
+                <div class = "input-container">
+                    <span class = "label"> IMAGES </span>
+                    <div class = "input-box image-button">
+                        <span class = "label"> UPLOAD IMAGE </span>
+                    </div>
                 </div>
             </div>
-
+    
             <div class = "right-section">
-                <div class = "register-button-container">
+                <div class = "input-container">
+                    <span class = "label"> VARIATIONS </span>
+                </div>
+                <div class = "temporary"> </div> <br>
+                <div class = "input-container">
+                    <span class = "label"> FEEDBACK (TEMPORARY) </span>
+                </div>
+                <div class = "temporary" id = "feedback-text"> </div>
+                <div class = "register-container">
                     <button type = "submit" class = "register-button"> REGISTER </a>
                 </div>
             </div>
         </form>
-            <div>
-                <span id = feedback-text> Hello </span>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const categories = `<%- JSON.stringify(categories) %>`;
-    </script>
 </body>
+
+
+<script>
+    const categories = `<%- JSON.stringify(categories) %>`;
+</script>
 </html>

@@ -35,9 +35,6 @@
                     <input type = "text" class = "filter search-bar" id = "search-bar" placeholder = "Search products by name">
                 </div>
             </div>
-            <div class = "pagination" id = "pagination">
-                
-            </div>
         </div>
         <div id = "product-containers">
             <!--
@@ -56,9 +53,13 @@
         </div>
         -->
     </div>
-    <script>
-        const categories = `<%- JSON.stringify(categories) %>`;
-        const products = `<%- JSON.stringify(products) %>`;
-    </script>
+    <footer> 
+        <div class = "pagination" id = "pagination">
+        </div>
+    </footer>
 </body>
+<script>
+    const categories = `<%- JSON.stringify(categories) %>`;
+    const products = `<%- JSON.stringify(products) %>`;
+</script>
 </html>

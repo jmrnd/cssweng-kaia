@@ -5,7 +5,7 @@ const searchBar = document.getElementById('search-bar');
 /*
         VARIABLES
 */
-const productsPerPage = 5;
+const productsPerPage = 10;
 let currentPage = 1;
 
 /*

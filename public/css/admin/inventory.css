@@ -26,7 +26,9 @@ body {
     justify-content: center;
     font-family: 'Roboto Condensed', sans-serif;
     user-select: none;
-
+    margin: 0 auto;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 div.main-container {
@@ -44,6 +46,7 @@ div.sticky-container {
     position: sticky;
     top: 110px;
     background-color: white;
+    padding-top: 10px;
 }
 
 div.header-container {
@@ -137,7 +140,7 @@ div.filter-container.category {
     display: block;
     align-items: center;
     margin: 0;
-    width: 100%;
+    width: 99%;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -147,7 +150,7 @@ div.filter-container.category {
     align-items: center;
     justify-content: center;
     border: 1px solid #EF91CF;
-    width: 100%;
+    width: 99%;
     margin-bottom: 10px;
 }
 
@@ -177,7 +180,8 @@ div.filter-container.category {
                     PAGINATION                 
 ***********************************************/
 .pagination {
-    margin-top: 20px;
+    text-align: center;
+    margin-top: 5px;
 }
 
 .pagination button {
@@ -190,4 +194,12 @@ div.filter-container.category {
 
 .pagination button:hover {
     background-color: #ddd;
+}
+
+footer {
+    background-color: white; /* Adjust the color as needed */
+    color: white;
+    text-align: center;
+    /* position: sticky; */
+    bottom: 0;
 }
