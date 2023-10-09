@@ -36,24 +36,25 @@
             </div>
             <div class="product-variation-container">
                 <div class="product-color">
-                    <span class="product-spec">Color: <span>Lavender</span></span>
+                    <span class="product-spec">Color: <span class="selected-color"></span></span>
                     <div class="product-colors">
-                        <button class="color-button white" onclick=""></button>
-                        <button class="color-button sage-green" onclick=""></button>
-                        <button class="color-button lavender" onclick=""></button>
-                        <button class="color-button gray" onclick=""></button>
-                        <button class="color-button black" onclick=""></button>
+                        <!-- Handle on rendering -- we may need to set variables for the colors -->
+                        <button class="color-button white selected" onclick="selectColor(this)" value="white"></button>
+                        <button class="color-button sage-green" onclick="selectColor(this)" value="sage green"></button>
+                        <button class="color-button lavender" onclick="selectColor(this)" value="lavender"></button>
+                        <button class="color-button gray" onclick="selectColor(this)" value="gray"></button>
+                        <button class="color-button black" onclick="selectColor(this)" value="black"></button>
                     </div>
                 </div>
                 <div class="product-size">
-                    <span class="product-spec">Size: <span>Small</span></span>
+                    <span class="product-spec">Size: <span class="selected-size"></span></span>
                     <div class="product-sizes">
-                        <button class="size-button" onclick="">XS</button>
-                        <button class="size-button" onclick="">S</button>
-                        <button class="size-button" onclick="">M</button>
-                        <button class="size-button" onclick="">L</button>
-                        <button class="size-button" onclick="">XL</button>
-                        <button class="size-button" onclick="">XXL</button>
+                        <button class="size-button selected" onclick="selectSize(this)">XS</button>
+                        <button class="size-button" onclick="selectSize(this)">S</button>
+                        <button class="size-button" onclick="selectSize(this)">M</button>
+                        <button class="size-button" onclick="selectSize(this)">L</button>
+                        <button class="size-button" onclick="selectSize(this)">XL</button>
+                        <button class="size-button" onclick="selectSize(this)">XXL</button>
                     </div>
                 </div>
                 <div class="product-quantity">

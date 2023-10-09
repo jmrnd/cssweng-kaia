@@ -29,4 +29,32 @@ document.addEventListener("DOMContentLoaded", function () {
     // Event listeners for previous and next buttons
     document.querySelector('.previous-image-button').addEventListener('click', () => plusSlides(-1));
     document.querySelector('.next-image-button').addEventListener('click', () => plusSlides(1));
+
+    // Select the first color and size buttons initially
+    const initialColorButton = document.querySelector('.color-button');
+    const initialSizeButton = document.querySelector('.size-button');
+    
+    if (initialColorButton) {
+        selectColor(initialColorButton);
+    }
+    
+    if (initialSizeButton) {
+        selectSize(initialSizeButton);
+    }
 });
+
+function selectColor(button) {
+    const colorButtons = document.querySelectorAll('.color-button');
+    colorButtons.forEach(btn => btn.classList.remove('selected'));
+    button.classList.add('selected');
+    const selectedColor = document.querySelector('.selected-color');
+    selectedColor.textContent = button.getAttribute('value');
+}
+
+function selectSize(button) {
+    const sizeButtons = document.querySelectorAll('.size-button');
+    sizeButtons.forEach(btn => btn.classList.remove('selected'));
+    button.classList.add('selected');
+    const selectedSize = document.querySelector('.selected-size');
+    selectedSize.textContent = button.textContent;
+}

@@ -257,3 +257,14 @@ button.color-button.black {
 button.color-button.gray {
     background: #565656;
 }
+
+/* Style for selected color button */
+.color-button.selected {
+    border: 2px solid #EF91CF;
+}
+
+/* Style for selected size button */
+.size-button.selected {
+    border: 2px solid #EF91CF;
+}
+
