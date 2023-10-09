@@ -36,7 +36,8 @@ div.product-container {
     align-items: center;
     margin: 5px;
     background-color: #FAFAFA;
-    border: none;
+    border: 1px solid #E9E9E9;
+    background: #F6F6F6;
     width: 2.125rem;
     height: 2.4375rem;
     cursor: pointer;
@@ -258,13 +259,11 @@ button.color-button.gray {
     background: #565656;
 }
 
-/* Style for selected color button */
 .color-button.selected {
-    border: 2px solid #EF91CF;
+    border: 2px solid #995594;
 }
 
-/* Style for selected size button */
 .size-button.selected {
-    border: 2px solid #EF91CF;
+    border: 2px solid #995594;
+    background: #FFEEF9;
 }
-
