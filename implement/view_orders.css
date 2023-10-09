@@ -1,0 +1,96 @@
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: #fcfcfc;
+}
+
+.main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.view-orders-title {
+    font-size: 2.5em;
+    font-weight: bolder;
+}
+
+.content-container {
+    display: block;
+    align-items: center;
+    text-align: left;
+    justify-content: center;
+    margin: 0px;
+    width: 60%;
+    padding-top: 50px;
+}
+
+.orders-container {
+    display: block;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+    border: 1px solid #EF91CF;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.orders-count {
+    text-align: right;
+    padding-bottom: 5px;
+    color: #a3a2a2;
+}
+
+.orders-item {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    padding: 30px;
+}
+
+.item-icon {
+    height: 125px;
+    padding: 10px;
+}
+
+.item-col {
+    display: block;
+    text-align: left;
+    justify-content: center;
+    width: 25%;
+    padding: 10px;
+}
+
+.item-heading {
+    font-size: 1em;
+    font-weight: bolder;
+    padding-bottom: 10px;
+    color: #8a8a8a;
+}
+
+.item-value {
+    font-size: 1.5em;
+}
+
+.status-shipping {
+    font-size: 1.5em;
+    font-weight: bolder;
+    color:#f5a700
+}
+
+.status-delivered {
+    font-size: 1.5em;
+    font-weight: bolder;
+    color:#24c415
+}
+
+.status-not-shipped{
+    font-size: 1.5em;
+    font-weight: bolder;
+    color:#d3340c
+}
+
+.divider {
+   border-bottom: 1px solid #EF91CF;
+}

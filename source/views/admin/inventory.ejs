@@ -11,15 +11,13 @@
     <div class = main-container> 
         <div class = "header-container">
             <span class = "title"> INVENTORY MANAGEMENT </span>
-            <div class = "register-button-container">
-                <a class = "register-button" href = "/registerProduct"> REGISTER+ </a>
-            </div>
+            <a class = "register-button" href = "/registerProduct"> REGISTER+ </a>
         </div>
         <div class = "header-container">
-            <div>
-                <span> Category </span>
-                <select class = "category-dropdown" id = "category-dropdown">
-                    <option value = "all"> </option>
+            <div class = "filter-container category">
+                <span class = "label"> CATEGORY </span>
+                <select class = "filter dropdown" id = "category-dropdown">
+                    <option data-name = "all"> All </option>
                     <% if( categories !== null ) { %> 
                         <% categories.forEach((category) => { %>
                             <option 
@@ -32,11 +30,12 @@
                     <% } %>           
                 </select>
             </div>
-            <div> 
-                <input type = "text" class = "search-bar" id = "search-bar" placeholder = "Search products...">
+            <div class = "filter-container searchbar"> 
+                <input type = "text" class = "filter search-bar" id = "search-bar" placeholder = "Search products by name">
             </div>
         </div>
         <div id = "product-containers">
+            <!--
             <% if( products !== null ) { %> 
                 <% products.forEach((product) => { %>
                     <div class = "product-container"> 
@@ -50,6 +49,7 @@
                 <% }); %>
             <% } %>           
         </div>
+        -->
     </div>
     <script>
         const categories = `<%- JSON.stringify(categories) %>`;

@@ -74,6 +74,7 @@ loginButton?.addEventListener( "click", async function(e) {
         if( !areInputFieldsFilled('login-form-container') ) {
             errorBox.style.display = 'block';
             errorBox.textContent = 'Missing email or password';
+            errorBox.style.animation = "shakeobj 10s 10";
             return false;
         }
 

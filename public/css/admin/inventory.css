@@ -1,13 +1,34 @@
-body {
-    display: block;
-    justify-content: center;
-    font-family: 'Roboto Condensed', sans-serif;
+/***********************************************
+                     FONTS                    
+***********************************************/
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+@font-face {
+    font-family: 'Migra-ExtraBold';
+    src: url('/fonts/Migra-Extrabold.otf') format('opentype');
 }
 
+@font-face {
+    font-family: 'GlacialIndifference';
+    src: url('/fonts/GlacialIndifference.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'GlacialIndifference-Bold';
+    src: url('/fonts/GlacialIndifference-Bold.otf') format('opentype');
+}
 
 /***********************************************
                   CONTAINERS                    
 ***********************************************/
+body {
+    display: block;
+    justify-content: center;
+    font-family: 'Roboto Condensed', sans-serif;
+    user-select: none;
+
+}
+
 div.main-container {
     display: block;
     max-width: 1150px;  
@@ -17,7 +38,7 @@ div.main-container {
 }
 
 /***********************************************
-        HEADER - Title and Register Button                  
+                    HEADER                 
 ***********************************************/
 div.header-container {
     display: flex;
@@ -26,23 +47,41 @@ div.header-container {
     align-items: center; 
 }
 
+div.header-container:first-child {
+    margin-top: 25px;
+}
+
+/***********************************************
+        TITLE - "Inventory Management"                
+***********************************************/
 span.title {
     color: black;
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 2.5em;
 }
 
-div.register-button-container {
-    text-align: right;
+/***********************************************
+        BUTTON - "Register+ Button"                
+***********************************************/
+span.label {
+    color: black;
+    font-weight: bold;
+    font-size: 1em;
+    margin-right: 20px;
 }
 
 .register-button {
-    background-color: #EF91CF;
-    color: white; 
+    width: 230px;
     padding: 10px 20px;
     border: none;
-    cursor: pointer;
+    background-color: #EF91CF;
+
+    color: white;
+    font-size: 1.3em;
     text-align: center;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
 }
 
 .register-button:hover {
@@ -61,11 +100,67 @@ div.register-button-container {
 }
 
 /***********************************************
+        FILTERS - Category and Search Bar               
+***********************************************/
+div.filter-container.search-bar {
+    width: 27%;
+}
+
+div.filter-container.category {
+    width: 70%;
+}
+
+.filter {
+    background-color: #F5F5F5;
+    border: 1px solid #D9D9D9;
+    width: 300px;
+    font-family: inherit;
+    outline: none;
+}
+
+.filter.search-bar {
+    text-indent: 10px;
+}
+
+/***********************************************
                     PRODUCTS                 
 ***********************************************/
 .product-container {
-    cursor: pointer; /* Change cursor to indicate clickability */
-    margin: 10px;
-    border: 1px solid #000; /* Example border for product containers */
+    display: block;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #EF91CF;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.product-item:hover {
+    background-color: #f0e8ed;
+}
+
+.item-icon-col {
+    width: 10%;
+    padding: 5px;
+}
+
+.item-icon {
+    height: 70px;
     padding: 10px;
+}
+
+.item-name {
+    font-size: 1.5em;
+    font-weight: bold;
+    width: 90%;
+    padding-left: 5px;
+    padding-bottom: 10px;
 }

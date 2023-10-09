@@ -8,6 +8,8 @@
 /***********************************************
                      FONTS                    
 ***********************************************/
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
 @font-face {
     font-family: 'Migra-ExtraBold';
     src: url('/fonts/Migra-Extrabold.otf') format('opentype');
@@ -22,9 +24,6 @@
     font-family: 'GlacialIndifference-Bold';
     src: url('/fonts/GlacialIndifference-Bold.otf') format('opentype');
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
-
 /***********************************************
                      HEADER                    
 ***********************************************/
@@ -163,26 +162,35 @@ span.icon {
                     PROFILE POP-UP             
     ***********************************************/
     .popup.profile-popup {
-        right: 0px;
         display: block;
         width: auto;
+        right: 0px;
         font-size: 0.75em;
     }
 
     .popup.profile-popup button {
         display: block;
         width: 100%;
-        text-align: left;
-        text-indent: 5px;
         border: none;
         padding: 5px;
         background-color: transparent;
-        font-size: 0.75em;
-        font-family: 'Roboto Condensed', sans-serif;
+        text-align: left;
+        text-indent: 5px;
+        font-family: inherit;
+        font-size: 1em;
     }
 
     .popup.profile-popup button:hover {
         background-color: #EF91CF;
+    }
+
+    .popup.profile-popup button:active {
+        opacity: 0.8;
+        transition: 0.3s;
+    }
+    
+    .popup.profile-popup button:not(:hover) {
+        transition: 0.15s;
     }
 
 /***********************************************
