@@ -110,7 +110,7 @@ button.header:active {
 }
 
 button.header:not(:hover) {
-    transition: 0.3s;
+    transition: 0.35s;
 }
 
 span.icon {

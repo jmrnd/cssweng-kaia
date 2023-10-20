@@ -25,7 +25,7 @@ async function startServer() {
     app.set('views', './source/views');     // directory for the views folder
     app.use(express.static('public'));      // looks at 'public' folder for static files
     app.use(express.json());                // parse request body as json
-    app.use(session);                       // session maanagement
+    app.use(session);                       // session management
     app.use(router);                        // assign routes
 
     app.listen(port, () => { 

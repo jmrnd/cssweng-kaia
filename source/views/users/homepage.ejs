@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <title> Kaia Apparel </title>
+    <link rel = "stylesheet" href = "/css/users/homepage.css">
+    <script src = "js/users/homepage.js" defer> </script>
+</head>
+<body>
+    <%- include("../partials/header.ejs") %>
+    <div class = "main-container"> 
+        <div class = "outer-container new-arrivals">
+            <span class = "name new-arrival"> NEW ARRIVALS </span>
+        </div>
+
+        <span class = "title"> 
+            <br> Category <br>
+        </span>
+
+        <div class = "outer-container">
+            <div class = "inner-container">
+                <div class = "category-container dresses" data-category = "Dresses">
+                    <span class = "name category"> DRESSES </span>
+                </div>
+                <div class = "category-container bottoms" data-category = "Bottoms">
+                    <span class = "name category"> BOTTOMS </span>
+                </div>
+            </div>
+            <div class = "inner-container">
+                <div class = "category-container tops" data-category = "Tops">
+                    <span class = "name category"> TOPS </span>
+                </div>
+                <div class = "category-container coords" data-category = "Coords">
+                    <span class = "name category"> COORDS </span>
+                </div>
+            </div>
+        </div>
+
+        <span class = "title"> 
+            <br> Featured Styles <br>
+        </span>
+
+        <div class = "outer-container" style = "background-color: gray;">
+            <span> Display different clothing outfit of the day </span>
+        </div>
+    </div>
+</body>
+</html>

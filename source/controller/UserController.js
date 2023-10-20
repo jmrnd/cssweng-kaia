@@ -1,4 +1,4 @@
-/*|********************************************************
+    /*|********************************************************
 
     This controller handles user-related authentication,
     functionality, and administrative operations, such as
@@ -11,10 +11,29 @@
 
 **********************************************************/
 const db = require('../config/database.js');
+const multer = require('../config/multer.js');
 const User = require('../models/User.js');
 const Product = require('../models/Product.js');
 
 const UserController = {
+
+    getUpload: (req, res ) => {
+        try {
+            res.render('users/upload.ejs');
+        } catch( error ) {
+            console.log( "getUpload() error: ", error );
+        }
+    },
+
+    postUpload: (req, res) => {
+        if (req.file) {
+            console.log("Image uploaded:", req.file);
+            res.send("Image Uploaded");
+        } else {
+            console.log("Error: File upload failed");
+            res.status(400).send("File upload failed");
+        }    },
+
 
     /*
         ` This function is called when the user sends a GET request to path '/login'. 
@@ -26,7 +45,7 @@ const UserController = {
             if( req.session.authorized && req.session.rememberMe ) {
                 res.redirect('/homepage');
             } else {
-                res.render('login.ejs');
+                res.render('users/login.ejs');
             }
         } catch( error ) {
             console.log( "getLogin() error: ", error );
@@ -80,7 +99,7 @@ const UserController = {
     logout: (req, res) => {
         try {
             req.session.destroy();
-            res.render('homepage'); 
+            res.render('users/homepage'); 
         } catch( error ) {
             console.error(error);
             return res.status(500).json({ message: "An error occurred during login. Please try again." });
@@ -117,8 +136,8 @@ const UserController = {
     */
    homepage: async (req, res) => {
         try {
-            if( req.session.authorized ) {
-                res.render('homepage.ejs');
+            if( true ) {
+                res.render('users/homepage.ejs');
             } else {
                 res.redirect('/login');
             }
@@ -130,19 +149,31 @@ const UserController = {
     /*
     */
     productCatalog: async (req, res) => {
-    try {
-        // if( req.session.authorized ) {
-        if( true ) {
-            const { categories } = await Product.getBottomMostCategories();
-            const { products } = await Product.getAllProducts();
-            res.status(200).render('productCatalog.ejs', { categories: categories, products: products });
-        } else {
-            res.redirect('/login');
+        try {
+            // if( req.session.authorized ) {
+            if( true ) {
+                const { categories } = await Product.getBottomMostCategories();
+                const { products } = await Product.getAllProducts();
+                res.status(200).render('users/productCatalog.ejs', { categories: categories, products: products });
+            } else {
+                res.redirect('/login');
+            }
+        } catch( error ) {
+            console.log( "productCatalog() error: ", error );
         }
-    } catch( error ) {
-        console.log( "productCatalog() error: ", error );
-    }
-} 
+    },
+
+    viewProduct: async (req, res) => {
+        // if( req.session.authorized && req.session.userRole == 'admin' ) {
+        if( true ) {
+            const productID = req.query.productID;
+            const { categories } = await Product.getBottomMostCategories();
+            const { product } = await Product.getProductByID(productID);
+            res.status(200).render('./users/viewProduct.ejs', { categories: categories, product: product });
+        } else {
+            res.redirect('/');
+        }
+    },
 }
 
 module.exports = UserController;

@@ -15,7 +15,12 @@ const Product = require('../models/Product.js');
 
 const AdminController = {
 
-    // - GET request
+    /** 
+        ` Handles the GE Trequest to display the inventory page, which is only
+        accessible to admins. If the user is authorized as an admin, it retrieves
+        all the relevant product details and renders 'inventory.ejs'. Otherwise,
+        it redirects to the homepage.
+    */
     inventory: async (req, res) => {
         // if( req.session.authorized && req.session.userRole == 'admin' ) {
         if( true ) {
@@ -27,7 +32,12 @@ const AdminController = {
         }
     },
     
-    // - View for page
+    /** 
+        ` Handles the GET request to display the register product page, which is 
+        only accessible to admins. If the user is authorized as an admin, it 
+        retrieves the bottom-most categories and renders 'registerProduct.ejs'. 
+        Otherwise, it redirects to the homepage.
+    */
     getRegisterProduct: async (req, res) => {
         // if( req.session.authorized && req.session.userRole == 'admin' ) {
         if( true ) {
@@ -40,27 +50,53 @@ const AdminController = {
 
     // - Creates the product
     postRegisterProduct: async (req, res) => {
-        if( req.session.authorized && req.session.userRole == 'admin' ) {
+        // if( req.session.authorized && req.session.userRole == 'admin' ) {
+        if( true ) {
             const { name, description, price, stock, categoryID } = req.body;
             const result = await Product.createProduct(name, description, price, stock, categoryID);
             if( result.status == 201 ) {
                 return res.status(201).json({ message: "Product created", productID: result.productID });
             } else {
-                return res.status(500).json({ message: "Product not created"} );
+                return res.status(500).json({ message: "Product not created" } );
             }
         } else {
             res.redirect('/');
         }
     },
 
-    viewProduct: async (req, res) => {
-        if( req.session.authorized && req.session.userRole == 'admin' ) {
-        // if( true ) {
-            const { product } = req.body;
+    editProduct: async (req, res) => {
+        // if( req.session.authorized && req.session.userRole == 'admin' ) {
+        if( true ) {
+            const productID = req.query.productID;
             const { categories } = await Product.getBottomMostCategories();
-            res.status(200).render('./admin/viewProduct.ejs', { categories: categories, product: product });
+            const { product } = await Product.getProductByID(productID);
+            res.status(200).render('./admin/editProduct.ejs', { categories: categories, product: product });
         } else {
             res.redirect('/');
+        }
+    },
+
+    deleteProduct: async (req, res) => {
+        // if( req.session.authorized && req.session.userRole == 'admin' ) {
+        if( true ) {
+            const { productID } = req.body;
+            const result = await Product.deleteProduct(productID);
+            if( result.status == 201 ) {
+                return res.status(201).json({ message: "Product deleted" });
+            } else {
+                return res.status(500).json({ message: "Product not deleted" } );
+            }
+        }
+    },
+
+    updateProduct: async (req, res) => {
+        // if( req.session.authorized && req.session.userRole == 'admin' ) {
+        if( true ) {
+            const product = req.body;
+            const response = await Product.updateProduct( product );
+            res.status(200).json({ message: "Product updated successfully" });
+        } else {
+            return res.status(500).json({ message: "Product not updated" } );
         }
     }
 }

@@ -82,3 +82,41 @@ CREATE TABLE IF NOT EXISTS products(
 		ON DELETE SET NULL
 		ON UPDATE CASCADE
 );
+
+-- Wishlist table
+CREATE TABLE IF NOT EXISTS wishlist(
+	userID INT,
+    productID INT,
+	dateAdded TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (userID) REFERENCES users(userID),
+	FOREIGN KEY (productID) REFERENCES products(productID)
+);
+
+-- Shopping Cart table
+CREATE TABLE IF NOT EXISTS shoppingCart (
+	userID INT,
+	productID INT,
+	quantity INT,
+    dateAdded TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (userID) REFERENCES users(userID),
+	FOREIGN KEY (productID) REFERENCES products(productID)
+);
+
+CREATE TABLE IF NOT EXISTS productImages (
+  imageID INT PRIMARY KEY AUTO_INCREMENT,
+  productID INT,
+  imageFileName VARCHAR(255) NOT NULL,
+  FOREIGN KEY (productID) REFERENCES products(productID)
+    ON DELETE CASCADE  -- Cascade delete if a product is deleted
+    ON UPDATE CASCADE  -- Cascade update if a product's ID changes
+);
+
+
+-- Product Image table
+CREATE TABLE IF NOT EXISTS wishlist(
+	userID INT,
+    productID INT,
+	dateAdded TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (userID) REFERENCES users(userID),
+	FOREIGN KEY (productID) REFERENCES products(productID)
+);

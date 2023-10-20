@@ -1,0 +1,156 @@
+:root {
+    --new-arrivals: url("/images/kaia/iris_linen_top_1.jpg");
+    --dresses: url("/images/kaia/sky_linen_dress_1.jpg");
+    --bottoms: url("/images/kaia/june_top_4.jpg");
+    --tops: url("/images/kaia/lane_top_2.jpg");
+    --coords: url("/images/kaia/cara_linen_coordinates_3.jpg");
+}
+
+/***********************************************
+                  FONT-FAMILY
+                Roboto Condensed                    
+***********************************************/
+@font-face {
+    font-family: 'Roboto Condensed-Regular';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf"); 
+}
+
+@font-face {
+    font-family: 'Roboto Condensed-Bold';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf"); 
+}
+
+@font-face {
+    font-family: 'Roboto Condensed-BoldItalic';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-BoldItalic.ttf"); 
+}
+
+@font-face {
+    font-family: 'Roboto Condensed-Light';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-Light.ttf"); 
+}
+
+@font-face {
+    font-family: 'Roboto Condensed-LightItalic';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-LightItalic.ttf"); 
+}
+
+@font-face {
+    font-family: 'Roboto Condensed-Italic';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-Italic.ttf"); 
+}
+
+body {
+    display: block;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Roboto Condensed-Regular';
+}
+
+/***********************************************
+                  CONTAINERS                    
+***********************************************/
+div.main-container {
+    padding: 10px;
+    max-width: 1150px;
+    background-color: #FFFFFF;
+    margin: 0 auto;
+}
+
+div.outer-container {
+    display: block;
+    position: relative;
+    max-width: 800px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+div.inner-container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin: 0;
+}
+
+div.category-container {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 50%;
+    height: 120px;
+    margin: 10px;
+
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
+}
+
+.category-container:hover {
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.category-container:active {
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.category-container:not(:hover) {
+    transition: 0.05s;
+}
+
+/***********************************************
+                  SPAN LABELS                    
+***********************************************/
+span.name {
+    font-family: 'Roboto Condensed-Bold';
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    user-select: none;
+}
+
+span.name.new-arrival {
+    position: absolute;
+    bottom: 0px;
+    left: 20px;
+    font-size: 3em;
+}
+
+span.name.category {
+    position: relative;
+    top: 35px;
+    font-size: 2.5em;
+}
+
+span.title {
+    color: black;
+    font-size: 1.5em;
+    user-select: none;
+}
+
+/***********************************************
+                     IMAGES                
+***********************************************/
+div.outer-container.new-arrivals {
+    background-size: cover;
+    background-image: var(--new-arrivals);
+    background-position: center; 
+}
+
+div.category-container.dresses {
+    background-image: var(--dresses);
+}
+
+div.category-container.bottoms {
+    background-image: var(--bottoms);
+}
+
+div.category-container.tops {
+    background-image: var(--tops);
+}
+
+div.category-container.coords {
+    background-image: var(--coords);
+}

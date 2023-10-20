@@ -16,10 +16,43 @@ class Product {
 
         try {
             const values = [ name, description, price, stock, categoryID ];
-            const [newProduct, _] = await db.execute(sql, values);
+            await db.execute(sql, values);
             return { status: 201, message: "Registration succesful." };
         } catch( error ) {
             console.log( "createProduct() Error: ", error );
+            return { status: 500, message: "Internal server error." };
+        }
+    }
+
+    static async deleteProduct( productID ) {
+        const sql = `
+            DELETE FROM products p WHERE p.productID = ?;
+        `;
+
+        try {
+            const value = [ productID ];
+            await db.execute(sql, value);
+            return { status: 201, message: "Product deletion was successful." }; 
+        } catch( error ) {
+            console.log( "deletProduct() Error: ", error );
+            return { status: 500, message: "Internal server error." };
+        }
+    }
+
+    static async updateProduct( product ) {
+        const sql = `
+            UPDATE products
+            SET productName = ?, productDescription = ?, price = ?, stockQuantity = ?
+            WHERE productID = ?;
+        `;
+
+        try {
+            const { productID, productName, productDescription, price, stockQuantity } = product;
+            const values = [productName, productDescription, price, stockQuantity, productID];
+            await db.execute(sql, values);
+            return { status: 200, message: "Product was successfuly updated." };
+        } catch( error ) {
+            console.log( "updateProduct() Error: ", error );
             return { status: 500, message: "Internal server error." };
         }
     }
@@ -54,8 +87,32 @@ class Product {
             }        
             return { status: 200, message: "Products retrieved successfully.", products: rows };
         } catch( error ) {
-            console.error("getAllProducts() Error: ", error);
+            console.error( "getAllProducts() Error: ", error );
             return { status: 500, message: "Internal server error.", products: null };
+        }
+    }
+
+    static async getProductByID( productID ) {
+        if( productID === undefined ) {
+            return { status: 400, message: "Invalid productID", product: null };
+        }
+
+        const sql = `SELECT * FROM products WHERE productID = ?;`
+
+        try {
+            const [productRows, _] = await db.execute(sql, [productID]);
+
+            // - If there are no rows, product dooes not exist
+            if( productRows.length === 0 ) {
+                return { status: 404, message: "Product does not exist", product: null };
+            }
+
+            const product = productRows[0];
+            return { status: 401, message: "Product retrieved by id", product: product };   
+
+        } catch( error ) {
+            console.log( "getProductByID() Error: ", error );
+            return { status: 500, message: "Internal server error.", product: null };
         }
     }
 

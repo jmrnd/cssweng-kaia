@@ -2,9 +2,6 @@ const productContainers = document.getElementById('product-containers');
 const categoryDropdown = document.getElementById('category-dropdown');
 const searchBar = document.getElementById('search-bar');
 
-/*
-        VARIABLES
-*/
 const productsPerPage = 5;
 let currentPage = 1;
 
@@ -69,6 +66,66 @@ function filterAndGenerateProducts() {
     }
 }
 
+function generateProductItem( product ) {
+    const productItem = document.createElement('div');
+    productItem.className = 'product-item';
+    productItem.setAttribute('data-product-id', product.productID); 
+
+    const productIcon = document.createElement('div');
+    productIcon.className = 'item-icon-col';
+    productIcon.innerHTML = `
+        <img src = "images/kaia/maya_top_1.jpg" class = "item-icon">
+    `;
+    
+    const productName = document.createElement('div');
+    productName.className = 'item-name';
+    productName.textContent =  `${product.productName}`.toUpperCase();
+
+    productItem.appendChild(productIcon);
+    productItem.appendChild(productName);
+    
+    productItem.addEventListener('click', async function(e) {
+        try {
+            const response = await fetch( `/editProduct?productID=${product.productID}`, {
+                method: 'GET'
+            });
+
+            if( response.status === 200 ) {
+                window.location.href = `/editProduct?productID=${product.productID}`;
+            } else {
+                console.log( "Request failed!" );
+            }
+        } catch( error ) {
+            console.log( error );
+        }
+    });   
+    
+    productContainers.appendChild(productItem);
+}
+
+function addPaginationControls(totalProducts) {
+    const totalPages = Math.ceil(totalProducts/productsPerPage);
+    const paginationContainer = document.createElement('div');
+    paginationContainer.className = 'pagination';
+
+    for( let i = 1; i <= totalPages; i++ ) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = i;
+        pageButton.addEventListener('click', () => {
+            currentPage = i;
+            filterAndGenerateProducts();
+        });
+        paginationContainer.appendChild(pageButton);
+    }
+    const pagination = document.getElementById('pagination');
+    pagination.innerHTML = '';
+    pagination.appendChild(paginationContainer);
+}
+
+categoryDropdown.addEventListener('change', filterAndGenerateProducts);
+searchBar.addEventListener('input', filterAndGenerateProducts);
+
+
 /* Filter and generate products without pagination
     function filterAndGenerateProducts() {
         try {
@@ -103,72 +160,3 @@ function filterAndGenerateProducts() {
         }
     }
 */
-
-function generateProductItem( product ) {
-    const productItem = document.createElement('div');
-    productItem.className = 'product-item';
-    productItem.setAttribute('data-product-id', product.productID); 
-
-    const productIcon = document.createElement('div');
-    productIcon.className = 'item-icon-col';
-    productIcon.innerHTML = `
-        <img src = "images/kaia/maya_top_1.jpg" class = "item-icon">
-    `;
-    
-    const productName = document.createElement('div');
-    productName.className = 'item-name';
-    productName.textContent =  `${product.productName}`.toUpperCase();
-
-    productItem.appendChild(productIcon);
-    productItem.appendChild(productName);
-    
-    /*
-    productItem.addEventListener('click', function() {
-        goToViewProduct(product) 
-    });   
-    */
-
-    productContainers.appendChild(productItem);
-}
-
-
-async function goToViewProduct(product) {
-    try {
-        const response = await fetch( '/viewProduct', {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
-            params: { product: product }    
-        });
-
-        if( response.status == 200 ) {
-            window.location.href = "/admin/viewProduct";
-        }
-
-    } catch( error ) {
-        console.log( error );
-    }
-}
-
-
-function addPaginationControls(totalProducts) {
-    const totalPages = Math.ceil(totalProducts/productsPerPage);
-    const paginationContainer = document.createElement('div');
-    paginationContainer.className = 'pagination';
-
-    for( let i = 1; i <= totalPages; i++ ) {
-        const pageButton = document.createElement('button');
-        pageButton.textContent = i;
-        pageButton.addEventListener('click', () => {
-            currentPage = i;
-            filterAndGenerateProducts();
-        });
-        paginationContainer.appendChild(pageButton);
-    }
-    const pagination = document.getElementById('pagination');
-    pagination.innerHTML = '';
-    pagination.appendChild(paginationContainer);
-}
-
-categoryDropdown.addEventListener('change', filterAndGenerateProducts);
-searchBar.addEventListener('input', filterAndGenerateProducts);
-
