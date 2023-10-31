@@ -45,7 +45,7 @@ rememberBox.addEventListener('change', function() {
         this.value = true;
     } else {
         this.value = false;
-    }
+    }   
 });
 
 /** 
@@ -70,12 +70,9 @@ loginButton?.addEventListener( "click", async function(e) {
             rememberMe: rememberBox.value
         }
 
-        console.log( areInputFieldsFilled('login-form-container') );
-
         if( !areInputFieldsFilled('login-form-container') ) {
             errorBox.style.display = 'block';
             errorBox.textContent = 'Missing email or password';
-            errorBox.style.animation = "shakeobj 10s 10";
             return false;
         }
 
@@ -86,7 +83,7 @@ loginButton?.addEventListener( "click", async function(e) {
         });
 
         // - On success, go to dashboard
-        if( response.status == 201 ) {
+        if( response.status == 200 || response.status == 201 ) {
             window.location.href = "/homepage";
         } else {
             errorBox.style.display = 'block';
@@ -94,7 +91,7 @@ loginButton?.addEventListener( "click", async function(e) {
                 case 401: {
                     errorBox.textContent = 'Invalid credentials';
                 } break;
-                case 500: {
+                default: {
                     errorBox.textContent = 'Internal server error';
                 }
             }

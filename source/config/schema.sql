@@ -11,6 +11,10 @@ CREATE TABLE IF NOT EXISTS users(
     dateCreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Set the auto-increment starting value and maximum value for userID
+ALTER TABLE users
+AUTO_INCREMENT = 10000000;
+
 -- Roles table
 CREATE TABLE IF NOT EXISTS roles(
     roleID INT PRIMARY KEY AUTO_INCREMENT,
@@ -34,14 +38,13 @@ CREATE TABLE IF NOT EXISTS userRoles(
     the new user the lowest role, which is 'Guest' with the roleID of 1.
 */
 DELIMITER $$
-CREATE TRIGGER afterUserInsert
+CREATE TRIGGER after_user_insert
 AFTER INSERT ON users FOR EACH ROW
 BEGIN
   INSERT INTO userRoles( userID, roleID )
-  VALUES( NEW.userID, 1 ); -- Assuming 'guest' has roleID = 1
+  VALUES( NEW.userID, 2 ); -- Assuming 'customer' has roleID = 2
 END;
 $$ DELIMITER ;
-
 
 /*
     ` productCategory table - manages product categories in a hierarchical structure. 
@@ -73,50 +76,62 @@ INSERT INTO productCategories (categoryName, parentCategoryID) VALUES ('Dresses'
 -- Products table
 CREATE TABLE IF NOT EXISTS products(
     productID INT PRIMARY KEY AUTO_INCREMENT,
+	categoryID INT DEFAULT NULL,
 	productName VARCHAR(255) NOT NULL,
     productDescription TEXT,
     price DECIMAL(10, 2) NOT NULL,
     stockQuantity INT DEFAULT 0 NOT NULL,
-    categoryID INT DEFAULT NULL,
 	FOREIGN KEY (categoryID) REFERENCES productCategories(categoryID)
 		ON DELETE SET NULL
 		ON UPDATE CASCADE
 );
 
--- Wishlist table
-CREATE TABLE IF NOT EXISTS wishlist(
-	userID INT,
-    productID INT,
-	dateAdded TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	FOREIGN KEY (userID) REFERENCES users(userID),
-	FOREIGN KEY (productID) REFERENCES products(productID)
-);
+-- Set the auto-increment starting value and maximum value for productID
+ALTER TABLE products
+AUTO_INCREMENT = 20000000;
 
 -- Shopping Cart table
 CREATE TABLE IF NOT EXISTS shoppingCart (
-	userID INT,
-	productID INT,
-	quantity INT,
-    dateAdded TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	FOREIGN KEY (userID) REFERENCES users(userID),
-	FOREIGN KEY (productID) REFERENCES products(productID)
-);
-
-CREATE TABLE IF NOT EXISTS productImages (
-  imageID INT PRIMARY KEY AUTO_INCREMENT,
-  productID INT,
-  imageFileName VARCHAR(255) NOT NULL,
-  FOREIGN KEY (productID) REFERENCES products(productID)
-    ON DELETE CASCADE  -- Cascade delete if a product is deleted
-    ON UPDATE CASCADE  -- Cascade update if a product's ID changes
-);
-
-
--- Product Image table
-CREATE TABLE IF NOT EXISTS wishlist(
-	userID INT,
-    productID INT,
+	userID INT NOT NULL,
+	productID INT NOT NULL,
+	quantity INT NOT NULL,
 	dateAdded TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	FOREIGN KEY (userID) REFERENCES users(userID),
 	FOREIGN KEY (productID) REFERENCES products(productID)
+);
+
+-- Wishlist table
+CREATE TABLE IF NOT EXISTS wishlist(
+	userID INT NOT NULL,
+    productID INT NOT NULL,
+    quantity INT NOT NULL,
+	dateAdded TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (userID) REFERENCES users(userID),
+	FOREIGN KEY (productID) REFERENCES products(productID)
+);
+
+CREATE TABLE IF NOT EXISTS imageReferences (
+    imageID INT PRIMARY KEY AUTO_INCREMENT,
+    userID INT NOT NULL,
+    originalName VARCHAR(255) NOT NULL,
+	fileName VARCHAR(255) NOT NULL,
+	destination VARCHAR(255) NOT NULL,
+    filePath VARCHAR(255) NOT NULL,
+	dateAdded TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (userID) REFERENCES users(userID)
+);
+
+-- Set the auto-increment starting value and maximum value for imageReference
+ALTER TABLE imageReferences
+AUTO_INCREMENT = 90000000;
+
+CREATE TABLE IF NOT EXISTS productImages (
+    imageID INT PRIMARY KEY,
+    productID INT,
+	FOREIGN KEY (imageID) REFERENCES imageReferences(imageID)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    FOREIGN KEY (productID) REFERENCES products(productID)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 );

@@ -1,0 +1,305 @@
+:root {
+    --wishlist-button-icon: url("/images/icons/wishlist-button-icon.png");
+    --search-icon: url("/images/icons/search-icon.png");
+    --favourite-icon: url("/images/icons/favourite-icon.png");
+    --cart-icon: url("/images/icons/cart-icon.png");
+    --profile-icon: url("/images/icons/profile-icon.png");
+}
+
+#home {
+    text-decoration: none;
+    color: inherit;
+}
+
+/***********************************************
+                  FONT-FAMILY
+                Roboto Condensed                    
+***********************************************/
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+@font-face {
+    font-family: 'Roboto Condensed-Regular';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf"); 
+}
+
+@font-face {
+    font-family: 'Roboto Condensed-Bold';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf"); 
+}
+
+@font-face {
+    font-family: 'Roboto Condensed-BoldItalic';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-BoldItalic.ttf"); 
+}
+
+@font-face {
+    font-family: 'Roboto Condensed-Light';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-Light.ttf"); 
+}
+
+@font-face {
+    font-family: 'Roboto Condensed-LightItalic';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-LightItalic.ttf"); 
+}
+
+@font-face {
+    font-family: 'Roboto Condensed-Italic';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-Italic.ttf"); 
+}
+
+body {
+    display: block;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Roboto Condensed-Regular';
+}
+
+body {
+    display: block;
+    justify-content: center;
+    font-family: 'Roboto Condensed', sans-serif;
+    user-select: none;
+}
+
+/***********************************************
+                  CONTAINERS                    
+***********************************************/
+div.main-container {
+    display: block;
+    max-width: 1150px;  
+    align-items: center; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.header-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    padding-top: 20px;
+    align-items: center;
+    background-color: white;
+    z-index: 100; 
+}
+
+div.path-container {
+    color: #9D9D9D;
+    font-family: 'Roboto Condensed-Regular';
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: all-small-caps;
+    line-height: 150%;
+    letter-spacing: 0.01219rem;
+    padding: 1rem 0.5rem;
+    align-items: center;
+    text-align: start;
+    justify-content: left;
+}
+
+.left-section, .right-section {
+    display: block;
+    width: 48%;
+    padding: 10px;
+    margin: 5px;
+    align-items: center;
+}
+
+.product-details-container {
+    display: flex;
+    justify-content: left;
+    text-align: left;
+}
+
+.product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-title {
+    color: black;
+    font-weight: bold;
+    font-size: 2.5em;
+    flex: 1;
+}
+
+span.price {
+    font-style: medium;
+    font-size: 1.5em;
+}
+
+span.label {
+    color: black;
+    font-weight: bold;
+    font-size: 1em;
+    margin-right: 20px;
+    flex: 1;
+}
+
+/***********************************************
+                 LEFT SECTION               
+***********************************************/
+div.image-header {
+    display: flex;
+    padding: 10px;
+}
+
+div.image-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
+    width: 95%;
+    max-width: 95%;
+    border: 1px solid #E9E9E9;
+    height: 500px;
+}
+
+span.arrows {
+    font-family: 'Righteous', monospace;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 0 4px 0 4px;
+    border: 1px solid transparent;
+    margin: 0px 3px;
+}
+
+span.arrows:hover {
+    opacity: 0.9s;
+    background-color: #F6F6F6;
+    transition: 0.15s;
+}
+
+span.arrows:active {
+    opacity: 0.5;
+    transition: 0.15s;
+}
+
+span.arrows:not(:hover) {
+    transition: 0.15s;
+}
+
+
+/***********************************************
+                 RIGHT SECTION               
+***********************************************/
+.temporary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 94%;
+    max-width: 94%;
+    border: 1px solid #E9E9E9;
+    background-color: #F6F6F6;
+    outline: none;
+    padding: 10px;
+    font-family: 'Roboto Condensed', sans-serif;
+    height: 87px;
+    color: #8a485b;
+    text-align: center;
+}
+
+div.quantity-button {
+    display: flex;
+}
+
+div.box {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+}
+
+div.box.gray {
+    width: 20px;
+    border: 1px solid #E9E9E9;
+    background-color: #F6F6F6;
+}
+
+div.box span {
+    font-family: 'Righteous', monospace;
+    font-weight: bold;
+    font-size: 0.75em;
+}
+
+div.box span.quantity {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+div.box.gray:hover {
+    transition: 0.15s;
+    background-color: #bdbcbc;
+}
+
+div.box.gray:active {
+    opacity: 0.8;
+    transition: 0.15s;
+}
+
+/***********************************************
+                  MORE BUTTONS
+***********************************************/
+button.wishlist {
+    display: flex;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    object-fit: contain;
+}
+
+span.icon.wishlist-button {
+    background-image: var(--wishlist-button-icon);
+    width: 40px;
+}
+
+span.icon.wishlist-button:hover {
+    opacity: 0.5;
+    transition: 0.25s;
+}
+
+span.icon.wishlist-button:active {
+    opacity: 0.75;
+    transition: 0.25s;
+}
+
+div.add-container {
+    justify-content: center;
+    margin: 0 auto;
+    display: flex;
+}
+
+.add-button {
+    background-color: #EF91CF;
+    color: white; 
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    height: 50px;
+    width: 80%;
+    font-size: 1.2em;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.add-button:hover {
+    background: rgba(235, 138, 194, 0.507);
+    opacity: 0.9;
+    transition: 0.15s;
+}
+
+.add-button:active {
+    opacity: 0.85;
+    transition: 0.15s;
+}
+
+.add-button:not(:hover) {
+    transition: 0.15s;
+}

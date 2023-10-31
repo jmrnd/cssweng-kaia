@@ -105,8 +105,26 @@ div.upload-button {
     padding: 2px 10px 2px 10px;
 }   
 
-.upload-label:hover {
-    background-color: #2980b9;
+.upload-button:hover {
+    background: rgba(235, 138, 194, 0.507);
+    border-color: rgba(235, 138, 194, 0.507);
+    transition: 0.15s;
+    color: white;
+}
+
+div.image-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
+    width: 95%;
+    max-width: 95%;
+    height: 100%;
+    border: 1px solid #E9E9E9;
+    min-height: 500px;
 }
 
 /***********************************************

@@ -57,10 +57,8 @@ class Product {
         }
     }
 
-/*
     static async getHighestProductID() {
-        const sql = `
-        SELECT * FROM products ORDER BY productID DESC LIMIT 1;` 
+        const sql = `SELECT * FROM products ORDER BY productID DESC LIMIT 1;` 
 
         try {
           const [rows, _] = await db.execute(sql);
@@ -77,7 +75,7 @@ class Product {
             return { status: 500, message: "Internal server error." };
         }
     }
-*/
+
     static async getAllProducts() {
         const sql = `SELECT * FROM products`;
         try {
@@ -92,6 +90,26 @@ class Product {
         }
     }
 
+    static async getAllProductsWithImages() {
+        const sql = `
+            SELECT p.productID, p.categoryID, p.productName, p.productDescription, p.price, p.stockQuantity, i.imageID, i.filePath
+            FROM products p
+            LEFT JOIN productImages pi ON p.productID = pi.productID
+            LEFT JOIN imageReferences i ON pi.imageID = i.imageID
+        `;
+
+        try {
+            const [rows, _] = await db.execute(sql);
+            if (rows.length === 0) {
+                return { status: 404, message: "No products found.", products: null };
+            }
+            return { status: 200, message: "Products retrieved successfully.", products: rows };
+        } catch (error) {
+            console.error("getAllProducts() Error: ", error);
+            return { status: 500, message: "Internal server error.", products: null };
+        }
+    }
+
     static async getProductByID( productID ) {
         if( productID === undefined ) {
             return { status: 400, message: "Invalid productID", product: null };
@@ -99,6 +117,36 @@ class Product {
 
         const sql = `SELECT * FROM products WHERE productID = ?;`
 
+        try {
+            const [productRows, _] = await db.execute(sql, [productID]);
+
+            // - If there are no rows, product dooes not exist
+            if( productRows.length === 0 ) {
+                return { status: 404, message: "Product does not exist", product: null };
+            }
+
+            const product = productRows[0];
+            return { status: 401, message: "Product retrieved by id", product: product };   
+
+        } catch( error ) {
+            console.log( "getProductByID() Error: ", error );
+            return { status: 500, message: "Internal server error.", product: null };
+        }
+    }
+
+    static async getProductWithImageByID( productID ) {
+        if( productID === undefined ) {
+            return { status: 400, message: "Invalid productID", product: null };
+        }
+
+        const sql = `
+            SELECT p.*, i.filePath
+            FROM products p    
+            LEFT JOIN productImages pi ON p.productID = pi.productID
+            LEFT JOIN imageReferences i ON pi.imageID = i.imageID
+            WHERE p.productID = ?
+        `
+        
         try {
             const [productRows, _] = await db.execute(sql, [productID]);
 

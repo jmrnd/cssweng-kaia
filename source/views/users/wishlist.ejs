@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <title> Kaia Apparel </title>
+    <link rel = "stylesheet" href = "/css/font.css">
+    <link rel = "stylesheet" href = "/css/users/wishlist.css">
+</head>
+<body>
+    <%- include("../partials/header.ejs") %>
+</body>
+<div class = "main-container"> 
+
+    <div class = "path-container">
+        <span> <a href = "homepage" id = "home"> Home</a> / 
+            <span class = "path-category" id = "path-category"> </span> 
+            <a> WISHLIST </a>
+        </span>
+    </div>
+    <div class = "category-header-title">
+        <span class = "category-title" id = "category-title"> WISHLIST </span>
+        <span> 3 items </span>
+    </div>
+    <div id = "product-containers">
+        <div class = "product-container">
+            <div class = "product-item">
+                <div>
+                    <span> Image + </span>
+                    <span> Name </span>
+                </div>
+                <span> Quantity </span>
+                <span> Price </span>
+                <div>
+                    <span class = "add-to-cart-button"> Add to Cart </span>
+                </div>
+            </div>
+        </div>
+        <div class = "product-container">
+            <div class = "product-item">
+                <div>
+                    <span> Image </span>
+                    <span> Name </span>
+                </div>
+                <span> Quantity </span>
+                <span> Price </span>
+                <div>
+                    <span> Add to Cart Button </span>
+                    <span> X </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</html>

@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Righteous');
+
+/***********************************************
+                Roboto Condensed                    
+***********************************************/
+@font-face {
+    font-family: 'Roboto Condensed-Regular';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf"); 
+}
+
+@font-face {
+    font-family: 'Roboto Condensed-Bold';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf"); 
+}
+
+@font-face {
+    font-family: 'Roboto Condensed-BoldItalic';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-BoldItalic.ttf"); 
+}
+
+@font-face {
+    font-family: 'Roboto Condensed-Light';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-Light.ttf"); 
+}
+
+@font-face {
+    font-family: 'Roboto Condensed-LightItalic';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-LightItalic.ttf"); 
+}
+
+@font-face {
+    font-family: 'Roboto Condensed-Italic';
+    src: url("/fonts/Roboto_Condensed/RobotoCondensed-Italic.ttf"); 
+}
+
+/***********************************************
+                      Migra                   
+***********************************************/
+@font-face {
+    font-family: 'Migra-ExtraBold';
+    src: url('/fonts/Migra-Extrabold.otf') format('opentype');
+}
+
+/***********************************************
+                Glacial Indifference                    
+***********************************************/
+@font-face {
+    font-family: 'GlacialIndifference';
+    src: url('/fonts/GlacialIndifference.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'GlacialIndifference-Bold';
+    src: url('/fonts/GlacialIndifference-Bold.otf') format('opentype');
+}

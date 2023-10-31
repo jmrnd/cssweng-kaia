@@ -15,8 +15,10 @@ router.post('/register', UserController.register );
 router.get('/productCatalog', UserController.productCatalog );
 router.get('/upload', UserController.getUpload );
 router.get('/viewProduct', UserController.viewProduct );
+router.get('/wishlist', UserController.wishlist );
+router.post('/wishlistProduct', UserController.wishlistProduct );
+router.post('/wishlistProduct', UserController.viewCart );
 
-router.post('/upload', multer.single("product"), UserController.postUpload );
 
 router.get('/inventory', AdminController.inventory );
 router.get('/registerProduct', AdminController.getRegisterProduct );
@@ -24,6 +26,9 @@ router.post('/registerProduct', AdminController.postRegisterProduct );
 router.get('/editProduct', AdminController.editProduct );
 router.post('/deleteProduct', AdminController.deleteProduct );
 router.post('/updateProduct', AdminController.updateProduct );
+router.post('/uploadProductImage', multer.single("product"), AdminController.uploadImage );
+router.post('/createProductImage', AdminController.createProductImage );
+router.post('/deleteProductImage', AdminController.deleteProductImage );
 
 
 router.get('/', (req, res) => {
@@ -33,5 +38,8 @@ router.get('/', (req, res) => {
 router.get('/admin', (req, res) => {
     res.redirect('/inventory');
 });
+
+
+router.post('/upload', multer.single("product"), UserController.postUpload );
 
 module.exports = router;

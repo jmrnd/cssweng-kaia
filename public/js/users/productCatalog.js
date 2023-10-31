@@ -104,26 +104,30 @@ function generateProductItem( product ) {
 
     // - Image 
     const anchor = document.createElement('a');
+    if( product.filePath ) {
+        anchor.innerHTML = `<img src = ${product.filePath}>`;
+    } else {
+        // - FIXME: Hardcoded 
+        switch( product.categoryID ) {
+            case 1:
+                anchor.innerHTML = `<img src = "/images/kaia/sky_linen_dress_1.jpg">`;
+                break;
+            case 2:
+                anchor.innerHTML = `<img src = "/images/kaia/faye_linen_shorts_10.png">`;
+                break;
+            case 3:
+                anchor.innerHTML = `<img src = "/images/kaia/lane_top_2.jpg">`;
+                break;
+            case 4:
+                anchor.innerHTML = `<img src = "/images/kaia/cara_linen_coordinates_10.png">`;
+                break;
+            default:
+                anchor.innerHTML = `<img src = "/images/kaia/iris_linen_top_1.jpg">`;
+                break;
+        }
+    }
 
-    // - FIXME: Hardcoded 
-    console.log( product.categoryID );
-    switch( product.categoryID ) {
-        case 1:
-            anchor.innerHTML = `<img src = "/images/kaia/sky_linen_dress_1.jpg">`;
-            break;
-        case 2:
-            anchor.innerHTML = `<img src = "/images/kaia/faye_linen_shorts_10.png">`;
-            break;
-        case 3:
-            anchor.innerHTML = `<img src = "/images/kaia/lane_top_2.jpg">`;
-            break;
-        case 4:
-            anchor.innerHTML = `<img src = "/images/kaia/cara_linen_coordinates_10.png">`;
-            break;
-        default:
-            anchor.innerHTML = `<img src = "/images/kaia/iris_linen_top_1.jpg">`;
-            break;
-      }
+    
 
     // - Product details
     const productDetails = document.createElement('div');

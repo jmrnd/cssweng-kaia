@@ -31,7 +31,7 @@ form.addEventListener('submit', async function (e) {
         }
 
         // Send the POST request to your server
-        const response = await fetch('/registerProduct', {
+        var response = await fetch('/registerProduct', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify( formData ),
@@ -46,10 +46,57 @@ form.addEventListener('submit', async function (e) {
             feedbackText.textContent = response.message;
         }
 
+        if( !imageDetails ) {
+            return;
+        }        
+
+        // - if there is an image uploaded, link it to product
+        var response = await fetch('/createProductImage', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify( imageDetails ),
+        });
+
     } catch( error ) {
         console.log( error );
     }
 });
+
+const uploadImageButton = document.getElementById('upload-image');
+uploadImageButton.addEventListener('change', async function() {
+    try {
+        const selectedFile = this.files[0];
+        if( selectedFile ) {
+            const formData = new FormData();
+            formData.append( 'product', selectedFile );
+
+            const response = await fetch('uploadProductImage', {
+                method: "POST",
+                body: formData,
+            })
+
+            if( response.status !== 200 ) {
+                console.error( "Error uploading file" );
+                return;
+            }
+
+            const data = await response.json();
+            const { image } = data;
+            imageDetails = image;
+            await displayUploadedImage( image );
+        }
+    } catch( error ) {
+        console.log( "uploadImageButton: ", error );
+    }
+});
+
+const productImage = document.getElementById('product-image');
+let imageDetails = null;
+
+async function displayUploadedImage() {
+    productImage.style.backgroundImage = `url(${imageDetails.filePath})`;
+    productImage.style.backgroundSize = "cover"; 
+}
 
 function validateInputFields() {
     const name = document.getElementById('name');

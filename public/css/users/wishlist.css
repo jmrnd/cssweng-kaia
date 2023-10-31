@@ -1,0 +1,97 @@
+body {
+    display: block;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Roboto Condensed-Regular';
+}
+
+.add-to-cart-button{
+    width: 200px;
+    margin-left: 20px;
+    padding: 15px 20px;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+    background-color: #EF91CF;
+    cursor: pointer;
+}
+
+/***********************************************
+                  CONTAINERS                    
+***********************************************/
+div.main-container {
+    padding: 10px;
+    max-width: 1150px;
+    background-color: #FFFFFF;
+    margin: 0 auto;
+}
+
+div.path-container {
+    color: #9D9D9D;
+    font-family: 'Roboto Condensed-Regular';
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: all-small-caps;
+    line-height: 150%;
+    letter-spacing: 0.01219rem;
+    padding: 1rem 0.5rem;
+
+    align-items: center;
+    text-align: start;
+    justify-content: left;
+}
+
+/***********************************************
+                  SPAN LABELS                    
+***********************************************/
+#home {
+    text-decoration: none;
+    color: inherit;
+}
+    
+div.category-header-title {
+    color: #000;
+    font-size: 2.5rem;
+    line-height: 150%;
+    letter-spacing: 0.05rem;
+    padding: 1rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: start;
+    height: 3.5rem;
+}
+
+span.category-title {
+    font-family: 'Roboto Condensed-Bold';
+    align-items: center;
+    text-align: start;
+    justify-content: left;
+    text-transform: uppercase;
+}
+
+/***********************************************
+                    PRODUCTS                 
+***********************************************/
+.product-container {
+    display: block;
+    align-items: center;
+    margin: 0;
+    width: 99%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #EF91CF;
+    height: 120px;
+    width: 99%;
+    margin-bottom: -1px;
+    padding: 5px 20px 5px 20px;
+}

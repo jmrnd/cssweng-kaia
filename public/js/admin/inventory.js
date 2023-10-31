@@ -73,9 +73,16 @@ function generateProductItem( product ) {
 
     const productIcon = document.createElement('div');
     productIcon.className = 'item-icon-col';
-    productIcon.innerHTML = `
-        <img src = "images/kaia/maya_top_1.jpg" class = "item-icon">
-    `;
+
+    if( product.filePath ) {
+        productIcon.innerHTML = `
+            <img src = "${product.filePath}" class = "item-icon">
+        `;
+    } else {
+        productIcon.innerHTML = `
+            <img src = "images/kaia/maya_top_1.jpg" class = "item-icon">
+        `;
+    }
     
     const productName = document.createElement('div');
     productName.className = 'item-name';

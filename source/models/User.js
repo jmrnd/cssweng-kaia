@@ -95,6 +95,23 @@ class User {
         }
     }
 
+    /**
+     * 
+     */
+    static async getUserID( email ) {
+        const sql = `SELECT u.userID FROM users u WHERE email = ?`;
+        try { 
+            const [user] = await db.execute(sql, [email]);
+            if( user.length === 0 ) {
+                return { status: 404, message: "Email does not exist." };
+            }
+            const userID = user[0].userID;
+            return { status: 200, userID: userID, message: "User was found." };
+        } catch( error ) {
+            console.log( "getUserID Error: ", error );
+            return { status: 500, message: "Internal server error." };
+        }
+    }
 
     /** 
         ` Retrieves the highest role associated with a given email address. 
@@ -121,9 +138,9 @@ class User {
         
         const [rows, _] = await db.execute(sql, [email]);
         if( rows.length > 0 ) {
-            return rows[0].roleName;
+            return { status: 200, highestRole: rows[0].roleName, message: "Highest role found." } 
         } else {
-            return null;
+            return { status: 404, message: "Highest role was not found." };
         }
     }
 }

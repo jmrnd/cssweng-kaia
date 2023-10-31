@@ -14,6 +14,7 @@ const db = require('../config/database.js');
 const multer = require('../config/multer.js');
 const User = require('../models/User.js');
 const Product = require('../models/Product.js');
+const Image = require('../models/Image.js');
 
 const UserController = {
 
@@ -25,15 +26,28 @@ const UserController = {
         }
     },
 
-    postUpload: (req, res) => {
-        if (req.file) {
-            console.log("Image uploaded:", req.file);
-            res.send("Image Uploaded");
-        } else {
-            console.log("Error: File upload failed");
-            res.status(400).send("File upload failed");
-        }    },
-
+    postUpload: async (req, res) => {
+        try {
+            if( req.file ) {
+                const userID = req.session.userID; 
+                const originalName = req.file.originalname;
+                const fileName = req.file.filename;
+                const destination = req.file.destination;
+                const filePath = destination.replace( 'public', '' ) + '/' + fileName;
+                
+                const upload = await Image.uploadImage( userID, originalName, fileName, destination, filePath );
+                if( upload.status !== 200 ) {
+                    return res.status(401).json({ message: 'Image upload failed' });
+                }
+                return res.status(200).send( "Image Uploaded" );
+            } else {
+                return res.status(404).send( "File not found." );
+            }
+        } catch( error ) {
+            console.log( "Error: File upload failed" );
+            return res.status(500).send( "File upload failed: " + error );
+        }   
+    },
 
     /*
         ` This function is called when the user sends a GET request to path '/login'. 
@@ -72,24 +86,27 @@ const UserController = {
             }
 
             const { email, password, rememberMe } = req.body;
-            const user = await User.login( email, password );
+            const login = await User.login( email, password );
 
-            if( user.status !== 200 ) {
+            if( login.status !== 200 ) {
                 return res.status(401).json({ message: 'Invalid credentials' });
             } 
 
-            // - If remember me option was checked
+            // - Perform queries
+            const {userID} = await User.getUserID(email);
+            const {highestRole} = await User.getHighestRole(email);
+
             req.session.rememberMe = rememberMe === 'true';
             req.session.authorized = true;
             req.session.email = email;
-            req.session.userRole = await User.getHighestRole(email);
+            req.session.userID = userID;
+            req.session.userRole = highestRole;
 
             if( req.session.userRole == 'admin' ) {
-                return res.status(201).json({ message: "Login successful." });
+                return res.status(200).json({ message: "Admin login successful." });
             } else {
-                return res.status(201).json({ message: "Login successful." });
+                return res.status(201).json({ message: "User login successful." });
             }   
-
         } catch( error ) {
             console.error(error); 
             return res.status(500).json({ message: 'An error occurred during login. Please try again.' });
@@ -153,7 +170,7 @@ const UserController = {
             // if( req.session.authorized ) {
             if( true ) {
                 const { categories } = await Product.getBottomMostCategories();
-                const { products } = await Product.getAllProducts();
+                const { products } = await Product.getAllProductsWithImages();
                 res.status(200).render('users/productCatalog.ejs', { categories: categories, products: products });
             } else {
                 res.redirect('/login');
@@ -168,7 +185,38 @@ const UserController = {
         if( true ) {
             const productID = req.query.productID;
             const { categories } = await Product.getBottomMostCategories();
-            const { product } = await Product.getProductByID(productID);
+            const { product } = await Product.getProductWithImageByID(productID);
+            res.status(200).render('./users/viewProduct.ejs', { categories: categories, product: product });
+        } else {
+            res.redirect('/');
+        }
+    },
+
+    wishlist: async (req, res) => {
+        // if( req.session.authorized && req.session.userRole == 'admin' ) {
+        if( true ) {
+            res.status(200).render('./users/wishlist.ejs' );
+        } else {
+            res.redirect('/');
+        }
+    },
+
+    wishlistProduct: async (req, res) => {
+        // if( req.session.authorized && req.session.userRole == 'admin' ) {
+        if( true ) {
+
+
+        } else {
+            res.redirect('/');
+        }
+    },
+
+    viewCart: async (req, res) => {
+        // if( req.session.authorized && req.session.userRole == 'admin' ) {
+        if( true ) {
+            const productID = req.query.productID;
+            const { categories } = await Product.getBottomMostCategories();
+            const { product } = await Product.getProductWithImageByID(productID);
             res.status(200).render('./users/viewProduct.ejs', { categories: categories, product: product });
         } else {
             res.redirect('/');

@@ -159,8 +159,9 @@ div.filter-container.category {
 }
 
 .item-icon-col {
-    width: 10%;
+    max-width: 150px;
     padding: 5px;
+    overflow: hidden;
 }
 
 .item-icon {

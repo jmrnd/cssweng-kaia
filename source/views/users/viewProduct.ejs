@@ -2,56 +2,64 @@
 <html lang = "en">
 <head>
     <title> Kaia Apparel </title>
-    <link rel = "stylesheet" href = "/css/admin/editProduct.css">
+    <link rel = "stylesheet" href = "/css/users/viewProduct.css">
     <script src = "js/users/viewProduct.js" defer> </script>
 </head>
 <body>
     <%- include("../partials/header.ejs") %>
 
-    <div class = "main-container"> 
+    <div class = "main-container">
         <div class = "header-container">
-            <span class = "title"> <%= product.productName %> </span>
+            <div class = "path-container">
+                <span> <a href = "homepage" id = "home"> Home</a> / 
+                    <span class = "path-category" id = "path-category"> </span> 
+                    <a> Collection </a>
+                </span>
+            </div>
         </div>
-        <form id = "register-product"> 
+        <div class = "product-details-container"> 
             <div class = "left-section">
-
-                <div class = "input-container">
-                    <span class = "label"> CATEGORY </span>
-                    <div class = "input-box">
-                        <% categories.forEach(category => { %>
-                            <% if (category.categoryID === product.categoryID) { %>
-                                <input type = "text" id = "category" value = <%= category.categoryName %> > 
-                            <% } %>
-                        <% }); %>
-                    </div>
+                <div class = "image-body">
+                    <span class = "arrows"> < </span>
+                    <div class = "image"> </div>
+                    <span class = "arrows"> > </span>
                 </div>
-                <div class = "input-container">
-                    <span class = "label"> PRICE </span>
-                    <div class = "input-box">
-                        <input type = "number" id = "price" value = "<%= product.price %>" step = "0.01" min = "0" disabled/>
-                    </div>
-                </div>
-                <div class = "input-container">
-                    <span class = "label"> STOCK </span>
-                    <div class = "input-box">
-                        <input type = "number" id = "stock" value = "<%= product.stockQuantity %>" step = "1" min = "0" disabled/>
-                    </div>
-                </div>
-                <div class = "input-container">
-                    <span class = "label"> DESCRIPTION </span>
-                </div>
-                <textarea class = "input-textarea" id = "description" rows = "4" disabled> <%= product.productDescription %> </textarea>
             </div>
             <div class = "right-section">
-                <div class = "input-container">
-                    <span class = "label"> VARIATIONS </span>
+                <div class = "product-header">
+                    <span class = "product-title"> <%= product.productName %> </span>
+                    <button type = "button" class = "wishlist" id = "wishlist-button"> 
+                        <span class = "icon wishlist-button"> </span>
+                    </button>
                 </div>
-                <div class = "temporary"> </div> <br>
+                <div class = "product-body"> 
+                    <span class = "price"> Php <%= product.price %> </span> 
+                    <br> <br>
+                    <span class = "label"> DESCRIPTION </span> <br>
+                    <span> <%= product.productDescription %> </span>
+                    <br> <br>  
+                    <span class = "label"> QUANTITY </span> <br>
+                    <div class = "quantity-button">
+                        <div class = "box gray"> 
+                            <span> < </span>
+                        </div>
+                        <div class = "box"> 
+                            <span class = "quantity"> 1 </span>
+                        </div>
+                        <div class = "box gray"> 
+                            <span> > </span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class = "add-container">
+                    <button type = "submit" class = "add-button"> ADD TO CART </a>
+                </div>
             </div>
-        </form>
+        </div>
+        
 </body>
 <script>
-    const categories = `<%- JSON.stringify(categories) %>`;
     const product = `<%- JSON.stringify(product) %>`;
 </script>
 </html>
