@@ -2,7 +2,7 @@
 div.product-container {
     display: flex;
     flex-direction: row;
-    padding: 10px;
+    padding: 1rem 0rem;
     max-width: 1150px;
     background-color: #FFFFFF;
     margin: 0 auto;
@@ -249,7 +249,7 @@ button.color-button.gray {
     flex-direction: row;
     align-items: center;
     justify-content: left;
-    padding: 2rem 0rem;
+    padding-top: 2rem;
 }
 
 .product-gallery-small-image {
@@ -261,4 +261,34 @@ button.color-button.gray {
 
 .product-gallery-small-image.selected-image {
     border: 2px solid #995594;
+}
+
+.customer-reviews-container {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem 0rem;
+    max-width: 1150px;
+    background-color: #FFFFFF;
+    margin: 0 auto;
+}
+
+.customer-reviews-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.customer-reviews-header-text {
+    font-family: 'Roboto Condensed-Bold';
+    color: #000;
+    font-size: 1.25rem;
+    line-height: 150%; /* 1.875rem */
+    letter-spacing: 0.09375rem;
+    text-transform: uppercase;
+}
+
+.rating-star-fill {
+    color: #000;
+    content: \F586;
 }
