@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/homepage', (req, res) => {
-    res.render('homepage');
+    res.render('product-catalog');
 });
 
 router.get('/product', (req, res) => {
