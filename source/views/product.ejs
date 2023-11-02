@@ -15,52 +15,49 @@
     </div>
     <div class="product-container">
         <div class="product-gallery-container">
-            <button class="previous-image-button" onclick="plusSlides(-1)">&#10094;</button>
-                <div class="product-image hide fade">
-                    <img src="/images/kaia/maya_top_1.jpg">
-                </div>
-                <div class="product-image hide fade">
-                    <img src="/images/kaia/maya_top_2.jpg">
-                </div>
-                <div class="product-image hide fade">
-                    <img src="/images/kaia/maya_top_4.jpg">
-                </div>
-                <div class="product-image hide fade">
-                    <img src="/images/kaia/maya_top_3.jpg">
-                </div>
-            <button class="next-image-button" onclick="plusSlides(1)">&#10095;</button>
+            <div class="product-gallery-large-container">
+                <button class="previous-image-button" onclick="plusSlides(-1)">&#10094;</button>
+                    <div class="product-image hide fade">
+                        <img src="/images/kaia/maya_top_1.jpg">
+                    </div>
+                    <div class="product-image hide fade">
+                        <img src="/images/kaia/maya_top_2.jpg">
+                    </div>
+                    <div class="product-image hide fade">
+                        <img src="/images/kaia/maya_top_4.jpg">
+                    </div>
+                    <div class="product-image hide fade">
+                        <img src="/images/kaia/maya_top_3.jpg">
+                    </div>
+                <button class="next-image-button" onclick="plusSlides(1)">&#10095;</button>
+            </div>
+            <div class="product-gallery-small-container">
+                <img class="product-gallery-small-image" src="/images/kaia/maya_top_1.jpg">
+                <img class="product-gallery-small-image" src="/images/kaia/maya_top_2.jpg">
+                <img class="product-gallery-small-image" src="/images/kaia/maya_top_4.jpg">
+                <img class="product-gallery-small-image" src="/images/kaia/maya_top_3.jpg">
+            </div>
         </div>
+
         <div class="product-information-container">
             <div>
                 <span class="product-name">Maya Top</span>
                 <img>
             </div>
             <span class="product-price">PHP 350</span>
-            <div class="product-description">
-                <span>Description</span>
+            <div class="product-description-container">
+                <span class="product-spec">Description</span>
                 <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</span>
             </div>
             <div class="product-variation-container">
                 <div class="product-color">
                     <span class="product-spec">Color: <span class="selected-color"></span></span>
-                    <div class="product-colors">
-                        <!-- Handle on rendering -- we may need to set variables for the colors -->
-                        <button class="color-button white selected" onclick="selectColor(this)" value="white"></button>
+                    <div class="product-color-container">
+                        <button class="color-button white" onclick="selectColor(this)" value="white"></button>
                         <button class="color-button sage-green" onclick="selectColor(this)" value="sage green"></button>
                         <button class="color-button lavender" onclick="selectColor(this)" value="lavender"></button>
                         <button class="color-button gray" onclick="selectColor(this)" value="gray"></button>
                         <button class="color-button black" onclick="selectColor(this)" value="black"></button>
-                    </div>
-                </div>
-                <div class="product-size">
-                    <span class="product-spec">Size: <span class="selected-size"></span></span>
-                    <div class="product-sizes">
-                        <button class="size-button selected" onclick="selectSize(this)">XS</button>
-                        <button class="size-button" onclick="selectSize(this)">S</button>
-                        <button class="size-button" onclick="selectSize(this)">M</button>
-                        <button class="size-button" onclick="selectSize(this)">L</button>
-                        <button class="size-button" onclick="selectSize(this)">XL</button>
-                        <button class="size-button" onclick="selectSize(this)">XXL</button>
                     </div>
                 </div>
                 <div class="product-quantity">

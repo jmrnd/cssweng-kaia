@@ -18,7 +18,7 @@ router.get('/registerProduct', AdminController.getRegisterProduct );
 router.post('/registerProduct', AdminController.postRegisterProduct );
 
 router.get('/', (req, res) => {
-    res.redirect('/login');
+    res.redirect('/homepage');
 });
 
 router.get('/homepage', (req, res) => {

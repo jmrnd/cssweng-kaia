@@ -1,4 +1,7 @@
+const smallImages = document.querySelectorAll('.product-gallery-small-image');
+
 document.addEventListener("DOMContentLoaded", function () {
+    
     let slideIndex = 1;
 
     function showSlides(n) {
@@ -31,16 +34,16 @@ document.addEventListener("DOMContentLoaded", function () {
         plusSlides(1);
     });
 
-    // Select the first color and size buttons initially
+    // Select the first color and small image (initial)
     const initialColorButton = document.querySelector('.color-button');
-    const initialSizeButton = document.querySelector('.size-button');
+    const initialImage = document.querySelector('.product-gallery-small-image');
 
     if (initialColorButton) {
         selectColor(initialColorButton);
     }
 
-    if (initialSizeButton) {
-        selectSize(initialSizeButton);
+    if (initialImage) {
+        selectImage(initialImage);
     }
 
     let quantity = 1;
@@ -65,21 +68,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function plusSlides(n) {
         showSlides((slideIndex += n));
+        const selectedSmallImage = smallImages[slideIndex - 1];
+        selectImage(selectedSmallImage);
     }
+
+    smallImages.forEach((image, index) => {
+        image.addEventListener('click', () => {
+            slideIndex = index + 1;
+            showSlides(slideIndex);
+            selectImage(image);
+        });
+    });
+
 });
 
 function selectColor(button) {
     const colorButtons = document.querySelectorAll('.color-button');
-    colorButtons.forEach(btn => btn.classList.remove('selected'));
-    button.classList.add('selected');
+    colorButtons.forEach(btn => btn.classList.remove('selected-color'));
+    button.classList.add('selected-color');
     const selectedColor = document.querySelector('.selected-color');
     selectedColor.textContent = button.getAttribute('value');
 }
 
-function selectSize(button) {
-    const sizeButtons = document.querySelectorAll('.size-button');
-    sizeButtons.forEach(btn => btn.classList.remove('selected'));
-    button.classList.add('selected');
-    const selectedSize = document.querySelector('.selected-size');
-    selectedSize.textContent = button.textContent;
+function selectImage(image) {
+    smallImages.forEach(img => img.classList.remove('selected-image'));
+    image.classList.add('selected-image');
 }
