@@ -3,6 +3,10 @@
     --favourite-icon: url("/images/icons/favourite-icon.png");
     --cart-icon: url("/images/icons/cart-icon.png");
     --profile-icon: url("/images/icons/profile-icon.png");
+    --search-hover-icon: url("/images/icons/search-icon-hover.png");
+    --favourite-hover-icon: url("/images/icons/favourite-icon-hover.png");
+    --cart-hover-icon: url("/images/icons/cart-icon-hover.png");
+    --profile-hover-icon: url("/images/icons/profile-icon-hover.png");
 }
 
 body::-webkit-scrollbar {
@@ -52,6 +56,11 @@ div.header-box {
     padding: 0px;
 }
 
+span.label {
+    color: black;
+    font-weight: bold;
+    font-size: 1em;
+}
 /***********************************************
                      LOGO                    
 ***********************************************/
@@ -98,21 +107,6 @@ button.header {
     border-radius: 5px;
 }
 
-button.header:hover {
-    background: rgba(82, 82, 82, 0.3);
-    opacity: 0.6;
-    transition: 0.3s;
-}
-
-button.header:active {
-    opacity: 0.3;
-    transition: 0.3s;
-}
-
-button.header:not(:hover) {
-    transition: 0.35s;
-}
-
 span.icon {
     height: 35px;
     width: 35px;
@@ -138,33 +132,30 @@ span.icon {
                      SEARCH POP-UP               
     ***********************************************/
     .popup.search-popup {
-        background-color: #f0f0f0;
         right: 158px;
         display: block;
         width: auto;
-        font-size: 0.75em;
+        font-size: 1em;
     }
 
     /***********************************************
                     FAVOURITE POP-UP               
     ***********************************************/
     .popup.favourite-popup {
-        background-color: #ffcccc;
         right: 105px;
         display: block;
         width: auto;
-        font-size: 0.75em;
+        font-size: 1em;
     }
 
     /***********************************************
                      CART POP-UP               
     ***********************************************/
     .popup.cart-popup {
-        background-color: #ccffcc;
         right: 53px;
         display: block;
         width: auto;
-        font-size: 0.75em;
+        font-size: 0.95em;
     }
 
     /***********************************************
@@ -174,7 +165,8 @@ span.icon {
         display: block;
         width: auto;
         right: 0px;
-        font-size: 0.75em;
+        font-size: 0.95em;
+        padding: 0px;
     }
 
     .popup.profile-popup button {
@@ -182,15 +174,18 @@ span.icon {
         width: 100%;
         border: none;
         padding: 5px;
+        padding-right: 10px;
         background-color: transparent;
         text-align: left;
         text-indent: 5px;
         font-family: inherit;
-        font-size: 1em;
+        font-size: 0.95em;
     }
 
     .popup.profile-popup button:hover {
         background-color: #EF91CF;
+        color: white;
+        font-style: bold;
     }
 
     .popup.profile-popup button:active {
@@ -219,4 +214,20 @@ span.icon.cart {
 
 span.icon.profile {
     background-image: var(--profile-icon);
+}
+
+span.icon.search:hover {
+    background-image: var(--search-hover-icon);
+}
+
+span.icon.favourite:hover {
+    background-image: var(--favourite-hover-icon);
+}
+
+span.icon.cart:hover {
+    background-image: var(--cart-hover-icon);
+}
+
+span.icon.profile:hover {
+    background-image: var(--profile-hover-icon);
 }

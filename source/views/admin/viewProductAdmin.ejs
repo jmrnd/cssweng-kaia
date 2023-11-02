@@ -2,26 +2,30 @@
 <html lang = "en">
 <head>
     <title> Kaia Apparel </title>
-    <link rel = "stylesheet" href = "/css/admin/registerProduct.css">
-    <script src = "js/admin/registerProduct.js" defer> </script>
+    <link rel = "stylesheet" href = "/css/admin/viewProductAdmin.css">
+    <script src = "js/admin/viewProductAdmin.js" defer> </script>
 </head>
 <body>
     <%- include("../partials/admin-header.ejs") %>
 
     <div class = "main-container"> 
-
-    <div class = "hide" id = "feedback-text"> </div>
-
-        <div class = "header-container" id = "register-header">
-            <span class = "title"> REGISTER PRODUCT </span>
+        <div class = "header-container" id = "view-header">
+            <span class = "title"> PRODUCT NAME </span>
+            <span class="modify">
+                <button type = "button" class = "header" data-popup = "update"> 
+                <span class = "icon update"> </span>
+                </button>
+                <button type = "button" class = "header" data-popup = "delete"> 
+                <span class = "icon delete"> </span>
+                </button>
+            </span>
         </div>
-
-        <form id = "register-product"> 
-            <div class="register-form">
+        <form id = "view-product"> 
+            <div class="view-form">
                 <div class = "left-section">
                     <div class = "input-container">
                         <span class = "label"> CATEGORY </span>
-                        <select class = "input-box category" id = "category-dropdown">
+                        <select class = "input-box category" id = "category-dropdown" disabled>
                             <% if( categories !== null ) { %> 
                                 <% categories.forEach((category) => { %>
                                     <option id = "category"
@@ -38,26 +42,25 @@
                     <div class = "input-container">
                         <span class = "label"> NAME </span>
                         <div class = "input-box">
-                            <input type = "text" class="form-style-1" id = "name">
+                            <input type = "text" class="form-style-1" id = "name" readonly>
                         </div>
                     </div>
                     <div class = "input-container">
                         <span class = "label"> PRICE </span>
                         <div class = "input-box">
-                            <input type = "number" class="form-style-1" id = "price" step = "0.01" min = "0"/>
+                            <input type = "number" class="form-style-1" id = "price" step = "0.01" min = "0" readonly/>
                         </div>
                     </div>
                     <div class = "input-container">
                         <span class = "label"> DESCRIPTION </span>
                     </div>
-                    <textarea class = "input-textarea" id = "description" rows = "4"> </textarea>
+                    <textarea class = "input-textarea" id = "description" rows = "4" readonly> </textarea>
                     <div class = "input-container">
                         <span class = "label"> IMAGES </span>
-                        <div class = "upload-button">
-                            <input type = "file" name = "product" id = "upload-image" hidden/>
-                            <label for = "upload-image" class = "upload-label"> Image Upload </label>
-                        </div>
                     </div>
+                    <!-- <div class = "image-body">
+                        <div class = "image" id = "product-image"> </div>
+                    </div> -->
                     <!-- STATIC IMAGE CONTAINER -->
                     <div class="image-container">
                         <div class="item-image">
@@ -65,11 +68,6 @@
                                 <img src="/images/kaia/lane_top_1.jpg" class="item-icon"> <!-- IMAGE ICON -->
                             </div>
                             <div class="item-name">lane_top_1.jpg</div> <!-- IMAGE FILENAME -->
-                            <div class="remove-container">
-                                <button type = "button" class = "remove-button" data-popup = "remove"> 
-                                    -
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -77,35 +75,6 @@
                 <div class = "right-section">
                     <div class = "input-container">
                         <span class = "label"> VARIATIONS </span>
-                    </div>
-                    <div class = "variation-form">
-                        <div class="var-right-section">
-                            <div class = "input-container">
-                                <span class = "label"> NAME </span>
-                                <div class = "input-box">
-                                    <input type = "text" class = "form-style-2" id = "variation-name">
-                                </div>
-                            </div>
-                            <div class = "input-container">
-                                <span class = "label"> STOCK </span>
-                                <div class = "input-box">
-                                    <input type = "number" class = "form-style-2" id = "stock" step = "1" min = "0"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="var-left-section">
-                            <div class = "input-container">
-                                <span class = "label"> COLOR </span>
-                                <div class = "input-box">
-                                <input type="color" class="color-picker" id="color-picker" name="color-picker" value="#FFFFFF">
-                                </div>
-                            </div>
-                                <div class="add-container">
-                                    <button type = "button" class = "add-button" data-popup = "add"> 
-                                        +
-                                    </button>
-                                </div>
-                        </div>
                     </div>
                     <!-- STATIC VARIATION CONTAINER -->
                     <div class="variation-container">
@@ -117,16 +86,8 @@
                         <div class = "input-box">
                             <input type = "number" class = "stock-value" step = "1" min = "0" value="30" readonly/> <!-- VARIATION STOCK color setting "value" in js -->
                         </div>
-                        <div class="remove-container">
-                            <button type = "button" class = "remove-button" data-popup = "remove"> 
-                                -
-                            </button>
-                        </div>
                     </div>
                 </div>
-            </div>
-            <div class = "register-container">
-                <button type = "submit" class = "register-button"> REGISTER </button>
             </div>
         </form>
 </body>

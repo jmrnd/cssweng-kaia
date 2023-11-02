@@ -1,5 +1,6 @@
 const form = document.getElementById('register-product');
 const feedbackText = document.getElementById('feedback-text');
+const header = document.getElementById('register-header');
 
 form.addEventListener('submit', async function (e) {
     e.preventDefault(); 
@@ -17,8 +18,9 @@ form.addEventListener('submit', async function (e) {
         // - Validate input fields
         const areInputsValid = validateInputFields();
         if( !areInputsValid.status ) {
-            feedbackText.className = "temporary error"
+            feedbackText.className = "feedback error"
             feedbackText.textContent = areInputsValid.message;
+            header.style.paddingTop = "20px";
             return false;
         }
         
@@ -39,8 +41,9 @@ form.addEventListener('submit', async function (e) {
 
         if( response.status == 201 ) {
             console.log( "Success!" );
-            feedbackText.className = "temporary success";
-            feedbackText.textContent = "Product " +  name + " created!";
+            feedbackText.className = "feedback success";
+            feedbackText.textContent = "Product " +  name + " has been successfully registered!";
+            header.style.paddingTop = "20px";
         } else if( response.status == 500 ) {
             console.log( "Fail!" );
             feedbackText.textContent = response.message;

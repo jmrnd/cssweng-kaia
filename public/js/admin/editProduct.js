@@ -51,7 +51,7 @@ function createConfirmationPopup() {
 
 	const titleDiv = document.createElement('div');
 	titleDiv.classList.add('title');
-	titleDiv.textContent = 'Delete';
+	titleDiv.textContent = 'DELETE';
 
 	const closeButton = document.createElement('button');
 	closeButton.setAttribute('data-close-button', '');
@@ -65,7 +65,7 @@ function createConfirmationPopup() {
 	const modalBody = document.createElement('div');
 	modalBody.classList.add('modal-body');
 	modalBody.innerHTML = `Are you sure you want to delete ${parseProducts().productName}?
-        This process cannot be undone.
+        This cannot be undone.
     `;
 
     const confirmationContainer = document.createElement('div');
@@ -73,7 +73,7 @@ function createConfirmationPopup() {
 
     const cancelButton = document.createElement('div');
     cancelButton.classList.add('confirm-button');
-    cancelButton.innerHTML = 'cancel';
+    cancelButton.innerHTML = 'CANCEL';
 	cancelButton.addEventListener('click', () => {
 		modal.classList.remove('active');
 		overlay.classList.remove('active');
@@ -82,7 +82,7 @@ function createConfirmationPopup() {
     const confirmButton = document.createElement('div');
     confirmButton.classList.add('confirm-button');
     confirmButton.setAttribute('id', 'confirm');
-    confirmButton.innerHTML = 'confirm';
+    confirmButton.innerHTML = 'CONFIRM';
     confirmButton.addEventListener('click', () => {
         deleteProduct(product);
 		modal.classList.remove('active');
@@ -107,6 +107,7 @@ function createConfirmationPopup() {
 }
 
 const feedbackText = document.getElementById('feedback-text');
+const header = document.getElementById('update-header');
 async function deleteProduct( product ) {
     try {
         const response = await fetch( 'deleteProduct', {
@@ -153,8 +154,9 @@ updateButton.addEventListener('click', async function (e) {
         // - Validate input fields
         const areInputsValid = validateInputFields();
         if( !areInputsValid.status ) {
-            feedbackText.className = "temporary error"
+            feedbackText.className = "feedback error";
             feedbackText.textContent = areInputsValid.message;
+            header.style.paddingTop = "20px";
             return false;
         }
         
@@ -177,8 +179,9 @@ updateButton.addEventListener('click', async function (e) {
             const currentDate = new Date();
             const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
 
-            feedbackText.className = "temporary success";
+            feedbackText.className = "feedback success";
             feedbackText.textContent = "Product (ID#" + productID + ") " + name +  " updated on " + formattedDate;
+            header.style.paddingTop = "20px";
         } else if( response.status == 500 ) {
             feedbackText.textContent = response.message;
         }
