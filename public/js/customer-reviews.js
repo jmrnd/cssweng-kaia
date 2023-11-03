@@ -94,21 +94,12 @@ function showReviewImages(review, reviewId) {
 
 function renderUserRatings(review) {
     const userRatingElement = review.querySelector(".review-user-rating");
-    const userRating = parseFloat(
-        userRatingElement.getAttribute("data-userrating")
-    );
-    console.log(userRating);
-    const fullStars = Math.floor(userRating);
-    const halfStar = userRating - fullStars > 0 ? true : false;
-    const starsLeft = Math.floor(maxRating - userRating);
+    const userRating = userRatingElement.getAttribute("data-userrating");
+    const fullStars = userRating;
+    const starsLeft = maxRating - userRating;
 
     const fullStarsHTML = starIconFill.repeat(fullStars);
-
-    if (halfStar) {
-        userRatingElement.innerHTML += fullStarsHTML + starIconHalf;
-    } else {
-        userRatingElement.innerHTML += fullStarsHTML;
-    }
+    userRatingElement.innerHTML += fullStarsHTML;
 
     const remainingStarsHTML = starIconGray.repeat(starsLeft);
     userRatingElement.innerHTML += remainingStarsHTML;
