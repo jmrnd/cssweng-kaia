@@ -53,7 +53,7 @@ div.header-box {
 }
 
 /***********************************************
-                     LOGO                    
+                     LOGO
 ***********************************************/
 div.logo {
     padding-top: 10px;
@@ -77,10 +77,6 @@ div.logo {
     margin: -12px;
     padding: 0px;
     letter-spacing: 5.5px;
-}
-
-.last-letter {
-    letter-spacing: 0px;
 }
 
 /***********************************************
@@ -220,3 +216,4 @@ span.icon.cart {
 span.icon.profile {
     background-image: var(--profile-icon);
 }
+
