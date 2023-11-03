@@ -1,16 +1,16 @@
 .custom-truncate {
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
 .link-unstyled {
-    text-decoration: none; /* Remove underline */
-    color: inherit; /* Inherit the text color from the parent */
-    background-color: transparent; /* Remove background color */
-    border: none; /* Remove any border */
-    cursor: pointer; /* Change cursor to pointer on hover (optional) */
+    text-decoration: none;
+    color: inherit;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
 .customer-reviews-container {
@@ -18,7 +18,7 @@
     flex-direction: column;
     padding: 1rem 0rem;
     max-width: 1150px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     margin: 0 auto;
 }
 
@@ -27,18 +27,18 @@
     flex-direction: column;
     padding: 1rem 0rem;
     max-width: 1150px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     margin: 0 auto;
     width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 2px solid #EF91CF;
+    border-bottom: 2px solid #ef91cf;
 }
 
 .customer-reviews-header-text {
-    font-family: 'Roboto Condensed-Bold';
+    font-family: "Roboto Condensed-Bold";
     color: #000;
     font-size: 1.25rem;
     line-height: 150%; /* 1.875rem */
@@ -47,7 +47,7 @@
 }
 
 .customer-reviews-header-rating {
-    font-family: 'Roboto Condensed-Light';
+    font-family: "Roboto Condensed-Light";
 }
 
 .customer-reviews-header-rating-icons {
@@ -72,7 +72,7 @@
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-around;
-    border-bottom: 2px solid #EF91CF;
+    border-bottom: 2px solid #ef91cf;
 }
 
 .review-details {
@@ -110,7 +110,7 @@
 .review-body {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end;
     text-align: left;
     padding: 1.5rem 1rem;
     width: 40%;
@@ -125,7 +125,7 @@
 }
 
 .review-likes {
-    color: #EF91CF;
+    color: #ef91cf;
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
@@ -178,7 +178,7 @@
 
 .expand-review-button {
     cursor: pointer;
-    color: #EF91CF;
+    color: #ef91cf;
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 1.125rem */
@@ -186,4 +186,80 @@
     border: none;
     background: none;
     padding: 0.5rem 0.5rem;
+}
+
+.dropdown {
+    min-width: 10rem;
+    position: relative;
+}
+
+.select {
+    background: #fff;
+    color: #999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px #999 solid;
+    padding: 1em;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.select-clicked {
+    border: 1px #999 solid;
+}
+
+.select:hover {
+    background: #fff;
+}
+
+.caret {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #999;
+    transition: 0.3s;
+}
+
+.caret-rotate {
+    transform: rotate(180deg);
+}
+
+.menu {
+    list-style: none;
+    padding: 0.2em 0.5em;
+    background: #fff;
+    border: 1px #999999 solid;
+    box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
+    color: #999;
+    position: absolute;
+    top: 3em;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+    opacity: 0;
+    display: none;
+    transition: 0.2s;
+    z-index: 1;
+}
+
+.menu li {
+    padding: 0.7em 0.5em;
+    margin: 0.3em 0;
+    border-radius: 0.5em;
+    cursor: pointer;
+}
+
+.menu li:hover {
+    background: #f1efef;
+}
+
+.active {
+    background: #e6e4e4;
+}
+
+.menu-open {
+    display: block;
+    opacity: 1;
 }
