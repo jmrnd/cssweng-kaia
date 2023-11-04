@@ -67,6 +67,23 @@
     padding: 0rem 0.125rem;
 }
 
+.customer-reviews-filter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.customer-reviews-rating-text {
+    color: #999;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 1.5rem */
+    letter-spacing: 0.02rem;
+    text-transform: uppercase;
+    padding: 0rem 1rem;
+}
+
 .customer-review {
     display: flex;
     flex-direction: row;
@@ -238,6 +255,7 @@
     left: 50%;
     width: 100%;
     transform: translateX(-50%);
+    text-transform: uppercase;
     opacity: 0;
     display: none;
     transition: 0.2s;
