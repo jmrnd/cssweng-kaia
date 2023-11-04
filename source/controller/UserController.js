@@ -222,6 +222,16 @@ const UserController = {
             res.redirect('/');
         }
     },
+
+    // viewProfile change when needed
+    viewProfile: async (req, res) => {
+        if( true ) {
+            res.status(200).render('./users/viewProfile.ejs' );
+
+        } else {
+            res.redirect('/');
+        }
+    },
 }
 
 module.exports = UserController;

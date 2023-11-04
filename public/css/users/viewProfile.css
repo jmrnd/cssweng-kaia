@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+body {
+    display: block;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Roboto Condensed-Regular';
+}
+
+
+/***********************************************
+                  CONTAINERS                    
+***********************************************/
+div.main-container {
+    padding: 10px;
+    max-width: 1150px;
+    background-color: #FFFFFF;
+    margin: 0 auto;
+}
+
+div.path-container {
+    color: #9D9D9D;
+    font-family: 'Roboto Condensed-Regular';
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: all-small-caps;
+    line-height: 150%;
+    letter-spacing: 0.01219rem;
+    padding: 1rem 0.5rem;
+
+    align-items: center;
+    text-align: start;
+    justify-content: left;
+}
+
+
+
+/***********************************************
+                  SWITCH CONTAINERS                    
+***********************************************/
+div.switch-container{
+    display: flex;
+    font-family: 'Roboto Condensed';
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+div.switch-container-button.profile{
+    width: 3%;
+}
+
+div.switch-container-button.my-purchases{
+    width: 18%;
+}
+
+/***********************************************
+                  SPAN LABELS                    
+***********************************************/
+#home {
+    text-decoration: none;
+    color: inherit;
+}
+    
+/***********************************************
+                  SECTIONS                    
+***********************************************/
+
+.information-header span {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+
+.path-category {
+    font-family: 'Roboto Condensed';
+    font-weight: 500;
+    font-size: 20px;
+    color: #535353;
+    line-height: 30px;
+    letter-spacing: 1.46px;
+}
+
+/***********************************************
+                  INFORMATION                    
+***********************************************/
+.information-container {
+    font-family: 'Roboto Condensed';
+    text-align: left;
+}
+
+.information-block {
+    padding-bottom: 4%;
+}
+
+.information-header {
+    left: 220px; 
+    top: 216px; 
+    background: #F6F6F6;
+    color: #535353; 
+    font-family: 'Roboto Condensed';
+    font-size: 20px; 
+    font-weight: 500;
+    line-height: 30px; 
+    letter-spacing: 1.46px;
+    padding-left: 10px;
+}
+
+.label {
+    color: #535353; 
+    font-weight: 400;   
+    line-height: 22.50px;
+    letter-spacing: 1.10px;
+    padding-top: 25px;
+    padding-left: 10px;
+}

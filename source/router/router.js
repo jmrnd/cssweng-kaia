@@ -19,6 +19,8 @@ router.get('/wishlist', UserController.wishlist );
 router.post('/wishlistProduct', UserController.wishlistProduct );
 router.post('/wishlistProduct', UserController.viewCart );
 
+// viewProfile change when needed
+router.get('/viewProfile', UserController.viewProfile );
 
 router.get('/inventory', AdminController.inventory );
 router.get('/registerProduct', AdminController.getRegisterProduct );
