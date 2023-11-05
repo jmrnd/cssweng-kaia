@@ -80,6 +80,12 @@ div.product-information-container {
     text-transform: uppercase;
 }
 
+.product-information-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 span.product-name {
     font-family: "Roboto Condensed-Bold";
     color: #000;

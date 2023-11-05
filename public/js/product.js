@@ -102,3 +102,5 @@ function selectImage(image) {
     smallImages.forEach((img) => img.classList.remove("selected-image"));
     image.classList.add("selected-image");
 }
+
+function toggleBookmark(bookmarkElement) {}
