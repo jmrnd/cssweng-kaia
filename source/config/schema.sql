@@ -115,7 +115,6 @@ CREATE TABLE IF NOT EXISTS shoppingCart (
 CREATE TABLE IF NOT EXISTS wishlist (
 	userID INT NOT NULL,
     productID INT NOT NULL,
-    quantity INT NOT NULL,
 	dateAdded TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	FOREIGN KEY (userID) REFERENCES users(userID),
 	FOREIGN KEY (productID) REFERENCES products(productID)
@@ -133,7 +132,7 @@ CREATE TABLE IF NOT EXISTS imageReferences (
 );
 
 -- Set the auto-increment starting value and maximum value for imageReference
-ALTER TABLE imageReferences
+ALTER TABLE imageReferencesse
 AUTO_INCREMENT = 90000000;
 
 CREATE TABLE IF NOT EXISTS productImages (
