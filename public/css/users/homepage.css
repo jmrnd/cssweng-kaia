@@ -95,12 +95,6 @@ div.category-container.tops , div.category-container.coords{
 }
 
 
-/* Best-Seller Container */
-div.content-container.best-seller{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
 
 
 
@@ -118,7 +112,7 @@ span.name.new-arrival {
     position: absolute;
     bottom: 0px;
     left: 20px;
-    font-size: 3em;
+    font-size: 4em;
 }
 
 div.new-arrivals a{
@@ -215,8 +209,14 @@ div.category-container.coords {
                     BEST SELLER
 ***********************************************/
 
+div.content-container.best-seller{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 div.best-seller-items img{
-    width: 250px;
+    width: 200px;
 }
 
 .item-name , .item-price{
@@ -232,7 +232,7 @@ div.best-seller-items img{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 10px 20px;
+    padding: 10px 2.5px;
 }
 
 
@@ -385,3 +385,4 @@ div .footer .footer-col{
     -ms-transform: translateY(-2px);
     -o-transform: translateY(-2px);
 }
+

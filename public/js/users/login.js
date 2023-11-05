@@ -9,6 +9,7 @@ const insertContent = document.querySelector(".content-container");
 const errorBox = document.getElementById('error-box');
 const registerFormContainer = document.getElementById("register-form-container");
 const loginFormContainer = document.getElementById("login-form-container");
+const successContainer = document.getElementsByClassName("success-alert");
 
 
 loginSwitch.addEventListener("click", function (e){
@@ -48,7 +49,7 @@ rememberBox.addEventListener('change', function() {
     }
 });
 
-/** 
+/*
     ` Attaches a `click` event to `#login-button`. The code communicates
     asynchronously with the server to log in a registered student.
 
@@ -117,7 +118,8 @@ const registerEmail = document.getElementById("register-email");
 const registerPassword = document.getElementById("register-password");
 const registerButton = document.getElementById("register-button");
 
-/** 
+
+/**
     ` Attaches a `click` event to `#register-button`. The code communicates
     asynchronously with the server to register a new student to the database.
 
@@ -156,8 +158,12 @@ registerButton?.addEventListener( "click", async function(e) {
 
         // - On success, refresh the loging page
         if( response.ok ) {
-            alert( "Registration successful" ); 
-            location.reload();
+            errorBox.style.display = 'block';
+            errorBox.style.color = '#32a854'
+            errorBox.style.border = '1px solid #32a854';
+            errorBox.style.backgroundColor = "#d4ffe0";
+            errorBox.textContent = "Account successfully created";
+            registerFormContainer.reset();
         } else {
             errorBox.style.display = 'block';
             switch( response.status ) {
@@ -170,19 +176,19 @@ registerButton?.addEventListener( "click", async function(e) {
             }
         }
     } catch( error ) {
-        console.log( error );    
+        console.log( error );
     }
 });
 
-/** 
-    ` Checks if the input contains only letters and spaces. 
+/**
+    ` Checks if the input contains only letters and spaces.
 */
 function isTextOnly( input ) {
     const regex = /^[A-Za-z ]+$/;
     return regex.test(input);
 }
 
-/** 
+/**
     ` Checks if all input fields within a given form are filled.
 */
 function areInputFieldsFilled( formId ) {
@@ -197,3 +203,39 @@ function areInputFieldsFilled( formId ) {
     }
     return 1; 
 }
+
+/* PASSWORD Toggle */
+const toggle_login_Password = document.querySelector('#toggle-login');
+const login_password = document.querySelector('#login-password');
+const toggle_register_Password = document.querySelector('#toggle-register');
+const register_password = document.querySelector('#register-password');
+
+
+// For Login Toggle
+toggle_login_Password.addEventListener('click', function (e) {
+    // toggle the type attribute and icon
+    if(login_password.getAttribute('type') == 'password'){
+        type = 'text';
+        toggle_login_Password.classList.replace("fa-eye", "fa-eye-slash");
+    } else{
+        type = 'password';
+        toggle_login_Password.classList.replace("fa-eye-slash", "fa-eye");
+    }
+
+    login_password.setAttribute('type', type)
+
+});
+
+// For Register Toggle
+toggle_register_Password.addEventListener('click', function (e) {
+    // toggle the type attribute and icon
+    if(register_password.getAttribute('type') == 'password'){
+        type = 'text';
+        toggle_register_Password.classList.replace("fa-eye", "fa-eye-slash");
+    } else{
+        type = 'password';
+        toggle_register_Password.classList.replace("fa-eye-slash", "fa-eye");
+    }
+
+    register_password.setAttribute('type', type);
+})

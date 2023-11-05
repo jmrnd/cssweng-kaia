@@ -2,7 +2,13 @@
 
 body{
     display: block;
+}
+
+*{
     font-family: 'Roboto Condensed', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
 }
 
 div.main-container {
@@ -134,6 +140,7 @@ div.terms-container {
 }
 
 #login-button{
+    font-weight: 700;
     width: 200px;
     margin-left: 20px;
     padding: 15px 20px;
@@ -163,18 +170,29 @@ div.terms-container {
 }
 
 #register-button{
+    font-weight: 700;
     float:right;
-    width: 300px;
+    width: 250px;
     padding: 15px 20px;
     border: none;
     text-transform: uppercase;
-    letter-spacing: 1px;
     color: white;
     background-color: #EF91CF;
     cursor: pointer;
     margin-top: 20px;
+    letter-spacing: 1px;
 }
 
 #register-button:hover{
     background-color: #995599;
+}
+
+.password i.show-password{
+    width: 18px;
+    height: 18px;
+    float: right;
+    cursor: pointer;
+    position: relative;
+    top: -47px;
+    left: -15px;
 }
