@@ -3,11 +3,12 @@
 <head>
     <title> Kaia Apparel </title>
     <link rel = "stylesheet" href = "/css/users/productCatalog.css">
+    <link rel = "stylesheet" href = "/css/main/font.css">
     <script src = "js/users/homepage.js" defer> </script>
     <script src = "js/users/productCatalog.js" defer> </script>
 </head>
 <body>
-    <%- include("../partials/header.ejs") %>
+    <%- include("../main/header.ejs") %>
     <div class = "main-container"> 
         <div class = "path-container">
             <span> <a href = "homepage" id = "home"> Home </a> / 
@@ -15,7 +16,6 @@
                 <a> Collection </a>
             </span>
         </div>
-
         <div class = "category-header-container" id = "category-header-container">
             <% if( categories !== null ) { %> 
                 <% categories.forEach((category) => { %>
@@ -25,12 +25,10 @@
                 <% }); %>
             <% } %>  
         </div>
-
         <div class = "category-header-title">
             <% if( categories !== null ) { %> 
                 <span class = "category-title" id = "category-title"> <%=categories[0].categoryName%> <span>COLLECTION</span></span>
             <% } %>  
-
             <div class = "product-filter">
                 <span> Sort by: </span>
                 <select class = "product-filter" id = "product-filter"> 
@@ -42,7 +40,6 @@
                 </select>
             </div>
         </div>
-
         <div class = "product-grid" id = "product-grid">
             <!-- 
                 <div class = "product-item">
@@ -59,10 +56,10 @@
             -->
         </div>
     </div>
-
-    <script>
-        const categories = `<%- JSON.stringify(categories) %>`;
-        const products = `<%- JSON.stringify(products) %>`;
-    </script>
+    <%- include("../main/footer.ejs") %>
 </body>
+<script>
+    const categories = `<%- JSON.stringify(categories) %>`;
+    const products = `<%- JSON.stringify(products) %>`;
+</script>
 </html>

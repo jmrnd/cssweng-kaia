@@ -1,3 +1,6 @@
+/***********************************************
+                DOCUMENT ELEMENTS                   
+***********************************************/
 const productGrid = document.getElementById('product-grid');
 const categoryLinks = document.querySelectorAll('.category-link');
 const categoryTitle = document.getElementById('category-title');
@@ -44,6 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
             default: break;
         }
 
+        if( parseProducts() === null ) {
+            return;
+        }
+
         parseProducts().forEach((product) => {
             if( product.categoryID == selectedCategoryID ) {
                 generateProductItem(product);
@@ -68,8 +75,11 @@ categoryLinks.forEach((categoryLink) => {
             selectedCategoryID = categoryLink.getAttribute('data-id');
             const categoryName = categoryLink.getAttribute('data-name');
 
-            changePathAndTitle(categoryName);
-    
+            changePathAndTitle(categoryName);    
+            if( parseProducts() === null ) {
+                return;
+            }
+            
             parseProducts().forEach((product) => {
                 if( product.categoryID == selectedCategoryID ) {
                     generateProductItem(product);
@@ -105,7 +115,7 @@ function generateProductItem( product ) {
     // - Image 
     const anchor = document.createElement('a');
     if( product.filePath ) {
-        anchor.innerHTML = `<img src = ${product.filePath}>`;
+        anchor.innerHTML = `<img src = "${product.filePath}">`;
     } else {
         // - FIXME: Hardcoded 
         switch( product.categoryID ) {
@@ -126,8 +136,6 @@ function generateProductItem( product ) {
                 break;
         }
     }
-
-    
 
     // - Product details
     const productDetails = document.createElement('div');

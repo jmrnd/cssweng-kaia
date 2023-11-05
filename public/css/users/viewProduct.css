@@ -1,50 +1,18 @@
+/*
+    While there is no one-size-fits-all rule, a common approach is to order properties like this:
+     - Positioning (e.g., position, top, left)
+     - Box model (e.g., width, height, margin, padding, border)
+     - Typography (e.g., font, line-height, text-align)
+     - Visual (e.g., background, color, box-shadow, transform)
+     - Miscellaneous (e.g., cursor, pointer-events)
+*/
 :root {
     --wishlist-button-icon: url("/images/icons/wishlist-button-icon.png");
-    --search-icon: url("/images/icons/search-icon.png");
-    --favourite-icon: url("/images/icons/favourite-icon.png");
-    --cart-icon: url("/images/icons/cart-icon.png");
-    --profile-icon: url("/images/icons/profile-icon.png");
 }
 
 #home {
     text-decoration: none;
     color: inherit;
-}
-
-/***********************************************
-                  FONT-FAMILY
-                Roboto Condensed                    
-***********************************************/
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
-
-@font-face {
-    font-family: 'Roboto Condensed-Regular';
-    src: url("/fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf"); 
-}
-
-@font-face {
-    font-family: 'Roboto Condensed-Bold';
-    src: url("/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf"); 
-}
-
-@font-face {
-    font-family: 'Roboto Condensed-BoldItalic';
-    src: url("/fonts/Roboto_Condensed/RobotoCondensed-BoldItalic.ttf"); 
-}
-
-@font-face {
-    font-family: 'Roboto Condensed-Light';
-    src: url("/fonts/Roboto_Condensed/RobotoCondensed-Light.ttf"); 
-}
-
-@font-face {
-    font-family: 'Roboto Condensed-LightItalic';
-    src: url("/fonts/Roboto_Condensed/RobotoCondensed-LightItalic.ttf"); 
-}
-
-@font-face {
-    font-family: 'Roboto Condensed-Italic';
-    src: url("/fonts/Roboto_Condensed/RobotoCondensed-Italic.ttf"); 
 }
 
 body {
@@ -53,6 +21,8 @@ body {
     text-align: center;
     justify-content: center;
     font-family: 'Roboto Condensed-Regular';
+    padding: 0px;
+    margin: 0px;
 }
 
 body {

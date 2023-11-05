@@ -2,7 +2,7 @@ CREATE DATABASE `kaiadb`;
 USE `kaiadb`;
 
 -- Users table
-CREATE TABLE IF NOT EXISTS users(
+CREATE TABLE IF NOT EXISTS users (
     userID INT PRIMARY KEY AUTO_INCREMENT,
     firstName VARCHAR(50) NOT NULL,
     lastName VARCHAR(50) NOT NULL,
@@ -73,14 +73,12 @@ INSERT INTO productCategories (categoryName, parentCategoryID) VALUES ('Dresses'
 -- INSERT INTO productCategories (categoryName, parentCategoryID) VALUES ('Jeans', 2), ('Pants', 2), ('Skirts', 2), ('Shorts', 2), ('Leggings', 2);
 -- INSERT INTO productCategories (categoryName, parentCategoryID) VALUES ('T-Shirts', 3), ('Blouses', 3), ('Sweaters', 3), ('Tank Tops', 3), ('Crop Tops', 3);
 
--- Products table
-CREATE TABLE IF NOT EXISTS products(
+CREATE TABLE IF NOT EXISTS products (
     productID INT PRIMARY KEY AUTO_INCREMENT,
 	categoryID INT DEFAULT NULL,
 	productName VARCHAR(255) NOT NULL,
     productDescription TEXT,
     price DECIMAL(10, 2) NOT NULL,
-    stockQuantity INT DEFAULT 0 NOT NULL,
 	FOREIGN KEY (categoryID) REFERENCES productCategories(categoryID)
 		ON DELETE SET NULL
 		ON UPDATE CASCADE
@@ -90,7 +88,21 @@ CREATE TABLE IF NOT EXISTS products(
 ALTER TABLE products
 AUTO_INCREMENT = 20000000;
 
--- Shopping Cart table
+CREATE TABLE IF NOT EXISTS productsVariation (
+    variationID INT PRIMARY KEY AUTO_INCREMENT,
+    productID INT NOT NULL,
+    variationName VARCHAR(255) NOT NULL,
+    hexColor CHAR(7) NOT NULL,
+    stockQuantity INT DEFAULT 0 NOT NULL,
+    FOREIGN KEY (productID) REFERENCES products(productID)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+-- Set the auto-increment starting value and maximum value for productsVariation
+ALTER TABLE productsVariation
+AUTO_INCREMENT = 30000000;
+
 CREATE TABLE IF NOT EXISTS shoppingCart (
 	userID INT NOT NULL,
 	productID INT NOT NULL,
@@ -100,8 +112,7 @@ CREATE TABLE IF NOT EXISTS shoppingCart (
 	FOREIGN KEY (productID) REFERENCES products(productID)
 );
 
--- Wishlist table
-CREATE TABLE IF NOT EXISTS wishlist(
+CREATE TABLE IF NOT EXISTS wishlist (
 	userID INT NOT NULL,
     productID INT NOT NULL,
     quantity INT NOT NULL,

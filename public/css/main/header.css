@@ -1,0 +1,222 @@
+:root {
+    --search-icon: url("/images/icons/search-icon.png");
+    --favourite-icon: url("/images/icons/favourite-icon.png");
+    --cart-icon: url("/images/icons/cart-icon.png");
+    --profile-icon: url("/images/icons/profile-icon.png");
+    --search-hover-icon: url("/images/icons/search-icon-hover.png");
+    --favourite-hover-icon: url("/images/icons/favourite-icon-hover.png");
+    --cart-hover-icon: url("/images/icons/cart-icon-hover.png");
+    --profile-hover-icon: url("/images/icons/profile-icon-hover.png");
+}
+
+body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+/***********************************************
+                     HEADER                    
+***********************************************/
+div.header {
+    width: 99%;
+    height: 125px;
+    display: block;
+    position: sticky;
+    background-color: white;
+    border-bottom: 1px solid #cacaca;
+    z-index: 1;
+    user-select: none;
+    top: 0;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+div.header-box {
+    position: relative;
+    top: 15%;
+}
+
+span.admin-label {
+    color: black;
+    font-weight: bold;
+    font-size: 1em;
+    position: relative;
+    bottom: 10px; 
+}
+
+/***********************************************
+                     LOGO                    
+***********************************************/
+div.logo {
+    text-align: center;
+    justify-content: center;
+    position: relative;
+    float: center;
+    width: 150px;
+    margin: 0 auto;
+}
+
+.kaia {
+    color:#EF91CF;
+    font-family: 'Migra-ExtraBold', sans-serif;
+    font-size: 3em;
+    margin: 0px;
+    padding: 0px;
+}
+
+.apparel {
+    color:#995594;
+    font-family: "GlacialIndifference-Bold", sans-serif;
+    font-size: 0.9em;
+    font-weight: bold;
+    margin: -12px;
+    padding: 0px;
+    letter-spacing: 5.5px;
+}
+
+.last-letter {
+    letter-spacing: 0px;
+}
+
+/***********************************************
+                    BUTTONS                    
+***********************************************/
+div.header-buttons {
+    text-align: right;
+    position: relative;
+    float: right;
+    bottom: 42.5px;
+    width: 205px;
+}
+
+button.header {
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+}
+
+span.icon {
+    height: 35px;
+    width: 35px;
+    display: block;
+    background-size: cover;
+}
+
+/***********************************************
+                    POP-UPS               
+***********************************************/
+.popup {
+    display: flex;
+    position: absolute;
+    top: 65%;
+    padding: 5px;
+    visibility: hidden;
+    z-index: 999;
+    background-color: white;
+    border: 1px solid #E0E0E0; 
+}
+  
+    /***********************************************
+                     SEARCH POP-UP               
+    ***********************************************/
+    .popup.search-popup {
+        right: 158px;
+        display: block;
+        width: auto;
+        font-size: 1em;
+    }
+
+    /***********************************************
+                    FAVOURITE POP-UP               
+    ***********************************************/
+    .popup.favourite-popup {
+        right: 105px;
+        display: block;
+        width: auto;
+        font-size: 1em;
+    }
+
+    /***********************************************
+                     CART POP-UP               
+    ***********************************************/
+    .popup.cart-popup {
+        right: 53px;
+        display: block;
+        width: auto;
+        font-size: 0.95em;
+    }
+
+    /***********************************************
+                    PROFILE POP-UP             
+    ***********************************************/
+    .popup.profile-popup {
+        display: block;
+        width: auto;
+        right: 0px;
+        font-size: 0.95em;
+        padding: 0px;
+    }
+
+    .popup.profile-popup button {
+        display: block;
+        width: 100%;
+        border: none;
+        padding: 5px;
+        padding-right: 10px;
+        background-color: transparent;
+        text-align: left;
+        text-indent: 5px;
+        font-family: inherit;
+        font-size: 0.95em;
+    }
+
+    .popup.profile-popup button:hover {
+        background-color: #EF91CF;
+        color: white;
+        font-style: bold;
+    }
+
+    .popup.profile-popup button:active {
+        opacity: 0.8;
+        transition: 0.3s;
+    }
+    
+    .popup.profile-popup button:not(:hover) {
+        transition: 0.05s;
+    }
+    
+/***********************************************
+                  ICON IMAGES                
+***********************************************/
+span.icon.search {
+    background-image: var(--search-icon);
+}
+
+span.icon.favourite {
+    background-image: var(--favourite-icon);
+}
+
+span.icon.cart {
+    background-image: var(--cart-icon);
+}
+
+span.icon.profile {
+    background-image: var(--profile-icon);
+}
+
+span.icon.search:hover {
+    background-image: var(--search-hover-icon);
+}
+
+span.icon.favourite:hover {
+    background-image: var(--favourite-hover-icon);
+}
+
+span.icon.cart:hover {
+    background-image: var(--cart-hover-icon);
+}
+
+span.icon.profile:hover {
+    background-image: var(--profile-hover-icon);
+}

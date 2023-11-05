@@ -16,8 +16,10 @@ class Image {
 
         try {
             const values = [ userID, originalName, fileName, destination, filePath ];
-            await db.execute(sql, values);
-            return { status: 200, message: "Upload image successful." };
+            const [result] = await db.execute(sql, values);
+            const imageID = result.insertId;
+
+            return { status: 200, message: "Upload image successful.", imageID: imageID };
         } catch( error ) {
             console.error( "uploadImage() error:", error );
             return res.status(500).json({ message: "Upload image failed." });
@@ -25,7 +27,7 @@ class Image {
     }
 
     static async getImageByFileName( fileName ) {
-        const sql = 'SELECT * FROM imageReferences WHERE fileName = ?';
+        const sql = `SELECT * FROM imageReferences WHERE fileName = ?`;
 
         try {
             const [image] = await db.execute(sql, [fileName]);
@@ -42,7 +44,7 @@ class Image {
     } 
     
     static async createProductImage( productID, imageID ) {
-        const sql = 'INSERT INTO productImages (productID, imageID) VALUES (?, ?)';
+        const sql = `INSERT INTO productImages (productID, imageID) VALUES (?, ?)`;
 
         try {
             const values = [ productID, imageID ];

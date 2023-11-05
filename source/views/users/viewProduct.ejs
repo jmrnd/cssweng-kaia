@@ -3,10 +3,11 @@
 <head>
     <title> Kaia Apparel </title>
     <link rel = "stylesheet" href = "/css/users/viewProduct.css">
+    <link rel = "stylesheet" href = "/css/main/font.css">
     <script src = "js/users/viewProduct.js" defer> </script>
 </head>
 <body>
-    <%- include("../partials/header.ejs") %>
+    <%- include("../main/header.ejs") %>
 
     <div class = "main-container">
         <div class = "header-container">
@@ -57,9 +58,11 @@
                 </div>
             </div>
         </div>
-        
+        <%- include("../main/footer.ejs") %>
+    </div>
 </body>
 <script>
     const product = `<%- JSON.stringify(product) %>`;
+    const productID = `<%- JSON.stringify(productID) %>`;
 </script>
 </html>

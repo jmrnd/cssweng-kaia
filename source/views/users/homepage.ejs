@@ -3,20 +3,21 @@
 <head>
     <title> Kaia Apparel </title>
     <link rel = "stylesheet" href = "/css/users/homepage.css">
+    <link rel = "stylesheet" href = "/css/main/font.css">
+    <link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <script src = "js/users/homepage.js" defer> </script>
 </head>
 <body>
-    <%- include("../partials/header.ejs") %>
-    <div class = "main-container"> 
+    <%- include("../main/header.ejs") %>
+    <div class = "main-container">
         <div class = "outer-container new-arrivals">
             <span class = "name new-arrival"> NEW ARRIVALS </span>
+            <a href="/productCatalog"><span class="shop-now">SHOP NOW</span></a>
         </div>
-
-        <span class = "title"> 
-            <br> Category <br>
-        </span>
-
-        <div class = "outer-container">
+        <div class = "outer-container option-categories">
+            <div class = "title-container">
+                Category
+            </div>
             <div class = "inner-container">
                 <div class = "category-container dresses" data-category = "Dresses">
                     <span class = "name category"> DRESSES </span>
@@ -34,14 +35,75 @@
                 </div>
             </div>
         </div>
-
-        <span class = "title"> 
-            <br> Featured Styles <br>
-        </span>
-
-        <div class = "outer-container" style = "background-color: gray;">
-            <span> Display different clothing outfit of the day </span>
+        <div class="outer-container best-seller-section">
+            <div class = "title-container">
+                Best Seller
+            </div>
+            <div class = "content-container best-seller">
+                <!-- Still needs to be dynamic when click-->
+                <div class=" best-seller-items" id="item-1">
+                    <img src="/images/kaia/anna_top_1.jpg" alt="best-seller-item-1" >
+                    <div class="item-color-specifications"></div>
+                    <div class="item-label">
+                        <div class="item-name">Anna Top</div>
+                        <div class="item-price">PHP 100</div>
+                    </div>
+                </div>
+                <div class=" best-seller-items" id="item-2">
+                    <img src="/images/kaia/emma_top_3.jpg" alt="best-seller-item-2" >
+                    <div class="item-label">
+                        <div class="item-name">Emma top</div>
+                        <div class="item-price">PHP 150</div>
+                    </div>
+                </div>
+                <div class=" best-seller-items" id="item-3">
+                    <img src="/images/kaia/faye_linen_shorts_1.jpg" alt="best-seller-item-3" >
+                    <div class="item-label">
+                        <div class="item-name">Faye Linen Shorts</div>
+                        <div class="item-price">PHP 250</div>
+                    </div>
+                </div>
+                <div class=" best-seller-items" id="item-4">
+                    <img src="/images/kaia/lily_top_1.jpg" alt="best-seller-item-4" >
+                    <div class="item-label">
+                        <div class="item-name">Lily Top</div>
+                        <div class="item-price">PHP 150</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class = "outer-container reviews">
+            <div class = "title-container">
+                Recent Reviews
+            </div>
+            <div class = "content-container reviews-showcase">
+                <i id="left-slide" class="fa-solid fa-angle-left" style="color: #b0b0b0;"></i>
+                <div class="review-carousel">
+                    <div class="review-cards" draggable="false"> <!-- Cards needs to be linked to specific product view -->
+                        <div class="reviewer-username">choipngln</div>
+                        <div class="review-content">Cute shirt, probably going to wear first day of school. This shirt isn’t tight like some of the others. Very comfortable and warm. I’m also a 00 size and I got size two, these sizes are small, I didn’t expect it to fit but it does.</div>
+                    </div>
+                    <div class="review-cards" draggable="false">
+                        <div class="reviewer-username">kenji</div>
+                        <div class="review-content">the top is so nice and in a very good quality! highly recommend!! 😜 The knitted style is very cute. perfect for Ph weather! 😜</div>
+                    </div>
+                    <div class="review-cards" draggable="false">
+                        <div class="reviewer-username">joolzie</div>
+                        <div class="review-content">the shirt was a nice fit it was pretty good and the quality was amazing if ur departing on buying this please do it! you won’t regret it and it might surprise you because i thought i wasn’t gonna look to good in it or i bought it to big or to small but after i put it on i was like this is it! </div>
+                    </div>
+                    <div class="review-cards" draggable="false">
+                        <div class="reviewer-username">bandecoco</div>
+                        <div class="review-content">The fabric used is very comfortable, it is not that see through. The design is very chic and can be worn on formal occasions.</div>
+                    </div>
+                    <div class="review-cards" draggable="false">
+                        <div class="reviewer-username">cirup</div>
+                        <div class="review-content">amazing fit. true to size</div>
+                    </div>
+                </div>
+                <i id="right-slide" class="fa-solid fa-angle-right" style="color: #b0b0b0;"></i>
+            </div>
         </div>
     </div>
+    <%- include("../main/footer.ejs") %>
 </body>
 </html>

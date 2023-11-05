@@ -3,15 +3,16 @@
 <head>
     <title> Kaia Apparel </title>
     <link rel = "stylesheet" href = "/css/admin/inventory.css">
+    <link rel = "stylesheet" href = "/css/main/font.css">
     <script src = "js/admin/inventory.js" defer> </script>
 </head>
 <body>
-    <%- include("../partials/admin-header.ejs") %>
+    <%- include("../main/admin-header.ejs") %>
     <div class = "main-container" id = "main-container"> 
         <div class = "sticky-container"> 
             <div class = "header-container">
                 <span class = "title"> INVENTORY MANAGEMENT </span>
-                <a class = "register-button" href = "/registerProduct"> REGISTER+ </a>
+                <a class = "register-button" href = "/registerProduct"> REGISTER </a>
             </div>
             <div class = "header-container">
                 <div class = "filter-container category">
@@ -36,26 +37,21 @@
             </div>
         </div>
         <div id = "product-containers">
-            <!--
-                <% if( products !== null ) { %> 
-                    <% products.forEach((product) => { %>
-                        <div class = "product-container"> 
-                            <div class = "product-item">
-                                <span>[#<%=product.productID %>]</span>
-                                <span>Name: <%= product.productName %> | </span>
-                                <span>Price: $<%= product.price %> | </span>
-                                <span>Stock: <%= product.stockQuantity %> | </span>
-                            </div>
-                        </div>
-                    <% }); %>
-                <% } %>    
-            -->       
+            <% /*
+                <div class="product-item" data-product-id="[product.productID]">
+                    <div class="item-icon-col">
+                        <img src="[product.filePath]" class="item-icon">
+                    </div>
+                    <div class="item-name">[product.productName in uppercase]</div>
+                </div>      
+           */  %>
         </div>
     </div>
     <footer> 
         <div class = "pagination" id = "pagination">
         </div>
     </footer>
+    <%- include("../main/footer.ejs") %>
 </body>
 <script>
     const categories = `<%- JSON.stringify(categories) %>`;

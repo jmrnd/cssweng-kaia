@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
-
-body{
+body {
     display: block;
     font-family: 'Roboto Condensed', sans-serif;
+    padding: 0px;
+    margin: 0px;
 }
 
 div.main-container {
@@ -13,22 +13,21 @@ div.main-container {
     padding: 50px;
 }
 
-div.switch-container{
+div.switch-container {
     display: flex;
     flex-direction: row;
     margin-bottom: 20px;
 }
 
-
-div.switch-container-button.login{
+div.switch-container-button.login {
     width: 40%;
 }
 
-div.switch-container-button.register{
+div.switch-container-button.register {
     width: 60%;
 }
 
-div.switch-container-button{
+div.switch-container-button {
     text-align: center;
     padding-bottom: 10px;
     font-weight: bold;
@@ -36,19 +35,17 @@ div.switch-container-button{
     border-bottom: 1px solid black;
 }
 
-div.switch-container-button:hover{
+div.switch-container-button:hover {
     cursor: pointer;
 }
 
-/* Use for JS */
-div.switch-container-button.focus{
+div.switch-container-button.focus {
     border-bottom: 5px solid #995599;
     color: #995599;
 }
 
-
 /***********************************************
-                  Error Message                    
+                Error Message                    
 ***********************************************/
 div.error-box {
     display: none;
@@ -60,28 +57,19 @@ div.error-box {
 }
 
 
-/********************
-    LOGIN CONTENT
-*********************/
+/***********************************************
+                Login Content                    
+***********************************************/
 div.input-box{
+    display: flex;
     width: 100%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
-.invalid-credentials {
-    background-color: red;
-    animation: shakeobj 0.5s 10;
-}
-
-@keyframes shakeobj {
-    0%{transform: translate(1px,1px) rotate(90deg);}
-    20%{transform: translate(-3px,-1px) rotate(180deg);}
-    40%{transform: translate(-1px,-2px) rotate(270deg);}
-    60%{transform: translate(-1px,-2px) rotate(450deg);}
-    80%{transform: translate(1px,2px) rotate(630deg);}
-    100%{transform: translate(-1px,-2px) rotate(720deg);}
-}
-
-div.input-box input{
+div.input-box input {
+    flex: 1;
     width: 100%;
     border: none;
     border-bottom: black 1px solid;
@@ -92,18 +80,22 @@ div.input-box input{
     margin: 10px 0;
 }
 
-div.input-box input::placeholder{
+.password-toggle {
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+div.input-box input::placeholder {
     font-size: small;
 }
 
-div.input-box input:focus {
+div.input-box input:focus, .password-toggle:focus {
     outline: none;
     border-bottom: 2px solid #995599;
     background-color: #bf97bf2d;
 }
 
-
-div.options-container{
+div.options-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -113,17 +105,16 @@ div.options-container{
     letter-spacing: 3px;
 }
 
-.option-items #remember-me{
+.option-items #remember-me {
     width: 20px;
     height: 20px;
     vertical-align: middle;
 }
 
-.option-items label{
+.option-items label {
     align-items: center;
     vertical-align: middle;
 }
-
 
 div.terms-container {
     font-size: small;
@@ -133,7 +124,7 @@ div.terms-container {
     font-size: 0.85em;
 }
 
-#login-button{
+#login-button {
     width: 200px;
     margin-left: 20px;
     padding: 15px 20px;
@@ -145,24 +136,22 @@ div.terms-container {
     cursor: pointer;
 }
 
-#login-button:hover{
+#login-button:hover {
     background-color: #995599;
 }
 
-
-/********************
- REGISTER DIFFERENCE
-*********************/
+/***********************************************
+                Register Content                    
+***********************************************/
 #register-form-container {
     display: none;
 }
 
-
-.input-box.name{
+.input-box.name {
     display: flex;
 }
 
-#register-button{
+#register-button {
     float:right;
     width: 300px;
     padding: 15px 20px;
@@ -174,7 +163,7 @@ div.terms-container {
     cursor: pointer;
     margin-top: 20px;
 }
-
-#register-button:hover{
+ 
+#register-button:hover {
     background-color: #995599;
 }

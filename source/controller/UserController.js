@@ -15,6 +15,8 @@ const multer = require('../config/multer.js');
 const User = require('../models/User.js');
 const Product = require('../models/Product.js');
 const Image = require('../models/Image.js');
+const Variation = require('../models/Variation.js');
+const Wishlist = require('../models/Wishlist.js');
 
 const UserController = {
 
@@ -186,7 +188,7 @@ const UserController = {
             const productID = req.query.productID;
             const { categories } = await Product.getBottomMostCategories();
             const { product } = await Product.getProductWithImageByID(productID);
-            res.status(200).render('./users/viewProduct.ejs', { categories: categories, product: product });
+            res.status(200).render('./users/viewProduct.ejs', { categories: categories, product: product, productID: productID });
         } else {
             res.redirect('/');
         }
@@ -195,7 +197,13 @@ const UserController = {
     wishlist: async (req, res) => {
         // if( req.session.authorized && req.session.userRole == 'admin' ) {
         if( true ) {
-            res.status(200).render('./users/wishlist.ejs' );
+            try {
+                const userID = req.session.userID;
+                const { wishlist } = await Wishlist.getUserWishlist( userID );
+                res.status(200).render('./users/wishlist.ejs', { wishlist: wishlist });
+            } catch( error ) {
+
+            }
         } else {
             res.redirect('/');
         }
@@ -204,10 +212,26 @@ const UserController = {
     wishlistProduct: async (req, res) => {
         // if( req.session.authorized && req.session.userRole == 'admin' ) {
         if( true ) {
+            try { 
+                const { productID } = req.body;
+                const userID = req.session.userID; 
+                const parsedProductID = parseInt(productID.replace(/\D/g, ''));
 
+                const wishlistStatus = await Wishlist.checkWishlistStatus( userID, parsedProductID );
 
-        } else {
-            res.redirect('/');
+                if( wishlistStatus.status === 200 ) {
+                    const response = await Wishlist.removeFromWishlist( userID, parsedProductID );
+                    return res.status(response.status).json({ message: "Product removed from wishlist." });
+                } else if( wishlistStatus.status === 404 ) {
+                    const response = await Wishlist.addToWishlist( userID, parsedProductID );
+                    return res.status(response.status).json({ message: "Product added to wishlist." });
+                } else {
+                    return res.status(wishlistStatus.status).json({ message: wishlistStatus.message });
+                }
+            } catch( error ) {
+                console.log( "wishlistProduct Error:", error );
+                res.status(500).json({ message: "Internal server error." });
+            }
         }
     },
 

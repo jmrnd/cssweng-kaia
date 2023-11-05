@@ -146,24 +146,3 @@ class User {
 }
 
 module.exports = User;
-
-/*
-async function main() {
-    try {
-      // Replace with a valid email and password for testing
-      const firstName = 'Sebastien Michael';
-      const lastName = 'Dela Cruz'
-      const email = 'sebastien_delacruz@dlsu.edu.ph';
-      const password = '2211qq11';
-  
-      const result = await User.login(email, password);
-      // const register = await User.register( firstName, lastName, email, password );
-
-      console.log(result);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-}
-
-main();
-*/

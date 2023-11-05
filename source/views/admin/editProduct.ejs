@@ -3,11 +3,11 @@
 <head>
     <title> Kaia Apparel </title>
     <link rel = "stylesheet" href = "/css/admin/editProduct.css">
+    <link rel = "stylesheet" href = "/css/main/font.css">
     <script src = "js/admin/editProduct.js" defer> </script>
 </head>
 <body>
-    <%- include("../partials/admin-header.ejs") %>
-
+    <%- include("../main/admin-header.ejs") %>
     <div class = "main-container"> 
         <div class = "header-container">
             <span class = "title"> UPDATE PRODUCT </span>
@@ -78,6 +78,7 @@
                 </div>
             </div>
         </form>
+    </div>
 </body>
 <script>
     const categories = `<%- JSON.stringify(categories) %>`;

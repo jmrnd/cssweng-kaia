@@ -1,24 +1,4 @@
 /***********************************************
-                     FONTS                    
-***********************************************/
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
-
-@font-face {
-    font-family: 'Migra-ExtraBold';
-    src: url('/fonts/Migra-Extrabold.otf') format('opentype');
-}
-
-@font-face {
-    font-family: 'GlacialIndifference';
-    src: url('/fonts/GlacialIndifference.otf') format('opentype');
-}
-
-@font-face {
-    font-family: 'GlacialIndifference-Bold';
-    src: url('/fonts/GlacialIndifference-Bold.otf') format('opentype');
-}
-
-/***********************************************
                   CONTAINERS                    
 ***********************************************/
 body {
@@ -28,11 +8,11 @@ body {
     user-select: none;
     margin: 0 auto;
     overflow-x: hidden;
-    width: 100%;
 }
 
 div.main-container {
     display: block;
+    min-height: 650px;
     max-width: 1150px;  
     align-items: center; 
     margin-left: auto;

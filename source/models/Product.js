@@ -1,23 +1,24 @@
 const db = require('../config/database.js');
 
 class Product {
-
-    static async createProduct( name, description, price, stock, categoryID ) {
+    
+    static async createProduct( name, description, price, categoryID ) {
         const sql = `
             INSERT INTO products(
                 productName,
                 productDescription,
                 price,
-                stockQuantity,
                 categoryID
             ) 
-            VALUES( ?, ?, ?, ?, ? )
+            VALUES( ?, ?, ?, ? )
         `;
 
         try {
-            const values = [ name, description, price, stock, categoryID ];
-            await db.execute(sql, values);
-            return { status: 201, message: "Registration succesful." };
+            const values = [ name, description, price, categoryID ];
+            const [result] = await db.execute(sql, values);
+            const productID = result.insertId;
+
+            return { status: 201, message: "Registration successful.", productID: productID };
         } catch( error ) {
             console.log( "createProduct() Error: ", error );
             return { status: 500, message: "Internal server error." };
@@ -42,13 +43,13 @@ class Product {
     static async updateProduct( product ) {
         const sql = `
             UPDATE products
-            SET productName = ?, productDescription = ?, price = ?, stockQuantity = ?
+            SET productName = ?, productDescription = ?, price = ?
             WHERE productID = ?;
         `;
 
         try {
-            const { productID, productName, productDescription, price, stockQuantity } = product;
-            const values = [productName, productDescription, price, stockQuantity, productID];
+            const { productID, productName, productDescription, price } = product;
+            const values = [productName, productDescription, price, productID];
             await db.execute(sql, values);
             return { status: 200, message: "Product was successfuly updated." };
         } catch( error ) {
@@ -59,7 +60,6 @@ class Product {
 
     static async getHighestProductID() {
         const sql = `SELECT * FROM products ORDER BY productID DESC LIMIT 1;` 
-
         try {
           const [rows, _] = await db.execute(sql);
       
@@ -92,10 +92,15 @@ class Product {
 
     static async getAllProductsWithImages() {
         const sql = `
-            SELECT p.productID, p.categoryID, p.productName, p.productDescription, p.price, p.stockQuantity, i.imageID, i.filePath
+            SELECT p.productID, p.categoryID, p.productName, p.productDescription, p.price, i.imageID, i.filePath
             FROM products p
-            LEFT JOIN productImages pi ON p.productID = pi.productID
-            LEFT JOIN imageReferences i ON pi.imageID = i.imageID
+            LEFT JOIN (
+                SELECT pi.productID, MAX(i.imageID) AS maxImageID
+                FROM productImages pi
+                LEFT JOIN imageReferences i ON pi.imageID = i.imageID
+                GROUP BY pi.productID
+            ) AS maxImages ON p.productID = maxImages.productID
+            LEFT JOIN imageReferences i ON maxImages.maxImageID = i.imageID
         `;
 
         try {
@@ -145,6 +150,7 @@ class Product {
             LEFT JOIN productImages pi ON p.productID = pi.productID
             LEFT JOIN imageReferences i ON pi.imageID = i.imageID
             WHERE p.productID = ?
+            ORDER BY i.imageID DESC;
         `
         
         try {

@@ -93,12 +93,12 @@ function generateProductItem( product ) {
     
     productItem.addEventListener('click', async function(e) {
         try {
-            const response = await fetch( `/editProduct?productID=${product.productID}`, {
+            const response = await fetch( `/viewProductAdmin?productID=${product.productID}`, {
                 method: 'GET'
             });
 
             if( response.status === 200 ) {
-                window.location.href = `/editProduct?productID=${product.productID}`;
+                window.location.href = `/viewProductAdmin?productID=${product.productID}`;
             } else {
                 console.log( "Request failed!" );
             }

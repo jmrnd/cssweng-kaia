@@ -48,6 +48,19 @@ rememberBox.addEventListener('change', function() {
     }   
 });
 
+function togglePasswordVisibility( id ) {
+    var passwordInput = document.getElementById(id);
+    var passwordToggle = document.querySelector(".password-toggle");
+
+    if( passwordInput.type === "password" ) {
+        passwordInput.type = "text";
+        passwordToggle.textContent = "Hide";
+    } else {
+        passwordInput.type = "password";
+        passwordToggle.textContent = "Show";
+    }
+}
+
 /** 
     ` Attaches a `click` event to `#login-button`. The code communicates
     asynchronously with the server to log in a registered student.

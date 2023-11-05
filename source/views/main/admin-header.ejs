@@ -1,0 +1,31 @@
+<link rel = "stylesheet" type = "text/css" href = "/css/main/header.css">
+<link rel = "stylesheet" href = "/css/main/font.css">
+<script src = "/js/main/header.js" defer> </script>
+<div class = "header">
+    <div class = "header-box"> 
+        <div class = "logo"> 
+            <h1 class = "kaia">Kaia</h1>
+            <h6 class = "apparel">APPARE<span class = last-letter>L</span></h6>
+        </div>        
+        <div class = "header-buttons"> 
+            <span class = "admin-label"> ADMIN </span>
+            <button type = "button" class = "header" data-popup = "profile"> 
+                <span class = "icon profile"> </span>
+            </button>
+        </div>
+    </div>
+    <div class = "popup profile-popup">
+        <button type = "button" onclick = "navigateTo('homepage')"> 
+            Homepage
+        </button>
+        <button type = "button" onclick = "navigateTo('inventory')"> 
+            Inventory
+        </button>
+        <button type = "button" onclick = "navigateTo('registerProduct')"> 
+            Register Product
+        </button>
+        <button type = "button" id = "logout-button"> 
+            Logout
+        </button>
+    </div>
+</div>

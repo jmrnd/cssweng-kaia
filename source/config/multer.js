@@ -13,11 +13,14 @@ const imageFilter = (req, file, cb) => {
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
+        cb( null, 'public/upload/temporary' );
+        /*
         if( file.fieldname === 'product' ) {
             cb( null, 'public/upload/products' );
         } else {
             cb( null, 'public/upload' );
         }
+        */
     },
     filename: (req, file, cb) => {
         const date = moment().format('YYYY-MM-DD-HHmmss');

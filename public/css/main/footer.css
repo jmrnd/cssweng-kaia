@@ -1,0 +1,71 @@
+.footer-container {
+    display: flex;
+    border-top: 2px solid #F6F6F6;
+}
+
+.footer{
+    max-width: 1150px;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0;
+    margin: 0 auto;
+}
+
+div .footer .footer-col{
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    color: #999999;
+}
+
+.footer-title{
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 1em;
+    text-transform: uppercase;
+}
+
+.footer .footer-item{
+    margin-bottom: 5px;
+    font-weight: 300;
+    font-size: 0.9em;
+}
+
+.footer .kaia-footer{
+    color:#EF91CF;
+    font-family: 'Migra-ExtraBold', sans-serif;
+    font-size: 2.5em;
+    margin: 0px;
+    padding: 0px;
+}
+
+.footer .apparel-footer {
+    color:#995594;
+    font-family: "GlacialIndifference-Bold", sans-serif;
+    font-size: 0.6em;
+    font-weight: bold;
+    margin: -12px;
+    padding: 0px;
+    letter-spacing: 5.5px;
+}
+
+.footer-col.socials svg{
+    height: 30px;
+    width: 30px;
+
+}
+
+.socials-icon{
+    width: 120px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.socials-icon #shopee-link svg{
+    transform: translateY(-2px);
+    -webkit-transform: translateY(-2px);
+    -moz-transform: translateY(-2px);
+    -ms-transform: translateY(-2px);
+    -o-transform: translateY(-2px);
+}
