@@ -27,6 +27,7 @@ INSERT INTO roles (roleName) VALUES ('guest'), ('customer'), ('admin');
 CREATE TABLE IF NOT EXISTS userRoles(
     userID INT,
     roleID INT,
+    INDEX	(userID ASC),
     PRIMARY KEY (userID, roleID),
     FOREIGN KEY (userID) REFERENCES users(userID),
     FOREIGN KEY (roleID) REFERENCES roles(roleID)
@@ -134,7 +135,7 @@ CREATE TABLE IF NOT EXISTS imageReferences (
 );
 
 -- Set the auto-increment starting value and maximum value for imageReference
-ALTER TABLE imageReferencesse
+ALTER TABLE imageReferences
 AUTO_INCREMENT = 90000000;
 
 CREATE TABLE IF NOT EXISTS productImages (
