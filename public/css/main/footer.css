@@ -3,22 +3,23 @@
     border-top: 2px solid #F6F6F6;
 }
 
-.footer{
-    max-width: 1150px;
+.footer {
+    max-width: 1350px;
     display: flex;
     justify-content: space-around;
     padding: 20px 0;
     margin: 0 auto;
 }
 
-div .footer .footer-col{
+div .footer .footer-col {
     display: flex;
     flex-direction: column;
-    margin-right: 10px;
+    text-align: left;
+    padding: 35px;
     color: #999999;
 }
 
-.footer-title{
+.footer-title {
     margin-bottom: 8px;
     font-weight: 600;
     font-size: 1em;
@@ -37,6 +38,7 @@ div .footer .footer-col{
     font-size: 2.5em;
     margin: 0px;
     padding: 0px;
+    text-align: center;
 }
 
 .footer .apparel-footer {
@@ -47,6 +49,8 @@ div .footer .footer-col{
     margin: -12px;
     padding: 0px;
     letter-spacing: 5.5px;
+    text-align: center;
+
 }
 
 .footer-col.socials svg{

@@ -4,6 +4,7 @@
     <title> Kaia Apparel </title>
     <link rel = "stylesheet" href = "/css/main/font.css">
     <link rel = "stylesheet" href = "/css/users/wishlist.css">
+    <script src = "/js/users/wishlist.js" defer> </script>
 </head>
 <body>
     <%- include("../main/header.ejs") %>
@@ -16,11 +17,12 @@
         </div>
         <div class = "category-header-title">
             <span class = "category-title" id = "category-title"> WISHLIST </span>
-            <span> 3 items </span>
+            <span id = "wishlist-items"> </span>
         </div>
         <div id = "product-containers">
         </div>
     </div>
+    <%- include("../main/footer.ejs") %>
 </body>
 <script>
     const wishlist = `<%- JSON.stringify(wishlist) %>`;

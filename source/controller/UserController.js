@@ -188,7 +188,13 @@ const UserController = {
             const productID = req.query.productID;
             const { categories } = await Product.getBottomMostCategories();
             const { product } = await Product.getProductWithImageByID(productID);
-            res.status(200).render('./users/viewProduct.ejs', { categories: categories, product: product, productID: productID });
+            const { images } = await Image.getAllImagesOfProduct(productID);
+            const { variations } = await Variation.getAllVariationsOfProduct(productID);
+
+            res.status(200).render('./users/viewProduct.ejs', { 
+                categories: categories, product: product, productID: productID, 
+                productImages: images, variations: variations
+            });
         } else {
             res.redirect('/');
         }
@@ -201,6 +207,21 @@ const UserController = {
                 const userID = req.session.userID;
                 const { wishlist } = await Wishlist.getUserWishlist( userID );
                 res.status(200).render('./users/wishlist.ejs', { wishlist: wishlist });
+            } catch( error ) {
+
+            }
+        } else {
+            res.redirect('/');
+        }
+    },
+
+    shoppingCart: async (req, res) => {
+        // if( req.session.authorized && req.session.userRole == 'admin' ) {
+        if( true ) {
+            try {
+                const userID = req.session.userID;
+                const { wishlist } = await Wishlist.getUserWishlist( userID );
+                res.status(200).render('./users/shoppingCart.ejs', { wishlist: wishlist });
             } catch( error ) {
 
             }

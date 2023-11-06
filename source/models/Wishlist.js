@@ -54,7 +54,15 @@ class Wishlist {
 
     static async getUserWishlist( userID ) {
         const sql = `
-            SELECT p.productID, p.categoryID, p.productName, p.productDescription, p.price, i.imageID, i.filePath
+            SELECT
+                p.productID,
+                p.categoryID,
+                p.productName,
+                p.productDescription,
+                p.price,
+                i.imageID,
+                i.filePath,
+                COALESCE(SUM(v.stockQuantity), 0) AS stockQuantity
             FROM products p
             INNER JOIN wishlist w ON p.productID = w.productID
             LEFT JOIN (
@@ -64,7 +72,9 @@ class Wishlist {
                 GROUP BY pi.productID
             ) AS maxImages ON p.productID = maxImages.productID
             LEFT JOIN imageReferences i ON maxImages.maxImageID = i.imageID
-            WHERE w.userID = ?;
+            LEFT JOIN productsVariation v ON p.productID = v.productID
+            WHERE w.userID = ?
+            GROUP BY p.productID, p.categoryID, p.productName, p.productDescription, p.price, i.imageID, i.filePath;
         `;
 
         try {

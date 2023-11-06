@@ -6,13 +6,14 @@ body {
     justify-content: center;
     font-family: 'Roboto Condensed', sans-serif;
     user-select: none;
-    margin: 0 auto;
     overflow-x: hidden;
+    padding: 0px;
+    margin: 0px;
 }
 
 div.main-container {
     display: block;
-    min-height: 650px;
+    min-height: 1150px;
     max-width: 1150px;  
     align-items: center; 
     margin-left: auto;
@@ -26,7 +27,6 @@ div.sticky-container {
     position: sticky;
     top: 110px;
     background-color: white;
-    padding-top: 10px;
 }
 
 div.header-container {

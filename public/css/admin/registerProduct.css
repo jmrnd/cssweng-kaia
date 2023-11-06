@@ -75,7 +75,7 @@ form#register-product {
 
 .register-form {
     display: flex;
-        justify-content: center;
+    justify-content: center;
 }
 
 .left-section, .right-section {

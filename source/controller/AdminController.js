@@ -41,8 +41,34 @@ const AdminController = {
         if( true ) {
             const productID = req.query.productID;
             const { categories } = await Product.getBottomMostCategories();
-            const { product } = await Product.getProductByID(productID);
-            res.status(200).render('./admin/editProduct.ejs', { categories: categories, product: product });
+            const { product } = await Product.getProductWithImageByID(productID);
+            const { images } = await Image.getAllImagesOfProduct(productID);
+            const { variations } = await Variation.getAllVariationsOfProduct(productID);
+
+            res.status(200).render('./admin/adminProductView.ejs', { 
+                categories: categories, product: product, productID: productID, 
+                productImages: images, variations: variations
+            });
+
+        } else {
+            res.redirect('/');
+        }
+    },
+
+    editProduct: async (req, res) => {
+        // if( req.session.authorized && req.session.userRole == 'admin' ) {
+        if( true ) {
+            const productID = req.query.productID;
+            const { categories } = await Product.getBottomMostCategories();
+            const { product } = await Product.getProductWithImageByID(productID);
+            const { images } = await Image.getAllImagesOfProduct(productID);
+            const { variations } = await Variation.getAllVariationsOfProduct(productID);
+
+            res.status(200).render('./admin/editProduct.ejs', { 
+                categories: categories, product: product, productID: productID, 
+                productImages: images, variations: variations
+            });
+
         } else {
             res.redirect('/');
         }

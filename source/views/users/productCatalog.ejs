@@ -10,11 +10,14 @@
 <body>
     <%- include("../main/header.ejs") %>
     <div class = "main-container"> 
-        <div class = "path-container">
-            <span> <a href = "homepage" id = "home"> Home </a> / 
-                <span class = "path-category" id = "path-category"> </span> 
-                <a> Collection </a>
-            </span>
+        <div class = "header-container">
+            <div class = "path-container">
+                <span id = "path-content"> 
+                    <a href = "homepage" id = "home"> Home</a> / 
+                    <span class = "path-category" id = "path-category"> </span> 
+                    <a> Collection </a>
+                </span>
+            </div>
         </div>
         <div class = "category-header-container" id = "category-header-container">
             <% if( categories !== null ) { %> 

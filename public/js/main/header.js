@@ -1,6 +1,9 @@
 const container = document.querySelector('.header-buttons');
 const buttons = document.querySelectorAll('button.header');
 const popups = document.querySelectorAll('.popup');
+const goToWishlistButton = document.getElementById('wishlist-button');
+const goToShoppingCartButton = document.getElementById('shopping-cart-button');
+const logoutButton = document.getElementById('logout-button');
 
 /*
     ` When the mouse cursor hovers on the buttons, the popup shows up.
@@ -40,17 +43,53 @@ popups.forEach((popup) => {
 
 
 // Add a click event listener to the "Logout" button.
-const logoutButton = document.getElementById('logout-button');
 logoutButton?.addEventListener( 'click', async function(e) {
     e.preventDefault();
     try {
         const response = await fetch( 'logout', {
             METHOD: 'GET',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json' },    
         });
 
         if( response.status === 200 ) {
             window.location.href = "/";
+        } else if( response.status === 500 ) {
+            console.error( "An error occured: ", error );
+        }
+    } catch( error ) {
+        console.error( "An error occured: ", error );
+    }
+});
+
+// Add a click event listener to the "Logout" button.
+goToWishlistButton?.addEventListener( 'click', async function(e) {
+    e.preventDefault();
+    try {
+        const response = await fetch( 'wishlist', {
+            METHOD: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        if( response.status === 200 ) {
+            window.location.href = "/wishlist";
+        } else if( response.status === 500 ) {
+            console.error( "An error occured: ", error );
+        }
+    } catch( error ) {
+        console.error( "An error occured: ", error );
+    }
+});
+
+goToShoppingCartButton?.addEventListener( 'click', async function(e) {
+    e.preventDefault();
+    try {
+        const response = await fetch( 'wishlist', {
+            METHOD: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        if( response.status === 200 ) {
+            window.location.href = "/shoppingcart";
         } else if( response.status === 500 ) {
             console.error( "An error occured: ", error );
         }

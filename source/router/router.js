@@ -19,13 +19,14 @@ router.get('/viewProduct', UserController.viewProduct );
 router.post('/checkWishlistStatus', UserController.wishlistProduct );
 router.get('/wishlist', UserController.wishlist );
 router.post('/wishlistProduct', UserController.wishlistProduct );
+router.get('/shoppingCart', UserController.shoppingCart );
 
 router.get('/inventory', AdminController.inventory );
 router.get('/registerProduct', AdminController.getRegisterProduct );
 router.post('/registerProduct', AdminController.postRegisterProduct );
 router.post('/createProductVariations', AdminController.createProductVariations );
 router.get('/viewProductAdmin', AdminController.viewProductAdmin );
-// router.get('/editProduct', AdminController.editProduct );
+router.get('/editProduct', AdminController.editProduct );
 router.post('/deleteProduct', AdminController.deleteProduct );
 router.post('/updateProduct', AdminController.updateProduct );
 router.post('/uploadTemporaryImage', multer.single("product"), AdminController.uploadTemporaryImage );

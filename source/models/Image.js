@@ -74,6 +74,27 @@ class Image {
             return { status: 500, message: "Internal server error.", images: null };
         }
     }
+
+    static async getAllImagesOfProduct( productID ) {
+        const sql = `
+            SELECT pi.imageID, ir.destination, ir.filePath, ir.originalName
+            FROM productImages AS pi
+            LEFT JOIN imageReferences AS ir ON pi.imageID = ir.imageID
+            WHERE pi.productID = ?;
+        `;
+
+        try {
+            const values = [ productID ];
+            const [rows, _] = await db.execute( sql, values );
+            if( rows.length === 0 ) {
+                return { status: 404, images: null };
+            } return { status: 200, images: rows };
+
+        } catch( error ) {
+            console.log( "Image.js / getAllImagesOfProduct Error: ", error );
+            return { status: 500, message: "Internal server error.", images: null };
+        }
+    }
 }
 
 module.exports = Image;

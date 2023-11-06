@@ -3,66 +3,253 @@
 <head>
     <title> Kaia Apparel </title>
     <link rel = "stylesheet" href = "/css/users/viewProduct.css">
+    <link rel = "stylesheet" href = "/css/users/viewProductReviews.css">
     <link rel = "stylesheet" href = "/css/main/font.css">
+    <link rel = "stylesheet" href = "/css/main/span.css">
     <script src = "js/users/viewProduct.js" defer> </script>
+    <script src = "js/users/viewProductReviews.js" defer> </script>
 </head>
 <body>
     <%- include("../main/header.ejs") %>
 
     <div class = "main-container">
-        <div class = "header-container">
+
+        <section id = "path">
             <div class = "path-container">
-                <span> <a href = "homepage" id = "home"> Home</a> / 
-                    <span class = "path-category" id = "path-category"> </span> 
-                    <a> Collection </a>
-                </span>
+                <a class = "path-link" href = "homepage"> HOME </a> / 
+                <span class = "path-category" id = "path-category"> </span> 
             </div>
-        </div>
-        <div class = "product-details-container"> 
-            <div class = "left-section">
-                <div class = "image-body">
-                    <span class = "arrows"> < </span>
-                    <div class = "image"> </div>
-                    <span class = "arrows"> > </span>
+        </section>
+
+        <section id = "product">
+            <% if( product !== null ) { %> 
+            <div class = "left-section"> <section id = "product-images">
+                <div class = "large-image-section" id = "large-image=section">
+                    <button class = "arrow-button image" onclick = "moveImage(-1)"> &#10094; </button>
+                    <div class = "large-image-container" id = "large-image-container"> 
+                        <% /* <img class = "large-image" src = "/images/kaia/maya_top_1.jpg"> */ %>
+                    </div>
+                    <button class = "arrow-button image" onclick = "moveImage(1)"> &#10095; </button>
                 </div>
-            </div>
-            <div class = "right-section">
+                <div class = "small-image-section" id = "small-image-section">
+                    <% /*
+                        <div class = "small-image-container"> <img class = "small-image" src = "/images/kaia/maya_top_1.jpg"> </div>
+                        <div class = "small-image-container"> <img class = "small-image" src = "/images/kaia/maya_top_1.jpg"> </div>                 
+                        <div class = "small-image-container"> <img class = "small-image" src = "/images/kaia/maya_top_1.jpg"> </div>
+                        <div class = "small-image-container"> <img class = "small-image" src = "/images/kaia/maya_top_1.jpg"> </div>
+                    */ %>
+                </div>
+            </section> </div>
+
+            <div class = "right-section"> <section id = "product-details">
                 <div class = "product-header">
-                    <span class = "product-title"> <%= product.productName %> </span>
+                    <span class = "header-title-large" id = "product-name"> <%= product.productName %> </span> 
                     <button type = "button" class = "wishlist" id = "wishlist-button"> 
                         <span class = "icon wishlist-button"> </span>
                     </button>
                 </div>
-                <div class = "product-body"> 
-                    <span class = "price"> Php <%= product.price %> </span> 
-                    <br> <br>
-                    <span class = "label"> DESCRIPTION </span> <br>
-                    <span> <%= product.productDescription %> </span>
-                    <br> <br>  
-                    <span class = "label"> QUANTITY </span> <br>
-                    <div class = "quantity-button">
-                        <div class = "box gray"> 
-                            <span> < </span>
-                        </div>
-                        <div class = "box"> 
-                            <span class = "quantity"> 1 </span>
-                        </div>
-                        <div class = "box gray"> 
-                            <span> > </span>
-                        </div>
+                <div class = "product-body price"> 
+                    <span class = "header-title-medium" id = "product-price"> PHP <%= product.price %> </span>
+                </div>
+                <div class = "product-body description">
+                    <span class = "text-title"> DESCRIPTION </span> 
+                    <span class = "text-default" id = "product-description"> <%= product.productDescription %> </span>
+                <div class = "product-body variation">
+                    <div class = "variation-details-container">
+                        <span class = "text-title"> VARIATION: <span id = "variation-name"> VARIATION </span> </span>
+                        <span class = "text-title"> STOCKS: <span id = "variation-stocks"> </span> </span>
+                    </div>
+                    <div class = "variation-color-container" id = "variation-color-container"> 
+                    <% /*
+                        <button class = "color-button"> </button>
+                        <button class = "color-button"> </button>
+                        <button class = "color-button"> </button>
+                        <button class = "color-button"> </button>
+                        <button class = "color-button"> </button>
+                        <button class = "color-button"> </button>
+                        <button class = "color-button"> </button>
+                    */ %>
                     </div>
                 </div>
-                <br>
-                <div class = "add-container">
-                    <button type = "submit" class = "add-button"> ADD TO CART </a>
+                <div class = "product-body quantity">
+                    <span class = "text-title"> QUANTITY </span> 
+                    <div class = "quantity-container" id = "quantity-container">
+                        <button class = "arrow-button quantity" onclick = "selectQuantity(-1)"> &#10094; </button>
+                        <div class = "number-container" id = "number-container"> 1 </div>
+                        <button class = "arrow-button quantity" onclick = "selectQuantity(1)"> &#10095; </button>
+                    </div>
+                </div>
+                <div class = "product-body add-to-cart">
+                    <button class = "add-to-cart-button"> ADD TO CART </a>
+                </div>
+            </section> </div> 
+            <% } %>           
+        </section>
+
+        <section id = "reviews">
+            <div class="customer-reviews-header">
+                <div>
+                    <span class="customer-reviews-header-text">
+                        Customer Reviews
+                        <span class="customer-reviews-header-rating-icons"></span>
+                        <span class="customer-reviews-header-rating">(2)</span>
+                    </span>
+                </div>
+                <div class="customer-reviews-filter">
+                    <span class="customer-reviews-rating-text">Rating</span>
+                    <div class="dropdown">
+                        <div class="select">
+                            <span class="selected">ALL</span>
+                            <div class="caret"></div>
+                        </div>
+                        <ul class="menu">
+                            <% for (let i = 6; i > 0; i--) { %>
+                                <% if (i === 6) { %>
+                                    <li class="active">ALL</li>
+                                <% } else { %>
+                                    <% let star = '★ '.repeat(i); %>
+                                    <li><%= i %> <%= star %></li>
+                                <% } %>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>      
+            </div>
+        
+            <div class="customer-reviews-container">
+                <!-- customer-review partial template -->
+                <div class="customer-review" data-review-id="1">
+        
+                    <div class="review-details">
+                        <a href="#" class="review-user link-unstyled">bandecoco</a>
+                        <span class="review-user-rating" data-userrating="0.5"></span>
+                        <span class="review-date">13, Oct 2023</span>
+                    </div>
+        
+                    <div class="review-body">
+                        <span class="custom-truncate">
+                            the shirt was a nice fit it was pretty good and the quality was amazing if ur departing on buying this please do it! you won’t regret it and it might surprise you because i thought i wasn’t gonna look to good in it or i bought it to big or to small but after i put it on i was like this is it! it fits so well and i’m gonna look so good in it back to school and it came pretty fast more than a week but not to long! i’m so glad i choice to buy it even my friends think it’s cute and i hope u look good in it too also i love the color!!!!! :) PLEASE LIKE THIS
+                        </span>
+                        <span class="review-likes">
+                            <!-- toggleLike accepts the customer-review's id -->
+                            <button onclick="toggleLike(this.parentElement)" class="review-like-button link-unstyled liked"></button>
+                            <span id="reviewLike">13</span>
+                        </span>
+                    </div>
+                    
+                    <div class="review-gallery">
+                        <button class="review-previous-image-button link-unstyled" data-review-id="1">&#10094;</button>
+                        <div class="review-image-container">
+                            <img class="user-review-image" src="/images/test/test1.png">
+                            <img class="user-review-image" src="/images/test/test2.png">
+                            <img class="user-review-image" src="/images/test/test3.png">
+                            <img class="user-review-image" src="/images/test/test4.png">
+                            <img class="user-review-image" src="/images/test/test5.png">
+                            <img class="user-review-image" src="/images/test/test6.png">
+                            <img class="user-review-image" src="/images/test/test7.png">
+                        </div>
+                        <button class="review-next-image-button link-unstyled" data-review-id="1">&#10095;</button>
+                    </div>
+                </div>
+        
+                <div class="customer-review" data-review-id="2">
+        
+                    <div class="review-details">
+                        <a href="#" class="review-user link-unstyled">choipngln</a>
+                        <span class="review-user-rating" data-userrating="1.5"></span>
+                        <span class="review-date">13, Oct 2023</span>
+                    </div>
+        
+                    <div class="review-body">
+                        <span>
+                            Cute shirt, probably going to wear first day of school. This shirt isn’t tight like some of the others. Very comfortable and warm. I’m also a 00 size and I got size two, these sizes are small, I didn’t expect it to fit but it does.
+                        </span>
+                        <span class="review-likes">
+                            <button onclick="toggleLike(this.parentElement)" class="review-like-button link-unstyled"></button>
+                            <span id="reviewLike">2</span>
+                        </span>
+                    </div>
+                    
+                    <div class="review-gallery">
+                        <button class="review-previous-image-button link-unstyled" data-review-id="2">&#10094;</button>
+                        <div class="review-image-container">
+                            <img class="user-review-image" src="/images/test/test1.png">
+                            <img class="user-review-image" src="/images/test/test2.png">
+                            <img class="user-review-image" src="/images/test/test3.png">
+                            <img class="user-review-image" src="/images/test/test4.png">
+                        </div>
+                        <button class="review-next-image-button link-unstyled" data-review-id="2">&#10095;</button>
+                    </div>
+                </div>
+        
+                <div class="customer-review" data-review-id="3">
+        
+                    <div class="review-details">
+                        <a href="#" class="review-user link-unstyled">joolzie</a>
+                        <span class="review-user-rating" data-userrating="5.0"></span>
+                        <span class="review-date">13, Oct 2023</span>
+                    </div>
+        
+                    <div class="review-body">
+                        <span>
+                            the shirt was a nice fit it was pretty good and the quality was amazing if ur departing on buying this please do it! you won’t regret it and it might surprise you because i thought i wasn’t gonna look to good in it or i bought it to big or to small but after i put it on i was like this is it! it fits so well and i’m gonna look so good in it back to school and it came pretty fast more than a week but not to long! i’m so glad i choice to buy it even my friends think it’s cute and i hope u look good in it too also i love the color!!!!! PLEASE LIKE THIS
+                        </span>
+                        <span class="review-likes">
+                            <button onclick="toggleLike(this.parentElement)" class="review-like-button link-unstyled liked"></button>
+                            <span id="reviewLike">3</span>
+                        </span>
+                    </div>
+                    
+                    <div class="review-gallery">
+                        <button class="review-previous-image-button link-unstyled" data-review-id="3">&#10094;</button>
+                        <div class="review-image-container">
+                            <img class="user-review-image" src="/images/test/test1.png">
+                            <img class="user-review-image" src="/images/test/test2.png">
+                            <img class="user-review-image" src="/images/test/test3.png">
+                            <img class="user-review-image" src="/images/test/test4.png">
+                            <img class="user-review-image" src="/images/test/test5.png">
+                            <img class="user-review-image" src="/images/test/test6.png">
+                        </div>
+                        <button class="review-next-image-button link-unstyled" data-review-id="3">&#10095;</button>
+                    </div>
+                </div>
+        
+                <div class="customer-review" data-review-id="4">
+        
+                    <div class="review-details">
+                        <a href="#" class="review-user link-unstyled">kenji</a>
+                        <span class="review-user-rating" data-userrating="4.5"></span>
+                        <span class="review-date">13, Oct 2023</span>
+                    </div>
+        
+                    <div class="review-body">
+                        <span>
+                            the top is so nice and in a very good quality! highly recommend!! 😜 The knitted style is very cute. perfect for Ph weather! 😜                </span>
+                        <span class="review-likes">
+                            <button onclick="toggleLike(this.parentElement)" class="review-like-button link-unstyled"></button>
+                            <span id="reviewLike">5</span>
+                        </span>
+                    </div>
+                    
+                    <div class="review-gallery">
+                        <button class="review-previous-image-button link-unstyled" data-review-id="4">&#10094;</button>
+                        <div class="review-image-container">
+                            <img class="user-review-image" src="/images/test/test1.png">
+                            <img class="user-review-image" src="/images/test/test2.png">
+                            <img class="user-review-image" src="/images/test/test3.png">
+                        </div>
+                        <button class="review-next-image-button link-unstyled" data-review-id="4">&#10095;</button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <%- include("../main/footer.ejs") %>
+        </section>
     </div>
+    <%- include("../main/footer.ejs") %>
 </body>
 <script>
     const product = `<%- JSON.stringify(product) %>`;
     const productID = `<%- JSON.stringify(productID) %>`;
+    const productImages = `<%- JSON.stringify(productImages) %>`;
+    const variations = `<%- JSON.stringify(variations) %>`;
 </script>
 </html>

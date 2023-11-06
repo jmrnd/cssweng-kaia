@@ -25,6 +25,9 @@ const addVariation = document.getElementById('add-variation');
 // - Images
 const imagesWrapper = document.getElementById('images-wrapper');
 
+/***********************************************
+                    VARIABLES                   
+***********************************************/
 /**
     imageDetails = { 
         'imageID', 'userID', 'originalName', 'fileName', 
@@ -91,7 +94,6 @@ registerProductForm.addEventListener('submit', async function (e) {
        
         //: displays appropriate feedback messages based on response status
         if( productResponse.status == 201 ) {
-            resetInputFields();
             feedbackText.className = "feedback success";
             feedbackText.textContent = "Product " +  productFormData.name + " has been successfully registered!";
             header.style.paddingTop = "20px";
@@ -128,6 +130,8 @@ registerProductForm.addEventListener('submit', async function (e) {
 
         // - link image to product
         const productImagesResponse = await fetchPost( '/createProductImage', imageIDFormData );
+        resetInputFields();
+
         
     } catch( error ) {
         console.log( error );
@@ -368,6 +372,8 @@ function validateInputFields() {
 }
 
 async function resetInputFields() {
+    imageDetails = [];
+    variations = [];
     variationsWrapper.innerHTML = '';
     imagesWrapper.innerHTML = '';
     productName.value = '';

@@ -1,7 +1,50 @@
+:root {
+    --update-icon: url("/images/icons/update-icon.png");
+    --delete-icon: url("/images/icons/delete-icon.png");
+}
+
 body {
     display: block;
     justify-content: center;
     font-family: 'Roboto Condensed', sans-serif;
+    padding: 0px;
+    margin: 0px;
+}
+
+/***********************************************
+                    FEEDBACK               
+***********************************************/
+.hide {
+    display: none;
+}
+
+.feedback {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 98%;
+    max-width: 98%;
+    border: 1px solid #E9E9E9;
+    background-color: #F6F6F6;
+    outline: none;
+    padding: 10px;
+    margin-top: 30px;
+    font-family: 'Roboto Condensed', sans-serif;
+    height:40px;
+    text-align: center;
+}
+
+.feedback.error {
+    background-color: #F9E1D9;
+    border: 1px solid #B62C00;
+    color: #B62C00;
+}
+
+.feedback.success {
+    background-color: #EAFBE6;
+    border: 1px solid #46A525;
+    color: #46A525;
 }
 
 /***********************************************
@@ -25,13 +68,12 @@ div.header-container {
     z-index: 100; 
 }
 
-div.header-button-container {
+form#update-product {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
-
-form#register-product {
+.update-form {
     display: flex;
     justify-content: center;
 }
@@ -62,6 +104,7 @@ span.label {
     color: black;
     font-weight: bold;
     font-size: 1em;
+    margin-top: 4px;
     margin-right: 20px;
     flex: 1;
 }
@@ -69,44 +112,48 @@ span.label {
 .input-box {
     height: 25px;
     flex: 3;
-    text-align: left;
 }
 
-/***********************************************
-                DELETE IMAGE         
-***********************************************/
-.delete-button, .confirm-button {
-    border: solid 1px #EF91CF; 
-    color: #EF91CF; 
-    padding: 10px 20px;
-    position: relative;
-    right: 10px;
-    cursor: pointer;
-    text-align: center;
-    font-size: 1.2em;
+.input-box.image-button {
+    height: 25px;
+    flex: 3;
+    text-align: right;
+}
+
+.input-box.category {
+    height: 25px;
+    min-height: 25px;
+    width: 98.5% !important;
+    border: 1px solid #E9E9E9;
+    background-color: #F6F6F6;
+    outline: none;  
+    margin-top: 4px;
+    font-family: 'Roboto Condensed', sans-serif;
+    text-indent: 5px;
+}
+
+.form-style-1 {
+    height: 19px;
+    min-height: 19px;
+    width: 98.5% !important;
+    border: 1px solid #E9E9E9;
+    background-color: #F6F6F6;
+    outline: none;  
+    margin-top: 4px;
+    font-family: 'Roboto Condensed', sans-serif;
+    text-indent: 5px;
+}
+
+.input-textarea {
+    width: 94%;
+    max-width: 94%;
+    border: 1px solid #E9E9E9;
+    background-color: #F6F6F6;
+    outline: none;
+    padding: 10px;
     font-family: 'Roboto Condensed', sans-serif;
 }
 
-.delete-button:hover, .confirm-button:hover {
-    background: #EF91CF;
-    color: white;
-    opacity: 0.9;
-    transition: 0.15s;
-}
-
-.confirm-button {
-    margin: 0 10px;
-}
-
-#confirm {
-    background-color: #EF91CF;
-    color: white; 
-}
-
-#confirm:hover {
-    opacity: 0.85;
-    transition: 0.15s;  
-}
 /***********************************************
                 UPLOAD IMAGE         
 ***********************************************/
@@ -124,21 +171,49 @@ div.upload-button {
     transition: 0.1s;
 }
 
-/***********************************************
-                UPLOAD IMAGE         
-***********************************************/
-input[type="text"], input[type="number"], select {
-    height: 19px;
-    min-height: 19px;
-    width: 98.5% !important;
-    border: 1px solid #E9E9E9;
-    background-color: #F6F6F6;
-    outline: none;  
-    font-family: 'Roboto Condensed', sans-serif;
-    text-indent: 5px;
+.image-container {
+    display: block;
+    align-items: center;
+    width: 96%;
+    max-width: 96%;
 }
 
-.input-textarea {
+.item-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #E9E9E9;
+    background-color: #F6F6F6;
+    outline: none;
+    padding: 5px;
+    font-family: 'Roboto Condensed', sans-serif;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.item-icon-col {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.item-icon {
+    height: 50px;
+    padding: 5px;
+}
+
+.item-name {
+    width: 80%;
+    padding-left: 5px;
+}
+
+/***********************************************
+                 VARIATIONS              
+***********************************************/
+.variation-form {
+    display: flex;
     width: 94%;
     max-width: 94%;
     border: 1px solid #E9E9E9;
@@ -148,13 +223,73 @@ input[type="text"], input[type="number"], select {
     font-family: 'Roboto Condensed', sans-serif;
 }
 
-/***********************************************
-                 RIGHT SECTION               
-***********************************************/
-.temporary {
+.form-style-2 {
+    height: 19px;
+    min-height: 19px;
+    width: 98.5% !important;
+    border: 1px solid #C2C2C2; 
+    background-color: #ffffff;
+    outline: none;  
+    margin-top: 4px;
+    font-family: 'Roboto Condensed', sans-serif;
+    text-indent: 5px;
+}
+
+.var-right-section {
+    width: 50%;
+}
+
+.var-left-section {
+    width: 50%;
+}
+
+.color-picker {
+    width: 98.5%;
+    height: 30px; 
+    border: none;
+    margin: 0px;
+    padding: 0px;
+    outline: none;
+}
+
+.add-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.add-button {
+    height: 30px; 
+    width: 30px;
+    margin-top: 8px;
+    margin-right: 14px;
+    font-weight: bold;
+    font-size: 1.2em;
+    border: 1px solid #C2C2C2;
+    background-color:  #C2C2C2;
+    color: #4d4d4d;
+}
+
+.add-button:hover{
+    background-color:  #4d4d4d;
+    border: 1px solid #4d4d4d;
+    color: #C2C2C2;
+    opacity: 0.9;
+    transition: 0.15s;
+}
+
+.add-button:active {
+    opacity: 0.85;
+    transition: 0.15s;
+}
+
+.add-button:not(:hover) {
+    transition: 0.15s;
+}
+
+.variation-container {
+    display: flex;
     align-items: center;
     width: 94%;
     max-width: 94%;
@@ -162,22 +297,78 @@ input[type="text"], input[type="number"], select {
     background-color: #F6F6F6;
     outline: none;
     padding: 10px;
+    padding-left: 15px;
+    padding-right: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     font-family: 'Roboto Condensed', sans-serif;
-    height: 87px;
-    color: #8a485b;
-    text-align: center;
 }
 
-.temporary.error {
-    background-color: #faccd9;
-    border: 1px solid #80354a;
-    color: #80354a;
+.stock-value {
+    height: 19px;
+    min-height: 19px;
+    width: 60%;
+    border: 1px solid #C2C2C2; 
+    background-color: #ffffff;
+    outline: none;  
+    margin-top: 4px;
+    font-family: 'Roboto Condensed', sans-serif;
+    text-indent: 5px;
 }
 
-.temporary.success {
-    background-color: #b7f3ca;
-    border: 1px solid #18b64a;
-    color: #18b64a;
+div.variation-label {
+    color: black;
+    font-weight: bold;
+    font-size: 1em;
+    margin-top: 4px;
+    margin-right: 20px;
+}
+
+.color-value {
+    width: 60%;
+    height: 20px; 
+    border: none;
+    margin-top: 4px;
+    padding: 0px;
+    outline: none;
+    border: 1px solid #C2C2C2;
+    background-color: #dac5a7;
+}
+
+.remove-container {
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+
+}
+
+.remove-button {
+    height: 30px; 
+    width: 30px;
+    margin-top: 8px;
+    margin-right: 20px;
+    font-weight: bold;
+    font-size: 1.2em;
+    border: 1px solid #C2C2C2;
+    background-color:  #C2C2C2;
+    color: #4d4d4d;
+}
+
+.remove-button:hover{
+    background-color:  #4d4d4d;
+    border: 1px solid #4d4d4d;
+    color: #C2C2C2;
+    opacity: 0.9;
+    transition: 0.15s;
+}
+
+.remove-button:active {
+    opacity: 0.85;
+    transition: 0.15s;
+}
+
+.remove-button:not(:hover) {
+    transition: 0.15s;
 }
 
 div.update-container {
@@ -185,8 +376,7 @@ div.update-container {
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
-    padding: 10px;
-    width: 94.5%;
+    width: 100%;
 }
 
 .update-button {
@@ -204,18 +394,74 @@ div.update-container {
     font-family: 'Roboto Condensed', sans-serif;
 }
 
-.register-button:hover {
-    background: rgba(235, 138, 194, 0.507);
+.update-button:hover {
+    background: #9F5F9B;
     opacity: 0.9;
     transition: 0.15s;
 }
 
-.register-button:active {
+.update-button:active {
     opacity: 0.85;
     transition: 0.15s;
 }
 
-.register-button:not(:hover) {
+.update-button:not(:hover) {
+    transition: 0.15s;
+}
+
+div.discard-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.discard-button {
+    background-color: #EF91CF;
+    color: white; 
+    padding: 10px 20px;
+    position: relative;
+    right: 10px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    height: 50px;
+    width: 250px;
+    font-size: 1.2em;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+/***********************************************
+                  ICON IMAGES                
+***********************************************/
+span.icon.update {
+    background-image: var(--update-icon);
+}
+
+span.icon.delete {
+    background-image: var(--delete-icon);
+}
+
+/***********************************************
+                DELETE IMAGE         
+***********************************************/
+.delete-button{
+    border: solid 1px #EF91CF; 
+    color: #EF91CF; 
+    padding: 10px 20px;
+    position: relative;
+    right: 10px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1.2em;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.delete-button:hover {
+    background: #EF91CF;
+    color: white;
+    opacity: 0.9;
     transition: 0.15s;
 }
 
@@ -249,7 +495,7 @@ div.update-container {
     border-bottom: 1px solid #EDEDED;
 }
   
-.title {
+.modal-title {
     color: #EF91CF;
     font-size: 1.5rem;
     font-weight: bold;
@@ -307,3 +553,39 @@ div.update-container {
     position: relative;
     top: 15px;
 }   
+
+/***********************************************
+                DELETE IMAGE         
+***********************************************/
+.delete-button, .confirm-button {
+    border: solid 1px #EF91CF; 
+    color: #EF91CF; 
+    padding: 10px 20px;
+    position: relative;
+    right: 10px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1.2em;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.delete-button:hover, .confirm-button:hover {
+    background: #EF91CF;
+    color: white;
+    opacity: 0.9;
+    transition: 0.15s;
+}
+
+.confirm-button {
+    margin: 0 10px;
+}
+
+#confirm {
+    background-color: #EF91CF;
+    color: white; 
+}
+
+#confirm:hover {
+    opacity: 0.85;
+    transition: 0.15s;  
+}

@@ -25,6 +25,7 @@ body {
 ***********************************************/
 div.main-container {
     padding: 10px;
+    min-height: 655px;
     max-width: 1150px;
     background-color: #FFFFFF;
     margin: 0 auto;

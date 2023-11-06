@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <title> Kaia Apparel </title>
+    <link rel = "stylesheet" href = "/css/main/font.css">
+    <link rel = "stylesheet" href = "/css/main/span.css">
+    <link rel = "stylesheet" href = "/css/admin/adminProductView.css">
+    <link rel = "stylesheet" href = "/css/admin/editProduct.css">
+    <script src = "js/admin/adminProductView.js" defer> </script>
+</head>
+<body>
+    <%- include("../main/admin-header.ejs") %>
+    <div class = "main-container">
+
+        <section id = "path">
+            <div class = "path-container">
+                <a class = "path-link" href = "admin"> ADMIN </a> / 
+                <a class = "path-link" href = "inventory"> INVENTORY </a> / 
+                <a class = "path-link"> <%= product.productName %> </a>
+            </div>
+        </section>
+
+        <section id = "product">
+            <% if( product !== null ) { %> 
+            <div class = "left-section"> <section id = "product-images">
+                <div class = "large-image-section" id = "large-image=section">
+                    <button class = "arrow-button image" onclick = "moveImage(-1)"> &#10094; </button>
+                    <div class = "large-image-container" id = "large-image-container"> 
+                        <% /* <img class = "large-image" src = "/images/kaia/maya_top_1.jpg"> */ %>
+                    </div>
+                    <button class = "arrow-button image" onclick = "moveImage(1)"> &#10095; </button>
+                </div>
+                <div class = "small-image-section" id = "small-image-section">
+                    <% /*
+                        <div class = "small-image-container"> <img class = "small-image" src = "/images/kaia/maya_top_1.jpg"> </div>
+                        <div class = "small-image-container"> <img class = "small-image" src = "/images/kaia/maya_top_1.jpg"> </div>                 
+                        <div class = "small-image-container"> <img class = "small-image" src = "/images/kaia/maya_top_1.jpg"> </div>
+                        <div class = "small-image-container"> <img class = "small-image" src = "/images/kaia/maya_top_1.jpg"> </div>
+                    */ %>
+                </div>
+            </section> </div>
+            <div class = "right-section"> <section id = "product-details">
+                <div class = "product-header">
+                    <span class = "header-title-large" id = "product-name"> <%= product.productName %> </span> 
+                    <button type = "button" id = "delete-button"> 
+                        <span class = "icon delete"> </span>
+                    </button>
+                    <button type = "button" id = "edit-button"> 
+                        <span class = "icon edit"  href = "inventory"> </span>
+                    </button>
+                </div>
+                <div class = "product-body price"> 
+                    <span class = "header-title-medium" id = "product-price"> PHP <%= product.price %> </span>
+                </div>
+                <div class = "product-body description">
+                    <span class = "text-title"> DESCRIPTION </span> 
+                    <span class = "text-default" id = "product-description"> <%= product.productDescription %> </span>
+                <div class = "product-body variation">
+                    <div class = "variation-details-container">
+                        <span class = "text-title"> VARIATION: <span id = "variation-name"> VARIATION </span> </span>
+                        <span class = "text-title"> STOCKS: <span id = "variation-stocks"> </span> </span>
+                    </div>
+                    <div class = "variation-color-container" id = "variation-color-container"> 
+                    <% /*
+                        <button class = "color-button"> </button>
+                        <button class = "color-button"> </button>
+                        <button class = "color-button"> </button>
+                    */ %>
+                    </div>
+                </div>
+                <div class = "product-body quantity">
+                    <span class = "text-title"> QUANTITY </span> 
+                    <div class = "quantity-container" id = "quantity-container">
+                        <button class = "arrow-button quantity" onclick = "selectQuantity(-1)"> &#10094; </button>
+                        <div class = "number-container" id = "number-container"> 1 </div>
+                        <button class = "arrow-button quantity" onclick = "selectQuantity(1)"> &#10095; </button>
+                    </div>
+                </div>
+            </section> </div> 
+            <% } %>           
+        </section>
+
+        <section id = "modal">
+            <% /*
+                <div id="overlay" class="active" onclick="...">
+                    <div class="modal" id="modal">
+                        <div class="modal-header">
+                            <div class="title">Delete</div>
+                            <button data-close-button="" class="close-button">&times;</button>
+                        </div>
+                        <div class="modal-body">Are you sure you want to delete {tempProductName}?
+                            This process cannot be undone.
+                            <div class="confirmation-container">
+                                <div class="confirm-button">cancel</div>
+                                <div id="confirm" class="confirm-button">confirm</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>      
+            */ %>
+        </section>
+    </div>
+    <%- include("../main/footer.ejs") %>
+</body>
+<script>
+    const product = `<%- JSON.stringify(product) %>`;
+    const productID = `<%- JSON.stringify(productID) %>`;
+    const productImages = `<%- JSON.stringify(productImages) %>`;
+    const variations = `<%- JSON.stringify(variations) %>`;
+</script>
+</html>
