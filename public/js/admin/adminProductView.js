@@ -92,31 +92,35 @@ document.addEventListener('DOMContentLoaded', () => {
                     IMAGES            
 ***********************************************/
 function generateImages() {
-    imagesArray = parseObject( productImages );
+    try {
+        imagesArray = parseObject( productImages );
 
-    updateLargeImage( imagesArray[imageIndex].filePath );
+        updateLargeImage( imagesArray[imageIndex].filePath );
+        
+        for( let i = 0; i < imagesArray.length; i++ ) {
+            const smallImageContainer = document.createElement('div');
+            smallImageContainer.className = "small-image-container";
+            smallImageContainer.imageIndex = i;
     
-    for( let i = 0; i < imagesArray.length; i++ ) {
-        const smallImageContainer = document.createElement('div');
-        smallImageContainer.className = "small-image-container";
-        smallImageContainer.imageIndex = i;
-
-        const smallImage = document.createElement('img');
-        smallImage.className = "small-image";
-        smallImage.src = `${imagesArray[i].filePath}`;
-
-        const largeImageURL = imagesArray[i].filePath;
-
-        smallImageContainer.addEventListener( "click", function() {
-            updateLargeImage(largeImageURL);
-            imageIndex = smallImageContainer.imageIndex;
-            updateImageHighlight( imageIndex );
-        });
-
-        smallImageContainer.appendChild(smallImage);
-        smallImageSection.appendChild(smallImageContainer);
+            const smallImage = document.createElement('img');
+            smallImage.className = "small-image";
+            smallImage.src = `${imagesArray[i].filePath}`;
+    
+            const largeImageURL = imagesArray[i].filePath;
+    
+            smallImageContainer.addEventListener( "click", function() {
+                updateLargeImage(largeImageURL);
+                imageIndex = smallImageContainer.imageIndex;
+                updateImageHighlight( imageIndex );
+            });
+    
+            smallImageContainer.appendChild(smallImage);
+            smallImageSection.appendChild(smallImageContainer);
+        }
+        updateImageHighlight( imageIndex );
+    } catch( error ) {
+        console.log( error );
     }
-    updateImageHighlight( imageIndex );
 }
 
 function updateLargeImage( filePath ) {
@@ -150,39 +154,45 @@ function updateImageHighlight( imageIndex ) {
                   VARIATIONS            
 ***********************************************/
 function generateVariations() {
-    variationsArray = parseObject( variations );
-    console.log( variationsArray );
-    for( let i = 0; i < variationsArray.length; i++ ) {
-
-        const colorButton = document.createElement('button');
-        colorButton.className = "color-button";
-        colorButton.style.backgroundColor = `${variationsArray[i].hexColor}`;
-        colorButton.style.variationID = `${variationsArray[i].variationID}`;
-        colorButton.style.variationIndex = i; 
-
-        const variationName = variationsArray[i].variationName;
-        const stockQuantity = variationsArray[i].stockQuantity;
-        const hexColor = variationsArray[i].hexColor;
-
-        if( i == 0 ) {
-            updateColorHighlight(colorButton);
+    try {
+        variationsArray = parseObject( variations );
+        console.log( variationsArray );
+        for( let i = 0; i < variationsArray.length; i++ ) {
+    
+            const colorButton = document.createElement('button');
+            colorButton.className = "color-button";
+            colorButton.style.backgroundColor = `${variationsArray[i].hexColor}`;
+            colorButton.style.variationID = `${variationsArray[i].variationID}`;
+            colorButton.setAttribute( 'variation-index', i );
+    
+            const variationName = variationsArray[i].variationName;
+            const stockQuantity = variationsArray[i].stockQuantity;
+            const hexColor = variationsArray[i].hexColor;
+    
+            if( i == 0 ) {
+                updateColorHighlight(colorButton);
+            }
+    
+            colorButton.addEventListener( "click", function () {
+                updateVariationName( variationName, hexColor ); 
+                updateVariationStocks(stockQuantity); 
+                variationIndex = colorButton.getAttribute('variation-index');
+                console.log( variationIndex );
+                selectedQuantity = 1;
+                updateQuantity(selectedQuantity);
+                updateColorHighlight(colorButton);
+            });
+            variationColorContainer.appendChild(colorButton);
         }
-
-        colorButton.addEventListener( "click", function () {
-            updateVariationName( variationName, hexColor ); 
-            updateVariationStocks(stockQuantity); 
-            selectedQuantity = 1;
-            updateQuantity(selectedQuantity);
-            updateColorHighlight(colorButton);
-        });
-        variationColorContainer.appendChild(colorButton);
+    
+        var currentName = variationsArray[variationIndex].variationName;
+        var currentStock = variationsArray[variationIndex].stockQuantity;
+        var currentHex = variationsArray[variationIndex].hexColor;
+        updateVariationName( currentName, currentHex );
+        updateVariationStocks(currentStock);
+    } catch( error ) {
+        console.log( error );
     }
-
-    var currentName = variationsArray[variationIndex].variationName;
-    var currentStock = variationsArray[variationIndex].stockQuantity;
-    var currentHex = variationsArray[variationIndex].hexColor;
-    updateVariationName( currentName, currentHex );
-    updateVariationStocks(currentStock);
 }
 
 function updateVariationName( variationName, hexColor ) {

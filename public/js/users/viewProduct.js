@@ -132,7 +132,7 @@ function generateVariations() {
         colorButton.addEventListener( "click", function () {
             updateVariationName( variationName, hexColor ); 
             updateVariationStocks(stockQuantity); 
-            variationIndex = colorButton.getAttribute('variation-index  ');
+            variationIndex = colorButton.getAttribute('variation-index');
             console.log( variationIndex );
             selectedQuantity = 1;
             updateQuantity(selectedQuantity);
@@ -167,7 +167,7 @@ function updateColorHighlight( currentButton ) {
                   QUANTITY             
 ***********************************************/
 function selectQuantity( value ) {
-    const selectedVariation = variationsArray[variationIndex];
+    const selectedVariation = variationsArray[variationIndex]
     const isWithinLowerBounds = selectedQuantity + value > 0;
     const isWithinUpperBounds = selectedQuantity + value <= selectedVariation.stockQuantity;
 
@@ -176,7 +176,6 @@ function selectQuantity( value ) {
         updateQuantity( selectedQuantity );
     }
 }
-
 function updateQuantity( selectedQuantity ) {
     numberContainer.value = selectedQuantity;
     numberContainer.textContent = selectedQuantity;

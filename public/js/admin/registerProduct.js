@@ -109,6 +109,8 @@ registerProductForm.addEventListener('submit', async function (e) {
         const productID = parsedProducts.productID;
         const variationsFormData = { productID: productID, variations: variations };
 
+        console.log( variationsFormData );  
+
         const variationsResponse = await fetchPost( '/createProductVariations', variationsFormData );
 
         if( imageDetails.length === 0 ) {
@@ -117,19 +119,18 @@ registerProductForm.addEventListener('submit', async function (e) {
 
         //: { 'imageID', 'userID', 'originalName', 'fileName', 'filePath', 'destination', 'dateAdded' }
         const imageDetailsFormData = { imageDetails: imageDetails };
-        // console.log( "ImageDetailsFormData", imageDetailsFormData );
 
         // - upload image reference
         const imageReferencesResponse = await fetchPost( '/uploadImageReference', imageDetailsFormData );
-        // console.log( "imageReferencesResponse", imageReferencesResponse );
 
         // - retrieve the image id that has been uploaded
         const parsedImagesID = await imageReferencesResponse.json();
         const imageIDFormData = { productID: productID, imagesID: parsedImagesID.imagesID };
-        // console.log( "imageIDFormData", imageIDFormData );
 
         // - link image to product
         const productImagesResponse = await fetchPost( '/createProductImage', imageIDFormData );
+
+
         resetInputFields();
 
         
