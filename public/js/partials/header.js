@@ -1,6 +1,8 @@
 const container = document.querySelector('.header-buttons');
 const buttons = document.querySelectorAll('button.header');
 const popups = document.querySelectorAll('.popup');
+const search = document.querySelector('#search-icon');
+const search_box = document.querySelector('.search-box');
 
 /*
     ` When the mouse cursor hovers on the buttons, the popup shows up.
@@ -59,6 +61,13 @@ logoutButton?.addEventListener( 'click', async function(e) {
     }
 });
 
+// Expandable Search
+
+search.addEventListener('click', () =>{
+    search_box.classList.toggle('active');
+})
+
+
 /*
 const logo = document.getElementById('logo'); 
 logo.addEventListener('click', () => {
@@ -69,3 +78,4 @@ logo.addEventListener('click', () => {
 function navigateTo(url) {
     window.location.href = url;
 }
+
