@@ -18,6 +18,7 @@ body {
 ***********************************************/
 div.main-container {
     max-width: 1150px;
+    padding: 2rem 0rem;
     background-color: #ffffff;
     margin: 10px auto;
 }

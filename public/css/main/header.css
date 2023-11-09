@@ -9,6 +9,14 @@
     --profile-hover-icon: url("/images/icons/profile-icon-hover.png");
 }
 
+.link-unstyled {
+    text-decoration: none;
+    color: inherit;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
 /***********************************************
                      HEADER                    
 ***********************************************/

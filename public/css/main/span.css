@@ -12,8 +12,6 @@ span.header-title-large {
     font-weight: 700;
     line-height: 150%;
     letter-spacing: -0.066rem;
-    width: 31.0625rem;
-    height: 5.9375rem;
     text-transform: uppercase;
 }
 
@@ -21,6 +19,8 @@ span.header-title-medium {
     color: #000;
     font-family: inherit;
     font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
     line-height: 150%; /* 3.375rem */
 }
 
@@ -28,6 +28,7 @@ span.text-title {
     font-family: "Roboto Condensed-Regular";
     font-size: 1.25rem;
     font-style: normal;
+    padding: 0.5rem 0rem;
 }
 
 span.text-default {
