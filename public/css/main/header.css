@@ -9,27 +9,30 @@
     --profile-hover-icon: url("/images/icons/profile-icon-hover.png");
 }
 
-body::-webkit-scrollbar {
-    width: 0;
-    height: 0;
+.link-unstyled {
+    text-decoration: none;
+    color: inherit;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
 /***********************************************
                      HEADER                    
 ***********************************************/
 div.header {
-    width: 99%;
-    height: 125px;
+    width: 100%;
+    height: 100px;
     display: block;
     position: sticky;
     background-color: white;
     border-bottom: 1px solid #cacaca;
-    z-index: 1;
     user-select: none;
     top: 0;
     justify-content: center;
     text-align: center;
     align-items: center;
+    z-index: 1;
 }
 
 div.header-box {
@@ -42,7 +45,7 @@ span.admin-label {
     font-weight: bold;
     font-size: 1em;
     position: relative;
-    bottom: 10px; 
+    bottom: 10px;
 }
 
 /***********************************************
@@ -58,15 +61,15 @@ div.logo {
 }
 
 .kaia {
-    color:#EF91CF;
-    font-family: 'Migra-ExtraBold', sans-serif;
+    color: #ef91cf;
+    font-family: "Migra-ExtraBold", sans-serif;
     font-size: 3em;
     margin: 0px;
     padding: 0px;
 }
 
 .apparel {
-    color:#995594;
+    color: #995594;
     font-family: "GlacialIndifference-Bold", sans-serif;
     font-size: 0.9em;
     font-weight: bold;
@@ -88,6 +91,7 @@ div.header-buttons {
     float: right;
     bottom: 42.5px;
     width: 205px;
+    padding: 0.5rem 2rem;
 }
 
 button.header {
@@ -101,6 +105,7 @@ span.icon {
     width: 35px;
     display: block;
     background-size: cover;
+    cursor: pointer;
 }
 
 /***********************************************
@@ -114,78 +119,82 @@ span.icon {
     visibility: hidden;
     z-index: 999;
     background-color: white;
-    border: 1px solid #E0E0E0; 
+    border: 1px solid #e0e0e0;
 }
-  
-    /***********************************************
+
+/***********************************************
                      SEARCH POP-UP               
     ***********************************************/
-    .popup.search-popup {
-        right: 158px;
-        display: block;
-        width: auto;
-        font-size: 1em;
-    }
+.popup.search-popup {
+    right: 11rem;
+    margin-top: 1rem;
+    display: block;
+    width: auto;
+    font-size: 1em;
+}
 
-    /***********************************************
+/***********************************************
                     FAVOURITE POP-UP               
     ***********************************************/
-    .popup.favourite-popup {
-        right: 105px;
-        display: block;
-        width: auto;
-        font-size: 1em;
-    }
+.popup.favourite-popup {
+    right: 7.8rem;
+    margin-top: 1rem;
+    display: block;
+    width: auto;
+    font-size: 1em;
+}
 
-    /***********************************************
+/***********************************************
                      CART POP-UP               
     ***********************************************/
-    .popup.cart-popup {
-        right: 53px;
-        display: block;
-        width: auto;
-        font-size: 0.95em;
-    }
+.popup.cart-popup {
+    right: 5.5rem;
+    margin-top: 1rem;
+    display: block;
+    width: auto;
+    font-size: 0.95em;
+}
 
-    /***********************************************
+/***********************************************
                     PROFILE POP-UP             
     ***********************************************/
-    .popup.profile-popup {
-        display: block;
-        width: auto;
-        right: 0px;
-        font-size: 0.95em;
-        padding: 0px;
-    }
+.popup.profile-popup {
+    right: 1rem;
+    margin-top: 1rem;
+    display: block;
+    width: auto;
+    font-size: 0.95em;
+}
 
-    .popup.profile-popup button {
-        display: block;
-        width: 100%;
-        border: none;
-        padding: 5px;
-        padding-right: 10px;
-        background-color: transparent;
-        text-align: left;
-        text-indent: 5px;
-        font-family: inherit;
-        font-size: 0.95em;
-    }
+.popup.profile-popup button {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 5px;
+    padding-right: 10px;
+    background-color: transparent;
+    text-align: left;
+    text-indent: 5px;
+    font-family: inherit;
+    font-size: 0.95em;
+    cursor: pointer;
+}
 
-    .popup.profile-popup button:hover {
-        background-color: #EF91CF;
-        color: white;
-        font-style: bold;
-    }
+.popup.profile-popup button:hover {
+    background-color: #ef91cf;
+    color: white;
+    font-style: bold;
+}
 
-    .popup.profile-popup button:active {
-        opacity: 0.8;
-        transition: 0.3s;
-    }
-    
-    .popup.profile-popup button:not(:hover) {
-        transition: 0.05s;
-    }
-    
+.popup.profile-popup button:active {
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.popup.profile-popup button:not(:hover) {
+    transition: 0.05s;
+}
+
 /***********************************************
                   ICON IMAGES                
 ***********************************************/

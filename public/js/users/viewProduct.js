@@ -1,21 +1,23 @@
 /***********************************************
                 DOCUMENT ELEMENTS                   
 ***********************************************/
-const pathCategory = document.getElementById('path-category');
-const wishlistButton = document.getElementById('wishlist-button');
+const pathCategory = document.getElementById("path-category");
+const wishlistButton = document.getElementById("wishlist-button");
 
 // - Product
-const numberContainer = document.getElementById('number-container'); // stock quantity
+const numberContainer = document.getElementById("number-container"); // stock quantity
 
 // - Images
-const leftSection = document.getElementById('left-section');
-const largeImageContainer = document.getElementById('large-image-container');
-const smallImageSection = document.getElementById('small-image-section');
+const leftSection = document.getElementById("left-section");
+const largeImageContainer = document.getElementById("large-image-container");
+const smallImageSection = document.getElementById("small-image-section");
 
 // - Variations
-const variationNameLabel = document.getElementById('variation-name');
-const variationStockLabel = document.getElementById('variation-stocks');
-const variationColorContainer = document.getElementById('variation-color-container');
+const variationNameLabel = document.getElementById("variation-name");
+const variationStockLabel = document.getElementById("variation-stocks");
+const variationColorContainer = document.getElementById(
+    "variation-color-container"
+);
 
 /***********************************************
                    VARIABLES                   
@@ -31,12 +33,12 @@ var selectedQuantity = 1;
 /***********************************************
                  FETCH REQUESTS             
 ***********************************************/
-async function fetchPost( URL, formData ) {
-    var response = await fetch( URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify( formData ),
-    }); 
+async function fetchPost(URL, formData) {
+    var response = await fetch(URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+    });
     return response;
 }
 
@@ -45,64 +47,66 @@ async function fetchPost( URL, formData ) {
     an array of objects. This is required so we can iterate through an
     object retrieved from a fetch request properly.
 */
-function parseObject( object ) {
-    return JSON.parse( object );
+function parseObject(object) {
+    return JSON.parse(object);
 }
 
 /***********************************************
                     IMAGES            
 ***********************************************/
 function generateImages() {
-    imagesArray = parseObject( productImages );
+    imagesArray = parseObject(productImages);
 
-    updateLargeImage( imagesArray[imageIndex].filePath );
-    
-    for( let i = 0; i < imagesArray.length; i++ ) {
-        const smallImageContainer = document.createElement('div');
+    updateLargeImage(imagesArray[imageIndex].filePath);
+
+    for (let i = 0; i < imagesArray.length; i++) {
+        const smallImageContainer = document.createElement("div");
         smallImageContainer.className = "small-image-container";
         smallImageContainer.imageIndex = i;
 
-        const smallImage = document.createElement('img');
+        const smallImage = document.createElement("img");
         smallImage.className = "small-image";
         smallImage.src = `${imagesArray[i].filePath}`;
 
         const largeImageURL = imagesArray[i].filePath;
 
-        smallImageContainer.addEventListener( "click", function() {
+        smallImageContainer.addEventListener("click", function () {
             updateLargeImage(largeImageURL);
             imageIndex = smallImageContainer.imageIndex;
-            updateImageHighlight( imageIndex );
+            updateImageHighlight(imageIndex);
         });
 
         smallImageContainer.appendChild(smallImage);
         smallImageSection.appendChild(smallImageContainer);
     }
-    updateImageHighlight( imageIndex );
+    updateImageHighlight(imageIndex);
 }
 
-function updateLargeImage( filePath ) {
+function updateLargeImage(filePath) {
     largeImageContainer.innerHTML = `
         <img class = "large-image" src = "${filePath}">
     `;
 }
 
-function moveImage( value ) {
+function moveImage(value) {
     const isWithinLowerBounds = imageIndex + value >= 0;
     const isWithinUpperBounds = imageIndex + value < imagesArray.length;
 
-    if( isWithinLowerBounds && isWithinUpperBounds ) {
+    if (isWithinLowerBounds && isWithinUpperBounds) {
         imageIndex += value;
-        updateLargeImage( imagesArray[imageIndex].filePath ); 
-        updateImageHighlight( imageIndex );
+        updateLargeImage(imagesArray[imageIndex].filePath);
+        updateImageHighlight(imageIndex);
     }
 }
 
-function updateImageHighlight( imageIndex ) {
-    const smallImageContainers = document.querySelectorAll(".small-image-container");
-    smallImageContainers.forEach( (imageContainer) => {
-        imageContainer.classList.remove( "selected-image" )
-        if( imageContainer.imageIndex == imageIndex ) {
-            imageContainer.classList.add( "selected-image" );
+function updateImageHighlight(imageIndex) {
+    const smallImageContainers = document.querySelectorAll(
+        ".small-image-container"
+    );
+    smallImageContainers.forEach((imageContainer) => {
+        imageContainer.classList.remove("selected-image");
+        if (imageContainer.imageIndex == imageIndex) {
+            imageContainer.classList.add("selected-image");
         }
     });
 }
@@ -111,29 +115,28 @@ function updateImageHighlight( imageIndex ) {
                   VARIATIONS            
 ***********************************************/
 function generateVariations() {
-    variationsArray = parseObject( variations );
-    console.log( variationsArray );
-    for( let i = 0; i < variationsArray.length; i++ ) {
-
-        const colorButton = document.createElement('button');
+    variationsArray = parseObject(variations);
+    console.log(variationsArray);
+    for (let i = 0; i < variationsArray.length; i++) {
+        const colorButton = document.createElement("button");
         colorButton.className = "color-button";
         colorButton.style.backgroundColor = `${variationsArray[i].hexColor}`;
         colorButton.style.variationID = `${variationsArray[i].variationID}`;
-        colorButton.setAttribute( 'variation-index', i );
+        colorButton.setAttribute("variation-index", i);
 
         const variationName = variationsArray[i].variationName;
         const stockQuantity = variationsArray[i].stockQuantity;
         const hexColor = variationsArray[i].hexColor;
 
-        if( i == 0 ) {
+        if (i == 0) {
             updateColorHighlight(colorButton);
         }
 
-        colorButton.addEventListener( "click", function () {
-            updateVariationName( variationName, hexColor ); 
-            updateVariationStocks(stockQuantity); 
-            variationIndex = colorButton.getAttribute('variation-index');
-            console.log( variationIndex );
+        colorButton.addEventListener("click", function () {
+            updateVariationName(variationName, hexColor);
+            updateVariationStocks(stockQuantity);
+            variationIndex = colorButton.getAttribute("variation-index");
+            console.log(variationIndex);
             selectedQuantity = 1;
             updateQuantity(selectedQuantity);
             updateColorHighlight(colorButton);
@@ -144,39 +147,40 @@ function generateVariations() {
     var currentName = variationsArray[variationIndex].variationName;
     var currentStock = variationsArray[variationIndex].stockQuantity;
     var currentHex = variationsArray[variationIndex].hexColor;
-    updateVariationName( currentName, currentHex );
+    updateVariationName(currentName, currentHex);
     updateVariationStocks(currentStock);
 }
 
-function updateVariationName( variationName, hexColor ) {
+function updateVariationName(variationName, hexColor) {
     variationNameLabel.textContent = `${variationName}`;
     variationNameLabel.style.color = `${hexColor}`;
 }
 
-function updateVariationStocks( stockQuantity ) {
+function updateVariationStocks(stockQuantity) {
     variationStockLabel.textContent = `${stockQuantity}`;
 }
 
-function updateColorHighlight( currentButton ) {
+function updateColorHighlight(currentButton) {
     const colorButtons = document.querySelectorAll(".color-button");
-    colorButtons.forEach( (button) => button.classList.remove("selected-color"));
+    colorButtons.forEach((button) => button.classList.remove("selected-color"));
     currentButton.classList.add("selected-color");
 }
 
 /***********************************************
                   QUANTITY             
 ***********************************************/
-function selectQuantity( value ) {
-    const selectedVariation = variationsArray[variationIndex]
+function selectQuantity(value) {
+    const selectedVariation = variationsArray[variationIndex];
     const isWithinLowerBounds = selectedQuantity + value > 0;
-    const isWithinUpperBounds = selectedQuantity + value <= selectedVariation.stockQuantity;
+    const isWithinUpperBounds =
+        selectedQuantity + value <= selectedVariation.stockQuantity;
 
-    if( isWithinLowerBounds && isWithinUpperBounds ) {
+    if (isWithinLowerBounds && isWithinUpperBounds) {
         selectedQuantity += value;
-        updateQuantity( selectedQuantity );
+        updateQuantity(selectedQuantity);
     }
 }
-function updateQuantity( selectedQuantity ) {
+function updateQuantity(selectedQuantity) {
     numberContainer.value = selectedQuantity;
     numberContainer.textContent = selectedQuantity;
 }
@@ -189,13 +193,13 @@ function updateQuantity( selectedQuantity ) {
     category. By default, the selected category is the very first category,
     i.e., the category with the lowest categoryID.
 */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     try {
         generatePathContainer();
         generateImages();
         generateVariations();
-    } catch( error ) {
-        console.log( error );
+    } catch (error) {
+        console.log(error);
     }
 });
 
@@ -204,47 +208,56 @@ function generatePathContainer() {
         const parsedProduct = parseObject(product);
         const selectedCategory = parsedProduct.categoryID;
         const productName = parsedProduct.productName;
-        
-        switch( selectedCategory ) {
-            case 1: {
-                changePathAndTitle( "Dresses", productName );
-            }   break;
-            case 2: {
-                changePathAndTitle( "Bottoms", productName );
-            }   break;
-            case 3: {
-                changePathAndTitle( "Tops", productName );
-            }   break;
-            case 4: {
-                changePathAndTitle( "Coords", productName );
-            }   break;
-            default: break;
+
+        switch (selectedCategory) {
+            case 1:
+                {
+                    changePathAndTitle("Dresses", productName);
+                }
+                break;
+            case 2:
+                {
+                    changePathAndTitle("Bottoms", productName);
+                }
+                break;
+            case 3:
+                {
+                    changePathAndTitle("Tops", productName);
+                }
+                break;
+            case 4:
+                {
+                    changePathAndTitle("Coords", productName);
+                }
+                break;
+            default:
+                break;
         }
-    } catch( error ) {
-        console.log( "viewProduct.js at generatePathContainer():", error );
+    } catch (error) {
+        console.log("viewProduct.js at generatePathContainer():", error);
     }
 }
 
-function changePathAndTitle( categoryName, productName ) {
+function changePathAndTitle(categoryName, productName) {
     pathCategory.innerHTML = ` 
         <a class = "path-link" href = "productCatalog?category=${categoryName}"> 
             ${categoryName} COLLECTION
         </a> / ${productName}
-    `
+    `;
 }
 
-wishlistButton.addEventListener('click', async (e) => {
+wishlistButton.addEventListener("click", async (e) => {
     e.preventDefault();
     try {
-        console.log( "Hello!" );
-        const wishlistStatus = await fetch('/wishlistProduct', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ productID: productID })
+        console.log("Hello!");
+        const wishlistStatus = await fetch("/wishlistProduct", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ productID: productID }),
         });
-        console.log( "Hello!" );
-    } catch( error ) {
-        console.log( error );
+        console.log("Hello!");
+    } catch (error) {
+        console.log(error);
     }
 });
 

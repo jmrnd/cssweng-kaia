@@ -1,11 +1,11 @@
 /***********************************************
                 DOCUMENT ELEMENTS                   
 ***********************************************/
-const productGrid = document.getElementById('product-grid');
-const categoryLinks = document.querySelectorAll('.category-link');
-const categoryTitle = document.getElementById('category-title');
-const pathCategory = document.getElementById('path-category');
-const productFilter = document.getElementById('product-filter');
+const productGrid = document.getElementById("product-grid");
+const categoryLinks = document.querySelectorAll(".category-link");
+const categoryTitle = document.getElementById("category-title");
+const pathCategory = document.getElementById("path-category");
+const productFilter = document.getElementById("product-filter");
 let selectedCategoryID = 1;
 
 /*
@@ -22,42 +22,51 @@ function parseProducts() {
     category. By default, the selected category is the very first category,
     i.e., the category with the lowest categoryID.
 */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     try {
         const urlParams = new URLSearchParams(window.location.search);
-        const selectedCategory = urlParams.get('category');
+        const selectedCategory = urlParams.get("category");
 
-        switch( selectedCategory ) {
-            case 'Dresses': {
-                changePathAndTitle(selectedCategory);
-                selectedCategoryID = 1; 
-            } break;
-            case 'Bottoms': {
-                changePathAndTitle(selectedCategory);
-                selectedCategoryID = 2; 
-            } break;
-            case 'Tops': {
-                changePathAndTitle(selectedCategory);
-                selectedCategoryID = 3; 
-            } break;
-            case 'Coords': {
-                changePathAndTitle(selectedCategory);
-                selectedCategoryID = 4; 
-            } break;
-            default: break;
+        switch (selectedCategory) {
+            case "Dresses":
+                {
+                    changePathAndTitle(selectedCategory);
+                    selectedCategoryID = 1;
+                }
+                break;
+            case "Bottoms":
+                {
+                    changePathAndTitle(selectedCategory);
+                    selectedCategoryID = 2;
+                }
+                break;
+            case "Tops":
+                {
+                    changePathAndTitle(selectedCategory);
+                    selectedCategoryID = 3;
+                }
+                break;
+            case "Coords":
+                {
+                    changePathAndTitle(selectedCategory);
+                    selectedCategoryID = 4;
+                }
+                break;
+            default:
+                break;
         }
 
-        if( parseProducts() === null ) {
+        if (parseProducts() === null) {
             return;
         }
 
         parseProducts().forEach((product) => {
-            if( product.categoryID == selectedCategoryID ) {
+            if (product.categoryID == selectedCategoryID) {
                 generateProductItem(product);
             }
         });
-    } catch( error ) {
-        console.log( error );
+    } catch (error) {
+        console.log(error);
     }
 });
 
@@ -69,31 +78,31 @@ document.addEventListener('DOMContentLoaded', () => {
 */
 categoryLinks.forEach((categoryLink) => {
     try {
-        categoryLink.addEventListener('click', (e) => {
+        categoryLink.addEventListener("click", (e) => {
             e.preventDefault();
-    
-            selectedCategoryID = categoryLink.getAttribute('data-id');
-            const categoryName = categoryLink.getAttribute('data-name');
 
-            changePathAndTitle(categoryName);    
-            if( parseProducts() === null ) {
+            selectedCategoryID = categoryLink.getAttribute("data-id");
+            const categoryName = categoryLink.getAttribute("data-name");
+
+            changePathAndTitle(categoryName);
+            if (parseProducts() === null) {
                 return;
             }
-            
+
             parseProducts().forEach((product) => {
-                if( product.categoryID == selectedCategoryID ) {
+                if (product.categoryID == selectedCategoryID) {
                     generateProductItem(product);
                 }
             });
-        })
-    } catch( error ) {
+        });
+    } catch (error) {
         console.log(error);
     }
 });
 
 function changePathAndTitle(categoryName) {
     pathCategory.innerHTML = `${categoryName}`;
-    productGrid.innerHTML = '';
+    productGrid.innerHTML = "";
     categoryTitle.innerHTML = `
     <span class = "category-title">${categoryName} <span>COLLECTION</span></span>
     `;
@@ -108,17 +117,17 @@ function changePathAndTitle(categoryName) {
         productID, productName, productDescription, 
         price, stockQuantity, categoryID
 */
-function generateProductItem( product ) {
-    const productItem = document.createElement('div');
-    productItem.className = 'product-item';
+function generateProductItem(product) {
+    const productItem = document.createElement("div");
+    productItem.className = "product-item";
 
-    // - Image 
-    const anchor = document.createElement('a');
-    if( product.filePath ) {
+    // - Image
+    const anchor = document.createElement("a");
+    if (product.filePath) {
         anchor.innerHTML = `<img src = "${product.filePath}">`;
     } else {
-        // - FIXME: Hardcoded 
-        switch( product.categoryID ) {
+        // - FIXME: Hardcoded
+        switch (product.categoryID) {
             case 1:
                 anchor.innerHTML = `<img src = "/images/kaia/sky_linen_dress_1.jpg">`;
                 break;
@@ -138,12 +147,12 @@ function generateProductItem( product ) {
     }
 
     // - Product details
-    const productDetails = document.createElement('div');
-    productDetails.className = 'product-details';
+    const productDetails = document.createElement("div");
+    productDetails.className = "product-details";
 
     // - Product details inner
-    const productDetailsInner = document.createElement('div');
-    productDetailsInner.className = 'product-details-inner';
+    const productDetailsInner = document.createElement("div");
+    productDetailsInner.className = "product-details-inner";
     productDetailsInner.innerHTML = `
         <span class = "product-name">
             <a href = "#" class = "link-unstyled"> ${product.productName} </a>
@@ -152,29 +161,32 @@ function generateProductItem( product ) {
             PHP 
             <span>${product.price} </span>  
         </span>
-    `
+    `;
 
     productDetails.appendChild(productDetailsInner);
     productItem.appendChild(anchor);
     productItem.appendChild(productDetails);
 
     // - Add event listener that clicks
-    productItem.addEventListener('click', async function(e) {
+    productItem.addEventListener("click", async function (e) {
         try {
-            const response = await fetch( `/viewProduct?productID=${product.productID}`, {
-                method: 'GET'
-            });
+            const response = await fetch(
+                `/viewProduct?productID=${product.productID}`,
+                {
+                    method: "GET",
+                }
+            );
 
-            if( response.status === 200 ) {
+            if (response.status === 200) {
                 window.location.href = `/viewProduct?productID=${product.productID}`;
             } else {
-                console.log( "Request failed!" );
+                console.log("Request failed!");
             }
-        } catch( error ) {
-            console.log( error );
+        } catch (error) {
+            console.log(error);
         }
-    });   
-      
+    });
+
     productGrid.appendChild(productItem);
 }
 
@@ -191,41 +203,51 @@ function generateProductItem( product ) {
         - 'filter-price-desc' :   Sort products by price in descending order
         - 'filter-all'        :   Show all products without filtering
 */
-productFilter.addEventListener('change', () => {
+productFilter.addEventListener("change", () => {
     const selectedFilter = productFilter.value;
 
     // Get the products and sort them based on the selected filter
     const products = parseProducts();
     let filteredProducts = [];
 
-    switch( selectedFilter ) {
-        case 'filter-name-asc': {
-            filteredProducts = products.sort((a, b) =>
-                a.productName.localeCompare(b.productName)
-            );
-        } break;
-        case 'filter-name-desc': {
-            filteredProducts = products.sort((a, b) =>
-                b.productName.localeCompare(a.productName)
-            );
-        } break;
-        case 'filter-price-asc': {
-            filteredProducts = products.sort((a, b) => a.price - b.price);
-        } break;
-        case 'filter-price-desc': {
-            filteredProducts = products.sort((a, b) => b.price - a.price);
-        } break;
-        default: {
-            filteredProducts = products;
-        } break;
+    switch (selectedFilter) {
+        case "filter-name-asc":
+            {
+                filteredProducts = products.sort((a, b) =>
+                    a.productName.localeCompare(b.productName)
+                );
+            }
+            break;
+        case "filter-name-desc":
+            {
+                filteredProducts = products.sort((a, b) =>
+                    b.productName.localeCompare(a.productName)
+                );
+            }
+            break;
+        case "filter-price-asc":
+            {
+                filteredProducts = products.sort((a, b) => a.price - b.price);
+            }
+            break;
+        case "filter-price-desc":
+            {
+                filteredProducts = products.sort((a, b) => b.price - a.price);
+            }
+            break;
+        default:
+            {
+                filteredProducts = products;
+            }
+            break;
     }
 
     // Clear the product grid
-    productGrid.innerHTML = '';
+    productGrid.innerHTML = "";
 
     // Display the filtered products
     filteredProducts.forEach((product) => {
-        if( product.categoryID == selectedCategoryID ) {
+        if (product.categoryID == selectedCategoryID) {
             generateProductItem(product);
         }
     });

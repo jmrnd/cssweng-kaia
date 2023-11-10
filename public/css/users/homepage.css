@@ -7,7 +7,7 @@
 }
 
 body {
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: "Roboto Condensed", sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -18,7 +18,8 @@ body {
 ***********************************************/
 div.main-container {
     max-width: 1150px;
-    background-color: #FFFFFF;
+    padding: 2rem 0rem;
+    background-color: #ffffff;
     margin: 10px auto;
 }
 
@@ -36,7 +37,7 @@ div.inner-container {
     align-items: center;
     text-align: center;
     justify-content: center;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 div.category-container {
@@ -52,21 +53,24 @@ div.category-container {
     background-repeat: no-repeat;
 }
 
-
 /* Inner Container Cards Margin */
-div.category-container.dresses , div.category-container.tops{
+div.category-container.dresses,
+div.category-container.tops {
     margin-right: 10px;
 }
 
-div.category-container.bottoms , div.category-container.coords{
+div.category-container.bottoms,
+div.category-container.coords {
     margin-left: 10px;
 }
 
-div.category-container.dresses , div.category-container.bottoms{
+div.category-container.dresses,
+div.category-container.bottoms {
     margin-bottom: 10px;
 }
 
-div.category-container.tops , div.category-container.coords{
+div.category-container.tops,
+div.category-container.coords {
     margin-top: 10px;
 }
 
@@ -85,21 +89,18 @@ div.category-container.tops , div.category-container.coords{
     transition: 0.05s;
 }
 
-
 /* Best-Seller Container */
-div.content-container.best-seller{
+div.content-container.best-seller {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-
-
 /***********************************************
                   SPAN LABELS
 ***********************************************/
 span.name {
-    font-weight:700;
+    font-weight: 700;
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     user-select: none;
@@ -112,11 +113,11 @@ span.name.new-arrival {
     font-size: 3em;
 }
 
-div.new-arrivals a{
+div.new-arrivals a {
     text-decoration: none;
 }
 
-span.shop-now{
+span.shop-now {
     /* Center */
     display: flex;
     justify-content: center;
@@ -125,21 +126,22 @@ span.shop-now{
     padding: 10px 15px;
 
     /* Box */
-    background-color: #EF91CF;
+    background-color: #ef91cf;
     font-size: 0.8em;
     font-weight: 700;
-    color: #FFFFFF;
-    border: #FFFFFF 3px solid;
+    color: #ffffff;
+    border: #ffffff 3px solid;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
     /* Position */
     position: relative;
-    top: 50%; left: 75%;
+    top: 50%;
+    left: 75%;
 
-    cursor:pointer;
+    cursor: pointer;
 }
 
-span.shop-now:hover{
+span.shop-now:hover {
     /* Center */
     display: flex;
     justify-content: center;
@@ -148,25 +150,25 @@ span.shop-now:hover{
     padding: 10px 15px;
 
     /* Box */
-    background-color: #9F5F9B;
+    background-color: #9f5f9b;
     font-size: 0.8em;
     font-weight: 700;
-    color: #FFFFFF;
-    border: #FFFFFF 3px solid;
+    color: #ffffff;
+    border: #ffffff 3px solid;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
     /* Position */
     position: relative;
-    top: 50%; left: 75%;
+    top: 50%;
+    left: 75%;
 }
-
 
 span.name.category {
     font-size: 2.5em;
     text-transform: uppercase;
 }
 
-div.title-container{
+div.title-container {
     font-size: 1.5em;
     font-weight: 600;
     color: #272727;
@@ -174,7 +176,6 @@ div.title-container{
 
     margin-bottom: 10px;
 }
-
 
 /***********************************************
                      IMAGES
@@ -206,26 +207,26 @@ div.category-container.coords {
                     BEST SELLER
 ***********************************************/
 
-div.best-seller-items img{
+div.best-seller-items img {
     width: 250px;
 }
 
-.item-name , .item-price{
+.item-name,
+.item-price {
     text-transform: uppercase;
     font-size: 15px;
 }
 
-.item-name{
+.item-name {
     font-weight: 700;
 }
 
-.item-label{
+.item-label {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 10px 20px;
 }
-
 
 /***********************************************
                     REVIEW-CARD
@@ -234,49 +235,49 @@ div.best-seller-items img{
     display: grid;
     grid-auto-flow: column;
     gap: 10px;
-    overflow-x:auto;
+    overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     scrollbar-width: 0;
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: "Roboto Condensed", sans-serif;
 }
 
-div .review-cards{
+div .review-cards {
     width: 570px;
     height: 195px;
     padding: 20px;
-    border: #EF91CF 1px solid ;
-    font-family: 'Roboto Condensed', sans-serif;
+    border: #ef91cf 1px solid;
+    font-family: "Roboto Condensed", sans-serif;
     box-sizing: border-box;
 }
 
-.review-carousel::-webkit-scrollbar{
+.review-carousel::-webkit-scrollbar {
     display: none;
 }
 
-.on-drag{
+.on-drag {
     cursor: grab;
     user-select: none;
 }
 
-div .review-cards .on-drag{
+div .review-cards .on-drag {
     scroll-behavior: auto;
     scroll-snap-type: none;
 }
 
-div .reviewer-username{
+div .reviewer-username {
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 10px;
 }
 
-div .reviews-showcase i{
+div .reviews-showcase i {
     top: 50%;
     height: 50px;
     width: 50px;
     text-align: center;
     line-height: 50px;
-    background-color: #FFAFE405;
+    background-color: #ffafe405;
     border-radius: 50%;
     cursor: pointer;
     position: absolute;
@@ -287,29 +288,27 @@ div .reviews-showcase i{
     -o-transform: translateY(-50%);
 }
 
-div .reviews-showcase i:hover{
+div .reviews-showcase i:hover {
     background-color: #dadada;
 }
 
-
-div .reviews-showcase i:first-child{
+div .reviews-showcase i:first-child {
     left: -60px;
 }
 
-div .reviews-showcase i:last-child{
+div .reviews-showcase i:last-child {
     right: -60px;
 }
-
 
 /***********************************************
                     FOOTER
 ***********************************************/
 
-.footer-container{
-    border-top: 2px solid #F6F6F6;
+.footer-container {
+    border-top: 2px solid #f6f6f6;
 }
 
-.footer{
+.footer {
     max-width: 1150px;
     display: flex;
     flex-direction: row;
@@ -318,36 +317,36 @@ div .reviews-showcase i:last-child{
     margin: 0 auto;
 }
 
-div .footer .footer-col{
+div .footer .footer-col {
     display: flex;
     flex-direction: column;
     margin-right: 10px;
     color: #999999;
 }
 
-.footer-title{
+.footer-title {
     margin-bottom: 8px;
     font-weight: 600;
     font-size: 1em;
     text-transform: uppercase;
 }
 
-.footer .footer-item{
+.footer .footer-item {
     margin-bottom: 5px;
     font-weight: 300;
     font-size: 0.9em;
 }
 
-.footer .kaia-footer{
-    color:#EF91CF;
-    font-family: 'Migra-ExtraBold', sans-serif;
+.footer .kaia-footer {
+    color: #ef91cf;
+    font-family: "Migra-ExtraBold", sans-serif;
     font-size: 2.5em;
     margin: 0px;
     padding: 0px;
 }
 
 .footer .apparel-footer {
-    color:#995594;
+    color: #995594;
     font-family: "GlacialIndifference-Bold", sans-serif;
     font-size: 0.6em;
     font-weight: bold;
@@ -356,21 +355,19 @@ div .footer .footer-col{
     letter-spacing: 5.5px;
 }
 
-
-.footer-col.socials svg{
+.footer-col.socials svg {
     height: 30px;
     width: 30px;
-
 }
 
-.socials-icon{
+.socials-icon {
     width: 120px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.socials-icon #shopee-link svg{
+.socials-icon #shopee-link svg {
     transform: translateY(-2px);
     -webkit-transform: translateY(-2px);
     -moz-transform: translateY(-2px);
