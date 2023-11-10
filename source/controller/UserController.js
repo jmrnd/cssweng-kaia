@@ -17,6 +17,7 @@ const Product = require('../models/Product.js');
 const Image = require('../models/Image.js');
 const Variation = require('../models/Variation.js');
 const Wishlist = require('../models/Wishlist.js');
+const ShoppingCart = require('../models/ShoppingCart.js');
 
 const UserController = {
 
@@ -212,22 +213,8 @@ const UserController = {
         }
     },
 
-    shoppingCart: async (req, res) => {
-        try {
-            if( req.session.authorized ) {
-                const userID = req.session.userID;
-                const { wishlist } = await Wishlist.getUserWishlist( userID );
-                res.status(200).render('./users/shoppingCart.ejs', { wishlist: wishlist });
-            } else {
-                res.redirect('/');
-            }
-        } catch( error ) {
-            console.log( error );
-        }
-    },
-
     wishlistProduct: async (req, res) => {
-        // if( req.session.authorized && req.session.userRole == 'admin' ) {
+        // if( req.session.authorized ) {
         if( true ) {
             try { 
                 const { productID } = req.body;
@@ -252,15 +239,47 @@ const UserController = {
         }
     },
 
-    viewCart: async (req, res) => {
-        // if( req.session.authorized && req.session.userRole == 'admin' ) {
-        if( true ) {
-            const productID = req.query.productID;
-            const { categories } = await Product.getBottomMostCategories();
-            const { product } = await Product.getProductWithImageByID(productID);
-            res.status(200).render('./users/viewProduct.ejs', { categories: categories, product: product });
-        } else {
-            res.redirect('/');
+    shoppingCart: async (req, res) => {
+        try {
+            if( req.session.authorized ) {
+                const userID = req.session.userID;
+                const { shoppingCart, status } = await ShoppingCart.getUserShoppingCart( userID );
+                if( status === 200 ) {
+                    res.status(200).render('./users/shoppingCart.ejs', { shoppingCart: shoppingCart });
+                } else if( status === 404 ) {
+                    res.status(404).render('./users/shoppingCart.ejs', { shoppingCart: shoppingCart });
+                }
+            } else {
+                res.redirect('/');
+            }
+        } catch( error ) {
+            console.log( error );
+        }
+    },
+
+    productToShoppingCart: async (req, res) => {
+        try {
+            if( req.session.authorized ) {
+                const { variationID, quantity } = req.body;
+                const userID = req.session.userID; 
+                // const parsedVariationID = parseInt(variationID.replace(/\D/g, ''));
+                // const parsedQuantity = parseInt(quantity.replace(/\D/g, ''));
+
+                const shoppingCartStatus = await ShoppingCart.checkShoppingCartStatus( userID, variationID );
+    
+                if( shoppingCartStatus.status === 200 ) {
+                    const response = await ShoppingCart.removeFromShoppingCart( userID, variationID );
+                    return res.status(response.status).json({ message: "Product removed from cart." });
+                } else if( shoppingCartStatus.status === 204 ) {
+                    const response = await ShoppingCart.addToShoppingCart( userID, variationID, quantity );
+                    return res.status(response.status).json({ message: "Product added to cart." });
+                } else {
+                    return res.status(shoppingCartStatus.status).json({ message: shoppingCartStatus.message });
+                }
+            }
+        } catch( error ) {
+            console.log( "addToCart Error:", error );
+            res.status(500).json({ message: "Internal server error." });
         }
     },
 }

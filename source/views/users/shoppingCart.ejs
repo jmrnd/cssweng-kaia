@@ -3,8 +3,8 @@
 <head>
     <title> Kaia Apparel </title>
     <link rel = "stylesheet" href = "/css/main/font.css">
-    <link rel = "stylesheet" href = "/css/users/wishlist.css">
-    <script src = "/js/users/wishlist.js" defer> </script>
+    <link rel = "stylesheet" href = "/css/users/shoppingCart.css">
+    <script src = "js/users/shoppingCart.js" defer> </script>
 </head>
 <body>
     <%- include("../main/header.ejs") %>
@@ -17,15 +17,74 @@
         </div>
         <div class = "category-header-title">
             <span class = "category-title" id = "category-title"> SHOPPING CART </span>
-            <span id = "wishlist-items"> </span>
+            <span id = "cart-items"> 3 items </span>
         </div>
-        <div id = "product-containers">
+        <div id = "cart-container"> 
+        <% /*
+            <div class = "cart-item">
+                <div class = "item-icon-col">
+                    <img src = "images/kaia/maya_top_1.jpg" class = "item-icon" />
+                </div>
+                <div class="item-info-col">
+                    <div class="item-name"> MAYA TOP </div>
+                    <div class="item-var-details">
+                        <div class = "item-color" style = "background-color: red;"> <br> </div>
+                    </div>
+                </div>
+                <div class = "item-quantity-col">
+                    <div class = "item-heading"> QUANTITY </div>
+                    <div class = "quantity-toggle">
+                    <button class = "qty-decrement-btn"> < </button>
+                    1
+                    <button class = "qty-increment-btn"> > </button>
+                </div>
+                </div>
+                <div class = "item-price-col">
+                    <div class = "item-heading">PRICE</div>
+                    PHP 150
+                </div>
+                <div class = "item-remove-col">
+                    <div class = "remove-item-btn"> </div>
+                </div>
+            </div>
+            <div class="divider"> </div>
+            <div class = "cart-item">
+                <div class = "item-icon-col">
+                    <img src = "images/kaia/maya_top_1.jpg" class = "item-icon" />
+                </div>
+                <div class="item-info-col">
+                    <div class="item-name"> MAYA TOP </div>
+                    <div class="item-var-details">
+                        <div class = "item-color" style = "background-color: red;"> <br> </div>
+                    </div>
+                </div>
+                <div class = "item-quantity-col">
+                    <div class = "item-heading"> QUANTITY </div>
+                    <div class = "quantity-toggle">
+                    <button class = "qty-decrement-btn"> < </button>
+                    1
+                    <button class = "qty-increment-btn"> > </button>
+                </div>
+                </div>
+                <div class = "item-price-col">
+                    <div class = "item-heading">PRICE</div>
+                    PHP 150
+                </div>
+                <div class = "item-remove-col">
+                    <div class = "remove-item-btn"> </div>
+                </div>
+            </div>
+        */ %>
+        </div>
+        <div class = "shopping-cart-total" id = "total-price"> TOTAL: PHP 800.00 </div>
+        <div class = "checkout-btn-col">
+            <button class = "checkout-btn" id = "checkout-button"> CHECKOUT </button>
         </div>
     </div>
     <%- include("../main/footer.ejs") %>
 </body>
 <script>
-    const wishlist = `<%- JSON.stringify(wishlist) %>`;
-    console.log(wishlist);
+    const shoppingCart = `<%- JSON.stringify(shoppingCart) %>`;
+    console.log(shoppingCart);
 </script>
 </html>

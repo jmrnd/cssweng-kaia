@@ -17,6 +17,9 @@ const variationNameLabel = document.getElementById('variation-name');
 const variationStockLabel = document.getElementById('variation-stocks');
 const variationColorContainer = document.getElementById('variation-color-container');
 
+// - Selected Value
+const addToCartButton = document.getElementById('add-to-cart-button');
+
 /***********************************************
                    VARIABLES                   
 ***********************************************/
@@ -32,12 +35,16 @@ var selectedQuantity = 1;
                  FETCH REQUESTS             
 ***********************************************/
 async function fetchPost( URL, formData ) {
-    var response = await fetch( URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify( formData ),
-    }); 
-    return response;
+    try {
+        var response = await fetch( URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify( formData ),
+        }); 
+        return response;
+    } catch( error ) {
+        console.log( error );
+    }
 }
 
 /** 
@@ -48,6 +55,25 @@ async function fetchPost( URL, formData ) {
 function parseObject( object ) {
     return JSON.parse( object );
 }
+
+/***********************************************
+                  ADD TO CART             
+***********************************************/
+addToCartButton.addEventListener( "click", async () => {
+    try {
+        const selectedVariationID = variationsArray[variationIndex].variationID;
+
+        const formData = { 
+            variationID: selectedVariationID,
+            quantity: selectedQuantity
+        }
+
+        const response = await fetchPost( '/productToShoppingCart', formData );
+        console.log( response );
+    } catch (error) {
+        console.error("Error:", error);
+    }
+});
 
 /***********************************************
                     IMAGES            

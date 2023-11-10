@@ -20,6 +20,8 @@ router.post('/checkWishlistStatus', UserController.wishlistProduct );
 router.get('/wishlist', UserController.wishlist );
 router.post('/wishlistProduct', UserController.wishlistProduct );
 router.get('/shoppingCart', UserController.shoppingCart );
+router.post('/productToShoppingCart', UserController.productToShoppingCart );
+
 
 router.get('/inventory', AdminController.inventory );
 router.get('/registerProduct', AdminController.getRegisterProduct );

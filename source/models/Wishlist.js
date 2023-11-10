@@ -1,5 +1,4 @@
 const db = require('../config/database.js');
-
 class Wishlist {
     
     static async checkWishlistStatus( userID, productID ) {

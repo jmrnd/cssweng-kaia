@@ -130,10 +130,7 @@ registerProductForm.addEventListener('submit', async function (e) {
         // - link image to product
         const productImagesResponse = await fetchPost( '/createProductImage', imageIDFormData );
 
-
         resetInputFields();
-
-        
     } catch( error ) {
         console.log( error );
     }
