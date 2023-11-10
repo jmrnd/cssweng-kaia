@@ -29,8 +29,6 @@ const imagesWrapper = document.getElementById('images-wrapper');
 const updateButton = document.getElementById('update-button');
 const deleteButton = document.getElementById('delete-button');
 
-
-
 /***********************************************
                     VARIABLES                   
 ***********************************************/
@@ -39,6 +37,27 @@ var originalVariationsArray = [];
 var imageArray = [];
 var variationsArray = []; 
 var parsedProduct;
+
+/***********************************************
+                 FETCH REQUESTS             
+***********************************************/
+async function fetchPost( URL, formData ) {
+    var response = await fetch( URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify( formData ),
+    }); 
+    return response;
+}
+
+/** 
+    ` It parses the product data from a JSON string and returns it as
+    an array of objects. This is required so we can iterate through an
+    object retrieved from a fetch request properly.
+*/
+function parseObject( object ) {
+    return JSON.parse( object );
+}
 
 /***********************************************
                  DOM CONTENT LOAD            
@@ -167,25 +186,8 @@ function loadVariations() {
 }
 
 /***********************************************
-                 FETCH REQUESTS             
+         IMAGE AND VARIATIONS COMPARISON            
 ***********************************************/
-async function fetchPost( URL, formData ) {
-    var response = await fetch( URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify( formData ),
-    }); 
-    return response;
-}
-
-/** 
-    ` It parses the product data from a JSON string and returns it as
-    an array of objects. This is required so we can iterate through an
-    object retrieved from a fetch request properly.
-*/
-function parseObject( object ) {
-    return JSON.parse( object );
-}
 
 /***********************************************
              UPDATE PRODUCT BUTTON            
@@ -206,7 +208,7 @@ updateButton.addEventListener('click', async function (e) {
         // - Validate input fields
         const areInputsValid = validateInputFields();
         if( !areInputsValid.status ) {
-            feedbackText.className = "temporary error"
+            feedbackText.className = "feedback error"
             feedbackText.textContent = areInputsValid.message;
             return false;
         }
@@ -229,7 +231,7 @@ updateButton.addEventListener('click', async function (e) {
             const currentDate = new Date();
             const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
 
-            feedbackText.className = "temporary success";
+            feedbackText.className = "feedback success";
             feedbackText.textContent = "Product (ID#" + productID + ") " + name +  " updated on " + formattedDate;
         } else if( response.status == 500 ) {
             feedbackText.textContent = response.message;
@@ -450,7 +452,6 @@ function generateImageHTML( image ) {
 function validateInputFields() {
     const newProductName = productName.value;
     const newProductPrice = productPrice.value; 
-    const newProductDesc = productDescription.value.trim();
     const newVariationName = variationName.value;
     const newVariationStock = variationStock.value; 
     const newVariationColor = colorPicker.value;
@@ -459,8 +460,6 @@ function validateInputFields() {
         return { status: false, message: "Error! Product name is missing." };
     } else if( !newProductPrice ) {
         return { status: false, message: "Error! Product price is missing." };
-    } else if( !newProductDesc ) {
-        return { status: false, message: "Error! Product description is missing." };
     } else if( !newVariationName ) {
         return { status: false, message: "Error! Product variation name is missing." };
     } else if( !newVariationStock ) {
