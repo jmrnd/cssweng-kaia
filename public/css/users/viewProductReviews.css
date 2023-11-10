@@ -25,7 +25,6 @@
 .customer-reviews-header {
     display: flex;
     flex-direction: column;
-    padding: 1rem 0rem;
     max-width: 1150px;
     background-color: #ffffff;
     margin: 0 auto;
@@ -34,14 +33,12 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 2px solid #ef91cf;
 }
 
 .customer-reviews-header-text {
     font-family: "Roboto Condensed-Bold";
     color: #000;
     font-size: 1.25rem;
-    line-height: 150%; /* 1.875rem */
     letter-spacing: 0.09375rem;
     text-transform: uppercase;
 }
@@ -87,7 +84,7 @@
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-around;
-    border-bottom: 2px solid #ef91cf;
+    border-top: 2px solid #ef91cf;
 }
 
 .review-details {
@@ -215,7 +212,7 @@
     justify-content: space-between;
     align-items: center;
     border: 1px #999 solid;
-    padding: 1em;
+    padding: 0.5rem;
     cursor: pointer;
     transition: background 0.3s;
 }
