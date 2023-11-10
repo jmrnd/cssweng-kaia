@@ -305,6 +305,11 @@ button.add-to-cart-button {
     cursor: pointer;
 }
 
+button.add-to-cart-button:active {
+    opacity: 50%;
+    transition: 0.3s;
+}
+
 /***********************************************
                 PRODUCT HEADER                    
 ***********************************************/

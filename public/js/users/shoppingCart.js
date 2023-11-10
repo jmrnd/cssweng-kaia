@@ -53,7 +53,7 @@ async function updateCartContainer() {
             const cartItem = generateCartItemHTML(item);
             cartContainer.appendChild( cartItem );
 
-            const removeItemBtn = cartContainer.querySelector(`.cart-item:nth-child(${index + 1}) .remove-item-btn`);
+            const removeItemBtn = cartContainer.querySelector(`.cart-item .remove-item-btn`);
             if( removeItemBtn ) {
                 removeItemBtn.addEventListener('click', async () => {
                     await productToShoppingCart(item.variationID);
@@ -78,6 +78,8 @@ async function productToShoppingCart( variationID ) {
 function generateCartItemHTML( item ) {
     const cartItem = document.createElement('div');
     cartItem.classList.add('cart-item');
+    let newPrice = 0;
+    newPrice = parseFloat( parseInt(item.quantity) * parseFloat(item.price)).toFixed(2);
     cartItem.innerHTML = `
         <div class="item-icon-col">
             <img src="${item.filePath}" class="item-icon" />
@@ -98,7 +100,7 @@ function generateCartItemHTML( item ) {
         </div>
         <div class="item-price-col">
             <div class="item-heading">PRICE</div>
-            PHP ${item.price}
+            PHP ${newPrice}
         </div>
     `;
 
@@ -139,8 +141,11 @@ function updateCartItemsNumber() {
 function updateTotalPrice() {
     totalPrice = 0;
     shoppingCartArray.forEach( item => {
-        totalPrice += parseFloat(item.price);
+        let newPrice = item.price * item.quantity;
+        totalPrice += parseFloat(newPrice);
     });
+
+    totalPrice = totalPrice.toFixed(2);
 
     cartTotalPrice.innerHTML = `TOTAL: PHP ${totalPrice}`;
 }
