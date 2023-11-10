@@ -1,14 +1,14 @@
 /***********************************************
                 DOCUMENT ELEMENTS                   
 ***********************************************/
-const pathCategory = document.getElementById('path-category');
-const feedbackText = document.getElementById('feedback-text');
+const pathCategory = document.getElementById("path-category");
+const feedbackText = document.getElementById("feedback-text");
 
 // - Product
-const wishlistButton = document.getElementById('wishlist-button');
-const editButton = document.getElementById('edit-button');
-const deleteButton = document.getElementById('delete-button');
-const numberContainer = document.getElementById('number-container'); // stock quantity
+const wishlistButton = document.getElementById("wishlist-button");
+const editButton = document.getElementById("edit-button");
+const deleteButton = document.getElementById("delete-button");
+const numberContainer = document.getElementById("number-container"); // stock quantity
 
 /*
     productItem.addEventListener('click', async function(e) {
@@ -30,14 +30,16 @@ const numberContainer = document.getElementById('number-container'); // stock qu
 */
 
 // - Images
-const leftSection = document.getElementById('left-section');
-const largeImageContainer = document.getElementById('large-image-container');
-const smallImageSection = document.getElementById('small-image-section');
+const leftSection = document.getElementById("left-section");
+const largeImageContainer = document.getElementById("large-image-container");
+const smallImageSection = document.getElementById("small-image-section");
 
 // - Variations
-const variationNameLabel = document.getElementById('variation-name');
-const variationStockLabel = document.getElementById('variation-stocks');
-const variationColorContainer = document.getElementById('variation-color-container');
+const variationNameLabel = document.getElementById("variation-name");
+const variationStockLabel = document.getElementById("variation-stocks");
+const variationColorContainer = document.getElementById(
+    "variation-color-container"
+);
 
 /***********************************************
                    VARIABLES                   
@@ -53,12 +55,12 @@ var selectedQuantity = 1;
 /***********************************************
                  FETCH REQUESTS             
 ***********************************************/
-async function fetchPost( URL, formData ) {
-    var response = await fetch( URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify( formData ),
-    }); 
+async function fetchPost(URL, formData) {
+    var response = await fetch(URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+    });
     return response;
 }
 
@@ -67,8 +69,8 @@ async function fetchPost( URL, formData ) {
     an array of objects. This is required so we can iterate through an
     object retrieved from a fetch request properly.
 */
-function parseObject( object ) {
-    return JSON.parse( object );
+function parseObject(object) {
+    return JSON.parse(object);
 }
 
 /***********************************************
@@ -79,12 +81,12 @@ function parseObject( object ) {
     category. By default, the selected category is the very first category,
     i.e., the category with the lowest categoryID.
 */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     try {
         generateImages();
         generateVariations();
-    } catch( error ) {
-        console.log( error );
+    } catch (error) {
+        console.log(error);
     }
 });
 
@@ -93,59 +95,61 @@ document.addEventListener('DOMContentLoaded', () => {
 ***********************************************/
 function generateImages() {
     try {
-        imagesArray = parseObject( productImages );
+        imagesArray = parseObject(productImages);
 
-        updateLargeImage( imagesArray[imageIndex].filePath );
-        
-        for( let i = 0; i < imagesArray.length; i++ ) {
-            const smallImageContainer = document.createElement('div');
+        updateLargeImage(imagesArray[imageIndex].filePath);
+
+        for (let i = 0; i < imagesArray.length; i++) {
+            const smallImageContainer = document.createElement("div");
             smallImageContainer.className = "small-image-container";
             smallImageContainer.imageIndex = i;
-    
-            const smallImage = document.createElement('img');
+
+            const smallImage = document.createElement("img");
             smallImage.className = "small-image";
             smallImage.src = `${imagesArray[i].filePath}`;
-    
+
             const largeImageURL = imagesArray[i].filePath;
-    
-            smallImageContainer.addEventListener( "click", function() {
+
+            smallImageContainer.addEventListener("click", function () {
                 updateLargeImage(largeImageURL);
                 imageIndex = smallImageContainer.imageIndex;
-                updateImageHighlight( imageIndex );
+                updateImageHighlight(imageIndex);
             });
-    
+
             smallImageContainer.appendChild(smallImage);
             smallImageSection.appendChild(smallImageContainer);
         }
-        updateImageHighlight( imageIndex );
-    } catch( error ) {
-        console.log( error );
+        updateImageHighlight(imageIndex);
+    } catch (error) {
+        console.log(error);
     }
 }
 
-function updateLargeImage( filePath ) {
+function updateLargeImage(filePath) {
     largeImageContainer.innerHTML = `
         <img class = "large-image" src = "${filePath}">
     `;
 }
 
-function moveImage( value ) {
+function moveImage(value) {
     const isWithinLowerBounds = imageIndex + value >= 0;
     const isWithinUpperBounds = imageIndex + value < imagesArray.length;
 
-    if( isWithinLowerBounds && isWithinUpperBounds ) {
+    if (isWithinLowerBounds && isWithinUpperBounds) {
         imageIndex += value;
-        updateLargeImage( imagesArray[imageIndex].filePath ); 
-        updateImageHighlight( imageIndex );
+        updateLargeImage(imagesArray[imageIndex].filePath);
+        updateImageHighlight(imageIndex);
     }
 }
 
-function updateImageHighlight( imageIndex ) {
-    const smallImageContainers = document.querySelectorAll(".small-image-container");
-    smallImageContainers.forEach( (imageContainer) => {
-        imageContainer.classList.remove( "selected-image" )
-        if( imageContainer.imageIndex == imageIndex ) {
-            imageContainer.classList.add( "selected-image" );
+function updateImageHighlight(imageIndex) {
+    const smallImageContainers = document.querySelectorAll(
+        ".small-image-container"
+    );
+    smallImageContainers.forEach((imageContainer) => {
+        imageContainer.classList.remove("selected-image");
+        if (imageContainer.imageIndex == imageIndex) {
+            imageContainer.classList.add("selected-image");
         }
     });
 }
@@ -155,76 +159,73 @@ function updateImageHighlight( imageIndex ) {
 ***********************************************/
 function generateVariations() {
     try {
-        variationsArray = parseObject( variations );
-        console.log( variationsArray );
-        for( let i = 0; i < variationsArray.length; i++ ) {
-    
-            const colorButton = document.createElement('button');
+        variationsArray = parseObject(variations);
+        console.log(variationsArray);
+        for (let i = 0; i < variationsArray.length; i++) {
+            const colorButton = document.createElement("button");
             colorButton.className = "color-button";
             colorButton.style.backgroundColor = `${variationsArray[i].hexColor}`;
             colorButton.style.variationID = `${variationsArray[i].variationID}`;
-            colorButton.setAttribute( 'variation-index', i );
-    
+            colorButton.setAttribute("variation-index", i);
+
             const variationName = variationsArray[i].variationName;
             const stockQuantity = variationsArray[i].stockQuantity;
-            const hexColor = variationsArray[i].hexColor;
-    
-            if( i == 0 ) {
+
+            if (i == 0) {
                 updateColorHighlight(colorButton);
             }
-    
-            colorButton.addEventListener( "click", function () {
-                updateVariationName( variationName, hexColor ); 
-                updateVariationStocks(stockQuantity); 
-                variationIndex = colorButton.getAttribute('variation-index');
-                console.log( variationIndex );
+
+            colorButton.addEventListener("click", function () {
+                updateVariationName(variationName);
+                updateVariationStocks(stockQuantity);
+                variationIndex = colorButton.getAttribute("variation-index");
+                console.log(variationIndex);
                 selectedQuantity = 1;
                 updateQuantity(selectedQuantity);
                 updateColorHighlight(colorButton);
             });
             variationColorContainer.appendChild(colorButton);
         }
-    
+
         var currentName = variationsArray[variationIndex].variationName;
         var currentStock = variationsArray[variationIndex].stockQuantity;
-        var currentHex = variationsArray[variationIndex].hexColor;
-        updateVariationName( currentName, currentHex );
+        updateVariationName(currentName, currentHex);
         updateVariationStocks(currentStock);
-    } catch( error ) {
-        console.log( error );
+    } catch (error) {
+        console.log(error);
     }
 }
 
-function updateVariationName( variationName, hexColor ) {
+function updateVariationName(variationName) {
     variationNameLabel.textContent = `${variationName}`;
-    variationNameLabel.style.color = `${hexColor}`;
 }
 
-function updateVariationStocks( stockQuantity ) {
+function updateVariationStocks(stockQuantity) {
     variationStockLabel.textContent = `${stockQuantity}`;
 }
 
-function updateColorHighlight( currentButton ) {
+function updateColorHighlight(currentButton) {
     const colorButtons = document.querySelectorAll(".color-button");
-    colorButtons.forEach( (button) => button.classList.remove("selected-color"));
+    colorButtons.forEach((button) => button.classList.remove("selected-color"));
     currentButton.classList.add("selected-color");
 }
 
 /***********************************************
                   QUANTITY             
 ***********************************************/
-function selectQuantity( value ) {
-    const selectedVariation = variationsArray[variationIndex]
+function selectQuantity(value) {
+    const selectedVariation = variationsArray[variationIndex];
     const isWithinLowerBounds = selectedQuantity + value > 0;
-    const isWithinUpperBounds = selectedQuantity + value <= selectedVariation.stockQuantity;
+    const isWithinUpperBounds =
+        selectedQuantity + value <= selectedVariation.stockQuantity;
 
-    if( isWithinLowerBounds && isWithinUpperBounds ) {
+    if (isWithinLowerBounds && isWithinUpperBounds) {
         selectedQuantity += value;
-        updateQuantity( selectedQuantity );
+        updateQuantity(selectedQuantity);
     }
 }
 
-function updateQuantity( selectedQuantity ) {
+function updateQuantity(selectedQuantity) {
     numberContainer.value = selectedQuantity;
     numberContainer.textContent = selectedQuantity;
 }
@@ -232,143 +233,145 @@ function updateQuantity( selectedQuantity ) {
 /***********************************************
                 DELETE BUTTON                   
 ***********************************************/
-deleteButton.addEventListener('click', async function(e) {
+deleteButton.addEventListener("click", async function (e) {
     try {
         var modal = createConfirmationPopup();
-        modal.classList.add('active');
-    } catch( error ) {
-        console.log( error );
+        modal.classList.add("active");
+    } catch (error) {
+        console.log(error);
     }
 });
 
 function createConfirmationPopup() {
     // - Overlay
-	const overlay = document.createElement('div');
-	overlay.setAttribute('id', 'overlay');
+    const overlay = document.createElement("div");
+    overlay.setAttribute("id", "overlay");
 
-	overlay.addEventListener('click', () => {
-		modal.classList.remove('active');
-		overlay.classList.remove('active');
-	});
+    overlay.addEventListener("click", () => {
+        modal.classList.remove("active");
+        overlay.classList.remove("active");
+    });
 
     // - Modal
-	const modal = document.createElement('div');
-	modal.classList.add('modal');
-	modal.setAttribute('id', 'modal');
+    const modal = document.createElement("div");
+    modal.classList.add("modal");
+    modal.setAttribute("id", "modal");
 
     // - Modal Header
-	const modalHeader = document.createElement('div');
-	modalHeader.classList.add('modal-header');
+    const modalHeader = document.createElement("div");
+    modalHeader.classList.add("modal-header");
     modalHeader.innerHTML = `
         <div class = "title"> Delete </div>
     `;
 
     // - Close Button
-	const closeButton = document.createElement('button');
-	closeButton.setAttribute('data-close-button', '');
-	closeButton.classList.add('close-button');
-	closeButton.innerHTML = '&times;';
+    const closeButton = document.createElement("button");
+    closeButton.setAttribute("data-close-button", "");
+    closeButton.classList.add("close-button");
+    closeButton.innerHTML = "&times;";
 
-	closeButton.addEventListener('click', () => {
-		modal.classList.remove('active');
-		overlay.classList.remove('active');
-	});
+    closeButton.addEventListener("click", () => {
+        modal.classList.remove("active");
+        overlay.classList.remove("active");
+    });
 
     // - Modal Body
     var tempProductName = parseObject(product).productName;
-    console.log( tempProductName ); 
+    console.log(tempProductName);
 
-	const modalBody = document.createElement('div');
-	modalBody.classList.add('modal-body');
-	modalBody.innerHTML = `Are you sure you want to delete ${tempProductName}?
+    const modalBody = document.createElement("div");
+    modalBody.classList.add("modal-body");
+    modalBody.innerHTML = `Are you sure you want to delete ${tempProductName}?
         This process cannot be undone.
     `;
 
+    const confirmationContainer = document.createElement("div");
+    confirmationContainer.classList.add("confirmation-container");
 
-    const confirmationContainer = document.createElement('div');
-	confirmationContainer.classList.add('confirmation-container');
+    const cancelButton = document.createElement("div");
+    cancelButton.classList.add("confirm-button");
+    cancelButton.innerHTML = "cancel";
+    cancelButton.addEventListener("click", () => {
+        modal.classList.remove("active");
+        overlay.classList.remove("active");
+    });
 
-    const cancelButton = document.createElement('div');
-    cancelButton.classList.add('confirm-button');
-    cancelButton.innerHTML = 'cancel';
-	cancelButton.addEventListener('click', () => {
-		modal.classList.remove('active');
-		overlay.classList.remove('active');
-	});
-
-    const confirmButton = document.createElement('div');
-    confirmButton.classList.add('confirm-button');
-    confirmButton.setAttribute('id', 'confirm');
-    confirmButton.innerHTML = 'confirm';
-    confirmButton.addEventListener('click', () => {
+    const confirmButton = document.createElement("div");
+    confirmButton.classList.add("confirm-button");
+    confirmButton.setAttribute("id", "confirm");
+    confirmButton.innerHTML = "confirm";
+    confirmButton.addEventListener("click", () => {
         deleteProduct(product);
-		modal.classList.remove('active');
-		overlay.classList.remove('active');
-	});
+        modal.classList.remove("active");
+        overlay.classList.remove("active");
+    });
 
-    
-	modalHeader.appendChild(closeButton);
+    modalHeader.appendChild(closeButton);
     confirmationContainer.appendChild(cancelButton);
     confirmationContainer.appendChild(confirmButton);
     modalBody.appendChild(confirmationContainer);
-	modal.appendChild(modalHeader);
-	modal.appendChild(modalBody);
+    modal.appendChild(modalHeader);
+    modal.appendChild(modalBody);
 
-	document.body.appendChild(overlay);
-	document.body.appendChild(modal);
+    document.body.appendChild(overlay);
+    document.body.appendChild(modal);
 
-	overlay.classList.add('active');
-	modal.classList.add('active');
+    overlay.classList.add("active");
+    modal.classList.add("active");
 
-	return modal;
+    return modal;
 }
 
-async function deleteProduct( product ) {
+async function deleteProduct(product) {
     try {
-        const response = await fetch( 'deleteProduct', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: product
+        const response = await fetch("deleteProduct", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: product,
         });
 
-        if( response.status == 201 ) {
+        if (response.status == 201) {
             window.location.href = "/inventory";
         } else {
-            switch( response.status ) {
-                case 404: {
-                    feedbackText.textContent = 'Product not found';
-                } break;
+            switch (response.status) {
+                case 404:
+                    {
+                        feedbackText.textContent = "Product not found";
+                    }
+                    break;
                 case 500: {
-                    feedbackText.textContent = 'Internal server error';
+                    feedbackText.textContent = "Internal server error";
                 }
             }
         }
-    } catch( error ) {
+    } catch (error) {
         console.log(error);
     }
 }
 
-async function deleteProduct( product ) {
+async function deleteProduct(product) {
     try {
-        const response = await fetch( 'deleteProduct', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: product
+        const response = await fetch("deleteProduct", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: product,
         });
 
-        if( response.status == 201 ) {
+        if (response.status == 201) {
             window.location.href = "/inventory";
         } else {
-            switch( response.status ) {
-                case 404: {
-                    feedbackText.textContent = 'Product not found';
-                } break;
+            switch (response.status) {
+                case 404:
+                    {
+                        feedbackText.textContent = "Product not found";
+                    }
+                    break;
                 case 500: {
-                    feedbackText.textContent = 'Internal server error';
+                    feedbackText.textContent = "Internal server error";
                 }
             }
         }
-    } catch( error ) {
+    } catch (error) {
         console.log(error);
     }
 }
@@ -376,24 +379,27 @@ async function deleteProduct( product ) {
 /***********************************************
                   EDIT BUTTON                   
 ***********************************************/
-editButton.addEventListener('click', async function(e) {
+editButton.addEventListener("click", async function (e) {
     try {
         const parsedProductID = parseObject(productID);
-        console.log( parsedProductID );
+        console.log(parsedProductID);
 
-        const response = await fetch( `/editProduct?productID=${parsedProductID}`, {
-            method: 'GET'
-        });
+        const response = await fetch(
+            `/editProduct?productID=${parsedProductID}`,
+            {
+                method: "GET",
+            }
+        );
 
-        if( response.status === 200 ) {
+        if (response.status === 200) {
             window.location.href = `/editProduct?productID=${parsedProductID}`;
         } else {
-            console.log( "Request failed!" );
+            console.log("Request failed!");
         }
-    } catch( error ) {
-        console.log( error );
+    } catch (error) {
+        console.log(error);
     }
-});   
+});
 
 /*
 document.addEventListener("DOMContentLoaded", function() {

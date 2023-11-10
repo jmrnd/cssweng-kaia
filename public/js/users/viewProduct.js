@@ -126,14 +126,13 @@ function generateVariations() {
 
         const variationName = variationsArray[i].variationName;
         const stockQuantity = variationsArray[i].stockQuantity;
-        const hexColor = variationsArray[i].hexColor;
 
         if (i == 0) {
             updateColorHighlight(colorButton);
         }
 
         colorButton.addEventListener("click", function () {
-            updateVariationName(variationName, hexColor);
+            updateVariationName(variationName);
             updateVariationStocks(stockQuantity);
             variationIndex = colorButton.getAttribute("variation-index");
             console.log(variationIndex);
@@ -146,14 +145,12 @@ function generateVariations() {
 
     var currentName = variationsArray[variationIndex].variationName;
     var currentStock = variationsArray[variationIndex].stockQuantity;
-    var currentHex = variationsArray[variationIndex].hexColor;
-    updateVariationName(currentName, currentHex);
+    updateVariationName(currentName);
     updateVariationStocks(currentStock);
 }
 
-function updateVariationName(variationName, hexColor) {
+function updateVariationName(variationName) {
     variationNameLabel.textContent = `${variationName}`;
-    variationNameLabel.style.color = `${hexColor}`;
 }
 
 function updateVariationStocks(stockQuantity) {
