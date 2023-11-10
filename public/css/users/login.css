@@ -161,7 +161,7 @@ div.terms-container {
     color: white;
     background-color: #ef91cf;
     cursor: pointer;
-    margin-top: 20px;
+    margin: 1rem 0rem;
 }
 
 #register-button:hover {

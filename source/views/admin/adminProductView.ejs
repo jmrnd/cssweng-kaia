@@ -2,11 +2,11 @@
 <html lang = "en">
 <head>
     <title> Kaia Apparel </title>
-    <link rel = "stylesheet" href = "/css/main/font.css">
-    <link rel = "stylesheet" href = "/css/main/span.css">
     <link rel = "stylesheet" href = "/css/admin/adminProductView.css">
     <link rel = "stylesheet" href = "/css/admin/editProduct.css">
-    <script src = "js/admin/adminProductView.js" defer> </script>
+    <link rel = "stylesheet" href = "/css/main/font.css">
+    <link rel = "stylesheet" href = "/css/main/span.css">
+    <script src = "/js/admin/adminProductView.js" defer> </script>
 </head>
 <body>
     <%- include("../main/admin-header.ejs") %>
@@ -41,13 +41,15 @@
             </section> </div>
             <div class = "right-section"> <section id = "product-details">
                 <div class = "product-header">
-                    <span class = "header-title-large" id = "product-name"> <%= product.productName %> </span> 
-                    <button type = "button" id = "delete-button"> 
-                        <span class = "icon delete"> </span>
-                    </button>
-                    <button type = "button" id = "edit-button"> 
-                        <span class = "icon edit"  href = "inventory"> </span>
-                    </button>
+                    <span class = "header-title-large" id = "product-name"> <%= product.productName %> </span>
+                    <div class="icon-container">
+                        <button type = "button" id = "edit-button"> 
+                            <span class = "icon edit"  href = "inventory"> </span>
+                        </button>
+                        <button type = "button" id = "delete-button"> 
+                            <span class = "icon delete"> </span>
+                        </button>
+                    </div>
                 </div>
                 <div class = "product-body price"> 
                     <span class = "header-title-medium" id = "product-price"> PHP <%= product.price %> </span>
@@ -57,7 +59,7 @@
                     <span class = "text-default" id = "product-description"> <%= product.productDescription %> </span>
                 <div class = "product-body variation">
                     <div class = "variation-details-container">
-                        <span class = "text-title"> VARIATION: <span id = "variation-name"> VARIATION </span> </span>
+                        <span class = "text-title"> COLOR: <span id = "variation-name"> VARIATION </span> </span>
                         <span class = "text-title"> STOCKS: <span id = "variation-stocks"> </span> </span>
                     </div>
                     <div class = "variation-color-container" id = "variation-color-container"> 
