@@ -166,8 +166,13 @@ function generateVariations() {
             colorButton.className = "color-button";
             colorButton.style.backgroundColor = `${variationsArray[i].hexColor}`;
             colorButton.style.variationID = `${variationsArray[i].variationID}`;
+<<<<<<< Updated upstream
             colorButton.setAttribute("variation-index", i);
 
+=======
+            colorButton.setAttribute( 'variation-index', i );
+            
+>>>>>>> Stashed changes
             const variationName = variationsArray[i].variationName;
             const stockQuantity = variationsArray[i].stockQuantity;
 
