@@ -143,14 +143,12 @@ function generateVariations() {
 
     var currentName = variationsArray[variationIndex].variationName;
     var currentStock = variationsArray[variationIndex].stockQuantity;
-    var currentHex = variationsArray[variationIndex].hexColor;
-    updateVariationName( currentName, currentHex );
+    updateVariationName( currentName );
     updateVariationStocks(currentStock);
 }
 
-function updateVariationName( variationName, hexColor ) {
+function updateVariationName( variationName ) {
     variationNameLabel.textContent = `${variationName}`;
-    variationNameLabel.style.color = `${hexColor}`;
 }
 
 function updateVariationStocks( stockQuantity ) {

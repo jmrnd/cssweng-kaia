@@ -354,7 +354,6 @@ function generateImageHTML( image ) {
 function validateInputFields() {
     const newProductName = productName.value;
     const newProductPrice = productPrice.value; 
-    const newProductDesc = productDescription.value.trim();
     const newVariationName = variationName.value;
     const newVariationStock = variationStock.value; 
     const newVariationColor = colorPicker.value;
@@ -363,8 +362,6 @@ function validateInputFields() {
         return { status: false, message: "Error! Product name is missing." };
     } else if( !newProductPrice ) {
         return { status: false, message: "Error! Product price is missing." };
-    } else if( !newProductDesc ) {
-        return { status: false, message: "Error! Product description is missing." };
     } else if( !newVariationName ) {
         return { status: false, message: "Error! Product variation name is missing." };
     } else if( !newVariationStock ) {

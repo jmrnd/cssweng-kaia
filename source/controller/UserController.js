@@ -1,4 +1,4 @@
-    /*|********************************************************
+/*|********************************************************
 
     This controller handles user-related authentication,
     functionality, and administrative operations, such as
