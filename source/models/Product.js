@@ -101,7 +101,8 @@ class Product {
                 GROUP BY pi.productID
             ) AS maxImages ON p.productID = maxImages.productID
             LEFT JOIN imageReferences i ON maxImages.maxImageID = i.imageID
-        `;
+            ORDER BY i.imageID ASC
+        `;  
 
         try {
             const [rows, _] = await db.execute(sql);

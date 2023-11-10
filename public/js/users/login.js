@@ -10,6 +10,10 @@ const errorBox = document.getElementById('error-box');
 const registerFormContainer = document.getElementById("register-form-container");
 const loginFormContainer = document.getElementById("login-form-container");
 
+/* PASSWORD Toggle */
+const toggleLoginPassword = document.querySelector('#toggle-login');
+const toggleRegisterPassword = document.querySelector('#toggle-register');
+const registerPasword = document.querySelector('#register-password');
 
 loginSwitch.addEventListener("click", function (e){
     loginFormContainer.style.display = 'block';
@@ -96,9 +100,12 @@ loginButton?.addEventListener( "click", async function(e) {
         });
 
         // - On success, go to dashboard
-        if( response.status == 200 || response.status == 201 ) {
+        if( response.status == 201 ) {
             window.location.href = "/homepage";
-        } else {
+        } else if( response.status == 200 ) {
+            window.location.href = "/admin";
+        }
+        else {
             errorBox.style.display = 'block';
             switch( response.status ) {
                 case 401: {
@@ -123,6 +130,7 @@ loginButton?.addEventListener( "click", async function(e) {
 // - Register input containers and buttons
 const registerFirstName = document.getElementById("register-first-name");
 const registerLastName = document.getElementById("register-last-name");
+const registerUsername = document.getElementById("register-username");
 const registerEmail = document.getElementById("register-email");
 const registerPassword = document.getElementById("register-password");
 const registerButton = document.getElementById("register-button");
@@ -147,6 +155,7 @@ registerButton?.addEventListener( "click", async function(e) {
                 firstName: registerFirstName.value,
                 lastName: registerLastName.value 
             },
+            username: registerUsername.value,
             email: registerEmail.value, 
             password: registerPassword.value
         }
@@ -166,8 +175,12 @@ registerButton?.addEventListener( "click", async function(e) {
 
         // - On success, refresh the loging page
         if( response.ok ) {
-            alert( "Registration successful" ); 
-            location.reload();
+            errorBox.style.display = 'block';
+            errorBox.style.color = '#32a854'
+            errorBox.style.border = '1px solid #32a854';
+            errorBox.style.backgroundColor = "#d4ffe0";
+            errorBox.textContent = "Account successfully created";
+            registerFormContainer.reset();
         } else {
             errorBox.style.display = 'block';
             switch( response.status ) {
@@ -207,3 +220,36 @@ function areInputFieldsFilled( formId ) {
     }
     return 1; 
 }
+
+/** 
+    Show and Hide Password when icon is
+*/
+
+// For Login Toggle
+toggleLoginPassword.addEventListener('click', function (e) {
+    // toggle the type attribute and icon
+    if(loginPassword.getAttribute('type') == 'password'){
+        type = 'text';
+        toggleLoginPassword.classList.replace("fa-eye", "fa-eye-slash");
+    } else{
+        type = 'password';
+        toggleLoginPassword.classList.replace("fa-eye-slash", "fa-eye");
+    }
+
+    loginPassword.setAttribute('type', type)
+
+});
+
+// For Register Toggle
+toggleRegisterPassword.addEventListener('click', function (e) {
+    // toggle the type attribute and icon
+    if(registerPasword.getAttribute('type') == 'password'){
+        type = 'text';
+        toggleRegisterPassword.classList.replace("fa-eye", "fa-eye-slash");
+    } else{
+        type = 'password';
+        toggleRegisterPassword.classList.replace("fa-eye-slash", "fa-eye");
+    }
+
+    registerPasword.setAttribute('type', type);
+})

@@ -3,6 +3,7 @@ const buttons = document.querySelectorAll('button.header');
 const popups = document.querySelectorAll('.popup');
 const goToWishlistButton = document.getElementById('wishlist-button');
 const goToShoppingCartButton = document.getElementById('shopping-cart-button');
+// const loginProfileButton = document.getElementById('login-profile-button');
 const logoutButton = document.getElementById('logout-button');
 
 /*
@@ -52,7 +53,7 @@ logoutButton?.addEventListener( 'click', async function(e) {
         });
 
         if( response.status === 200 ) {
-            window.location.href = "/";
+            window.location.href = "/login";
         } else if( response.status === 500 ) {
             console.error( "An error occured: ", error );
         }
@@ -60,6 +61,7 @@ logoutButton?.addEventListener( 'click', async function(e) {
         console.error( "An error occured: ", error );
     }
 });
+
 
 // Add a click event listener to the "Logout" button.
 goToWishlistButton?.addEventListener( 'click', async function(e) {

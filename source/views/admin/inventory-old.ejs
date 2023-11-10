@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <title> Kaia Apparel </title>
+    <link rel = "stylesheet" href = "/css/admin/inventory.css">
+    <link rel = "stylesheet" href = "/css/main/font.css">
+    <link rel = "stylesheet" href = "/css/main/span.css">
+    <script src = "js/admin/inventory.js" defer> </script>
+</head>
+<body>
+    <%- include("../main/admin-header.ejs") %>
+    <div class = "main-container" id = "main-container"> 
+        <div class = "sticky-container"> 
+            <div class = "header-container">
+                <span class = "title"> INVENTORY MANAGEMENT </span>
+                <a class = "register-button" href = "/registerProduct"> REGISTER </a>
+            </div>
+            <div class = "header-container">
+                <div class = "filter-container category">
+                    <span class = "label"> CATEGORY </span>
+                    <select class = "filter dropdown" id = "category-dropdown">
+                        <option data-name = "all"> All </option>
+                        <% if( categories !== null ) { %> 
+                            <% categories.forEach((category) => { %>
+                                <option 
+                                    value = "<%= category.categoryName %>"
+                                    data-id = "<%= category.categoryID %>"
+                                    data-name = "<%= category.categoryName %>"> 
+                                    <%= category.categoryName %> 
+                                </option>
+                            <% }); %>
+                        <% } %>           
+                    </select>
+                </div>
+                <div class = "filter-container searchbar"> 
+                    <input type = "text" class = "filter search-bar" id = "search-bar" placeholder = "Search products by name">
+                </div>
+            </div>
+        </div>
+        <div class ="product-container" id = "product-container">
+            <% /*
+                <div class="product-item" data-product-id="[product.productID]">
+                    <div class="item-icon-col">
+                        <img src="[product.filePath]" class="item-icon">
+                    <div class="item-name">[product.productName in uppercase]</div>
+                </div>      
+           */  %>
+        </div>
+    </div>
+    <footer> 
+        <div class = "pagination" id = "pagination">
+        </div>
+    </footer>
+    <%- include("../main/footer.ejs") %>
+</body>
+<script>
+    const categories = `<%- JSON.stringify(categories) %>`;
+    const products = `<%- JSON.stringify(products) %>`;
+    console.log( products );
+</script>
+</html>

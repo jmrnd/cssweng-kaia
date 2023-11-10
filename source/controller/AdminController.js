@@ -24,51 +24,79 @@ const AdminController = {
         it redirects to the homepage.
     */
     inventory: async (req, res) => {
-        // if( req.session.authorized && req.session.userRole == 'admin' ) {
-        if( true ) {
-            const { categories } = await Product.getBottomMostCategories();
-            const { products } = await Product.getAllProductsWithImages();
-            res.render('./admin/inventory.ejs', { categories: categories, products: products });
-        } else {
-            res.redirect('/');
+        try {
+            // if( req.session.authorized && req.session.userRole == 'admin' ) {
+            if (true) {
+                const { categories } = await Product.getBottomMostCategories();
+                const { products } = await Product.getAllProductsWithImages();
+                res.render("./admin/inventory.ejs", {
+                    categories: categories,
+                    products: products,
+                });
+            } else {
+                res.redirect("/");
+            }
+        } catch (error) {
+            console.log("AdminController.js - inventory() Error: ", error);
         }
     },
 
     viewProductAdmin: async (req, res) => {
-        // if( req.session.authorized && req.session.userRole == 'admin' ) {
-        if( true ) {
-            const productID = req.query.productID;
-            const { categories } = await Product.getBottomMostCategories();
-            const { product } = await Product.getProductWithImageByID(productID);
-            const { images } = await Image.getAllImagesOfProduct(productID);
-            const { variations } = await Variation.getAllVariationsOfProduct(productID);
+        try {
+            // if( req.session.authorized && req.session.userRole == 'admin' ) {
+            if (true) {
+                const productID = req.query.productID;
+                const { categories } = await Product.getBottomMostCategories();
+                const { product } = await Product.getProductWithImageByID(
+                    productID
+                );
+                const { images } = await Image.getAllImagesOfProduct(productID);
+                const { variations } =
+                    await Variation.getAllVariationsOfProduct(productID);
 
-            res.status(200).render('./admin/adminProductView.ejs', { 
-                categories: categories, product: product, productID: productID, 
-                productImages: images, variations: variations
-            });
-
-        } else {
-            res.redirect('/');
+                res.status(200).render("./admin/adminProductView.ejs", {
+                    categories: categories,
+                    product: product,
+                    productID: productID,
+                    productImages: images,
+                    variations: variations,
+                });
+            } else {
+                res.redirect("/");
+            }
+        } catch (error) {
+            console.log(
+                "AdminController.js - viewProductAdmin() Error: ",
+                error
+            );
         }
     },
 
     editProduct: async (req, res) => {
-        // if( req.session.authorized && req.session.userRole == 'admin' ) {
-        if( true ) {
-            const productID = req.query.productID;
-            const { categories } = await Product.getBottomMostCategories();
-            const { product } = await Product.getProductWithImageByID(productID);
-            const { images } = await Image.getAllImagesOfProduct(productID);
-            const { variations } = await Variation.getAllVariationsOfProduct(productID);
+        try {
+            // if( req.session.authorized && req.session.userRole == 'admin' ) {
+            if (true) {
+                const productID = req.query.productID;
+                const { categories } = await Product.getBottomMostCategories();
+                const { product } = await Product.getProductWithImageByID(
+                    productID
+                );
+                const { images } = await Image.getAllImagesOfProduct(productID);
+                const { variations } =
+                    await Variation.getAllVariationsOfProduct(productID);
 
-            res.status(200).render('./admin/editProduct.ejs', { 
-                categories: categories, product: product, productID: productID, 
-                productImages: images, variations: variations
-            });
-
-        } else {
-            res.redirect('/');
+                res.status(200).render("./admin/editProduct.ejs", {
+                    categories: categories,
+                    product: product,
+                    productID: productID,
+                    productImages: images,
+                    variations: variations,
+                });
+            } else {
+                res.redirect("/");
+            }
+        } catch (error) {
+            console.log("AdminController.js - editProduct() Error: ", error);
         }
     },
 
@@ -79,8 +107,7 @@ const AdminController = {
         Otherwise, it redirects to the homepage.
     */
     getRegisterProduct: async (req, res) => {
-        // if( req.session.authorized && req.session.userRole == 'admin' ) {
-        if (true) {
+        if (req.session.authorized && req.session.userRole == "admin") {
             const { categories } = await Product.getBottomMostCategories();
             res.status(200).render("./admin/registerProduct.ejs", {
                 categories: categories,
@@ -103,12 +130,10 @@ const AdminController = {
             );
 
             if (result.status == 201) {
-                return res
-                    .status(201)
-                    .json({
-                        message: "Product created",
-                        productID: result.productID,
-                    });
+                return res.status(201).json({
+                    message: "Product created",
+                    productID: result.productID,
+                });
             } else {
                 return res.status(500).json({ message: "Product not created" });
             }
@@ -143,12 +168,10 @@ const AdminController = {
                     .status(201)
                     .json({ message: "All variations created" });
             } else {
-                return res
-                    .status(500)
-                    .json({
-                        message: "Some variations are not created",
-                        errors: errorMessages,
-                    });
+                return res.status(500).json({
+                    message: "Some variations are not created",
+                    errors: errorMessages,
+                });
             }
         } else {
             res.redirect("/");
@@ -214,7 +237,9 @@ const AdminController = {
                 const { imageDetails } = req.body;
                 const errorMessages = [];
                 const uploadedImagesID = [];
-                for( const imageDetail of imageDetails ) {
+
+                console.log(imageDetails);
+                for (const imageDetail of imageDetails) {
                     // - Change path from temporary to product
                     const {
                         userID,
@@ -260,20 +285,16 @@ const AdminController = {
                 }
 
                 if (errorMessages.length == 0) {
-                    return res
-                        .status(200)
-                        .json({
-                            message: "All images uploaded",
-                            imagesID: uploadedImagesID,
-                        });
+                    return res.status(200).json({
+                        message: "All images uploaded",
+                        imagesID: uploadedImagesID,
+                    });
                 } else {
-                    return res
-                        .status(500)
-                        .json({
-                            message: "Some images are not created",
-                            errors: errorMessages,
-                            imageDetails: imageUploaded,
-                        });
+                    return res.status(500).json({
+                        message: "Some images are not created",
+                        errors: errorMessages,
+                        imageDetails: imageUploaded,
+                    });
                 }
             } else {
                 return res.status(404).send("Files not found.");
@@ -307,12 +328,10 @@ const AdminController = {
                         .status(201)
                         .json({ message: "All product images created" });
                 } else {
-                    return res
-                        .status(500)
-                        .json({
-                            message: "Some product images are not created",
-                            errors: errorMessages,
-                        });
+                    return res.status(500).json({
+                        message: "Some product images are not created",
+                        errors: errorMessages,
+                    });
                 }
             } else {
                 res.redirect("/");

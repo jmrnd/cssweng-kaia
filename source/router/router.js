@@ -42,7 +42,7 @@ router.post("/createProductImage", AdminController.createProductImage);
 router.post("/deleteProductImage", AdminController.deleteProductImage);
 
 router.get("/", (req, res) => {
-    res.redirect("/homepage");
+    res.redirect("/login");
 });
 
 router.get("/admin", (req, res) => {
