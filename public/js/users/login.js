@@ -100,9 +100,12 @@ loginButton?.addEventListener( "click", async function(e) {
         });
 
         // - On success, go to dashboard
-        if( response.status == 200 || response.status == 201 ) {
+        if( response.status == 201 ) {
             window.location.href = "/homepage";
-        } else {
+        } else if( response.status == 200 ) {
+            window.location.href = "/admin";
+        }
+        else {
             errorBox.style.display = 'block';
             switch( response.status ) {
                 case 401: {

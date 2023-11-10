@@ -105,9 +105,9 @@ const UserController = {
             req.session.userRole = highestRole;
 
             if( req.session.userRole == 'admin' ) {
-                return res.status(200).json({ message: "Admin login successful." });
+                return res.status(200).json({ message: "Admin login successful.", role: 'admin' });
             } else {
-                return res.status(201).json({ message: "User login successful." });
+                return res.status(201).json({ message: "User login successful.", role: 'customer' });
             }   
         } catch( error ) {
             console.error(error); 
@@ -173,22 +173,16 @@ const UserController = {
     */
     productCatalog: async (req, res) => {
         try {
-            // if( req.session.authorized ) {
-            if( true ) {
-                const { categories } = await Product.getBottomMostCategories();
-                const { products } = await Product.getAllProductsWithImages();
-                res.status(200).render('users/productCatalog.ejs', { categories: categories, products: products });
-            } else {
-                res.redirect('/login');
-            }
+            const { categories } = await Product.getBottomMostCategories();
+            const { products } = await Product.getAllProductsWithImages();
+            res.status(200).render('users/productCatalog.ejs', { categories: categories, products: products });
         } catch( error ) {
             console.log( "productCatalog() error: ", error );
         }
     },
 
     viewProduct: async (req, res) => {
-        // if( req.session.authorized && req.session.userRole == 'admin' ) {
-        if( true ) {
+        try {
             const productID = req.query.productID;
             const { categories } = await Product.getBottomMostCategories();
             const { product } = await Product.getProductWithImageByID(productID);
@@ -199,38 +193,36 @@ const UserController = {
                 categories: categories, product: product, productID: productID, 
                 productImages: images, variations: variations
             });
-        } else {
-            res.redirect('/');
+        } catch( error ) {
+            console.log( error );
         }
     },
 
     wishlist: async (req, res) => {
-        // if( req.session.authorized && req.session.userRole == 'admin' ) {
-        if( true ) {
-            try {
+        try {
+            if( req.session.authorized ) {
                 const userID = req.session.userID;
                 const { wishlist } = await Wishlist.getUserWishlist( userID );
                 res.status(200).render('./users/wishlist.ejs', { wishlist: wishlist });
-            } catch( error ) {
-
+            } else {
+                res.redirect('/');
             }
-        } else {
-            res.redirect('/');
+        } catch( error ) {
+            console.log( error );
         }
     },
 
     shoppingCart: async (req, res) => {
-        // if( req.session.authorized && req.session.userRole == 'admin' ) {
-        if( true ) {
-            try {
+        try {
+            if( req.session.authorized ) {
                 const userID = req.session.userID;
                 const { wishlist } = await Wishlist.getUserWishlist( userID );
                 res.status(200).render('./users/shoppingCart.ejs', { wishlist: wishlist });
-            } catch( error ) {
-
+            } else {
+                res.redirect('/');
             }
-        } else {
-            res.redirect('/');
+        } catch( error ) {
+            console.log( error );
         }
     },
 
