@@ -120,6 +120,7 @@ div.filter-container.category {
     gap: 1.25rem;
     max-width: 75rem;
     margin: 0 auto;
+    padding: 2rem 0rem;
 }
 
 .product-item {
