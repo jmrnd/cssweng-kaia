@@ -158,42 +158,38 @@ function updateImageHighlight(imageIndex) {
                   VARIATIONS            
 ***********************************************/
 function generateVariations() {
-    try {
-        variationsArray = parseObject(variations);
-        console.log(variationsArray);
-        for (let i = 0; i < variationsArray.length; i++) {
-            const colorButton = document.createElement("button");
-            colorButton.className = "color-button";
-            colorButton.style.backgroundColor = `${variationsArray[i].hexColor}`;
-            colorButton.style.variationID = `${variationsArray[i].variationID}`;
-            colorButton.setAttribute("variation-index", i);
+    variationsArray = parseObject(variations);
+    console.log(variationsArray);
+    for (let i = 0; i < variationsArray.length; i++) {
+        const colorButton = document.createElement("button");
+        colorButton.className = "color-button";
+        colorButton.style.backgroundColor = `${variationsArray[i].hexColor}`;
+        colorButton.style.variationID = `${variationsArray[i].variationID}`;
+        colorButton.setAttribute("variation-index", i);
 
-            const variationName = variationsArray[i].variationName;
-            const stockQuantity = variationsArray[i].stockQuantity;
+        const variationName = variationsArray[i].variationName;
+        const stockQuantity = variationsArray[i].stockQuantity;
 
-            if (i == 0) {
-                updateColorHighlight(colorButton);
-            }
-
-            colorButton.addEventListener("click", function () {
-                updateVariationName(variationName);
-                updateVariationStocks(stockQuantity);
-                variationIndex = colorButton.getAttribute("variation-index");
-                console.log(variationIndex);
-                selectedQuantity = 1;
-                updateQuantity(selectedQuantity);
-                updateColorHighlight(colorButton);
-            });
-            variationColorContainer.appendChild(colorButton);
+        if (i == 0) {
+            updateColorHighlight(colorButton);
         }
 
-        var currentName = variationsArray[variationIndex].variationName;
-        var currentStock = variationsArray[variationIndex].stockQuantity;
-        updateVariationName(currentName, currentHex);
-        updateVariationStocks(currentStock);
-    } catch (error) {
-        console.log(error);
+        colorButton.addEventListener("click", function () {
+            updateVariationName(variationName);
+            updateVariationStocks(stockQuantity);
+            variationIndex = colorButton.getAttribute("variation-index");
+            console.log(variationIndex);
+            selectedQuantity = 1;
+            updateQuantity(selectedQuantity);
+            updateColorHighlight(colorButton);
+        });
+        variationColorContainer.appendChild(colorButton);
     }
+
+    var currentName = variationsArray[variationIndex].variationName;
+    var currentStock = variationsArray[variationIndex].stockQuantity;
+    updateVariationName(currentName);
+    updateVariationStocks(currentStock);
 }
 
 function updateVariationName(variationName) {

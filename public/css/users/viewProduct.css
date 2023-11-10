@@ -164,7 +164,8 @@ img.small-image {
     cursor: pointer;
 }
 
-span#variation-name {
+span#variation-name,
+span#variation-stocks {
     text-transform: uppercase;
     color: #949292;
 }
