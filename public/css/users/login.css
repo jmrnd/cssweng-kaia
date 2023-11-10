@@ -60,12 +60,8 @@ div.error-box {
 /***********************************************
                 Login Content                    
 ***********************************************/
-div.input-box{
-    display: flex;
+div.input-box {
     width: 100%;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
 }
 
 div.input-box input {
@@ -166,4 +162,14 @@ div.terms-container {
  
 #register-button:hover {
     background-color: #995599;
+}
+
+.password i.show-password {
+    width: 18px;
+    height: 18px;
+    float: right;
+    cursor: pointer;
+    position: relative;
+    left: -15px;
+    top: -47px;
 }

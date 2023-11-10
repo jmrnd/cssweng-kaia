@@ -164,7 +164,7 @@ function generateVariations() {
             colorButton.style.backgroundColor = `${variationsArray[i].hexColor}`;
             colorButton.style.variationID = `${variationsArray[i].variationID}`;
             colorButton.setAttribute( 'variation-index', i );
-    
+            
             const variationName = variationsArray[i].variationName;
             const stockQuantity = variationsArray[i].stockQuantity;
             const hexColor = variationsArray[i].hexColor;

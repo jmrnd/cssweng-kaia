@@ -136,12 +136,16 @@ const UserController = {
     */
     register: async (req, res) => {   
         try {
-            const { name, email, password } = req.body;
+            const { name, username, email, password } = req.body;
             const isEmailRegistered = await User.doesEmailExist( email );
+            const isUsernameRegistered = await User.doesUsernameExist( username );
 
             if( isEmailRegistered ) {
                 console.log( "The email: \"" + email + "\" is already registered" );
                 return res.status(400).json({ message: "This email is already registered." });
+            } else if( isUsernameRegistered ) {
+                console.log( "The email: \"" + username + "\" is already registered" );
+                return res.status(400).json({ message: "This username is already registered." });
             }
             User.register( name.firstName, name.lastName, email, password );
             return res.status(201).json({ message: "Registration successful." });

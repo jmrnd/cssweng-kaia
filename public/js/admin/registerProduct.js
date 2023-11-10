@@ -265,6 +265,10 @@ uploadImageButton.addEventListener('change', async function() {
     try {
         // - Check if there's an uploaded file
         const selectedFile = this.files[0];
+
+        console.log( "selectedFile", selectedFile );
+        console.log( "imageDetails", imageDetails );
+        
         if( selectedFile ) {
             const formData = new FormData();
             formData.append( 'product', selectedFile );

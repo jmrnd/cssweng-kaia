@@ -26,51 +26,62 @@ const AdminController = {
         it redirects to the homepage.
     */
     inventory: async (req, res) => {
-        // if( req.session.authorized && req.session.userRole == 'admin' ) {
-        if( true ) {
-            const { categories } = await Product.getBottomMostCategories();
-            const { products } = await Product.getAllProductsWithImages();
-            res.render('./admin/inventory.ejs', { categories: categories, products: products });
-        } else {
-            res.redirect('/');
+        try {
+            // if( req.session.authorized && req.session.userRole == 'admin' ) {
+            if( true ) {
+                const { categories } = await Product.getBottomMostCategories();
+                const { products } = await Product.getAllProductsWithImages();
+                res.render('./admin/inventory.ejs', { categories: categories, products: products });
+            } else {
+                res.redirect('/');
+            }
+        } catch( error ) {
+            console.log( "AdminController.js - inventory() Error: ", error );
         }
     },
     
     viewProductAdmin: async (req, res) => {
-        // if( req.session.authorized && req.session.userRole == 'admin' ) {
-        if( true ) {
-            const productID = req.query.productID;
-            const { categories } = await Product.getBottomMostCategories();
-            const { product } = await Product.getProductWithImageByID(productID);
-            const { images } = await Image.getAllImagesOfProduct(productID);
-            const { variations } = await Variation.getAllVariationsOfProduct(productID);
+        try {
+            // if( req.session.authorized && req.session.userRole == 'admin' ) {
+            if( true ) {
+                const productID = req.query.productID;
+                const { categories } = await Product.getBottomMostCategories();
+                const { product } = await Product.getProductWithImageByID(productID);
+                const { images } = await Image.getAllImagesOfProduct(productID);
+                const { variations } = await Variation.getAllVariationsOfProduct(productID);
 
-            res.status(200).render('./admin/adminProductView.ejs', { 
-                categories: categories, product: product, productID: productID, 
-                productImages: images, variations: variations
-            });
-
-        } else {
-            res.redirect('/');
+                res.status(200).render('./admin/adminProductView.ejs', { 
+                    categories: categories, product: product, productID: productID, 
+                    productImages: images, variations: variations
+                });
+            } else {
+                res.redirect('/');
+            }
+        } catch( error ) {
+            console.log( "AdminController.js - viewProductAdmin() Error: ", error );
         }
     },
 
     editProduct: async (req, res) => {
-        // if( req.session.authorized && req.session.userRole == 'admin' ) {
-        if( true ) {
-            const productID = req.query.productID;
-            const { categories } = await Product.getBottomMostCategories();
-            const { product } = await Product.getProductWithImageByID(productID);
-            const { images } = await Image.getAllImagesOfProduct(productID);
-            const { variations } = await Variation.getAllVariationsOfProduct(productID);
+        try {
+            // if( req.session.authorized && req.session.userRole == 'admin' ) {
+            if( true ) {
+                const productID = req.query.productID;
+                const { categories } = await Product.getBottomMostCategories();
+                const { product } = await Product.getProductWithImageByID(productID);
+                const { images } = await Image.getAllImagesOfProduct(productID);
+                const { variations } = await Variation.getAllVariationsOfProduct(productID);
 
-            res.status(200).render('./admin/editProduct.ejs', { 
-                categories: categories, product: product, productID: productID, 
-                productImages: images, variations: variations
-            });
+                res.status(200).render('./admin/editProduct.ejs', { 
+                    categories: categories, product: product, productID: productID, 
+                    productImages: images, variations: variations
+                });
 
-        } else {
-            res.redirect('/');
+            } else {
+                res.redirect('/');
+            }
+        } catch( error ) {
+            console.log( "AdminController.js - editProduct() Error: ", error );
         }
     },
 
@@ -183,6 +194,8 @@ const AdminController = {
                 const { imageDetails } = req.body;
                 const errorMessages = [];
                 const uploadedImagesID = [];
+
+                console.log( imageDetails );
                 for( const imageDetail of imageDetails ) {
                     // - Change path from temporary to product
                     const { userID, originalName, fileName, destination, filePath } = imageDetail;

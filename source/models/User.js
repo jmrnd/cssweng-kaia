@@ -47,15 +47,16 @@ class User {
             - If an error occurs during password hash or database insertion, 
             it returns a 500 status instead
     */
-    static async register( firstName, lastName, email, password ) {
+    static async register( firstName, lastName, username, email, password ) {
         const sql = `
             INSERT INTO users(
                 firstName,
                 lastName,
+                username,
                 email,
                 password
             ) 
-            VALUES( ?, ?, ?, ? )
+            VALUES( ?, ?, ?, ?, ? )
         `;
 
         try {
@@ -64,7 +65,7 @@ class User {
             const hash = await bcrypt.hash(password, salt);
 
             // - Insert user into the database
-            const values = [firstName, lastName, email, hash];
+            const values = [firstName, lastName, username, email, hash];
             const [newUser, _] = await db.execute(sql, values);    
             return { status: 201, message: "Registration successful.", user: newUser };
 
@@ -84,6 +85,19 @@ class User {
     */
     static async doesEmailExist( email ) {
         const sql = `SELECT COUNT(*) AS count FROM users WHERE email = ?`;
+
+        try {
+            const [rows, _] = await db.execute(sql, [email]);
+            const count = rows[0].count;
+            return count > 0 ? true : false;    // Returns true if counter > 0
+        } catch( error ) {
+            console.log( "Error: ", error );
+            return false;
+        }
+    }
+
+    static async doesUsernameExist( username ) {
+        const sql = `SELECT COUNT(*) AS count FROM users WHERE username = ?`;
 
         try {
             const [rows, _] = await db.execute(sql, [email]);
