@@ -1,6 +1,7 @@
 <link rel = "stylesheet" type = "text/css" href = "/css/main/header.css">
 <link rel = "stylesheet" href = "/css/main/font.css">
 <script src = "/js/main/header.js" defer> </script>
+
 <div class = "header">
     <div class = "header-box">
         <div class = "logo" id = "logo">
@@ -10,9 +11,12 @@
             </a>
         </div>        
         <div class = "header-buttons"> 
-            <button type = "button" class = "header" data-popup = "search"> 
-                <span class = "icon search"> </span>
-            </button>
+            <div class="search-box">
+                <input type="text" id="search-item" placeholder="Search your style">
+                <button id="search-icon" type = "button" class = "header" data-popup = "search">
+                    <span class = "icon search"> </span>
+                </button>
+            </div>
             <button type = "button" class = "header" id = "wishlist-button" data-popup = "favourite"> 
                 <span class = "icon favourite"> </span>
             </button>

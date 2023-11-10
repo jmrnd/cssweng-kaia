@@ -1,9 +1,4 @@
-body {
-    display: block;
-    font-family: "Roboto Condensed", sans-serif;
-    padding: 0px;
-    margin: 0px;
-}
+
 
 div.main-container {
     width: 50%;
@@ -60,11 +55,7 @@ div.error-box {
                 Login Content                    
 ***********************************************/
 div.input-box {
-    display: flex;
     width: 100%;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
 }
 
 div.input-box input {
@@ -147,6 +138,10 @@ div.terms-container {
     display: none;
 }
 
+#register-form-container, #login-form-container{
+    margin-bottom: 30px;
+}
+
 .input-box.name {
     display: flex;
 }
@@ -166,4 +161,16 @@ div.terms-container {
 
 #register-button:hover {
     background-color: #995599;
+}
+
+/* Show-Hide Password */
+
+.password i.show-password{
+    width: 18px;
+    height: 18px;
+    float: right;
+    cursor: pointer;
+    position: relative;
+    left: -15px;
+    top: -47px;
 }

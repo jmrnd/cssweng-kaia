@@ -6,7 +6,7 @@
     --coords: url("/images/kaia/cara_linen_coordinates_3.jpg");
 }
 
-body {
+*{
     font-family: "Roboto Condensed", sans-serif;
     margin: 0;
     padding: 0;

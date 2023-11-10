@@ -4,6 +4,8 @@ const popups = document.querySelectorAll('.popup');
 const goToWishlistButton = document.getElementById('wishlist-button');
 const goToShoppingCartButton = document.getElementById('shopping-cart-button');
 const logoutButton = document.getElementById('logout-button');
+const search = document.querySelector('#search-icon');
+const search_box = document.querySelector('.search-box');
 
 /*
     ` When the mouse cursor hovers on the buttons, the popup shows up.
@@ -97,6 +99,15 @@ goToShoppingCartButton?.addEventListener( 'click', async function(e) {
         console.error( "An error occured: ", error );
     }
 });
+
+
+
+// Expandable Search
+
+search.addEventListener('click', () =>{
+    search_box.classList.toggle('active');
+})
+
 
 /*
 const logo = document.getElementById('logo'); 

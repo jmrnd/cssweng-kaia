@@ -10,6 +10,12 @@ const errorBox = document.getElementById('error-box');
 const registerFormContainer = document.getElementById("register-form-container");
 const loginFormContainer = document.getElementById("login-form-container");
 
+/* PASSWORD Toggle */
+const toggle_login_Password = document.querySelector('#toggle-login');
+const login_password = document.querySelector('#login-password');
+const toggle_register_Password = document.querySelector('#toggle-register');
+const register_password = document.querySelector('#register-password');
+
 
 loginSwitch.addEventListener("click", function (e){
     loginFormContainer.style.display = 'block';
@@ -207,3 +213,36 @@ function areInputFieldsFilled( formId ) {
     }
     return 1; 
 }
+
+/** 
+    Show and Hide Password when icon is
+*/
+
+// For Login Toggle
+toggle_login_Password.addEventListener('click', function (e) {
+    // toggle the type attribute and icon
+    if(login_password.getAttribute('type') == 'password'){
+        type = 'text';
+        toggle_login_Password.classList.replace("fa-eye", "fa-eye-slash");
+    } else{
+        type = 'password';
+        toggle_login_Password.classList.replace("fa-eye-slash", "fa-eye");
+    }
+
+    login_password.setAttribute('type', type)
+
+});
+
+// For Register Toggle
+toggle_register_Password.addEventListener('click', function (e) {
+    // toggle the type attribute and icon
+    if(register_password.getAttribute('type') == 'password'){
+        type = 'text';
+        toggle_register_Password.classList.replace("fa-eye", "fa-eye-slash");
+    } else{
+        type = 'password';
+        toggle_register_Password.classList.replace("fa-eye-slash", "fa-eye");
+    }
+
+    register_password.setAttribute('type', type);
+})
