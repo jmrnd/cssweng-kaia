@@ -67,6 +67,7 @@ class User {
             // - Insert user into the database
             const values = [firstName, lastName, username, email, hash];
             const [newUser, _] = await db.execute(sql, values);    
+
             return { status: 201, message: "Registration successful.", user: newUser };
 
         } catch( error ) {
@@ -100,7 +101,7 @@ class User {
         const sql = `SELECT COUNT(*) AS count FROM users WHERE username = ?`;
 
         try {
-            const [rows, _] = await db.execute(sql, [email]);
+            const [rows, _] = await db.execute(sql, [username]);
             const count = rows[0].count;
             return count > 0 ? true : false;    // Returns true if counter > 0
         } catch( error ) {

@@ -147,7 +147,7 @@ const UserController = {
                 console.log( "The email: \"" + username + "\" is already registered" );
                 return res.status(400).json({ message: "This username is already registered." });
             }
-            User.register( name.firstName, name.lastName, email, password );
+            User.register( name.firstName, name.lastName, username, email, password );
             return res.status(201).json({ message: "Registration successful." });
         } catch( error ) {
             console.error( "Error registering user: ", error );

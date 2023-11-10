@@ -172,8 +172,12 @@ registerButton?.addEventListener( "click", async function(e) {
 
         // - On success, refresh the loging page
         if( response.ok ) {
-            alert( "Registration successful" ); 
-            location.reload();
+            errorBox.style.display = 'block';
+            errorBox.style.color = '#32a854'
+            errorBox.style.border = '1px solid #32a854';
+            errorBox.style.backgroundColor = "#d4ffe0";
+            errorBox.textContent = "Account successfully created";
+            registerFormContainer.reset();
         } else {
             errorBox.style.display = 'block';
             switch( response.status ) {
