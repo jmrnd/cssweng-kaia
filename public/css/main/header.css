@@ -160,7 +160,7 @@ span.icon {
     ***********************************************/
 .popup.profile-popup {
     right: 1rem;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     display: block;
     width: auto;
     font-size: 0.95em;
