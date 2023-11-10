@@ -92,8 +92,7 @@ const AdminController = {
         Otherwise, it redirects to the homepage.
     */
     getRegisterProduct: async (req, res) => {
-        // if( req.session.authorized && req.session.userRole == 'admin' ) {
-        if( true ) {
+        if( req.session.authorized && req.session.userRole == 'admin' ) {
             const { categories } = await Product.getBottomMostCategories();
             res.status(200).render('./admin/registerProduct.ejs', { categories: categories });
         } else {

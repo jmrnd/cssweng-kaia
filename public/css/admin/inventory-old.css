@@ -1,0 +1,187 @@
+/***********************************************
+                  CONTAINERS                    
+***********************************************/
+body {
+    display: block;
+    justify-content: center;
+    font-family: 'Roboto Condensed', sans-serif;
+    user-select: none;
+    overflow-x: hidden;
+    padding: 0px;
+    margin: 0px;
+}
+
+div.main-container {
+    display: block;
+    min-height: 1150px;
+    max-width: 1150px;  
+    align-items: center; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/***********************************************
+                    HEADER                 
+***********************************************/
+div.sticky-container {
+    position: sticky;
+    top: 110px;
+    background-color: white;
+}
+
+div.header-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    background-color: white;
+    z-index: 100; 
+}
+
+div.header-container:first-child {
+    margin-top: 25px;
+}
+
+/***********************************************
+        TITLE - "Inventory Management"                
+***********************************************/
+span.title {
+    color: black;
+    font-weight: bold;
+    font-size: 2.5em;
+}
+
+/***********************************************
+        BUTTON - "Register+ Button"                
+***********************************************/
+span.label {
+    color: black;
+    font-weight: bold;
+    font-size: 1em;
+    margin-right: 20px;
+}
+
+.register-button {
+    width: 230px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #EF91CF;
+
+    color: white;
+    font-size: 1.3em;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.register-button:hover {
+    background: rgba(235, 138, 194, 0.507);
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.register-button:active {
+    opacity: 0.3;
+    transition: 0.3s;
+}
+
+.register-button:not(:hover) {
+    transition: 0.3s;
+}
+
+/***********************************************
+        FILTERS - Category and Search Bar               
+***********************************************/
+div.filter-container.search-bar {
+    width: 27%;
+}
+
+div.filter-container.category {
+    width: 70%;
+}
+
+.filter {
+    background-color: #F5F5F5;
+    border: 1px solid #D9D9D9;
+    width: 300px;
+    font-family: inherit;
+    outline: none;
+}
+
+.filter.search-bar {
+    text-indent: 10px;
+}
+
+/***********************************************
+                    PRODUCTS                 
+***********************************************/
+.product-container {
+    display: block;
+    align-items: center;
+    margin: 0;
+    width: 99%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #EF91CF;
+    width: 99%;
+    margin-bottom: 10px;
+}
+
+.product-item:hover {
+    background-color: #f0e8ed;
+}
+
+.item-icon-col {
+    max-width: 150px;
+    padding: 5px;
+    overflow: hidden;
+}
+
+.item-icon {
+    height: 70px;
+    padding: 10px;
+}
+
+.item-name {
+    font-size: 1.25em;
+    font-weight: bold;
+    width: 90%;
+    padding-left: 5px;
+    padding-bottom: 10px;
+}
+
+/***********************************************
+                    PAGINATION                 
+***********************************************/
+.pagination {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.pagination button {
+    margin: 5px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background-color: #ddd;
+}
+
+footer {
+    background-color: white; 
+    color: white;
+    text-align: center;
+    /* position: sticky; */
+    bottom: 0;
+    margin-bottom: 20px;
+}
