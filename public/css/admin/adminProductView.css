@@ -31,7 +31,6 @@ div.main-container {
     padding: 10px;
     display: block;
     min-height: 1150px;
-    max-width: 1150px;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
@@ -172,6 +171,11 @@ span#variation-name {
     color: #949292;
 }
 
+span#variation-stocks {
+    text-transform: uppercase;
+    color: #949292;
+}
+
 /***********************************************
                 PRODUCT SECTION                    
 ***********************************************/
@@ -183,7 +187,7 @@ section#product {
 
 .right-section {
     text-align: left;
-    width: 50%;
+    width: 0%;
 }
 
 /***********************************************

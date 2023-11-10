@@ -6,7 +6,6 @@ body {
     justify-content: center;
     font-family: "Roboto Condensed", sans-serif;
     user-select: none;
-    overflow-x: hidden;
     padding: 0px;
     margin: 0px;
 }
@@ -107,22 +106,20 @@ span.label {
 /***********************************************
                     PRODUCTS                 
 ***********************************************/
-.product-container {
+div.product-container {
     display: grid;
     grid-template-columns: repeat(
-        4,
+        5,
         1fr
     ); /* adjust items per column if necessary */
     gap: 1.25rem;
     max-width: 75rem;
     margin: 0 auto;
-    padding: 2rem 0rem;
 }
 
-.product-item {
+div.product-item {
     display: flex;
     position: relative;
-    overflow: hidden;
     flex-direction: column;
     align-items: center;
     background-color: inherit;
