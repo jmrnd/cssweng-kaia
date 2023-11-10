@@ -66,12 +66,14 @@ div.product-grid {
     gap: 1.25rem;
     max-width: 75rem;
     margin: 0 auto;
+    align-items: center;
 }
 
 div.product-item {
     display: flex;
     position: relative;
     overflow: hidden;
+    align-items: center;
     flex-direction: column;
     background-color: #fff;
     padding: 2rem 0rem;

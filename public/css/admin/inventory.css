@@ -109,7 +109,7 @@ span.label {
 div.product-container {
     display: grid;
     grid-template-columns: repeat(
-        5,
+        4,
         1fr
     ); /* adjust items per column if necessary */
     gap: 1.25rem;
