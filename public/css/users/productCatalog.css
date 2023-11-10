@@ -74,7 +74,7 @@ div.product-item {
     overflow: hidden;
     flex-direction: column;
     background-color: #fff;
-    padding: 0.5rem;
+    padding: 2rem 0rem;
     text-align: center;
     max-width: 12.375rem;
 }
@@ -83,6 +83,7 @@ div.product-item img {
     width: 12.375rem;
     height: 14.375rem;
     object-fit: cover;
+    cursor: pointer;
 }
 
 div.product-details {
