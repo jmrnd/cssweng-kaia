@@ -128,7 +128,7 @@ span.icon {
 }
 
 /***********************************************
-                     SEARCH POP-UP               
+                SEARCH POP-UP               
 ***********************************************/
 .popup.search-popup {
     right: 11rem;
@@ -139,7 +139,7 @@ span.icon {
 }
 
 /***********************************************
-                    FAVOURITE POP-UP               
+                FAVOURITE POP-UP               
 ***********************************************/
 .popup.favourite-popup {
     right: 7.8rem;
@@ -150,7 +150,7 @@ span.icon {
 }
 
 /***********************************************
-                     CART POP-UP               
+                 CART POP-UP               
 ***********************************************/
 .popup.cart-popup {
     right: 5.5rem;
@@ -161,7 +161,7 @@ span.icon {
 }
 
 /***********************************************
-                    PROFILE POP-UP             
+                 PROFILE POP-UP             
 ***********************************************/
 .popup.profile-popup {
     right: 0rem;
@@ -245,4 +245,41 @@ span.icon.cart:hover {
 
 span.icon.profile:hover {
     background-image: var(--profile-hover-icon);
+}
+
+/***********************************************
+            SEARCH BOX POP-UP HOVERED
+***********************************************/
+div.search-box {
+    display: flex;
+    justify-content: flex-end;
+    width: 35px;
+    background-color: #ffffff;
+    transition: 1s ease-in-out;
+    -webkit-transition: 1s ease-in-out;
+    -moz-transition: 1s ease-in-out;
+    -ms-transition: 1s ease-in-out;
+    -o-transition: 1s ease-in-out;
+    overflow: hidden;
+}
+
+#search-item {
+    width: 315px;
+    outline: none;
+    border: none;
+    border: 1px solid #995594;
+    background-color: #FFEEF9;
+    text-indent: 10px;
+}
+
+div.search-box.active {
+    display: flex;
+    justify-content: flex-end;
+    width: 350px;
+    background-color: #995594;
+    transition: 1s ease-in-out;
+    -webkit-transition: 1s ease-in-out;
+    -moz-transition: 1s ease-in-out;
+    -ms-transition: 1s ease-in-out;
+    -o-transition: 1s ease-in-out;
 }

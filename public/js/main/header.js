@@ -5,6 +5,8 @@ const goToWishlistButton = document.getElementById('wishlist-button');
 const goToShoppingCartButton = document.getElementById('shopping-cart-button');
 // const loginProfileButton = document.getElementById('login-profile-button');
 const logoutButton = document.getElementById('logout-button');
+const search = document.querySelector('#search-icon');
+const searchBox = document.querySelector('.search-box');
 
 /*
     ` When the mouse cursor hovers on the buttons, the popup shows up.
@@ -100,12 +102,9 @@ goToShoppingCartButton?.addEventListener( 'click', async function(e) {
     }
 });
 
-/*
-const logo = document.getElementById('logo'); 
-logo.addEventListener('click', () => {
-    navigateTo("homepage"); 
-});
-*/
+search.addEventListener('click', () =>{
+    searchBox.classList.toggle('active');
+})
 
 function navigateTo(url) {
     window.location.href = url;
