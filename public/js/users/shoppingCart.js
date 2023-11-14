@@ -53,15 +53,10 @@ async function updateCartContainer() {
             const cartItem = generateCartItemHTML(item);
             cartContainer.appendChild( cartItem );
 
-            const removeItemBtn = cartContainer.querySelector(`.cart-item .remove-item-btn`);
-            if( removeItemBtn ) {
-                removeItemBtn.addEventListener('click', async () => {
-                    await productToShoppingCart(item.variationID);
-                });
-            }
-
             if( index !== shoppingCartArray.length - 1 ) {
-                cartContainer.innerHTML += `<div class = "divider"/>`;
+                var divider = document.createElement('div');
+                divider.classList.add('divider');
+                cartContainer.appendChild(divider);
             }
         });
     } catch( error ) {
@@ -116,7 +111,6 @@ function generateCartItemHTML( item ) {
             const tempVariationID = item.variationID;
             await productToShoppingCart(tempVariationID);
             const indexToRemove = shoppingCartArray.findIndex( cartItem => cartItem.variationID === tempVariationID);
-            console.log( indexToRemove );
             if( indexToRemove !== -1 ) {
                 shoppingCartArray.splice(indexToRemove, 1);
                 cartContainer.removeChild(cartItem);
