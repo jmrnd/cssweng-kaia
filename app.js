@@ -20,6 +20,9 @@ const port = process.env.NODE_PORT;
 const router = require('./source/router/router');
 const session = require('./source/config/session');
 
+// - Middlewares
+const middleware = require("./source/controller/Middleware");
+
 async function startServer() {
     app.set('view engine', 'ejs');          // embedded javascript (EJS) as view engine
     app.set('views', './source/views');     // directory for the views folder
@@ -27,7 +30,8 @@ async function startServer() {
     app.use(express.json());                // parse request body as json
     app.use(session);                       // session management
     app.use(router);                        // assign routes
-
+    app.use(middleware.fetchUser);          // user middleware
+    
     app.listen(port, () => { 
         console.log(`Server is running at port ${port}`); 
     });

@@ -1,8 +1,8 @@
-const productContainers = document.getElementById('product-containers');
+const productContainer = document.getElementById('product-container');
 const categoryDropdown = document.getElementById('category-dropdown');
 const searchBar = document.getElementById('search-bar');
 
-const productsPerPage = 5;
+const productsPerPage = 12;
 let currentPage = 1;
 
 /*
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // - Also includes the pagination function
 function filterAndGenerateProducts() {
     try {
-        productContainers.innerHTML = '';
+        productContainer.innerHTML = '';
         const query = searchBar.value.trim().toLowerCase();
         const selectedOption = categoryDropdown.options[categoryDropdown.selectedIndex];
         const categoryID = selectedOption.getAttribute('data-id');
@@ -78,12 +78,8 @@ function generateProductItem( product ) {
         productIcon.innerHTML = `
             <img src = "${product.filePath}" class = "item-icon">
         `;
-    } else {
-        productIcon.innerHTML = `
-            <img src = "images/kaia/maya_top_1.jpg" class = "item-icon">
-        `;
     }
-    
+
     const productName = document.createElement('div');
     productName.className = 'item-name';
     productName.textContent =  `${product.productName}`.toUpperCase();
@@ -107,7 +103,7 @@ function generateProductItem( product ) {
         }
     });   
     
-    productContainers.appendChild(productItem);
+    productContainer.appendChild(productItem);
 }
 
 function addPaginationControls(totalProducts) {
@@ -131,39 +127,3 @@ function addPaginationControls(totalProducts) {
 
 categoryDropdown.addEventListener('change', filterAndGenerateProducts);
 searchBar.addEventListener('input', filterAndGenerateProducts);
-
-
-/* Filter and generate products without pagination
-    function filterAndGenerateProducts() {
-        try {
-            productContainers.innerHTML = '';
-            const query = searchBar.value.trim().toLowerCase();
-            const selectedOption = categoryDropdown.options[categoryDropdown.selectedIndex];
-            const categoryID = selectedOption.getAttribute('data-id');
-            const categoryName = selectedOption.getAttribute('data-name'); 
-        
-            parseProducts().forEach((product) => {
-                const isIncluded = product.productName.toLowerCase().includes(query);
-                const isSameCategory = product.categoryID == categoryID;
-                const isCategoryAll = categoryName === 'all';
-                const isQueryEmpty = query === '';
-        
-                console.log( categoryName );
-                console.log( "isCategoryAll " + isCategoryAll );
-                console.log( "isQueryEmpty " + isQueryEmpty );
-        
-                if( isIncluded && (isSameCategory || isCategoryAll)) {
-                    generateProductItem(product);
-                } else if( isCategoryAll && (isIncluded || isQueryEmpty)) {
-                    generateProductItem(product);
-                } else if( !isCategoryAll && isIncluded && isSameCategory ) {
-                    generateProductItem(product);
-                } else if( isCategoryAll && isQueryEmpty ) {
-                    generateProductItem(product);
-                }
-            });
-        } catch( error ) {
-            console.log( "filterAndGenerateProducts() error: " + error );
-        }
-    }
-*/

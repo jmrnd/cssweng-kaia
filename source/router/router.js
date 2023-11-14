@@ -7,6 +7,11 @@ const UserController = require('../controller/UserController.js');
 const AdminController = require('../controller/AdminController.js');
 const multer = require('../config/multer.js');
 
+// - Middlewares
+const middleware = require("../controller/Middleware");
+
+router.use( middleware.fetchUser );
+
 router.get('/homepage', UserController.homepage );
 router.get('/login', UserController.getLogin );
 router.post('/login', UserController.postLogin );

@@ -28,9 +28,9 @@ class User {
             const passwordMatch = await bcrypt.compare( password, user.password );
 
             if( passwordMatch ) {
-                return { status: 200, message: "Login successful." };
+                return { status: 200, message: "Login successful.", username: user.username };
             } else {
-                return { status: 401, message: "Incorrect password." };
+                return { status: 401, message: "Incorrect password.", username: user.username };
             }
         } catch( error ) {
             console.log( "User Login Error: ", error );

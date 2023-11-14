@@ -32,9 +32,13 @@
         <span> Cart </span>
     </div>
     <div class = "popup profile-popup">
-        <% /* <button type = "button" id = "login-profile-button"> 
-            Login
-        </button> */ %>
+        <% if( typeof user !== 'undefined' && user ) { %> 
+            <div id = "user-label-container">
+                <span id = "user-label">
+                    Welcome, <%= user.username %>!
+                </span>
+            </div>
+        <% } %>     
         <button type = "button"> 
             Profile
         </button>
@@ -46,3 +50,5 @@
         </button>
     </div>
 </div>
+<script>
+</script>

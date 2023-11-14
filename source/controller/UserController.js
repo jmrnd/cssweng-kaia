@@ -18,6 +18,8 @@ const Image = require('../models/Image.js');
 const Variation = require('../models/Variation.js');
 const Wishlist = require('../models/Wishlist.js');
 const ShoppingCart = require('../models/ShoppingCart.js');
+const Middleware = require('./Middleware.js');
+
 
 const UserController = {
 
@@ -99,16 +101,21 @@ const UserController = {
             const {userID} = await User.getUserID(email);
             const {highestRole} = await User.getHighestRole(email);
 
+            console.log( "login", login );
+
             req.session.rememberMe = rememberMe === 'true';
             req.session.authorized = true;
             req.session.email = email;
+            req.session.username = login.username;
             req.session.userID = userID;
             req.session.userRole = highestRole;
 
+            const username = req.session.username;
+
             if( req.session.userRole == 'admin' ) {
-                return res.status(200).json({ message: "Admin login successful.", role: 'admin' });
+                return res.status(200).json({ message: "Admin login successful.", role: 'admin', username: username });
             } else {
-                return res.status(201).json({ message: "User login successful.", role: 'customer' });
+                return res.status(201).json({ message: "User login successful.", role: 'customer', username: username });
             }   
         } catch( error ) {
             console.error(error); 
