@@ -91,13 +91,13 @@ div.logo {
                     BUTTONS                    
 ***********************************************/
 div.header-buttons {
-    text-align: right;
-    position: relative;
-    float: right;
-    bottom: 42.5px;
-    width: 205px;
-    padding: 0.5rem 2rem;
+    gap: 0.938rem;
+    display: flex;
+    position: absolute;
+    top: 2.6rem;
+    right: 50px;
 }
+
 
 button.header {
     background-color: transparent;
@@ -119,12 +119,13 @@ span.icon {
 .popup {
     display: flex;
     position: absolute;
-    top: 65%;
+    top: 70%;
     padding: 5px;
     visibility: hidden;
     z-index: 999;
     background-color: white;
     border: 1px solid #e0e0e0;
+    margin-top: 1rem;
 }
 
 /***********************************************
@@ -132,7 +133,6 @@ span.icon {
 ***********************************************/
 .popup.search-popup {
     right: 11rem;
-    margin-top: 1rem;
     display: block;
     width: auto;
     font-size: 1em;
@@ -143,7 +143,6 @@ span.icon {
 ***********************************************/
 .popup.favourite-popup {
     right: 7.8rem;
-    margin-top: 1rem;
     display: block;
     width: auto;
     font-size: 1em;
@@ -154,7 +153,6 @@ span.icon {
 ***********************************************/
 .popup.cart-popup {
     right: 5.5rem;
-    margin-top: 1rem;
     display: block;
     width: auto;
     font-size: 0.95em;
@@ -165,7 +163,6 @@ span.icon {
 ***********************************************/
 .popup.profile-popup {
     right: 0rem;
-    margin-top: 1rem;
     display: block;
     width: auto;
     font-size: 0.95em;
@@ -253,8 +250,7 @@ span.icon.profile:hover {
 div.search-box {
     display: flex;
     justify-content: flex-end;
-    width: 35px;
-    background-color: #ffffff;
+    width: 2.3rem;
     transition: 1s ease-in-out;
     -webkit-transition: 1s ease-in-out;
     -moz-transition: 1s ease-in-out;
@@ -264,7 +260,7 @@ div.search-box {
 }
 
 #search-item {
-    width: 315px;
+    width: 19.688rem;
     outline: none;
     border: none;
     border: 1px solid #995594;
@@ -275,7 +271,7 @@ div.search-box {
 div.search-box.active {
     display: flex;
     justify-content: flex-end;
-    width: 350px;
+    width: 21.875rem;
     background-color: #995594;
     transition: 1s ease-in-out;
     -webkit-transition: 1s ease-in-out;
