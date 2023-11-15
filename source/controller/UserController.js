@@ -183,6 +183,7 @@ const UserController = {
         try {
             const { categories } = await Product.getBottomMostCategories();
             const { products } = await Product.getAllProductsWithImages();
+
             res.status(200).render('users/productCatalog.ejs', { categories: categories, products: products });
         } catch( error ) {
             console.log( "productCatalog() error: ", error );
@@ -197,9 +198,16 @@ const UserController = {
             const { images } = await Image.getAllImagesOfProduct(productID);
             const { variations } = await Variation.getAllVariationsOfProduct(productID);
 
+            var isWishlisted = false;
+            if( req.session.authorized ) {
+                const userID = req.session.userID;
+                const {wishlist} = await Wishlist.getUserWishlist( userID );
+                isWishlisted = wishlist.some(item => item.productID === product.productID);
+            } 
+
             res.status(200).render('./users/viewProduct.ejs', { 
                 categories: categories, product: product, productID: productID, 
-                productImages: images, variations: variations
+                productImages: images, variations: variations, isWishlisted: isWishlisted
             });
         } catch( error ) {
             console.log( error );
@@ -285,7 +293,7 @@ const UserController = {
         } catch( error ) {
             console.log( "addToCart Error:", error );
             res.status(500).json({ message: "Internal server error." });
-        }
+        }   
     },
 
     // - Called in the quantity buttons of shoppingCart.js

@@ -2,7 +2,8 @@
                 DOCUMENT ELEMENTS                   
 ***********************************************/
 const pathCategory = document.getElementById('path-category');
-const wishlistButton = document.getElementById('wishlist-button');
+const wishlistButton = document.getElementById('wishlist-product-button');
+const wishlistButtonIcon = document.getElementById('wishlist-button-icon');
 
 // - Product
 const numberContainer = document.getElementById('number-container'); // stock quantity
@@ -30,6 +31,7 @@ var variationsArray = [];
 var variationIndex = 0;
 
 var selectedQuantity = 1;
+var isProductWishlisted = false;
 
 /***********************************************
                  FETCH REQUESTS             
@@ -218,6 +220,8 @@ document.addEventListener('DOMContentLoaded', () => {
         generatePathContainer();
         generateImages();
         generateVariations();
+        isProductWishlisted = parseObject(isWishlisted);
+        updateWishlistButtonIcon();
     } catch( error ) {
         console.log( error );
     }
@@ -257,27 +261,30 @@ function changePathAndTitle( categoryName, productName ) {
     `
 }
 
+/***********************************************
+                WISHLIST BUTTON             
+***********************************************/
 wishlistButton.addEventListener('click', async (e) => {
     e.preventDefault();
     try {
-        console.log( "Hello!" );
         const wishlistStatus = await fetch('/wishlistProduct', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ productID: productID })
         });
-        console.log( "Hello!" );
+
+        const status = wishlistStatus.status;
+        if( status === 200 || status === 201 ) {
+            console.log( "isProductWishlisted: ", isProductWishlisted );
+            isProductWishlisted = !isProductWishlisted;
+            updateWishlistButtonIcon();
+        }
     } catch( error ) {
         console.log( error );
     }
 });
 
-/*
-document.addEventListener("DOMContentLoaded", function() {
-    if( parseObject(product).filePath ) {
-        var temporaryDiv = document.querySelector(".image");
-        temporaryDiv.style.backgroundImage = `url("${parseObject(product).filePath }")`;
-        temporaryDiv.style.backgroundSize = "cover"; // You can adjust this property as needed
-    }
-});
-*/
+function updateWishlistButtonIcon() {
+    wishlistButtonIcon.classList.remove('wishlist-button', 'wishlisted-button');
+    wishlistButtonIcon.classList.add( isProductWishlisted ? 'wishlisted-button' : 'wishlist-button');
+}

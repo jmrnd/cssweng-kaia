@@ -8,6 +8,7 @@
 */
 :root {
     --wishlist-button-icon: url("/images/icons/wishlist-button-icon.png");
+    --wishlisted-button-icon: url("/images/icons/wishlisted-button-icon.png");
 }
 
 body {
@@ -189,7 +190,7 @@ div.product-header {
     display: block;
 }
 
-div.product-header #wishlist-button {
+div.product-header #wishlist-product-button {
     float: right;
     position: relative;
     top: 18px;
@@ -201,6 +202,14 @@ div.product-header #wishlist-button {
 span.icon.wishlist-button {
     background-image: var(--wishlist-button-icon);
     width: 40px;
+    transition: 0.25s; 
+
+}
+
+span.icon.wishlisted-button {
+    background-image: var(--wishlisted-button-icon);
+    width: 40px;
+    transition: 0.25s; 
 }
     
 /***********************************************
@@ -305,8 +314,13 @@ button.add-to-cart-button {
     cursor: pointer;
 }
 
+button.add-to-cart-button:hover {
+    opacity: 75%;
+    transition: 0.3s;
+}
+
 button.add-to-cart-button:active {
-    opacity: 50%;
+    opacity: 40%;
     transition: 0.3s;
 }
 

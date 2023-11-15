@@ -44,8 +44,8 @@
             <div class = "right-section"> <section id = "product-details">
                 <div class = "product-header">
                     <span class = "header-title-large" id = "product-name"> <%= product.productName %> </span> 
-                    <button type = "button" class = "wishlist" id = "wishlist-button"> 
-                        <span class = "icon wishlist-button"> </span>
+                    <button type = "button" class = "wishlist" id = "wishlist-product-button"> 
+                        <span class = "icon wishlist-button" id = "wishlist-button-icon"> </span>
                     </button>
                 </div>
                 <div class = "product-body price"> 
@@ -61,9 +61,6 @@
                     </div>
                     <div class = "variation-color-container" id = "variation-color-container"> 
                     <% /*
-                        <button class = "color-button"> </button>
-                        <button class = "color-button"> </button>
-                        <button class = "color-button"> </button>
                         <button class = "color-button"> </button>
                         <button class = "color-button"> </button>
                         <button class = "color-button"> </button>
@@ -251,5 +248,8 @@
     const productID = `<%- JSON.stringify(productID) %>`;
     const productImages = `<%- JSON.stringify(productImages) %>`;
     const variations = `<%- JSON.stringify(variations) %>`;
+    const isWishlisted = `<%- JSON.stringify(isWishlisted) %>`;
+    console.log( variations );
+    console.log( isWishlisted );
 </script>
 </html>
