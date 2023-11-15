@@ -113,9 +113,9 @@ function generateProductItem( product ) {
     productItem.className = 'product-item';
 
     // - Image 
-    const anchor = document.createElement('a');
+    const anchor = document.createElement('div');
     if( product.filePath ) {
-        anchor.innerHTML = `<img src = "${product.filePath}">`;
+        anchor.innerHTML = `<img class = "product-catalog-image" src = "${product.filePath}">`;
     } else {
         // - FIXME: Hardcoded 
         switch( product.categoryID ) {

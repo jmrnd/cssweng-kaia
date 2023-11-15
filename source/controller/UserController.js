@@ -229,8 +229,7 @@ const UserController = {
     },
 
     wishlistProduct: async (req, res) => {
-        // if( req.session.authorized ) {
-        if( true ) {
+        if( req.session.authorized ) {
             try { 
                 const { productID } = req.body;
                 const userID = req.session.userID; 

@@ -105,7 +105,6 @@ div.large-image-container {
     overflow: hidden;
 }
 
-
 img.large-image {
     max-width: 100%;
     height: auto;
@@ -315,12 +314,13 @@ button.add-to-cart-button {
 }
 
 button.add-to-cart-button:hover {
-    opacity: 75%;
+    background-color: #995599;
     transition: 0.3s;
 }
 
 button.add-to-cart-button:active {
-    opacity: 40%;
+    background-color: #995599;
+    opacity: 50%;
     transition: 0.3s;
 }
 

@@ -252,3 +252,7 @@ span.product-name {
 .coords {
     background-image: var(--coords);
 }
+
+.product-catalog-image {
+    object-fit: cover;
+}

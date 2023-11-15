@@ -2,7 +2,7 @@ const productContainer = document.getElementById('product-container');
 const categoryDropdown = document.getElementById('category-dropdown');
 const searchBar = document.getElementById('search-bar');
 
-const productsPerPage = 12;
+const productsPerPage = 8;
 let currentPage = 1;
 
 /*
