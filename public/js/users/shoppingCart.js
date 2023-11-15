@@ -1,3 +1,4 @@
+
 /***********************************************
                 DOCUMENT ELEMENTS                   
 ***********************************************/
@@ -73,8 +74,11 @@ async function productToShoppingCart( variationID ) {
 function generateCartItemHTML( item ) {
     const cartItem = document.createElement('div');
     cartItem.classList.add('cart-item');
+
+    // - product price * order count
     let newPrice = 0;
     newPrice = parseFloat( parseInt(item.quantity) * parseFloat(item.price)).toFixed(2);
+
     cartItem.innerHTML = `
         <div class="item-icon-col">
             <img src="${item.filePath}" class="item-icon" />
@@ -85,20 +89,118 @@ function generateCartItemHTML( item ) {
                 <div class="item-color" style="background-color: ${item.hexColor};"> <br> </div>
             </div>
         </div>
-        <div class="item-quantity-col">
-            <div class="item-heading"> QUANTITY </div>
-            <div class="quantity-toggle">
-                <button class="qty-decrement-btn"></button>
-                ${item.quantity}
-                <button class="qty-increment-btn"></button>
-            </div>
-        </div>
-        <div class="item-price-col">
-            <div class="item-heading">PRICE</div>
-            PHP ${newPrice}
-        </div>
     `;
 
+    const itemQuantityCol = generateItemQuantityColHTML(item);      // quantity buttons and display 
+    const itemPriceCol = generateItemPriceColHTML(newPrice);        // item price display
+    const itemRemoveCol = generateItemRemoveColHTML(item);          // remove item button and functionality
+ 
+    cartItem.appendChild(itemQuantityCol);
+    cartItem.appendChild(itemPriceCol);
+    cartItem.appendChild(itemRemoveCol);
+    return cartItem;
+}
+
+/*|*******************************************************
+
+                    GENERATE DYNAMIC HTML 
+
+*********************************************************/
+// - Quantity buttons and order count display
+function generateItemQuantityColHTML(item) {
+    const itemQuantityCol = document.createElement('div');
+    itemQuantityCol.classList.add('item-quantity-col');
+    itemQuantityCol.innerHTML = `<div class = "item-heading"> QUANTITY </div>`;    
+
+    const quantityToggle = document.createElement('div');
+    quantityToggle.classList.add('quantity-toggle');
+
+    /*
+        1. Get variationID and current quantity
+        2. Fetch post request
+        3. Update the array on the current page
+            - Find the index of the current item on the array
+    */
+    const decrementButton = document.createElement('button');
+    decrementButton.classList.add('qty-decrement-btn');
+    decrementButton.addEventListener('click', async () => {
+        try {
+            if( item.quantity - 1 > 0 ) {
+                const formData = {
+                    variationID: item.variationID,
+                    newQuantity: item.quantity - 1,
+                }
+    
+                const response = await fetchPost( '/updateShoppingCartItemQuantity', formData );
+                if( response.status === 200 ) {
+                    let selectedIndex = shoppingCartArray.findIndex( cartItem => cartItem.variationID === item.variationID );
+                    if( selectedIndex !== -1 ) {
+                        shoppingCartArray[selectedIndex].quantity = item.quantity - 1;
+                        updateCartContainer();
+                        updateTotalPrice();
+                        updateCartItemsNumber();
+                    }
+                }
+            }
+        } catch( error ) {
+            console.error( "Error during product removal:", error);
+        }
+    });
+
+    const quantityLabel = document.createElement('span');
+    quantityLabel.textContent = `${item.quantity}`;
+
+    const incrementButton = document.createElement('button');
+    incrementButton.classList.add('qty-increment-btn');
+    incrementButton.addEventListener('click', async () => {
+        try {
+            if( item.quantity + 1 <= item.stockQuantity ) {
+                const formData = {
+                    variationID: item.variationID,
+                    newQuantity: item.quantity + 1,
+                }
+
+                const response = await fetchPost( '/updateShoppingCartItemQuantity', formData );
+                if( response.status === 200 ) {
+                    let selectedIndex = shoppingCartArray.findIndex( cartItem => cartItem.variationID === item.variationID );
+                    if( selectedIndex !== -1 ) {
+                        shoppingCartArray[selectedIndex].quantity = item.quantity + 1;
+                        updateCartContainer();
+                        updateTotalPrice();
+                        updateCartItemsNumber();
+                    }
+                }
+            }
+        } catch( error ) {
+            console.error( "Error during product removal:", error);
+        }
+    });
+
+
+    quantityToggle.appendChild(decrementButton);
+    quantityToggle.appendChild(quantityLabel);
+    quantityToggle.appendChild(incrementButton);
+    itemQuantityCol.appendChild(quantityToggle);
+
+    return itemQuantityCol;
+}
+
+
+async function updateItemQuantity(increment) {
+    
+}
+
+
+// - Item price display
+function generateItemPriceColHTML(price) {
+    const itemPriceCol = document.createElement('div');
+    itemPriceCol.classList.add('item-price-col');
+    itemPriceCol.innerHTML = `<div class = "item-heading">PRICE</div> PHP ${price}`;
+    return itemPriceCol;
+}
+
+// - Remove item button
+function generateItemRemoveColHTML(item) {
     const itemRemoveCol = document.createElement('div');
     itemRemoveCol.classList.add('item-remove-col');
 
@@ -124,10 +226,14 @@ function generateCartItemHTML( item ) {
     });
 
     itemRemoveCol.appendChild(removeItemBtn);
-    cartItem.appendChild(itemRemoveCol);
-    return cartItem;
+    return itemRemoveCol;
 }
 
+/*|*******************************************************
+
+                      UPDATE DETAILS
+
+*********************************************************/
 function updateCartItemsNumber() {
     cartItemsNumber.textContent = `${shoppingCartArray.length} item(s)`;
 }

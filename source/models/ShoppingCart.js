@@ -68,7 +68,7 @@ class ShoppingCart {
                 sc.userID, sc.variationID, sc.quantity, sc.dateAdded,
                 p.productID, p.categoryID, p.productName, p.price,
                 ri.imageID AS imageID,
-                ir.filePath, pv.hexColor
+                ir.filePath, pv.hexColor, pv.stockQuantity
             FROM shoppingCart sc
             JOIN productsVariation pv ON sc.variationID = pv.variationID
             JOIN products p ON pv.productID = p.productID
@@ -88,6 +88,23 @@ class ShoppingCart {
             console.log( "getUserShoppingCart() Error:", error );
             return { status: 500, message: "Internal server error: " + error.message };
         }
+    }
+
+    static async updateItemQuantity( userID, variationID, newQuantity ) {
+        const sql = `
+            UPDATE shoppingCart SET quantity = ?
+            WHERE userID = ? AND variationID = ?;
+        `;
+
+        try {
+            const values = [newQuantity, userID, variationID];
+            await db.execute(sql, values);
+            return { status: 200, message: "Product quantity updated in shopping cart." };
+        } catch (error) {
+            console.log( "updateItemQuantity() Error:", error );
+            return { status: 500, message: "Internal server error: " + error.message };
+        }
+
     }
 }
 

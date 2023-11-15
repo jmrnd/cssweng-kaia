@@ -50,7 +50,7 @@ span.admin-label {
     font-weight: bold;
     font-size: 1em;
     position: relative;
-    bottom: 10px;
+    top: 0.5rem;
 }
 
 /***********************************************
@@ -93,8 +93,9 @@ div.logo {
 div.header-buttons {
     gap: 0.938rem;
     display: flex;
+    flex-direction: row;
     position: absolute;
-    top: 2.6rem;
+    top: 1.6rem;
     right: 50px;
 }
 
@@ -119,7 +120,7 @@ span.icon {
 .popup {
     display: flex;
     position: absolute;
-    top: 70%;
+    top: 55%;
     padding: 5px;
     visibility: hidden;
     z-index: 999;
@@ -132,7 +133,7 @@ span.icon {
                 SEARCH POP-UP               
 ***********************************************/
 .popup.search-popup {
-    right: 11rem;
+    right: 12.8rem;
     display: block;
     width: auto;
     font-size: 1em;
@@ -142,7 +143,7 @@ span.icon {
                 FAVOURITE POP-UP               
 ***********************************************/
 .popup.favourite-popup {
-    right: 7.8rem;
+    right: 9.5rem;
     display: block;
     width: auto;
     font-size: 1em;
@@ -152,7 +153,7 @@ span.icon {
                  CART POP-UP               
 ***********************************************/
 .popup.cart-popup {
-    right: 5.5rem;
+    right: 6.35rem;
     display: block;
     width: auto;
     font-size: 0.95em;
@@ -162,7 +163,7 @@ span.icon {
                  PROFILE POP-UP             
 ***********************************************/
 .popup.profile-popup {
-    right: 0rem;
+    right: 3rem;
     display: block;
     width: auto;
     font-size: 0.95em;

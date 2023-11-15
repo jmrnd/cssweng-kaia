@@ -289,6 +289,24 @@ const UserController = {
             res.status(500).json({ message: "Internal server error." });
         }
     },
+
+    // - Called in the quantity buttons of shoppingCart.js
+    updateShoppingCartItemQuantity: async (req, res) => {
+        try {
+            const { variationID, newQuantity } = req.body;
+            const userID = req.session.userID;
+
+            const itemResponse = await ShoppingCart.updateItemQuantity( userID, variationID, newQuantity )
+            if( itemResponse.status === 200 ) {
+                return res.status(200).json({ message: "Quantity updated"});
+            } else {
+                return res.status(500).json({ message: itemResponse.message });
+            }
+        } catch( error ) {
+            console.log( "updateShoppingCartItemQuantity Error:", error );
+            res.status(500).json({ message: "Internal server error." });
+        }
+    },
 }
 
 module.exports = UserController;

@@ -26,7 +26,7 @@ router.get('/wishlist', UserController.wishlist );
 router.post('/wishlistProduct', UserController.wishlistProduct );
 router.get('/shoppingCart', UserController.shoppingCart );
 router.post('/productToShoppingCart', UserController.productToShoppingCart );
-
+router.post('/updateShoppingCartItemQuantity', UserController.updateShoppingCartItemQuantity );
 
 router.get('/inventory', AdminController.inventory );
 router.get('/registerProduct', AdminController.getRegisterProduct );
