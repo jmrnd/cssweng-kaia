@@ -269,8 +269,6 @@ const UserController = {
             if( req.session.authorized ) {
                 const { variationID, quantity } = req.body;
                 const userID = req.session.userID; 
-                // const parsedVariationID = parseInt(variationID.replace(/\D/g, ''));
-                // const parsedQuantity = parseInt(quantity.replace(/\D/g, ''));
 
                 const shoppingCartStatus = await ShoppingCart.checkShoppingCartStatus( userID, variationID );
     

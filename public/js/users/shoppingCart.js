@@ -215,7 +215,6 @@ function generateItemRemoveColHTML(item) {
             const indexToRemove = shoppingCartArray.findIndex( cartItem => cartItem.variationID === tempVariationID);
             if( indexToRemove !== -1 ) {
                 shoppingCartArray.splice(indexToRemove, 1);
-                cartContainer.removeChild(cartItem);
             }        
             updateCartContainer();
             updateTotalPrice();

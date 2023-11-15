@@ -35,37 +35,40 @@ function generateProductItem( product ) {
 
     const productContainer = document.createElement('div');
     productContainer.className = 'product-container';
-    productContainer.innerHTML = `
-        <div class = "product-item">
-            <div class = "image-container">
-                <img src = "${filePath}" class = "item-icon">
-                <span class = "product-name"> ${productName} </span> 
-            </div>
-            <span class = "product-stock"> Stock: ${stockQuantity} </span> 
-            <span class = "product-price"> PHP ${price} </span> 
-            <div>
-                <span class = "add-to-cart-button"> Add to Cart </span>
-            </div>
-        </div>
-    `;
     
-    productContainers.appendChild(productContainer);
-}
-
-
-/*
-    <div class = "product-container">
-        <div class = "product-item">
-            <div class = "image-container">
-                <img src = "images/kaia/maya_top_1.jpg" class = "item-icon">
-                <span class = "product-name"> Name </span> 
-            </div>
-            <span class = "product-stock"> Stock </span> 
-            <span class = "product-price"> Price </span> 
-            <div>
-                <span class = "add-to-cart-button"> Add to Cart </span>
-            </div>
+    const productItem = document.createElement('div');
+    productItem.className = 'product-item';
+    productItem.innerHTML = `
+        <div class = "image-container">
+            <img src = "${filePath}" class = "item-icon">
+            <span class = "product-name"> ${productName} </span> 
         </div>
-    </div>
+        <span class = "product-stock"> Stock: ${stockQuantity} </span> 
+        <span class = "product-price"> PHP ${price} </span> 
+    `;
 
-*/
+    const productButtonContainer = document.createElement('div');
+    productButtonContainer.setAttribute( 'product-id', productID );
+    productButtonContainer.innerHTML = `<span class = "add-to-cart-button"> View Product </span>`;
+
+    productButtonContainer.addEventListener('click', async function(e) {
+        try {
+            const response = await fetch( `/viewProduct?productID=${productID}`, {
+                method: 'GET'
+            });
+
+            if( response.status === 200 ) {
+                window.location.href = `/viewProduct?productID=${productID}`;
+            } else {
+                console.log( "Request failed!" );
+            }
+        } catch( error ) {
+            console.log( error );
+        }
+    });  
+
+    productItem.appendChild(productButtonContainer)
+    productContainer.appendChild(productItem);
+    productContainers.appendChild(productContainer);
+
+}
