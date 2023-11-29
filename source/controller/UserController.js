@@ -23,6 +23,14 @@ const Middleware = require('./Middleware.js');
 
 const UserController = {
 
+    getCSARCH2: (req, res ) => {
+        try {
+            res.render('users/csarch2.ejs');
+        } catch( error ) {
+            console.log( "getUpload() error: ", error );
+        }
+    },
+
     getUpload: (req, res ) => {
         try {
             res.render('users/upload.ejs');
@@ -279,10 +287,11 @@ const UserController = {
 
                 const shoppingCartStatus = await ShoppingCart.checkShoppingCartStatus( userID, variationID );
     
-                if( shoppingCartStatus.status === 200 ) {
+                /* if( shoppingCartStatus.status === 200 ) {
                     const response = await ShoppingCart.removeFromShoppingCart( userID, variationID );
                     return res.status(response.status).json({ message: "Product removed from cart." });
-                } else if( shoppingCartStatus.status === 204 ) {
+                } else */ 
+                if( shoppingCartStatus.status === 204 ) {
                     const response = await ShoppingCart.addToShoppingCart( userID, variationID, quantity );
                     return res.status(response.status).json({ message: "Product added to cart." });
                 } else {
