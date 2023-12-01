@@ -247,7 +247,6 @@ document.addEventListener('DOMContentLoaded', () => {
         generateVariations();
         isProductWishlisted = parseObject(isWishlisted);
         updateWishlistButtonIcon();
-        updateCartButtonLabel();
     } catch( error ) {
         console.log( error );
     }

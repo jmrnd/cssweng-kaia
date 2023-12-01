@@ -65,9 +65,8 @@ class ShoppingCart {
                 FROM productImages pi
             )
             SELECT
-                sc.userID, sc.variationID, sc.quantity, sc.dateAdded,
-                p.productID, p.categoryID, p.productName, p.price,
-                ri.imageID AS imageID,
+                sc.userID, sc.variationID, pv.variationName, sc.quantity, sc.dateAdded, 
+                p.productID, p.categoryID, p.productName, p.price, ri.imageID AS imageID,
                 ir.filePath, pv.hexColor, pv.stockQuantity
             FROM shoppingCart sc
             JOIN productsVariation pv ON sc.variationID = pv.variationID

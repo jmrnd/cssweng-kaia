@@ -6,6 +6,9 @@ const cartContainer = document.getElementById('cart-container');
 const cartItemsNumber = document.getElementById('cart-items');
 const cartTotalPrice = document.getElementById('total-price');
 
+// - Feedback Box
+const feedbackBox = document.getElementById('shopping-cart-feedback-box');
+
 /***********************************************
                     VARIABLES                   
 ***********************************************/
@@ -186,11 +189,6 @@ function generateItemQuantityColHTML(item) {
 }
 
 
-async function updateItemQuantity(increment) {
-    
-}
-
-
 // - Item price display
 function generateItemPriceColHTML(price) {
     const itemPriceCol = document.createElement('div');
@@ -219,6 +217,13 @@ function generateItemRemoveColHTML(item) {
             updateCartContainer();
             updateTotalPrice();
             updateCartItemsNumber();
+
+            
+            feedbackBox.style.display = 'block';
+            feedbackBox.classList.add('error'); 
+            feedbackBox.textContent = `${item.productName} (${item.variationName}) has been removed from shopping cart`;
+            
+
         } catch( error ) {
             console.error( "Error during product removal:", error);
         }
