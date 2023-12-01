@@ -1,9 +1,9 @@
 :root {
-    --new-arrivals: url("/images/kaia/iris_linen_top_1.jpg");
-    --dresses: url("/images/kaia/sky_linen_dress_1.jpg");
-    --bottoms: url("/images/kaia/june_top_4.jpg");
-    --tops: url("/images/kaia/lane_top_2.jpg");
-    --coords: url("/images/kaia/cara_linen_coordinates_3.jpg");
+    --new-arrivals: url("/images/kaia/homepage/iris_linen_top_1.jpg");
+    --dresses: url("/images/kaia/homepage/sky_linen_dress_1.jpg");
+    --bottoms: url("/images/kaia/homepage/june_top_4.jpg");
+    --tops: url("/images/kaia/homepage/lane_top_2.jpg");
+    --coords: url("/images/kaia/homepage/cara_linen_coordinates_3.jpg");
 }
 
 body {
