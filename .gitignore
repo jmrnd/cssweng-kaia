@@ -1,3 +1,2 @@
 node_modules
-public/upload/temporary/*.jpg
-public/upload/temporary/*.png
+public/upload/temporary/

@@ -170,9 +170,9 @@ div.small-image-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 110px;
-    width: 110px;
-    margin: 5px 5px 5px 5px;
+    width: 4.1875rem;
+    height: 4.875rem;
+    margin: 1rem 0.5rem;
     border: 1px solid #E9E9E9;
 }
 
@@ -185,7 +185,7 @@ img.small-image {
     height: 4.875rem;
     flex-shrink: 0;
     object-fit: cover;
-    padding: 0rem 0.5rem;
+    padding: 0rem 0rem;
     cursor: pointer;
 }
 
