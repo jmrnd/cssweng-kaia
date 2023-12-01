@@ -23,7 +23,7 @@
         <div class = "category-header-container" id = "category-header-container">
             <% if( categories !== null ) { %> 
                 <% categories.forEach((category) => { %>
-                    <a class = "category-link" data-id = "<%=category.categoryID%>" data-name = "<%=category.categoryName%>"> 
+                    <a class = "category-link" data-id = "<%=category.categoryID%>" data-name = "<%=category.categoryName%>" onclick="selectCategory(this)"> 
                         <%= category.categoryName %> 
                     </a>
                 <% }); %>
