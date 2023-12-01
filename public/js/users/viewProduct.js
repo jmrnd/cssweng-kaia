@@ -5,6 +5,9 @@ const pathCategory = document.getElementById('path-category');
 const wishlistButton = document.getElementById('wishlist-product-button');
 const wishlistButtonIcon = document.getElementById('wishlist-button-icon');
 
+// - Error Box
+const errorBox = document.getElementById('view-product-feedback-box');
+
 // - Product
 const numberContainer = document.getElementById('number-container'); // stock quantity
 
@@ -267,17 +270,42 @@ function changePathAndTitle( categoryName, productName ) {
 wishlistButton.addEventListener('click', async (e) => {
     e.preventDefault();
     try {
+        console.log( "status: " );
+
         const wishlistStatus = await fetch('/wishlistProduct', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ productID: productID })
         });
+        console.log( "status:2 " );
 
+        // - 200: removed, 201: added
         const status = wishlistStatus.status;
-        if( status === 200 || status === 201 ) {
-            console.log( "isProductWishlisted: ", isProductWishlisted );
+        console.log( "status: " );
+        if( status === 200 ) {
             isProductWishlisted = !isProductWishlisted;
             updateWishlistButtonIcon();
+            errorBox.style.display = 'block';
+            errorBox.classList.remove('success'); 
+            errorBox.classList.add('error'); 
+            errorBox.textContent = 'Product removed from wishlist';
+        } else if( status === 201 ) {
+            isProductWishlisted = !isProductWishlisted;
+            updateWishlistButtonIcon();
+            errorBox.style.display = 'block';
+            errorBox.textContent = 'Product added to wishlist';
+            errorBox.classList.remove('error'); 
+            errorBox.classList.add('success'); 
+        } else if( status === 500 ) {
+            errorBox.style.display = 'block';
+            errorBox.textContent = 'Internal server error';
+            errorBox.classList.remove('success'); 
+            errorBox.classList.add('error'); 
+        } else if( status === 404 ) {
+            await fetch('/login', {
+                method: 'GET'
+            });
+            window.location.href = "/login";
         }
     } catch( error ) {
         console.log( error );

@@ -20,16 +20,7 @@ const Wishlist = require('../models/Wishlist.js');
 const ShoppingCart = require('../models/ShoppingCart.js');
 const Middleware = require('./Middleware.js');
 
-
 const UserController = {
-
-    getCSARCH2: (req, res ) => {
-        try {
-            res.render('users/csarch2.ejs');
-        } catch( error ) {
-            console.log( "getUpload() error: ", error );
-        }
-    },
 
     getUpload: (req, res ) => {
         try {
@@ -72,6 +63,7 @@ const UserController = {
             if( req.session.authorized && req.session.rememberMe ) {
                 res.redirect('/homepage');
             } else {
+                req.session.authorized = false;
                 res.render('users/login.ejs');
             }
         } catch( error ) {
@@ -237,27 +229,82 @@ const UserController = {
     },
 
     wishlistProduct: async (req, res) => {
-        if( req.session.authorized ) {
+        try { 
+            if( req.session.authorized === true ) {
+                const { productID } = req.body;
+                const userID = req.session.userID; 
+                const parsedProductID = parseInt(productID.replace(/\D/g, ''));
+
+                /*
+                    200 - product is wishlisted
+                    404 - product not wishlisted
+                    500 - internal server error 
+                */
+                const wishlistStatus = await Wishlist.checkWishlistStatus( userID, parsedProductID );
+                
+                if( wishlistStatus.status === 200 ) {
+                    /*
+                        200 - remove from wishlist
+                        500 - internal server error
+                    */
+                    const response = await Wishlist.removeFromWishlist( userID, parsedProductID );
+                    return res.status(response.status).json({ message: "Product removed from wishlist." });
+                } else if( wishlistStatus.status === 404 ) {
+                    /*
+                        201 - added to wishlist
+                        500 - internal server error
+                    */
+                    const response = await Wishlist.addToWishlist( userID, parsedProductID );
+                    return res.status(response.status).json({ message: "Product added to wishlist." });
+                } else {
+                    return res.status(500).json({ message: wishlistStatus.message });
+                }
+            } else {
+                return res.status(404).json({ message: "User not logged in." });;
+            }
+        } catch( error ) {
+            console.log( "wishlistProduct Error:", error );
+            res.status(500).json({ message: "Internal server error." });
+        }
+
+
+        console.log( "req.session.authorized", req.session.authorized );
+        if( req.session.authorized === true ) {
             try { 
                 const { productID } = req.body;
                 const userID = req.session.userID; 
                 const parsedProductID = parseInt(productID.replace(/\D/g, ''));
 
+                /*
+                    200 - product is wishlisted
+                    404 - product not wishlisted
+                    500 - internal server error 
+                */
                 const wishlistStatus = await Wishlist.checkWishlistStatus( userID, parsedProductID );
-
+                
                 if( wishlistStatus.status === 200 ) {
+                    /*
+                        200 - remove from wishlist
+                        500 - internal server error
+                    */
                     const response = await Wishlist.removeFromWishlist( userID, parsedProductID );
                     return res.status(response.status).json({ message: "Product removed from wishlist." });
                 } else if( wishlistStatus.status === 404 ) {
+                    /*
+                        201 - added to wishlist
+                        500 - internal server error
+                    */
                     const response = await Wishlist.addToWishlist( userID, parsedProductID );
                     return res.status(response.status).json({ message: "Product added to wishlist." });
                 } else {
-                    return res.status(wishlistStatus.status).json({ message: wishlistStatus.message });
+                    return res.status(500).json({ message: wishlistStatus.message });
                 }
             } catch( error ) {
                 console.log( "wishlistProduct Error:", error );
                 res.status(500).json({ message: "Internal server error." });
             }
+        } else {
+            res.redirect('/');
         }
     },
 

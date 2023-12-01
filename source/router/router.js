@@ -12,7 +12,6 @@ const middleware = require("../controller/Middleware");
 
 router.use( middleware.fetchUser );
 
-router.get('/csarch2', UserController.getCSARCH2 );
 router.get('/homepage', UserController.homepage );
 router.get('/login', UserController.getLogin );
 router.post('/login', UserController.postLogin );

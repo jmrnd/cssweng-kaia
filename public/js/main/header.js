@@ -7,6 +7,7 @@ const goToShoppingCartButton = document.getElementById('shopping-cart-button');
 const logoutButton = document.getElementById('logout-button');
 const search = document.querySelector('#search-icon');
 const searchBox = document.querySelector('.search-box');
+const kaiaApparelLogo = document.getElementById('logo');
 
 /*
     ` When the mouse cursor hovers on the buttons, the popup shows up.
@@ -97,6 +98,20 @@ goToShoppingCartButton?.addEventListener( 'click', async function(e) {
         } else if( response.status === 500 ) {
             console.error( "An error occured: ", error );
         }
+    } catch( error ) {
+        console.error( "An error occured: ", error );
+    }
+});
+
+kaiaApparelLogo?.addEventListener( 'click', async function(e) {
+    e.preventDefault();
+    try {
+        const response = await fetch( 'homepage', {
+            METHOD: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        window.location.href = "/homepage";
     } catch( error ) {
         console.error( "An error occured: ", error );
     }
