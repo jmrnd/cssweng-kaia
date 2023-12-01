@@ -43,13 +43,13 @@ class Product {
     static async updateProduct( product ) {
         const sql = `
             UPDATE products
-            SET productName = ?, productDescription = ?, price = ?
+            SET productName = ?, productDescription = ?, price = ?, categoryID = ?
             WHERE productID = ?;
         `;
 
         try {
-            const { productID, productName, productDescription, price } = product;
-            const values = [productName, productDescription, price, productID];
+            const { productID, productName, productDescription, price, categoryID } = product;
+            const values = [productName, productDescription, price, categoryID, productID];
             await db.execute(sql, values);
             return { status: 200, message: "Product was successfuly updated." };
         } catch( error ) {
@@ -95,12 +95,12 @@ class Product {
             SELECT p.productID, p.categoryID, p.productName, p.productDescription, p.price, i.imageID, i.filePath
             FROM products p
             LEFT JOIN (
-                SELECT pi.productID, MAX(i.imageID) AS maxImageID
+                SELECT pi.productID, MIN(i.imageID) AS minImageID
                 FROM productImages pi
                 LEFT JOIN imageReferences i ON pi.imageID = i.imageID
                 GROUP BY pi.productID
-            ) AS maxImages ON p.productID = maxImages.productID
-            LEFT JOIN imageReferences i ON maxImages.maxImageID = i.imageID
+            ) AS minImages ON p.productID = minImages.productID
+            LEFT JOIN imageReferences i ON minImages.minImageID = i.imageID
             ORDER BY i.imageID ASC
         `;  
 

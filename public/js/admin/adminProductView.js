@@ -288,7 +288,7 @@ function createConfirmationPopup() {
 
     const cancelButton = document.createElement('div');
     cancelButton.classList.add('confirm-button');
-    cancelButton.innerHTML = 'cancel';
+    cancelButton.innerHTML = 'Cancel';
 	cancelButton.addEventListener('click', () => {
 		modal.classList.remove('active');
 		overlay.classList.remove('active');
@@ -297,7 +297,7 @@ function createConfirmationPopup() {
     const confirmButton = document.createElement('div');
     confirmButton.classList.add('confirm-button');
     confirmButton.setAttribute('id', 'confirm');
-    confirmButton.innerHTML = 'confirm';
+    confirmButton.innerHTML = 'Confirm';
     confirmButton.addEventListener('click', () => {
         deleteProduct(product);
 		modal.classList.remove('active');
