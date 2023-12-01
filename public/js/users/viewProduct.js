@@ -5,8 +5,8 @@ const pathCategory = document.getElementById('path-category');
 const wishlistButton = document.getElementById('wishlist-product-button');
 const wishlistButtonIcon = document.getElementById('wishlist-button-icon');
 
-// - Error Box
-const errorBox = document.getElementById('view-product-feedback-box');
+// - Feedback Box
+const feedbackBox = document.getElementById('view-product-feedback-box');
 
 // - Product
 const numberContainer = document.getElementById('number-container'); // stock quantity
@@ -285,22 +285,22 @@ wishlistButton.addEventListener('click', async (e) => {
         if( status === 200 ) {
             isProductWishlisted = !isProductWishlisted;
             updateWishlistButtonIcon();
-            errorBox.style.display = 'block';
-            errorBox.classList.remove('success'); 
-            errorBox.classList.add('error'); 
-            errorBox.textContent = 'Product removed from wishlist';
+            feedbackBox.style.display = 'block';
+            feedbackBox.classList.remove('success'); 
+            feedbackBox.classList.add('error'); 
+            feedbackBox.textContent = 'Product removed from wishlist';
         } else if( status === 201 ) {
             isProductWishlisted = !isProductWishlisted;
             updateWishlistButtonIcon();
-            errorBox.style.display = 'block';
-            errorBox.textContent = 'Product added to wishlist';
-            errorBox.classList.remove('error'); 
-            errorBox.classList.add('success'); 
+            feedbackBox.style.display = 'block';
+            feedbackBox.textContent = 'Product added to wishlist';
+            feedbackBox.classList.remove('error'); 
+            feedbackBox.classList.add('success'); 
         } else if( status === 500 ) {
-            errorBox.style.display = 'block';
-            errorBox.textContent = 'Internal server error';
-            errorBox.classList.remove('success'); 
-            errorBox.classList.add('error'); 
+            feedbackBox.style.display = 'block';
+            feedbackBox.textContent = 'Internal server error';
+            feedbackBox.classList.remove('success'); 
+            feedbackBox.classList.add('error'); 
         } else if( status === 404 ) {
             await fetch('/login', {
                 method: 'GET'
