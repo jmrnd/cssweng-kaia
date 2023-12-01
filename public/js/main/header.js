@@ -88,16 +88,7 @@ goToWishlistButton?.addEventListener( 'click', async function(e) {
 goToShoppingCartButton?.addEventListener( 'click', async function(e) {
     e.preventDefault();
     try {
-        const response = await fetch( 'wishlist', {
-            METHOD: 'GET',
-            headers: { 'Content-Type': 'application/json' },
-        });
-
-        if( response.status === 200 ) {
-            window.location.href = "/shoppingcart";
-        } else if( response.status === 500 ) {
-            console.error( "An error occured: ", error );
-        }
+        window.location.href = "/shoppingcart";
     } catch( error ) {
         console.error( "An error occured: ", error );
     }

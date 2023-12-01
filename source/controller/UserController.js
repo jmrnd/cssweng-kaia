@@ -323,6 +323,39 @@ const UserController = {
         }
     },
 
+    wishlist: async (req, res) => {
+        try {
+            if( req.session.authorized ) {
+                const userID = req.session.userID;
+                const { wishlist } = await Wishlist.getUserWishlist( userID );
+                res.status(200).render('./users/wishlist.ejs', { wishlist: wishlist });
+            } else {
+                res.redirect('/');
+            }
+        } catch( error ) {
+            console.log( error );
+        }
+    },
+
+    
+    checkout: async (req, res) => {
+        try {
+            if( req.session.authorized ) {
+                const userID = req.session.userID;
+                const { shoppingCart, status } = await ShoppingCart.getUserShoppingCart( userID );
+                if( status === 200 ) {
+                    res.status(200).render('./users/checkout.ejs', { shoppingCart: shoppingCart });
+                } else if( status === 404 ) {
+                    res.status(404).render('./users/checkout.ejs', { shoppingCart: shoppingCart });
+                }
+            } else {
+                res.redirect('/');
+            }
+        } catch( error ) {
+            console.log( error );
+        }
+    },
+
     /*
     checkShoppingCartStatus: async (req, res) => {
         try {
