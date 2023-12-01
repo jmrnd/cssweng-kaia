@@ -89,9 +89,6 @@ function generateCartItemHTML( item ) {
         </div>
         <div class="item-info-col">
             <div class="item-name">${item.productName}</div>
-            <div class="item-var-details">
-                <div class="item-color" style="background-color: ${item.hexColor};"> <br> </div>
-            </div>    
             <div> 
                 <span> Variation: ${item.variationName} </span> <br>
             </div>
