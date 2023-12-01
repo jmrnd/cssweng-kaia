@@ -1,4 +1,4 @@
-const maxRating = 5.0;
+const maxRating = 5;
 
 const starIconFill = `<span class="star-icon">★ </span>`;
 

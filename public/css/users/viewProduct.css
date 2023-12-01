@@ -116,17 +116,30 @@ div.large-image-container {
 }
 */
 
+/* div.large-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+    width: 95%;
+    max-width: 95%;
+    min-width: 500px;
+    min-height: 500px;
+    border: 1px solid #E9E9E9;
+    overflow: hidden;
+    object-fit: cover;
+} */
+
 div.large-image-container {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center; 
-    min-width: 500px;
-    min-height: 500px;
-    max-width: 500px;
-    max-height: 500px;
+    width: 30   .6875rem;
+    height: 35.8125rem;
     border: 1px solid #E9E9E9;
     overflow: hidden;
+    object-fit: cover;
 }
 
 img.large-image {
@@ -172,7 +185,7 @@ div.small-image-container {
     justify-content: center;
     width: 4.1875rem;
     height: 4.875rem;
-    margin: 1rem 0.5rem;
+    margin: 1.5rem 0.5rem;
     border: 1px solid #E9E9E9;
 }
 
