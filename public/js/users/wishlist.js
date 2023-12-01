@@ -8,6 +8,9 @@ function parseWishlist() {
 const productContainers = document.getElementById('product-containers');
 const wishlistItems = document.getElementById('wishlist-items');
 
+// - Feedback Box
+const feedbackBox = document.getElementById('wishlist-feedback-box');
+
 /***********************************************
                   PRODUCT ITEMS                   
 ***********************************************/

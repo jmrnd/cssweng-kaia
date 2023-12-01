@@ -10,15 +10,12 @@
         operations.
 
 **********************************************************/
-const db = require('../config/database.js');
-const multer = require('../config/multer.js');
 const User = require('../models/User.js');
 const Product = require('../models/Product.js');
 const Image = require('../models/Image.js');
 const Variation = require('../models/Variation.js');
 const Wishlist = require('../models/Wishlist.js');
 const ShoppingCart = require('../models/ShoppingCart.js');
-const Middleware = require('./Middleware.js');
 
 const UserController = {
 
@@ -326,6 +323,25 @@ const UserController = {
         }
     },
 
+    /*
+    checkShoppingCartStatus: async (req, res) => {
+        try {
+            if( req.session.authorized ) {
+                const { variationID } = req.body;
+                const userID = req.session.userID; 
+
+                // - 200: in cart, 204: not in cart
+                const shoppingCartStatus = await ShoppingCart.checkShoppingCartStatus( userID, variationID );
+                return res.status(shoppingCartStatus.status).json();
+            } else {
+                return res.status(404).json({ message: "User not found."} );
+            }
+        } catch( error ) {
+            res.status(500).json({ message: "Internal server error." });
+        } 
+    },
+    */
+
     productToShoppingCart: async (req, res) => {
         try {
             if( req.session.authorized ) {
@@ -334,19 +350,20 @@ const UserController = {
 
                 const shoppingCartStatus = await ShoppingCart.checkShoppingCartStatus( userID, variationID );
     
-                /* if( shoppingCartStatus.status === 200 ) {
+                if( shoppingCartStatus.status === 200 ) {
                     const response = await ShoppingCart.removeFromShoppingCart( userID, variationID );
-                    return res.status(response.status).json({ message: "Product removed from cart." });
-                } else */ 
+                    return res.status(204).json({ message: "Product removed from cart." });
+                } else 
                 if( shoppingCartStatus.status === 204 ) {
                     const response = await ShoppingCart.addToShoppingCart( userID, variationID, quantity );
-                    return res.status(response.status).json({ message: "Product added to cart." });
+                    return res.status(200).json({ message: "Product added to cart." });
                 } else {
                     return res.status(shoppingCartStatus.status).json({ message: shoppingCartStatus.message });
                 }
+            } else {
+                return res.status(404).json({ message: "User not found."} );
             }
         } catch( error ) {
-            console.log( "addToCart Error:", error );
             res.status(500).json({ message: "Internal server error." });
         }   
     },

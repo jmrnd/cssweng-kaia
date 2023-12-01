@@ -66,15 +66,37 @@ function parseObject( object ) {
 ***********************************************/
 addToCartButton.addEventListener( "click", async () => {
     try {
-        const selectedVariationID = variationsArray[variationIndex].variationID;
+        const selectedVariation = variationsArray[variationIndex];
+        var parsedProduct = parseObject( product );
 
         const formData = { 
-            variationID: selectedVariationID,
+            variationID: selectedVariation.variationID,
             quantity: selectedQuantity
         }
 
         const response = await fetchPost( '/productToShoppingCart', formData );
-        console.log( response );
+
+        // - 200 : added, 204 : removed
+        if( response.status === 200 ) {
+            feedbackBox.style.display = 'block';
+            feedbackBox.classList.add('success'); 
+            feedbackBox.classList.remove('error'); 
+            feedbackBox.textContent = `${parsedProduct.productName} (${selectedVariation.variationName}) has been added to shopping cart`;
+        }
+        else if( response.status === 204 ) {
+            feedbackBox.style.display = 'block';
+            feedbackBox.classList.remove('success'); 
+            feedbackBox.classList.add('error'); 
+            feedbackBox.textContent = `${parsedProduct.productName} (${selectedVariation.variationName}) has been removed from shopping cart`;
+        } else if( response.status === 404 ) {
+            await fetch('/login', { method: 'GET' });
+            window.location.href = "/login";
+        } else {
+            feedbackBox.style.display = 'block';
+            feedbackBox.textContent = 'Internal server error';
+            feedbackBox.classList.remove('success'); 
+            feedbackBox.classList.add('error'); 
+        }
     } catch (error) {
         console.error("Error:", error);
     }
@@ -225,6 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
         generateVariations();
         isProductWishlisted = parseObject(isWishlisted);
         updateWishlistButtonIcon();
+        updateCartButtonLabel();
     } catch( error ) {
         console.log( error );
     }
@@ -281,6 +304,8 @@ wishlistButton.addEventListener('click', async (e) => {
 
         // - 200: removed, 201: added
         const status = wishlistStatus.status;
+        var parsedProduct = parseObject( product );
+
         console.log( "status: " );
         if( status === 200 ) {
             isProductWishlisted = !isProductWishlisted;
@@ -288,24 +313,24 @@ wishlistButton.addEventListener('click', async (e) => {
             feedbackBox.style.display = 'block';
             feedbackBox.classList.remove('success'); 
             feedbackBox.classList.add('error'); 
-            feedbackBox.textContent = 'Product removed from wishlist';
+            feedbackBox.textContent = `${parsedProduct.productName} has been removed from wishlist`;
         } else if( status === 201 ) {
             isProductWishlisted = !isProductWishlisted;
             updateWishlistButtonIcon();
             feedbackBox.style.display = 'block';
-            feedbackBox.textContent = 'Product added to wishlist';
             feedbackBox.classList.remove('error'); 
             feedbackBox.classList.add('success'); 
-        } else if( status === 500 ) {
-            feedbackBox.style.display = 'block';
-            feedbackBox.textContent = 'Internal server error';
-            feedbackBox.classList.remove('success'); 
-            feedbackBox.classList.add('error'); 
+            feedbackBox.textContent = `${parsedProduct.productName} has been added to wishlist`;
         } else if( status === 404 ) {
             await fetch('/login', {
                 method: 'GET'
             });
             window.location.href = "/login";
+        } else {
+            feedbackBox.style.display = 'block';
+            feedbackBox.textContent = 'Internal server error';
+            feedbackBox.classList.remove('success'); 
+            feedbackBox.classList.add('error'); 
         }
     } catch( error ) {
         console.log( error );
@@ -316,3 +341,26 @@ function updateWishlistButtonIcon() {
     wishlistButtonIcon.classList.remove('wishlist-button', 'wishlisted-button');
     wishlistButtonIcon.classList.add( isProductWishlisted ? 'wishlisted-button' : 'wishlist-button');
 }
+
+/*
+async function updateCartButtonLabel() {
+    try {
+        variationsArray = parseObject( variations );
+        const results = [];
+
+        for( const variation of variationsArray ) {
+            const shoppingCartStatus = await fetch('/checkShoppingCartStatus', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ variationID: variation.variationID })
+            });
+    
+            if( shoppingCartStatus.status === 200 ) {
+                addToCartButton.textContent
+                return;
+            }
+        }
+    } catch( error ) {
+    }
+}
+*/
