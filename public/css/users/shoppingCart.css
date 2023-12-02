@@ -208,10 +208,12 @@ div.item-quantity-col {
 
 .qty-increment-btn:hover {
     background-color: #f0f0f0;
+    cursor: pointer;
 }
 
 .qty-decrement-btn:hover {
     background-color: #f0f0f0;
+    cursor: pointer;
 }
 
 .divider {
@@ -241,8 +243,9 @@ div.item-quantity-col {
     height: 20px;
 }
 
-.remove-item-btn:active {
+.remove-item-btn:hover {
     opacity: 50%;
+    cursor: pointer;
 }
 
 .shopping-cart-total {
