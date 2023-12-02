@@ -99,12 +99,11 @@ div.large-image-container {
     justify-content: center;
     align-items: center;
     text-align: center; 
-    min-width: 500px;
-    min-height: 500px;
-    max-width: 500px;
-    max-height: 500px;
+    width: 30.6875rem;
+    height: 35.8125rem;
     border: 1px solid #E9E9E9;
     overflow: hidden;
+    object-fit: cover;
 }
 
 
@@ -149,9 +148,9 @@ div.small-image-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 110px;
-    width: 110px;
-    margin: 5px 5px 5px 5px;
+    width: 4.1875rem;
+    height: 4.875rem;
+    margin: 1.5rem 0.5rem;
     border: 1px solid #E9E9E9;
 }
 
@@ -164,7 +163,7 @@ img.small-image {
     height: 4.875rem;
     flex-shrink: 0;
     object-fit: cover;
-    padding: 0rem 0.5rem;
+    padding: 0rem 0rem;
     cursor: pointer;
 }
 

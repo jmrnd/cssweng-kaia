@@ -1,3 +1,7 @@
+const starIconFill = `<span class="star-icon">★ </span>`;
+
+const starIconGray = `<span class="star-icon gray">★ </span>`;
+
 // Add an event listener to all category containers
 document.addEventListener('DOMContentLoaded', () => {
     const categoryContainers = document.querySelectorAll('.category-container');
@@ -61,4 +65,4 @@ const dragStop = () => {
 
 carousel.addEventListener('mousedown', dragStart);
 carousel.addEventListener('mousemove', dragging);
-document.addEventListener('mouseup', dragStop)
+document.addEventListener('mouseup', dragStop);

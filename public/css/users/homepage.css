@@ -1,9 +1,9 @@
 :root {
-    --new-arrivals: url("/images/kaia/iris_linen_top_1.jpg");
-    --dresses: url("/images/kaia/sky_linen_dress_1.jpg");
-    --bottoms: url("/images/kaia/june_top_4.jpg");
-    --tops: url("/images/kaia/lane_top_2.jpg");
-    --coords: url("/images/kaia/cara_linen_coordinates_3.jpg");
+    --new-arrivals: url("/images/kaia/homepage/iris_linen_top_1.jpg");
+    --dresses: url("/images/kaia/homepage/sky_linen_dress_1.jpg");
+    --bottoms: url("/images/kaia/homepage/june_top_4.jpg");
+    --tops: url("/images/kaia/homepage/lane_top_2.jpg");
+    --coords: url("/images/kaia/homepage/cara_linen_coordinates_3.jpg");
 }
 
 body {
@@ -27,7 +27,7 @@ div.outer-container {
     position: relative;
     max-width: 1150px;
     margin: 0 auto;
-    margin-bottom: 50px;
+    margin: 3.5rem 0rem;
 }
 
 div.inner-container {
@@ -223,7 +223,7 @@ div.best-seller-items img{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 10px 20px;
+    padding: 0.5rem 0rem;
 }
 
 
@@ -245,6 +245,7 @@ div .review-cards{
     width: 570px;
     height: 195px;
     padding: 20px;
+    background: rgba(255, 175, 228, 0.05);
     border: #EF91CF 1px solid ;
     font-family: 'Roboto Condensed', sans-serif;
     box-sizing: border-box;
@@ -376,4 +377,15 @@ div .footer .footer-col{
     -moz-transform: translateY(-2px);
     -ms-transform: translateY(-2px);
     -o-transform: translateY(-2px);
+}
+
+.star-icon {
+    color: gold;
+    width: 1rem;
+    height: 1rem;
+}
+
+.star-icon.gray {
+    color: rgb(108, 108, 108);
+    height: 1rem;
 }

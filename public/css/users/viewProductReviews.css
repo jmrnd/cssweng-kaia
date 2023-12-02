@@ -86,7 +86,7 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    justify-content: space-around;
+    justify-content: left;
     border-bottom: 2px solid #ef91cf;
 }
 
@@ -128,6 +128,7 @@
     align-items: flex-end;
     text-align: left;
     padding: 1.5rem 1rem;
+    margin: 0rem 3rem;
     width: 40%;
 }
 
@@ -158,7 +159,6 @@
 .review-gallery {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     padding: 1.5rem 0rem;
 }
 
@@ -174,6 +174,7 @@
     flex-shrink: 0;
     object-fit: cover;
     flex: 0 0 33.33%;
+    padding: 0rem 0.1rem;
 }
 
 .review-previous-image-button,
@@ -181,10 +182,7 @@
     cursor: pointer;
     align-self: center;
     font-size: 1rem;
-}
-
-.review-next-image-button {
-    margin-left: 1rem;
+    margin: 0rem 1rem;
 }
 
 .user-review-image:nth-child(n + 4) {

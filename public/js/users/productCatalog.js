@@ -230,3 +230,10 @@ productFilter.addEventListener('change', () => {
         }
     });
 });
+
+function selectCategory(category) {
+    categoryLinks.forEach((link) => {
+        link.classList.remove('selected');
+    });
+    category.classList.add('selected');
+};

@@ -65,12 +65,12 @@ class Wishlist {
             FROM products p
             INNER JOIN wishlist w ON p.productID = w.productID
             LEFT JOIN (
-                SELECT pi.productID, MAX(i.imageID) AS maxImageID
+                SELECT pi.productID, MIN(i.imageID) AS minImageID
                 FROM productImages pi
                 LEFT JOIN imageReferences i ON pi.imageID = i.imageID
                 GROUP BY pi.productID
-            ) AS maxImages ON p.productID = maxImages.productID
-            LEFT JOIN imageReferences i ON maxImages.maxImageID = i.imageID
+            ) AS minImages ON p.productID = minImages.productID
+            LEFT JOIN imageReferences i ON minImages.minImageID = i.imageID
             LEFT JOIN productsVariation v ON p.productID = v.productID
             WHERE w.userID = ?
             GROUP BY p.productID, p.categoryID, p.productName, p.productDescription, p.price, i.imageID, i.filePath;

@@ -77,8 +77,8 @@ div.product-item {
 }
 
 div.product-item img {
-    width: 12.375rem;
-    height: 14.375rem;
+    width: 15.375rem;
+    height: 16.375rem;
     object-fit: cover;
 }
 
@@ -136,6 +136,7 @@ span.category-title {
 }
 
 span.product-name {
+    font-family: 'Roboto Condensed-Bold';
     padding: 0.5rem 0rem;
     font-size: inherit;
     line-height: inherit;
@@ -255,4 +256,5 @@ span.product-name {
 
 .product-catalog-image {
     object-fit: cover;
+    cursor: pointer;
 }
