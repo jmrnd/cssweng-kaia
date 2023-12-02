@@ -114,7 +114,7 @@ div.product-container {
     ); /* adjust items per column if necessary */
     gap: 1.25rem;
     max-width: 75rem;
-    margin: 0 auto;
+    margin: 4rem 0rem;
 }
 
 div.product-item {
@@ -157,7 +157,7 @@ div.product-item img {
 ***********************************************/
 .pagination {
     text-align: center;
-    margin-top: 5px;
+    margin: 4rem 0rem;
 }
 
 .pagination button {
